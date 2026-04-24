@@ -39,7 +39,7 @@ const values = [
   {
     icon: <Users size={18} />,
     title: "Customer-first, truly",
-    body: "Every single engineer handles support for two hours a week. You won’t hear ‘I’ll escalate it’ — you’ll hear ‘I’m shipping it.’",
+    body: "Support goes straight to the founder. You won’t hear ‘I’ll escalate it’ — you’ll hear ‘I’m shipping it.’",
   },
   {
     icon: <Shield size={18} />,
@@ -48,59 +48,27 @@ const values = [
   },
 ];
 
-const team = [
-  {
-    name: "Lena Moreau",
-    role: "Co-founder & CEO",
-    bio: "Ex-partnerships at UEFA and Ligue 1. Built the first in-house media value model at a French top-flight club.",
-  },
-  {
-    name: "Rohan Desai",
-    role: "Co-founder & CTO",
-    bio: "Previously ML lead on Meta Reality Labs. Wrote the computer-vision core of SponsorTrack in a Lisbon co-working space.",
-  },
-  {
-    name: "Camille Tran",
-    role: "VP Product",
-    bio: "Product at Figma and Stripe. Believes good software should disappear behind the work — especially in sport.",
-  },
-  {
-    name: "Ahmed Saleh",
-    role: "VP Sports",
-    bio: "Former Head of Commercial at a top-3 MENA club. Closes contracts, breaks down strategies, plays five-a-side.",
-  },
-  {
-    name: "Ingrid Olafsson",
-    role: "Head of ML",
-    bio: "PhD in sports analytics, Chalmers. Leads our broadcast-vision team and publishes an incomprehensible amount.",
-  },
-  {
-    name: "Theo Santini",
-    role: "Head of Design",
-    bio: "Designed apps used by 60M+ users. Thinks dark mode is the only acceptable mode in a football analytics tool.",
-  },
-];
+const founder = {
+  name: "Guillaume Haas",
+  role: "Founder",
+  bio: "Entrepreneur, product vision. Building SponsorTrack solo — from the data model to the first customer conversations.",
+};
 
 const milestones = [
   {
-    year: "2024",
-    title: "A prototype in a backpack",
-    body: "Lena and Rohan meet at a partnership summit. A weekend hack turns into a working logo-detection demo two months later.",
-  },
-  {
-    year: "2025",
-    title: "First ten design partners",
-    body: "Clubs from four countries sign on as design partners — the prototype starts tracking real matches every weekend.",
-  },
-  {
-    year: "2025",
-    title: "Seed round closed",
-    body: "€6.5M led by a European sports-tech fund, with angels from Ligue 1, La Liga, and two Bundesliga CMOs.",
+    year: "2026",
+    title: "An idea, then a prototype",
+    body: "SponsorTrack starts as a solo side-project — a hunch that sponsorship measurement deserves a real data layer, not a PDF recap.",
   },
   {
     year: "2026",
-    title: "SponsorTrack v1 public launch",
-    body: "The platform opens to all clubs and brands. Match-day computer vision hits general availability.",
+    title: "Public build",
+    body: "The site goes live. The product roadmap is public from day one — features ship small, often, and in the open.",
+  },
+  {
+    year: "Next",
+    title: "First design partners",
+    body: "Looking for a handful of clubs and brands to shape the first version alongside real sponsorship workflows.",
   },
 ];
 
@@ -236,45 +204,43 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      {/* Team */}
+      {/* Founded by */}
       <section className="py-20 lg:py-28">
         <Container>
           <SectionHeader
-            eyebrow="The team"
+            eyebrow="Founded by"
             eyebrowIcon={<Users size={13} />}
             title={
               <>
-                Builders, operators,{" "}
-                <span className="text-gradient-brand">sports obsessives.</span>
+                A solo founder,{" "}
+                <span className="text-gradient-brand">shipping in public.</span>
               </>
             }
-            description="A distributed team across Paris, Lisbon, Madrid and Reykjavik. Founding team with 40+ combined years in sport, ML and product."
+            description="SponsorTrack is an independent project — built from scratch, without a pre-existing team or external funding."
           />
-          <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {team.map((t, i) => (
-              <Reveal key={t.name} delay={i * 0.04}>
-                <Card className="h-full p-6">
-                  <div className="flex items-center gap-4">
-                    <div className="grid h-14 w-14 place-items-center rounded-full bg-gradient-to-br from-[#7C3AED]/50 to-[#3B82F6]/40 text-sm font-semibold text-white ring-1 ring-white/10">
-                      {t.name
-                        .split(" ")
-                        .map((n) => n[0])
-                        .join("")
-                        .slice(0, 2)}
-                    </div>
-                    <div>
-                      <div className="font-[family-name:var(--font-display)] text-base font-semibold tracking-tight text-white">
-                        {t.name}
-                      </div>
-                      <div className="text-[12px] text-white/50">{t.role}</div>
-                    </div>
+          <div className="mt-14 flex justify-center">
+            <Reveal>
+              <Card className="w-full max-w-xl p-8">
+                <div className="flex items-center gap-5">
+                  <div className="grid h-16 w-16 place-items-center rounded-full bg-gradient-to-br from-[#7C3AED]/50 to-[#3B82F6]/40 text-base font-semibold text-white ring-1 ring-white/10">
+                    {founder.name
+                      .split(" ")
+                      .map((n) => n[0])
+                      .join("")
+                      .slice(0, 2)}
                   </div>
-                  <p className="mt-4 text-sm leading-relaxed text-white/60">
-                    {t.bio}
-                  </p>
-                </Card>
-              </Reveal>
-            ))}
+                  <div>
+                    <div className="font-[family-name:var(--font-display)] text-lg font-semibold tracking-tight text-white">
+                      {founder.name}
+                    </div>
+                    <div className="text-[12px] text-white/50">{founder.role}</div>
+                  </div>
+                </div>
+                <p className="mt-5 text-[15px] leading-relaxed text-white/65">
+                  {founder.bio}
+                </p>
+              </Card>
+            </Reveal>
           </div>
         </Container>
       </section>
@@ -287,8 +253,8 @@ export default function AboutPage() {
             eyebrowIcon={<Trophy size={13} />}
             title={
               <>
-                From Lisbon co-working to{" "}
-                <span className="text-gradient-brand">48 leagues.</span>
+                A roadmap built{" "}
+                <span className="text-gradient-brand">in the open.</span>
               </>
             }
           />
