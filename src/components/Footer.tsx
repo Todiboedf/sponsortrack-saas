@@ -24,8 +24,8 @@ const nav = {
   Legal: [
     { href: "/terms", label: "Terms" },
     { href: "/privacy", label: "Privacy" },
-    { href: "/contact", label: "DPA" },
-    { href: "/contact", label: "Security" },
+    { href: "mailto:privacy@sponsortrack.io", label: "DPA on request" },
+    { href: "mailto:security@sponsortrack.io", label: "Security" },
   ],
 };
 
@@ -82,7 +82,7 @@ export function Footer() {
               </span>
               All systems operational
             </span>
-            <span>Based in Paris · Madrid · Lisbon</span>
+            <span>Remote-first · Based in Paris</span>
           </div>
         </div>
       </Container>

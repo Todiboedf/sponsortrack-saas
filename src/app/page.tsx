@@ -118,7 +118,7 @@ function TrustedBy() {
       <Container>
         <Reveal>
           <p className="mb-8 text-center text-[12px] font-medium uppercase tracking-[0.22em] text-white/40">
-            Built for the teams behind the biggest leagues in the world
+            Built for the teams behind leagues like these
           </p>
         </Reveal>
         <LogoMarquee />
@@ -428,6 +428,12 @@ function StatsSection() {
               </Reveal>
             ))}
           </div>
+          <p className="mt-10 text-[11px] uppercase tracking-[0.18em] text-white/35">
+            Illustrative targets · SponsorTrack is pre-launch.{" "}
+            <Link href="/about" className="underline underline-offset-4 hover:text-white/70">
+              Read the story
+            </Link>
+          </p>
         </div>
       </Container>
     </section>

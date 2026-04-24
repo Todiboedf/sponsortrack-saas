@@ -22,7 +22,7 @@ import { Card } from "@/components/ui/Card";
 import { GradientOrb } from "@/components/GradientOrb";
 import { cn } from "@/lib/utils";
 
-type FormState = "idle" | "submitting" | "success";
+type FormState = "idle" | "submitting" | "success" | "error";
 
 type Reason = "demo" | "trial" | "press" | "careers" | "other";
 
@@ -57,12 +57,38 @@ const reasonOptions: { value: Reason; label: string; description: string }[] = [
 export default function ContactPage() {
   const [reason, setReason] = useState<Reason>("demo");
   const [state, setState] = useState<FormState>("idle");
+  const [error, setError] = useState<string | null>(null);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setState("submitting");
-    await new Promise((r) => setTimeout(r, 900));
-    setState("success");
+    setError(null);
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          reason,
+          name: String(data.get("name") ?? ""),
+          email: String(data.get("email") ?? ""),
+          company: String(data.get("company") ?? ""),
+          phone: String(data.get("phone") ?? ""),
+          message: String(data.get("message") ?? ""),
+          consent: data.get("consent") === "on",
+          website: String(data.get("website") ?? ""),
+        }),
+      });
+      if (!res.ok) {
+        const body = (await res.json().catch(() => null)) as { error?: string } | null;
+        throw new Error(body?.error ?? "Something went wrong");
+      }
+      setState("success");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Something went wrong");
+      setState("error");
+    }
   }
 
   return (
@@ -153,6 +179,14 @@ export default function ContactPage() {
                     </div>
                   </div>
 
+                  <input
+                    type="text"
+                    name="website"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    aria-hidden="true"
+                    className="absolute -left-[9999px] h-0 w-0 opacity-0"
+                  />
                   <div className="grid gap-5 sm:grid-cols-2">
                     <Field label="Full name" icon={<User size={14} />} required>
                       <input
@@ -212,6 +246,7 @@ export default function ContactPage() {
                   <label className="flex items-start gap-3 text-[13px] text-white/55">
                     <input
                       type="checkbox"
+                      name="consent"
                       required
                       className="mt-0.5 h-4 w-4 cursor-pointer rounded border-white/20 bg-white/[0.05]"
                     />
@@ -227,6 +262,22 @@ export default function ContactPage() {
                       .
                     </span>
                   </label>
+
+                  {state === "error" && error && (
+                    <div
+                      role="alert"
+                      className="rounded-xl border border-red-400/30 bg-red-500/10 px-4 py-3 text-[13px] text-red-200"
+                    >
+                      Couldn&apos;t send — {error}. Email us directly at{" "}
+                      <a
+                        href="mailto:hello@sponsortrack.io"
+                        className="underline underline-offset-4"
+                      >
+                        hello@sponsortrack.io
+                      </a>
+                      .
+                    </div>
+                  )}
 
                   <div className="flex items-center justify-between gap-4 border-t border-white/[0.06] pt-6">
                     <div className="text-[12px] text-white/45">
@@ -285,22 +336,12 @@ export default function ContactPage() {
                 <h3 className="font-[family-name:var(--font-display)] text-lg font-semibold text-white">
                   Where we are
                 </h3>
+                <p className="mt-1 text-[13px] text-white/55">
+                  Remote-first, EU-based. On-site meetings on request.
+                </p>
                 <ul className="mt-5 flex flex-col gap-4">
-                  <Office
-                    city="Paris"
-                    address="12 rue Saint-Georges, 75009 Paris"
-                    tz="CET"
-                  />
-                  <Office
-                    city="Madrid"
-                    address="Calle de Goya 31, 28001 Madrid"
-                    tz="CET"
-                  />
-                  <Office
-                    city="Lisbon"
-                    address="Rua das Janelas Verdes 18, 1200-690 Lisboa"
-                    tz="WET"
-                  />
+                  <Office city="Paris" address="Primary hub" tz="CET" />
+                  <Office city="Europe" address="Across France, Spain, Portugal" tz="CET · WET" />
                 </ul>
               </Card>
 
