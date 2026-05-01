@@ -56,7 +56,7 @@ export type LiveData = {
 };
 
 const FALLBACK_SPONSORS = [
-  { id: "all", label: "All sponsors", color: "#A78BFA" },
+  { id: "all", label: "All sponsors", color: "#B8975A" },
   { id: "santander", label: "Santander", color: "#EC1C23" },
   { id: "adidas", label: "Adidas", color: "#6B7280" },
   { id: "emirates", label: "Emirates", color: "#D71920" },
@@ -94,9 +94,9 @@ const FALLBACK_TREND = [
 ];
 
 const FALLBACK_EMV = [
-  { name: "Instagram", value: 3.2, color: "#A78BFA" },
-  { name: "TikTok", value: 2.1, color: "#3B82F6" },
-  { name: "X/Twitter", value: 1.3, color: "#22D3EE" },
+  { name: "Instagram", value: 3.2, color: "#B8975A" },
+  { name: "TikTok", value: 2.1, color: "#A00030" },
+  { name: "X/Twitter", value: 1.3, color: "#F4EFE6" },
   { name: "YouTube", value: 0.9, color: "#10B981" },
   { name: "Facebook", value: 0.4, color: "#F59E0B" },
 ];
@@ -376,16 +376,16 @@ export default function DemoClient({ live }: { live?: LiveData | null }) {
                   <AreaChart data={trendData} margin={{ top: 5, right: 10, left: -20, bottom: 0 }}>
                     <defs>
                       <linearGradient id="g-ig" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="#A78BFA" stopOpacity={0.5} />
-                        <stop offset="100%" stopColor="#A78BFA" stopOpacity={0} />
+                        <stop offset="0%" stopColor="#B8975A" stopOpacity={0.5} />
+                        <stop offset="100%" stopColor="#B8975A" stopOpacity={0} />
                       </linearGradient>
                       <linearGradient id="g-tt" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="#3B82F6" stopOpacity={0.5} />
-                        <stop offset="100%" stopColor="#3B82F6" stopOpacity={0} />
+                        <stop offset="0%" stopColor="#A00030" stopOpacity={0.5} />
+                        <stop offset="100%" stopColor="#A00030" stopOpacity={0} />
                       </linearGradient>
                       <linearGradient id="g-x" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="#22D3EE" stopOpacity={0.4} />
-                        <stop offset="100%" stopColor="#22D3EE" stopOpacity={0} />
+                        <stop offset="0%" stopColor="#F4EFE6" stopOpacity={0.4} />
+                        <stop offset="100%" stopColor="#F4EFE6" stopOpacity={0} />
                       </linearGradient>
                       <linearGradient id="g-yt" x1="0" y1="0" x2="0" y2="1">
                         <stop offset="0%" stopColor="#10B981" stopOpacity={0.4} />
@@ -414,7 +414,7 @@ export default function DemoClient({ live }: { live?: LiveData | null }) {
                       <Area
                         type="monotone"
                         dataKey="Instagram"
-                        stroke="#A78BFA"
+                        stroke="#B8975A"
                         strokeWidth={2}
                         fill="url(#g-ig)"
                       />
@@ -423,7 +423,7 @@ export default function DemoClient({ live }: { live?: LiveData | null }) {
                       <Area
                         type="monotone"
                         dataKey="TikTok"
-                        stroke="#3B82F6"
+                        stroke="#A00030"
                         strokeWidth={2}
                         fill="url(#g-tt)"
                       />
@@ -432,7 +432,7 @@ export default function DemoClient({ live }: { live?: LiveData | null }) {
                       <Area
                         type="monotone"
                         dataKey="X/Twitter"
-                        stroke="#22D3EE"
+                        stroke="#F4EFE6"
                         strokeWidth={2}
                         fill="url(#g-x)"
                       />
@@ -509,8 +509,8 @@ export default function DemoClient({ live }: { live?: LiveData | null }) {
                 >
                   <defs>
                     <linearGradient id="bar-reach" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stopColor="#7C3AED" />
-                      <stop offset="100%" stopColor="#3B82F6" />
+                      <stop offset="0%" stopColor="#8B0028" />
+                      <stop offset="100%" stopColor="#A00030" />
                     </linearGradient>
                   </defs>
                   <CartesianGrid stroke="rgba(255,255,255,0.05)" vertical={false} />
@@ -527,7 +527,7 @@ export default function DemoClient({ live }: { live?: LiveData | null }) {
                   />
                   <Tooltip content={<ChartTooltip />} cursor={{ fill: "rgba(255,255,255,0.03)" }} />
                   <Bar dataKey="reach" fill="url(#bar-reach)" radius={[6, 6, 0, 0]} />
-                  <Bar dataKey="engagement" fill="#22D3EE" radius={[6, 6, 0, 0]} />
+                  <Bar dataKey="engagement" fill="#F4EFE6" radius={[6, 6, 0, 0]} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
@@ -549,7 +549,7 @@ export default function DemoClient({ live }: { live?: LiveData | null }) {
               <ul className="mt-4 divide-y divide-white/[0.05]">
                 {topPosts.map((p, i) => (
                   <li key={p.caption} className="grid grid-cols-[auto_1fr_auto] gap-4 py-4">
-                    <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 ring-1 ring-white/10">
+                    <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-xl bg-gradient-to-br from-[#8B0028] to-[#B8975A] ring-1 ring-white/10">
                       <div className="absolute inset-0 grid place-items-center text-white/80">
                         {p.icon}
                       </div>
@@ -613,7 +613,7 @@ export default function DemoClient({ live }: { live?: LiveData | null }) {
                   {
                     label: "LED rotation under-priced",
                     detail: "Pro-tip: Adidas got 4.2× more screen time than contract cap.",
-                    tone: "violet",
+                    tone: "gold",
                   },
                   {
                     label: "Emirates sentiment dip",
@@ -635,9 +635,9 @@ export default function DemoClient({ live }: { live?: LiveData | null }) {
                         className={cn(
                           "mt-1 inline-block h-2 w-2 rounded-full",
                           a.tone === "emerald" && "bg-emerald-400",
-                          a.tone === "violet" && "bg-[#A78BFA]",
+                          a.tone === "gold" && "bg-[#B8975A]",
                           a.tone === "amber" && "bg-amber-400",
-                          a.tone === "blue" && "bg-[#60A5FA]"
+                          a.tone === "blue" && "bg-[#B8975A]"
                         )}
                       />
                       <div>

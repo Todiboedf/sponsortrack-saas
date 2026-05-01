@@ -154,7 +154,7 @@ export default function ContactPage() {
                           className={cn(
                             "rounded-xl border p-3 text-left transition-colors",
                             reason === r.value
-                              ? "border-[#A78BFA]/60 bg-[#7C3AED]/10 ring-1 ring-[#7C3AED]/30"
+                              ? "border-[#B8975A]/60 bg-[#8B0028]/10 ring-1 ring-[#8B0028]/30"
                               : "border-white/[0.08] bg-white/[0.02] hover:border-white/15 hover:bg-white/[0.04]"
                           )}
                         >
@@ -163,7 +163,7 @@ export default function ContactPage() {
                               className={cn(
                                 "inline-block h-2 w-2 rounded-full",
                                 reason === r.value
-                                  ? "bg-[#A78BFA]"
+                                  ? "bg-[#B8975A]"
                                   : "bg-white/30"
                               )}
                             />
@@ -384,7 +384,7 @@ export default function ContactPage() {
 }
 
 const inputCls =
-  "w-full rounded-xl border border-white/[0.08] bg-white/[0.02] px-3.5 py-2.5 text-[14px] text-white placeholder:text-white/35 transition-colors outline-none focus:border-[#A78BFA]/60 focus:bg-white/[0.04] focus:ring-2 focus:ring-[#7C3AED]/30";
+  "w-full rounded-xl border border-white/[0.08] bg-white/[0.02] px-3.5 py-2.5 text-[14px] text-white placeholder:text-white/35 transition-colors outline-none focus:border-[#B8975A]/60 focus:bg-white/[0.04] focus:ring-2 focus:ring-[#8B0028]/30";
 
 function Field({
   label,
@@ -402,7 +402,7 @@ function Field({
       <span className="inline-flex items-center gap-2 text-[12px] font-medium text-white/60">
         {icon && <span className="text-white/45">{icon}</span>}
         {label}
-        {required && <span className="text-[#A78BFA]">*</span>}
+        {required && <span className="text-[#B8975A]">*</span>}
       </span>
       {children}
     </label>
