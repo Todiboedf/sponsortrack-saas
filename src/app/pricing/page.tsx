@@ -16,8 +16,8 @@ type Billing = "monthly" | "yearly";
 type Tier = {
   name: string;
   description: string;
-  monthly: number | null;
-  yearly: number | null;
+  monthly: number;
+  yearly: number;
   featured?: boolean;
   cta: string;
   href: string;
@@ -61,9 +61,9 @@ const tiers: Tier[] = [
   {
     name: "Enterprise",
     description: "For multi-club groups, agencies and federations.",
-    monthly: null,
-    yearly: null,
-    cta: "Book a demo",
+    monthly: 7000,
+    yearly: 67200,
+    cta: "Book a discovery call",
     href: "/contact",
     features: [
       "Dedicated success manager",
@@ -78,7 +78,12 @@ const tiers: Tier[] = [
 
 const matrix: {
   section: string;
-  rows: { label: string; tooltip?: string; starter: string | boolean; pro: string | boolean; ent: string | boolean }[];
+  rows: {
+    label: string;
+    starter: string | boolean;
+    pro: string | boolean;
+    ent: string | boolean;
+  }[];
 }[] = [
   {
     section: "Usage",
@@ -88,6 +93,25 @@ const matrix: {
       { label: "Viewer seats", starter: "5", pro: "Unlimited", ent: "Unlimited" },
       { label: "Properties (clubs, teams, athletes)", starter: "1", pro: "10", ent: "Unlimited" },
       { label: "Data retention", starter: "2 years", pro: "5 years", ent: "Unlimited" },
+    ],
+  },
+  {
+    section: "Onboarding & setup",
+    rows: [
+      { label: "Setup fee", starter: "€0", pro: "€0", ent: "€5,000 (negotiable)" },
+      {
+        label: "Onboarding included",
+        starter: "2h kick-off call",
+        pro: "8h call + dedicated CSM (30 days)",
+        ent: "Full white-glove onboarding (90 days)",
+      },
+      { label: "Migration assistance", starter: false, pro: true, ent: true },
+      {
+        label: "Custom training sessions",
+        starter: false,
+        pro: "2 / quarter",
+        ent: "Unlimited",
+      },
     ],
   },
   {
@@ -140,6 +164,10 @@ const faqs = [
     a: "Yes — up or down, at any time. Pro-rated credits are applied automatically on your next invoice.",
   },
   {
+    q: "Why is there a setup fee on Enterprise?",
+    a: "Enterprise rollouts mean custom data pipelines, security reviews, and a 90-day white-glove onboarding. The €5,000 setup fee covers the dedicated team and is negotiable on multi-year contracts.",
+  },
+  {
     q: "What does ‘per property’ mean?",
     a: "A property is a club, team, league, athlete or venue that you analyse inside your workspace. You can mix and match — 1 club + 3 academy teams counts as 4 properties.",
   },
@@ -149,10 +177,14 @@ const faqs = [
   },
   {
     q: "Do you offer non-profit / federation pricing?",
-    a: "We do. Recognised federations, national teams and non-profit sports organisations get a tailored discount — just mention it when you book a demo.",
+    a: "We do. Recognised federations, national teams and non-profit sports organisations get a tailored discount — just mention it when you book a discovery call.",
   },
   {
-    q: "Can I see my contract before I sign?",
+    q: "Can I cancel any time?",
+    a: "Yes. Monthly subscriptions can be cancelled at any time and stop at the end of the period. Annual subscriptions can be cancelled at the end of the term — no auto-renewal lock-in.",
+  },
+  {
+    q: "Can I see the contract before I sign?",
     a: "Of course. We share the full MSA and DPA up-front. Annual plans get a standard order form — we won’t send you 30 pages of legalese for a €1,500 monthly contract.",
   },
 ];
@@ -179,23 +211,26 @@ export default function PricingPage() {
 
   return (
     <>
+      {/* ---------- Hero ---------- */}
       <section className="relative overflow-hidden pt-36 pb-12 lg:pt-44 lg:pb-16">
         <GradientOrb color="red" size={560} className="-left-40 -top-10" />
-        <GradientOrb color="gold" size={520} className="-right-40 top-40" />
+        <GradientOrb color="gold" size={520} className="-right-40 top-40" intensity="soft" />
         <div aria-hidden className="absolute inset-0 -z-20 bg-grid mask-fade-radial opacity-30" />
         <Container>
           <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
-            <Badge icon={<Sparkles size={13} />}>Pricing</Badge>
-            <h1 className="mt-6 font-[family-name:var(--font-display)] text-balance text-5xl font-semibold leading-[1.05] tracking-[-0.02em] text-white sm:text-6xl lg:text-[68px]">
+            <Badge tone="gold" icon={<Sparkles size={12} />}>
+              Pricing
+            </Badge>
+            <h1 className="mt-6 font-[family-name:var(--font-display)] text-balance text-5xl font-medium leading-[1.05] tracking-[-0.01em] text-[#F4EFE6] sm:text-6xl lg:text-[68px]">
               Simple pricing.{" "}
-              <span className="text-gradient-brand">Seriously.</span>
+              <em className="italic font-medium text-gradient-brand">Seriously.</em>
             </h1>
-            <p className="mt-6 max-w-xl text-pretty text-lg text-white/60 sm:text-xl">
-              Most vendors hide their prices behind a demo. We show them. Pick a plan,
-              start in minutes, switch whenever.
+            <p className="mt-6 max-w-xl text-pretty text-lg text-[#F4EFE6]/65 sm:text-xl">
+              Most vendors hide their prices behind a demo. We show them. Pick a
+              plan, start in minutes, switch whenever.
             </p>
 
-            <div className="mt-10 inline-flex items-center gap-1 rounded-full border border-white/10 bg-white/[0.04] p-1 backdrop-blur">
+            <div className="mt-10 inline-flex items-center gap-1 rounded-full border border-[#F4EFE6]/12 bg-[#F4EFE6]/[0.04] p-1 backdrop-blur">
               {(["monthly", "yearly"] as Billing[]).map((b) => (
                 <button
                   key={b}
@@ -203,21 +238,21 @@ export default function PricingPage() {
                   className={cn(
                     "relative rounded-full px-5 py-2 text-sm font-medium transition-colors",
                     billing === b
-                      ? "text-white"
-                      : "text-white/55 hover:text-white"
+                      ? "text-[#F4EFE6]"
+                      : "text-[#F4EFE6]/55 hover:text-[#F4EFE6]"
                   )}
                 >
                   {billing === b && (
                     <motion.span
                       layoutId="price-pill"
-                      className="absolute inset-0 rounded-full bg-gradient-to-r from-[#7C3AED]/40 to-[#3B82F6]/40 ring-1 ring-white/20"
+                      className="absolute inset-0 rounded-full bg-[#8B0028] ring-1 ring-[#B8975A]/35"
                       transition={{ type: "spring", stiffness: 400, damping: 32 }}
                     />
                   )}
                   <span className="relative">
                     {b === "monthly" ? "Monthly" : "Yearly"}
                     {b === "yearly" && (
-                      <span className="ml-2 rounded-full bg-emerald-400/20 px-1.5 py-0.5 text-[10px] font-semibold text-emerald-300">
+                      <span className="ml-2 rounded-full bg-[#B8975A]/25 px-1.5 py-0.5 text-[10px] font-semibold text-[#D8BC85]">
                         −20%
                       </span>
                     )}
@@ -229,55 +264,43 @@ export default function PricingPage() {
         </Container>
       </section>
 
+      {/* ---------- Tier cards ---------- */}
       <section className="pb-16 lg:pb-24">
         <Container>
           <div className="grid gap-6 lg:grid-cols-3">
             {tiers.map((t) => {
-              const price =
-                t.monthly !== null && t.yearly !== null
-                  ? formatPrice(billing === "monthly" ? t.monthly : t.yearly, billing)
-                  : null;
+              const price = formatPrice(
+                billing === "monthly" ? t.monthly : t.yearly,
+                billing
+              );
               return (
                 <Card
                   key={t.name}
                   className={cn(
                     "flex h-full flex-col p-8",
                     t.featured &&
-                      "border-white/20 bg-gradient-to-b from-[#1a0f2e]/80 to-[#0A0A12] ring-1 ring-[#7C3AED]/30 shadow-[0_40px_120px_-40px_rgba(124,58,237,0.55)]"
+                      "border-[#B8975A]/45 bg-gradient-to-b from-[#1A2B45] to-[#0A1628] glow-brand"
                   )}
                 >
                   <div className="flex items-center justify-between">
-                    <h3 className="font-[family-name:var(--font-display)] text-xl font-semibold tracking-tight text-white">
+                    <h3 className="font-[family-name:var(--font-display)] text-xl font-semibold tracking-tight text-[#F4EFE6]">
                       {t.name}
                     </h3>
                     {t.featured && (
-                      <span className="rounded-full bg-gradient-to-r from-[#7C3AED] to-[#3B82F6] px-3 py-0.5 text-[11px] font-medium text-white">
+                      <span className="rounded-full bg-[#B8975A] px-3 py-0.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-[#0A1628]">
                         Most popular
                       </span>
                     )}
                   </div>
-                  <p className="mt-2 text-sm text-white/55">{t.description}</p>
+                  <p className="mt-2 text-sm text-[#F4EFE6]/60">{t.description}</p>
                   <div className="mt-6 min-h-[72px]">
-                    {price ? (
-                      <>
-                        <div className="flex items-baseline gap-1">
-                          <span className="font-[family-name:var(--font-display)] text-5xl font-semibold tracking-[-0.02em] text-white">
-                            {price.big}
-                          </span>
-                          <span className="text-sm text-white/55">{price.small}</span>
-                        </div>
-                        <div className="mt-1 text-[12px] text-white/45">{price.sub}</div>
-                      </>
-                    ) : (
-                      <>
-                        <div className="font-[family-name:var(--font-display)] text-5xl font-semibold tracking-[-0.02em] text-white">
-                          Custom
-                        </div>
-                        <div className="mt-1 text-[12px] text-white/45">
-                          Tailored to your organisation
-                        </div>
-                      </>
-                    )}
+                    <div className="flex items-baseline gap-1">
+                      <span className="font-[family-name:var(--font-mono)] text-5xl font-semibold tracking-tight text-[#F4EFE6] tabular-nums">
+                        {price.big}
+                      </span>
+                      <span className="text-sm text-[#F4EFE6]/55">{price.small}</span>
+                    </div>
+                    <div className="mt-1 text-[12px] text-[#F4EFE6]/50">{price.sub}</div>
                   </div>
                   <div className="mt-6">
                     <Button
@@ -289,13 +312,13 @@ export default function PricingPage() {
                       {t.cta}
                     </Button>
                   </div>
-                  <ul className="mt-7 flex flex-col gap-3 border-t border-white/[0.06] pt-6">
+                  <ul className="mt-7 flex flex-col gap-3 border-t border-[#F4EFE6]/[0.06] pt-6">
                     {t.features.map((f) => (
                       <li
                         key={f}
-                        className="inline-flex items-start gap-2.5 text-[14px] text-white/75"
+                        className="inline-flex items-start gap-2.5 text-[14px] text-[#F4EFE6]/80"
                       >
-                        <Check size={16} className="mt-0.5 shrink-0 text-[#A78BFA]" />
+                        <Check size={16} className="mt-0.5 shrink-0 text-[#B8975A]" />
                         <span>{f}</span>
                       </li>
                     ))}
@@ -304,34 +327,44 @@ export default function PricingPage() {
               );
             })}
           </div>
+          <p className="mt-8 text-center text-[12px] text-[#F4EFE6]/45">
+            Prices in EUR. VAT applied where relevant. Annual plans billed up
+            front; monthly plans billed at the start of each cycle.
+          </p>
         </Container>
       </section>
 
-      {/* Comparison matrix */}
-      <section className="py-16 lg:py-24">
+      {/* ---------- Comparison matrix (cream surface) ---------- */}
+      <section className="bg-[#F4EFE6] py-20 text-[#0F1A2E] lg:py-28">
         <Container>
           <div className="mx-auto max-w-3xl text-center">
-            <Badge icon={<Sparkles size={13} />}>Compare every feature</Badge>
-            <h2 className="mt-5 font-[family-name:var(--font-display)] text-balance text-4xl font-semibold tracking-[-0.02em] text-white sm:text-5xl">
-              Full plan comparison
+            <Badge tone="cream" icon={<Sparkles size={12} />}>
+              Compare every feature
+            </Badge>
+            <h2 className="mt-5 font-[family-name:var(--font-display)] text-balance text-4xl font-semibold tracking-[-0.01em] sm:text-5xl">
+              The full plan comparison.
             </h2>
+            <p className="mx-auto mt-4 max-w-xl text-[#0F1A2E]/65">
+              Everything is on the table — including the boring bits like setup
+              fees and onboarding hours.
+            </p>
           </div>
 
-          <div className="mt-12 overflow-hidden rounded-2xl border border-white/[0.08]">
+          <div className="mt-12 overflow-hidden rounded-2xl border border-[#0F1A2E]/12 bg-[#FBF7EF]">
             <div className="overflow-x-auto">
-              <table className="w-full min-w-[720px] border-collapse text-left">
-                <thead className="bg-white/[0.03]">
+              <table className="w-full min-w-[760px] border-collapse text-left">
+                <thead className="bg-[#0F1A2E]/[0.04]">
                   <tr>
-                    <th className="sticky left-0 z-10 bg-[#0A0A12] px-5 py-4 text-[12px] font-medium uppercase tracking-[0.14em] text-white/50">
+                    <th className="sticky left-0 z-10 bg-[#FBF7EF] px-5 py-4 text-[12px] font-semibold uppercase tracking-[0.18em] text-[#0F1A2E]/55">
                       Feature
                     </th>
-                    <th className="px-4 py-4 text-center text-[13px] font-semibold text-white">
+                    <th className="px-4 py-4 text-center text-[13px] font-semibold text-[#0F1A2E]">
                       Starter
                     </th>
-                    <th className="bg-gradient-to-b from-[#7C3AED]/20 to-[#3B82F6]/10 px-4 py-4 text-center text-[13px] font-semibold text-white">
+                    <th className="bg-[#8B0028]/[0.06] px-4 py-4 text-center text-[13px] font-semibold text-[#0F1A2E]">
                       Pro
                     </th>
-                    <th className="px-4 py-4 text-center text-[13px] font-semibold text-white">
+                    <th className="px-4 py-4 text-center text-[13px] font-semibold text-[#0F1A2E]">
                       Enterprise
                     </th>
                   </tr>
@@ -339,10 +372,10 @@ export default function PricingPage() {
                 <tbody>
                   {matrix.map((sec) => (
                     <Fragment key={sec.section}>
-                      <tr className="bg-white/[0.02]">
+                      <tr className="bg-[#0F1A2E]/[0.03]">
                         <td
                           colSpan={4}
-                          className="px-5 py-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/45"
+                          className="px-5 py-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-[#8B0028]"
                         >
                           {sec.section}
                         </td>
@@ -350,14 +383,14 @@ export default function PricingPage() {
                       {sec.rows.map((row) => (
                         <tr
                           key={`${sec.section}-${row.label}`}
-                          className="border-t border-white/[0.05]"
+                          className="border-t border-[#0F1A2E]/[0.07]"
                         >
-                          <td className="sticky left-0 z-10 bg-[#0A0A12] px-5 py-3.5 text-[14px] text-white/80">
+                          <td className="sticky left-0 z-10 bg-[#FBF7EF] px-5 py-3.5 text-[14px] text-[#0F1A2E]/85">
                             {row.label}
                           </td>
-                          <Cell value={row.starter} />
-                          <Cell value={row.pro} highlight />
-                          <Cell value={row.ent} />
+                          <CellLight value={row.starter} />
+                          <CellLight value={row.pro} highlight />
+                          <CellLight value={row.ent} />
                         </tr>
                       ))}
                     </Fragment>
@@ -366,23 +399,33 @@ export default function PricingPage() {
               </table>
             </div>
           </div>
+
+          <div className="mx-auto mt-10 max-w-3xl rounded-2xl border border-[#0F1A2E]/12 bg-[#FBF7EF] p-5 text-[13px] leading-relaxed text-[#0F1A2E]/75">
+            <span className="font-semibold text-[#0F1A2E]">A note on the setup fee.</span>{" "}
+            The Enterprise tier is the only plan with a setup component
+            (€5,000). It funds the white-glove rollout, security review and
+            custom data pipeline work — and it is fully negotiable on
+            multi-year contracts.
+          </div>
         </Container>
       </section>
 
-      {/* FAQ */}
-      <section className="py-20 lg:py-28">
+      {/* ---------- FAQ ---------- */}
+      <section className="bg-[#F4EFE6] pb-24 text-[#0F1A2E] lg:pb-32">
         <Container>
           <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
             <div>
-              <Badge icon={<HelpCircle size={13} />}>FAQ</Badge>
-              <h2 className="mt-5 font-[family-name:var(--font-display)] text-balance text-4xl font-semibold tracking-[-0.02em] text-white sm:text-5xl">
+              <Badge tone="cream" icon={<HelpCircle size={12} />}>
+                FAQ
+              </Badge>
+              <h2 className="mt-5 font-[family-name:var(--font-display)] text-balance text-4xl font-semibold tracking-[-0.01em] sm:text-5xl">
                 Answers before you ask.
               </h2>
-              <p className="mt-4 text-white/60">
+              <p className="mt-4 text-[#0F1A2E]/70">
                 Still curious?{" "}
                 <Link
                   href="/contact"
-                  className="text-white/85 underline underline-offset-4 hover:text-white"
+                  className="font-medium text-[#8B0028] underline underline-offset-4 hover:text-[#A00030]"
                 >
                   Talk to a human
                 </Link>{" "}
@@ -398,16 +441,18 @@ export default function PricingPage() {
                     type="button"
                     onClick={() => setOpenFaq(open ? null : i)}
                     className={cn(
-                      "group rounded-2xl border border-white/[0.08] bg-white/[0.02] p-5 text-left transition-colors hover:border-white/15 hover:bg-white/[0.03]",
-                      open && "border-white/15 bg-white/[0.04]"
+                      "group rounded-2xl border border-[#0F1A2E]/10 bg-[#FBF7EF] p-5 text-left transition-colors hover:border-[#0F1A2E]/30 hover:bg-white",
+                      open && "border-[#8B0028]/45 bg-white"
                     )}
                   >
                     <div className="flex items-start justify-between gap-4">
-                      <span className="text-[15px] font-medium text-white">{f.q}</span>
+                      <span className="text-[15px] font-medium text-[#0F1A2E]">
+                        {f.q}
+                      </span>
                       <span
                         className={cn(
-                          "mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-white/15 text-white/70 transition-transform",
-                          open && "rotate-45 border-[#A78BFA]/50 text-[#C4B5FD]"
+                          "mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-[#0F1A2E]/20 text-[#0F1A2E]/65 transition-transform",
+                          open && "rotate-45 border-[#8B0028]/55 text-[#8B0028]"
                         )}
                         aria-hidden
                       >
@@ -436,7 +481,7 @@ export default function PricingPage() {
                           transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
                           className="overflow-hidden"
                         >
-                          <p className="pt-3 text-[14px] leading-relaxed text-white/60">
+                          <p className="pt-3 text-[14px] leading-relaxed text-[#0F1A2E]/70">
                             {f.a}
                           </p>
                         </motion.div>
@@ -453,19 +498,25 @@ export default function PricingPage() {
   );
 }
 
-function Cell({ value, highlight }: { value: string | boolean; highlight?: boolean }) {
+function CellLight({
+  value,
+  highlight,
+}: {
+  value: string | boolean;
+  highlight?: boolean;
+}) {
   return (
     <td
       className={cn(
-        "px-4 py-3.5 text-center text-[14px] text-white/80",
-        highlight && "bg-white/[0.025]"
+        "px-4 py-3.5 text-center text-[14px] text-[#0F1A2E]/85",
+        highlight && "bg-[#8B0028]/[0.04]"
       )}
     >
       {typeof value === "boolean" ? (
         value ? (
-          <Check size={17} className="mx-auto text-emerald-400" />
+          <Check size={17} className="mx-auto text-[#8B0028]" />
         ) : (
-          <Minus size={15} className="mx-auto text-white/25" />
+          <Minus size={15} className="mx-auto text-[#0F1A2E]/30" />
         )
       ) : (
         value
