@@ -14,8 +14,8 @@ export const metadata: Metadata = {
 export default function NotFound() {
   return (
     <section className="relative overflow-hidden pt-36 pb-32 lg:pt-44">
-      <GradientOrb color="violet" size={520} className="-left-40 -top-10" />
-      <GradientOrb color="blue" size={480} className="-right-40 top-40" />
+      <GradientOrb color="red" size={520} className="-left-40 -top-10" />
+      <GradientOrb color="gold" size={480} className="-right-40 top-40" />
       <Container>
         <div className="mx-auto flex max-w-2xl flex-col items-center text-center">
           <Badge icon={<Compass size={13} />}>404</Badge>

@@ -2,21 +2,38 @@ import { cn } from "@/lib/utils";
 
 type Props = {
   className?: string;
-  color?: "violet" | "blue" | "cyan";
+  color?: "red" | "gold" | "navy" | "cream";
   size?: number;
+  intensity?: "soft" | "default" | "strong";
 };
 
 const palettes: Record<NonNullable<Props["color"]>, string> = {
-  violet: "rgba(124, 58, 237, 0.55)",
-  blue: "rgba(59, 130, 246, 0.45)",
-  cyan: "rgba(34, 211, 238, 0.35)",
+  red: "rgba(139, 0, 40, 0.45)",
+  gold: "rgba(184, 151, 90, 0.32)",
+  navy: "rgba(20, 34, 56, 0.65)",
+  cream: "rgba(244, 239, 230, 0.10)",
 };
 
-export function GradientOrb({ className, color = "violet", size = 520 }: Props) {
+const blurs: Record<NonNullable<Props["intensity"]>, string> = {
+  soft: "blur-[140px] opacity-60",
+  default: "blur-[110px] opacity-80",
+  strong: "blur-[90px] opacity-100",
+};
+
+export function GradientOrb({
+  className,
+  color = "red",
+  size = 520,
+  intensity = "default",
+}: Props) {
   return (
     <div
       aria-hidden
-      className={cn("pointer-events-none absolute -z-10 blur-[110px]", className)}
+      className={cn(
+        "pointer-events-none absolute -z-10",
+        blurs[intensity],
+        className
+      )}
       style={{
         width: size,
         height: size,

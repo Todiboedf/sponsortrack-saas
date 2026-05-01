@@ -5,9 +5,9 @@ import type { SponsorKpiDaily } from "@/lib/supabase/types";
 export const revalidate = 300;
 
 const SPONSOR_PALETTE = [
-  "#A78BFA",
-  "#3B82F6",
-  "#22D3EE",
+  "#B8975A",
+  "#A00030",
+  "#F4EFE6",
   "#10B981",
   "#F59E0B",
   "#EF4444",
@@ -15,9 +15,9 @@ const SPONSOR_PALETTE = [
 ];
 
 const PLATFORM_COLOR: Record<string, string> = {
-  instagram: "#A78BFA",
-  tiktok: "#3B82F6",
-  twitter: "#22D3EE",
+  instagram: "#B8975A",
+  tiktok: "#A00030",
+  twitter: "#F4EFE6",
   youtube: "#10B981",
   facebook: "#F59E0B",
 };
@@ -67,7 +67,7 @@ async function loadLive(): Promise<LiveData | null> {
 
   // Sponsors list (with stable colors)
   const liveSponsors = [
-    { id: "all", label: "All sponsors", color: "#A78BFA" },
+    { id: "all", label: "All sponsors", color: "#B8975A" },
     ...sponsors.map((s, i) => ({
       id: s.slug,
       label: s.name,
@@ -105,7 +105,7 @@ async function loadLive(): Promise<LiveData | null> {
   const emv = Array.from(emvByPlatform.entries()).map(([k, v]) => ({
     name: PLATFORM_LABEL[k] ?? k,
     value: +(v / 1_000_000).toFixed(3),
-    color: PLATFORM_COLOR[k] ?? "#A78BFA",
+    color: PLATFORM_COLOR[k] ?? "#B8975A",
   }));
 
   // Engagement per sponsor: latest IG row, reach=followers (M), engagement=engagement_rate

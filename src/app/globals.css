@@ -1,40 +1,61 @@
 @import "tailwindcss";
 
+/* -------------------------------------------------------------------------- */
+/* Sport-branded design tokens (V2)                                           */
+/* navy / red / cream / gold — dialogues with the CA Osasuna pitch identity. */
+/* -------------------------------------------------------------------------- */
+
 @theme inline {
-  --color-bg: #07070B;
-  --color-bg-elev: #0C0C12;
-  --color-surface: #101018;
-  --color-surface-2: #16161F;
-  --color-border: rgba(255, 255, 255, 0.08);
-  --color-border-strong: rgba(255, 255, 255, 0.14);
+  /* Brand palette */
+  --color-navy: #0A1628;
+  --color-navy-elev: #0F1A2E;
+  --color-navy-deep: #060D18;
+  --color-red: #8B0028;
+  --color-red-hover: #A00030;
+  --color-cream: #F4EFE6;
+  --color-cream-elev: #FBF7EF;
+  --color-gold: #B8975A;
+  --color-gold-soft: #D8BC85;
+  --color-ink: #0F1A2E;
+  --color-mute: #6B7480;
 
-  --color-text: #F4F4F7;
-  --color-text-dim: #A1A1AA;
-  --color-text-faint: #6B6B76;
+  /* Surfaces (dark / navy mode default) */
+  --color-bg: #0A1628;
+  --color-bg-elev: #0F1A2E;
+  --color-surface: #142238;
+  --color-surface-2: #1A2B45;
+  --color-border: rgba(244, 239, 230, 0.10);
+  --color-border-strong: rgba(244, 239, 230, 0.18);
 
-  --color-brand: #7C3AED;
-  --color-brand-2: #3B82F6;
-  --color-brand-accent: #22D3EE;
-  --color-success: #10B981;
-  --color-warning: #F59E0B;
-  --color-danger: #EF4444;
+  /* Text on dark */
+  --color-text: #F4EFE6;
+  --color-text-dim: rgba(244, 239, 230, 0.66);
+  --color-text-faint: rgba(244, 239, 230, 0.42);
 
+  /* Support (semantic) */
+  --color-success: #2F8F5A;
+  --color-warning: #C8973F;
+  --color-danger: #8B0028;
+
+  /* Fonts */
   --font-sans: var(--font-inter);
   --font-display: var(--font-display);
+  --font-mono: var(--font-mono);
 
-  --radius-xs: 6px;
-  --radius-sm: 10px;
-  --radius-md: 14px;
-  --radius-lg: 20px;
-  --radius-xl: 28px;
+  /* Radii */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 26px;
 
   --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 :root {
   color-scheme: dark;
-  --background: #07070B;
-  --foreground: #F4F4F7;
+  --background: #0A1628;
+  --foreground: #F4EFE6;
 }
 
 *,
@@ -55,16 +76,16 @@ body {
 
 body {
   background:
-    radial-gradient(1200px 600px at 80% -10%, rgba(124, 58, 237, 0.18), transparent 60%),
-    radial-gradient(900px 500px at 10% 10%, rgba(59, 130, 246, 0.12), transparent 60%),
-    #07070B;
+    radial-gradient(900px 500px at 92% -10%, rgba(139, 0, 40, 0.16), transparent 60%),
+    radial-gradient(700px 400px at 6% 0%, rgba(184, 151, 90, 0.06), transparent 70%),
+    #0A1628;
   min-height: 100dvh;
   overflow-x: hidden;
 }
 
 ::selection {
-  background: rgba(124, 58, 237, 0.35);
-  color: #ffffff;
+  background: rgba(139, 0, 40, 0.42);
+  color: #F4EFE6;
 }
 
 ::-webkit-scrollbar {
@@ -75,30 +96,20 @@ body {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(244, 239, 230, 0.10);
   border-radius: 999px;
-  border: 2px solid #07070B;
+  border: 2px solid #0A1628;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.18);
+  background: rgba(244, 239, 230, 0.20);
 }
 
-@utility glass {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.015));
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
-
-@utility glass-strong {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-}
+/* -------------------------------------------------------------------------- */
+/* Custom utilities                                                           */
+/* -------------------------------------------------------------------------- */
 
 @utility text-gradient {
-  background: linear-gradient(135deg, #F4F4F7 0%, #F4F4F7 40%, #A78BFA 70%, #60A5FA 100%);
+  background: linear-gradient(135deg, #F4EFE6 0%, #F4EFE6 40%, #B8975A 75%, #D8BC85 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -106,7 +117,15 @@ body {
 }
 
 @utility text-gradient-brand {
-  background: linear-gradient(135deg, #A78BFA 0%, #60A5FA 100%);
+  background: linear-gradient(135deg, #B8975A 0%, #D8BC85 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+@utility text-gradient-red {
+  background: linear-gradient(135deg, #F4EFE6 0%, #B8975A 60%, #8B0028 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -114,33 +133,33 @@ body {
 }
 
 @utility bg-gradient-brand {
-  background-image: linear-gradient(135deg, #7C3AED 0%, #3B82F6 100%);
+  background-image: linear-gradient(135deg, #8B0028 0%, #A00030 60%, #B8975A 100%);
 }
 
-@utility bg-gradient-radial {
-  background-image: radial-gradient(ellipse at top, rgba(124, 58, 237, 0.3), transparent 70%);
+@utility bg-gradient-deep {
+  background-image: linear-gradient(180deg, #0A1628 0%, #060D18 100%);
 }
 
 @utility glow-brand {
   box-shadow:
-    0 0 0 1px rgba(124, 58, 237, 0.35),
-    0 10px 30px -10px rgba(124, 58, 237, 0.55),
-    0 20px 60px -20px rgba(59, 130, 246, 0.4);
+    0 0 0 1px rgba(184, 151, 90, 0.20),
+    0 14px 40px -16px rgba(139, 0, 40, 0.55),
+    0 24px 70px -28px rgba(184, 151, 90, 0.35);
 }
 
 @utility glow-ring {
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 0 1px rgba(244, 239, 230, 0.10);
 }
 
 @utility bg-grid {
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    linear-gradient(rgba(244, 239, 230, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(244, 239, 230, 0.04) 1px, transparent 1px);
   background-size: 56px 56px;
 }
 
 @utility bg-dot {
-  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(244, 239, 230, 0.08) 1px, transparent 1px);
   background-size: 22px 22px;
 }
 
@@ -153,6 +172,19 @@ body {
   mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
   -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
 }
+
+/* -------------------------------------------------------------------------- */
+/* Cream surface — used for dense pages (pricing comparison, features grid)   */
+/* -------------------------------------------------------------------------- */
+
+@utility surface-cream {
+  background: #F4EFE6;
+  color: #0F1A2E;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Animations                                                                 */
+/* -------------------------------------------------------------------------- */
 
 @keyframes shimmer {
   0% { background-position: -200% 0; }
@@ -174,11 +206,6 @@ body {
   to { transform: translateX(-50%); }
 }
 
-@keyframes gradient-shift {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-}
-
 @utility animate-shimmer {
   animation: shimmer 2.6s linear infinite;
   background-size: 200% 100%;
@@ -196,16 +223,19 @@ body {
   animation: marquee 32s linear infinite;
 }
 
-@utility animate-gradient {
-  background-size: 200% 200%;
-  animation: gradient-shift 8s ease infinite;
-}
+/* -------------------------------------------------------------------------- */
+/* Focus styling                                                              */
+/* -------------------------------------------------------------------------- */
 
 *:focus-visible {
-  outline: 2px solid rgba(124, 58, 237, 0.7);
+  outline: 2px solid rgba(184, 151, 90, 0.85);
   outline-offset: 2px;
   border-radius: 4px;
 }
+
+/* -------------------------------------------------------------------------- */
+/* Editorial prose blocks                                                     */
+/* -------------------------------------------------------------------------- */
 
 .prose-dark {
   color: var(--color-text-dim);
@@ -216,17 +246,32 @@ body {
 .prose-dark h3 {
   color: var(--color-text);
   font-family: var(--font-display);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
   font-weight: 600;
 }
 .prose-dark h2 { font-size: 1.6rem; margin-top: 2.25rem; margin-bottom: 1rem; }
 .prose-dark h3 { font-size: 1.2rem; margin-top: 1.75rem; margin-bottom: 0.5rem; }
 .prose-dark p { margin-bottom: 1.1rem; }
-.prose-dark a { color: #A78BFA; text-decoration: underline; text-underline-offset: 3px; }
-.prose-dark a:hover { color: #C4B5FD; }
+.prose-dark a { color: #B8975A; text-decoration: underline; text-underline-offset: 3px; }
+.prose-dark a:hover { color: #D8BC85; }
 .prose-dark ul { list-style: disc; padding-left: 1.4rem; margin-bottom: 1.1rem; }
 .prose-dark li { margin-bottom: 0.35rem; }
 .prose-dark strong { color: var(--color-text); font-weight: 600; }
+
+.prose-cream {
+  color: rgba(15, 26, 46, 0.74);
+  line-height: 1.75;
+}
+.prose-cream h1,
+.prose-cream h2,
+.prose-cream h3 {
+  color: #0F1A2E;
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+  font-weight: 600;
+}
+.prose-cream a { color: #8B0028; text-decoration: underline; text-underline-offset: 3px; }
+.prose-cream a:hover { color: #A00030; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
