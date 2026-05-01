@@ -17,8 +17,8 @@ export default function TermsPage() {
   return (
     <>
       <section className="relative overflow-hidden pt-36 pb-10 lg:pt-44">
-        <GradientOrb color="violet" size={480} className="-left-40 -top-10" />
-        <GradientOrb color="blue" size={420} className="-right-40 top-20" />
+        <GradientOrb color="red" size={480} className="-left-40 -top-10" />
+        <GradientOrb color="gold" size={420} className="-right-40 top-20" />
         <Container>
           <div className="mx-auto flex max-w-3xl flex-col items-start gap-4">
             <Badge icon={<FileText size={13} />}>Legal</Badge>

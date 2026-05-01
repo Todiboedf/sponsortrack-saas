@@ -180,8 +180,8 @@ export default function PricingPage() {
   return (
     <>
       <section className="relative overflow-hidden pt-36 pb-12 lg:pt-44 lg:pb-16">
-        <GradientOrb color="violet" size={560} className="-left-40 -top-10" />
-        <GradientOrb color="blue" size={520} className="-right-40 top-40" />
+        <GradientOrb color="red" size={560} className="-left-40 -top-10" />
+        <GradientOrb color="gold" size={520} className="-right-40 top-40" />
         <div aria-hidden className="absolute inset-0 -z-20 bg-grid mask-fade-radial opacity-30" />
         <Container>
           <div className="mx-auto flex max-w-3xl flex-col items-center text-center">

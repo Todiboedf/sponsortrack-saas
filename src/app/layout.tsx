@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
+import { Inter, Playfair_Display, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
@@ -10,11 +10,19 @@ const inter = Inter({
   display: "swap",
 });
 
-const display = Space_Grotesk({
+const display = Playfair_Display({
   variable: "--font-display",
   subsets: ["latin"],
   display: "swap",
-  weight: ["500", "600", "700"],
+  weight: ["500", "600", "700", "800"],
+  style: ["normal", "italic"],
+});
+
+const mono = JetBrains_Mono({
+  variable: "--font-mono",
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400", "500", "600"],
 });
 
 const SITE_URL = "https://sponsortrack.io";
@@ -22,11 +30,11 @@ const SITE_URL = "https://sponsortrack.io";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "SponsorTrack — The Sponsor Intelligence Platform for Sports",
+    default: "SponsorTrack — Sponsor intelligence, lived in real time.",
     template: "%s · SponsorTrack",
   },
   description:
-    "Measure, prove, and grow sponsorship ROI. The all-in-one platform for clubs, leagues and brands — transparent pricing, 14-day free trial.",
+    "The sponsor intelligence platform built for clubs, leagues and brands. Cross-platform analytics, match-day computer vision, and the reports that renew contracts.",
   keywords: [
     "sponsor tracking",
     "sports sponsorship ROI",
@@ -42,9 +50,9 @@ export const metadata: Metadata = {
     type: "website",
     url: SITE_URL,
     siteName: "SponsorTrack",
-    title: "SponsorTrack — Sponsor Intelligence for Modern Sports",
+    title: "SponsorTrack — Sponsor intelligence, lived in real time.",
     description:
-      "Measure, prove, and grow sponsorship ROI. Transparent pricing from €1,500/mo. 14-day free trial.",
+      "Measure, prove and grow sponsorship value. Transparent pricing from €1,500/mo. 14-day free trial.",
     images: [
       {
         url: "/og.svg",
@@ -56,7 +64,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "SponsorTrack — Sponsor Intelligence for Modern Sports",
+    title: "SponsorTrack — Sponsor intelligence for modern sports",
     description:
       "The all-in-one sponsor intelligence platform for clubs, leagues and brands.",
     images: ["/og.svg"],
@@ -73,7 +81,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#07070B",
+  themeColor: "#0A1628",
   colorScheme: "dark",
   width: "device-width",
   initialScale: 1,
@@ -108,16 +116,16 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${display.variable} h-full antialiased`}
+      className={`${inter.variable} ${display.variable} ${mono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-[#07070B] text-[#F4F4F7]">
+      <body className="min-h-full flex flex-col bg-[#0A1628] text-[#F4EFE6]">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-[#7C3AED] focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-white"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-[#8B0028] focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-[#F4EFE6]"
         >
           Skip to content
         </a>

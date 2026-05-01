@@ -13,7 +13,8 @@ import { cn } from "@/lib/utils";
 const links = [
   { href: "/features", label: "Features" },
   { href: "/pricing", label: "Pricing" },
-  { href: "/demo", label: "Live demo" },
+  { href: "/customers/osasuna", label: "Customers", match: "/customers" },
+  { href: "/changelog", label: "Changelog" },
   { href: "/about", label: "About" },
 ];
 
@@ -45,7 +46,7 @@ export function Navbar() {
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-all duration-300",
         scrolled
-          ? "backdrop-blur-xl bg-[#07070B]/70 border-b border-white/[0.06]"
+          ? "backdrop-blur-xl bg-[#0A1628]/85 border-b border-[#F4EFE6]/[0.06]"
           : "border-b border-transparent"
       )}
     >
@@ -58,22 +59,23 @@ export function Navbar() {
 
           <div className="hidden items-center gap-1 lg:flex">
             {links.map((l) => {
+              const matchPath = l.match ?? l.href;
               const active =
                 pathname === l.href ||
-                (l.href !== "/" && pathname?.startsWith(l.href));
+                (matchPath !== "/" && pathname?.startsWith(matchPath));
               return (
                 <Link
                   key={l.href}
                   href={l.href}
                   className={cn(
-                    "relative rounded-full px-4 py-2 text-sm text-white/70 transition-colors hover:text-white",
-                    active && "text-white"
+                    "relative rounded-full px-4 py-2 text-sm text-[#F4EFE6]/72 transition-colors hover:text-[#F4EFE6]",
+                    active && "text-[#F4EFE6]"
                   )}
                 >
                   {active && (
                     <motion.span
                       layoutId="nav-pill"
-                      className="absolute inset-0 rounded-full bg-white/[0.06] ring-1 ring-white/10"
+                      className="absolute inset-0 rounded-full bg-[#F4EFE6]/[0.06] ring-1 ring-[#B8975A]/30"
                       transition={{ type: "spring", stiffness: 400, damping: 32 }}
                     />
                   )}
@@ -94,7 +96,7 @@ export function Navbar() {
 
           <button
             type="button"
-            className="lg:hidden inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-white"
+            className="lg:hidden inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#F4EFE6]/12 bg-[#F4EFE6]/[0.04] text-[#F4EFE6]"
             aria-label="Toggle menu"
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
@@ -112,7 +114,7 @@ export function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
-            className="lg:hidden border-t border-white/[0.06] bg-[#07070B]/95 backdrop-blur-xl"
+            className="lg:hidden border-t border-[#F4EFE6]/[0.06] bg-[#0A1628]/96 backdrop-blur-xl"
           >
             <Container>
               <div className="flex flex-col gap-1 py-5">
@@ -120,12 +122,12 @@ export function Navbar() {
                   <Link
                     key={l.href}
                     href={l.href}
-                    className="rounded-xl px-3 py-3 text-base text-white/80 hover:bg-white/[0.06]"
+                    className="rounded-xl px-3 py-3 text-base text-[#F4EFE6]/85 hover:bg-[#F4EFE6]/[0.06]"
                   >
                     {l.label}
                   </Link>
                 ))}
-                <div className="mt-3 flex flex-col gap-2 border-t border-white/[0.06] pt-4">
+                <div className="mt-3 flex flex-col gap-2 border-t border-[#F4EFE6]/[0.06] pt-4">
                   <Button href="/login" variant="secondary" size="md">
                     Sign in
                   </Button>

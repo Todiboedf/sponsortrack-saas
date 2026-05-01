@@ -162,8 +162,8 @@ export default function FeaturesPage() {
 function FeaturesHero() {
   return (
     <section className="relative overflow-hidden pt-36 pb-16 lg:pt-44 lg:pb-24">
-      <GradientOrb color="violet" size={560} className="-left-40 -top-10" />
-      <GradientOrb color="blue" size={520} className="-right-32 top-40" />
+      <GradientOrb color="red" size={560} className="-left-40 -top-10" />
+      <GradientOrb color="gold" size={520} className="-right-32 top-40" />
       <div aria-hidden className="absolute inset-0 -z-20 bg-grid mask-fade-radial opacity-30" />
       <Container>
         <div className="mx-auto flex max-w-4xl flex-col items-center text-center">
@@ -390,8 +390,8 @@ function CtaSection() {
     <section className="py-20 lg:py-28">
       <Container>
         <div className="relative overflow-hidden rounded-3xl border border-white/[0.1] bg-gradient-to-br from-[#120822] via-[#07070B] to-[#081226] p-12 text-center lg:p-16">
-          <GradientOrb color="violet" size={380} className="-left-10 -top-10 opacity-70" />
-          <GradientOrb color="blue" size={380} className="-right-10 -bottom-10 opacity-60" />
+          <GradientOrb color="red" size={380} className="-left-10 -top-10 opacity-70" />
+          <GradientOrb color="gold" size={380} className="-right-10 -bottom-10 opacity-60" />
           <Badge icon={<Mail size={13} />}>Ready when you are</Badge>
           <h2 className="mx-auto mt-5 max-w-2xl font-[family-name:var(--font-display)] text-balance text-4xl font-semibold tracking-[-0.02em] text-white sm:text-5xl">
             See every feature live in under 30 minutes.

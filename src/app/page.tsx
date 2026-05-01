@@ -49,8 +49,8 @@ function Hero() {
   return (
     <section className="relative overflow-hidden pt-36 pb-24 lg:pt-44 lg:pb-32">
       <div aria-hidden className="absolute inset-0 -z-20 bg-grid mask-fade-radial opacity-40" />
-      <GradientOrb color="violet" size={620} className="-left-40 -top-20" />
-      <GradientOrb color="blue" size={560} className="-right-40 top-40" />
+      <GradientOrb color="red" size={620} className="-left-40 -top-20" />
+      <GradientOrb color="gold" size={560} className="-right-40 top-40" />
       <Container>
         <div className="mx-auto flex max-w-4xl flex-col items-center text-center">
           <Reveal>
@@ -345,7 +345,7 @@ function MiniPreview() {
   ];
   return (
     <div className="relative">
-      <GradientOrb color="violet" size={420} className="-right-20 top-10 opacity-70" />
+      <GradientOrb color="red" size={420} className="-right-20 top-10 opacity-70" />
       <div className="relative overflow-hidden rounded-2xl border border-white/[0.08] bg-[#0A0A12] p-6 shadow-2xl">
         <div className="flex items-center justify-between">
           <div>
@@ -497,7 +497,7 @@ const tiers = [
 function PricingSection() {
   return (
     <section id="pricing" className="relative py-24 lg:py-32">
-      <GradientOrb color="violet" size={520} className="-left-32 top-0 opacity-50" />
+      <GradientOrb color="red" size={520} className="-left-32 top-0 opacity-50" />
       <Container>
         <SectionHeader
           eyebrow="Pricing"
@@ -665,8 +665,8 @@ function FinalCta() {
             aria-hidden
             className="pointer-events-none absolute inset-0 -z-10 bg-dot mask-fade-radial opacity-40"
           />
-          <GradientOrb color="violet" size={420} className="-left-10 -top-10 opacity-80" />
-          <GradientOrb color="blue" size={420} className="-right-10 -bottom-10 opacity-70" />
+          <GradientOrb color="red" size={420} className="-left-10 -top-10 opacity-80" />
+          <GradientOrb color="gold" size={420} className="-right-10 -bottom-10 opacity-70" />
           <Reveal>
             <Badge icon={<Mail size={13} />}>14-day free trial · no credit card</Badge>
           </Reveal>

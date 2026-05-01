@@ -5,27 +5,29 @@ import Link from "next/link";
 import { forwardRef } from "react";
 import type { ButtonHTMLAttributes, ReactNode } from "react";
 
-type Variant = "primary" | "secondary" | "ghost" | "outline";
+type Variant = "primary" | "secondary" | "ghost" | "outline" | "gold";
 type Size = "sm" | "md" | "lg";
 
 const base =
   "relative inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium " +
   "transition-all duration-200 ease-out active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none " +
-  "rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7C3AED]/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#07070B]";
+  "rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#B8975A]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A1628]";
 
 const variants: Record<Variant, string> = {
   primary:
-    "text-white bg-gradient-to-br from-[#8B5CF6] via-[#7C3AED] to-[#3B82F6] " +
-    "shadow-[0_10px_40px_-12px_rgba(124,58,237,0.6),inset_0_1px_0_rgba(255,255,255,0.2)] " +
-    "hover:shadow-[0_16px_50px_-10px_rgba(124,58,237,0.8),inset_0_1px_0_rgba(255,255,255,0.25)] " +
-    "hover:brightness-110",
+    "text-[#F4EFE6] bg-[#8B0028] " +
+    "shadow-[0_10px_36px_-12px_rgba(139,0,40,0.65),inset_0_1px_0_rgba(244,239,230,0.18)] " +
+    "hover:bg-[#A00030] hover:shadow-[0_14px_46px_-10px_rgba(139,0,40,0.85),inset_0_1px_0_rgba(244,239,230,0.22)]",
   secondary:
-    "text-white bg-white/[0.06] border border-white/10 backdrop-blur " +
-    "hover:bg-white/[0.1] hover:border-white/20",
+    "text-[#F4EFE6] bg-[#F4EFE6]/[0.06] border border-[#F4EFE6]/12 backdrop-blur " +
+    "hover:bg-[#F4EFE6]/[0.10] hover:border-[#F4EFE6]/22",
   ghost:
-    "text-white/80 hover:text-white hover:bg-white/[0.06]",
+    "text-[#F4EFE6]/85 hover:text-[#F4EFE6] hover:bg-[#F4EFE6]/[0.06]",
   outline:
-    "text-white border border-white/15 bg-transparent hover:bg-white/[0.04] hover:border-white/25",
+    "text-[#F4EFE6] border border-[#B8975A]/40 bg-transparent hover:bg-[#B8975A]/[0.08] hover:border-[#B8975A]/70",
+  gold:
+    "text-[#0A1628] bg-[#B8975A] hover:bg-[#D8BC85] " +
+    "shadow-[0_10px_30px_-12px_rgba(184,151,90,0.55),inset_0_1px_0_rgba(255,255,255,0.25)]",
 };
 
 const sizes: Record<Size, string> = {
