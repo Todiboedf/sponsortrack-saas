@@ -112,7 +112,7 @@ const FALLBACK_ENGAGEMENT = [
 const FALLBACK_TOP_POSTS = [
   {
     platform: "Instagram",
-    caption: "Vinícius Jr. hat-trick celebration — new away kit",
+    caption: "Vinícius Jr. hat-trick celebration · new away kit",
     sponsor: "Adidas",
     views: 28_400_000,
     likes: 3_120_000,
@@ -130,7 +130,7 @@ const FALLBACK_TOP_POSTS = [
   },
   {
     platform: "Instagram",
-    caption: "Pre-match arrival — suit by Hublot ambassadors",
+    caption: "Pre-match arrival · suit by Hublot ambassadors",
     sponsor: "Hublot",
     views: 9_100_000,
     likes: 842_000,
@@ -139,7 +139,7 @@ const FALLBACK_TOP_POSTS = [
   },
   {
     platform: "YouTube",
-    caption: "Champions League inside edit — Emirates backdrop",
+    caption: "Champions League inside edit · Emirates backdrop",
     sponsor: "Emirates",
     views: 6_400_000,
     likes: 512_000,
@@ -279,8 +279,8 @@ export default function DemoClient({ live }: { live?: LiveData | null }) {
                 </h1>
                 <p className="mt-4 max-w-xl text-[15px] text-white/60">
                   {isLive
-                    ? "Live Instagram data, refreshed daily. Filter by sponsor, platform or period — the whole dashboard re-computes in real time."
-                    : "All figures below are synthetic data for illustration. Filter by sponsor, platform or period — the whole dashboard re-computes in real time."}
+                    ? "Live Instagram data, refreshed daily. Filter by sponsor, platform or period: the whole dashboard re-computes in real time."
+                    : "All figures below are synthetic data for illustration. Filter by sponsor, platform or period: the whole dashboard re-computes in real time."}
                 </p>
               </div>
               <Button href="/contact" size="md" rightIcon={<ArrowUpRight size={15} />}>
@@ -319,7 +319,7 @@ export default function DemoClient({ live }: { live?: LiveData | null }) {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-70" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
               </span>
-              {isLive ? "Live — refreshed today" : "Demo — synthetic data"}
+              {isLive ? "Live · refreshed today" : "Demo · synthetic data"}
             </div>
           </div>
 
@@ -607,7 +607,7 @@ export default function DemoClient({ live }: { live?: LiveData | null }) {
                 {[
                   {
                     label: "Santander post virality",
-                    detail: "IG reel crossed 20M views in 18h — renewal window opens Jul 2026.",
+                    detail: "IG reel crossed 20M views in 18h. Renewal window opens Jul 2026.",
                     tone: "emerald",
                   },
                   {
@@ -617,12 +617,12 @@ export default function DemoClient({ live }: { live?: LiveData | null }) {
                   },
                   {
                     label: "Emirates sentiment dip",
-                    detail: "−0.4pt after away fixture — worth a narrative response.",
+                    detail: "−0.4pt after away fixture, worth a narrative response.",
                     tone: "amber",
                   },
                   {
                     label: "Visit Rwanda growth",
-                    detail: "+38% reach MoM — candidate for tier upgrade.",
+                    detail: "+38% reach MoM, candidate for tier upgrade.",
                     tone: "blue",
                   },
                 ].map((a) => (
@@ -656,7 +656,7 @@ export default function DemoClient({ live }: { live?: LiveData | null }) {
               Like what you see?
             </div>
             <p className="mx-auto mt-3 max-w-xl text-white/60">
-              Get your own workspace in under 10 minutes — connect your channels, import
+              Get your own workspace in under 10 minutes. Connect your channels, import
               your sponsor list, and start tracking today.
             </p>
             <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">

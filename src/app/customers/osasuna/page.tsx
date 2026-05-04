@@ -20,7 +20,7 @@ import { GradientOrb } from "@/components/GradientOrb";
 import { CountUp } from "@/components/CountUp";
 
 export const metadata: Metadata = {
-  title: "CA Osasuna — How we built sponsor intelligence with a centenary club",
+  title: "CA Osasuna · How I built sponsor intelligence with a centenary club",
   description:
     "The 20-week pilot that put SponsorTrack on the El Sadar broadcast feed and turned every Caja Rural, Macron and Digi exposure into evidence.",
   alternates: { canonical: "https://sponsortrack.io/customers/osasuna" },
@@ -40,7 +40,7 @@ const pilotMilestones = [
   {
     date: "2026-05-15",
     label: "Match-day vision goes live",
-    body: "Computer-vision model deployed on the El Sadar broadcast feed — first jersey-second metrics in production.",
+    body: "Computer-vision model deployed on the El Sadar broadcast feed: first jersey-second metrics in production.",
   },
   {
     date: "2026-08",
@@ -79,11 +79,11 @@ const kpiTiles = [
 const focusAreas = [
   {
     title: "Live computer vision on every match",
-    body: "Logo, jersey, LED rotation and interview-backdrop detection — running on the Movistar+ broadcast and the in-house feed simultaneously.",
+    body: "Logo, jersey, LED rotation and interview-backdrop detection, running on the Movistar+ broadcast and the in-house feed simultaneously.",
   },
   {
     title: "Per-sponsor portals, white-labelled",
-    body: "Caja Rural, Macron and Digi each get their own workspace — branded, scoped, and a click away from a defensible PDF report.",
+    body: "Caja Rural, Macron and Digi each get their own workspace: branded, scoped, and a click away from a defensible PDF report.",
   },
   {
     title: "A measurement layer the CFO trusts",
@@ -108,7 +108,7 @@ export default function OsasunaPage() {
             </Reveal>
             <Reveal delay={0.05}>
               <h1 className="font-[family-name:var(--font-display)] text-balance text-5xl font-medium leading-[1.04] tracking-[-0.01em] text-[#F4EFE6] sm:text-6xl lg:text-[76px]">
-                How we built{" "}
+                How I built{" "}
                 <em className="italic font-medium text-gradient-brand">
                   sponsor intelligence
                 </em>{" "}
@@ -125,7 +125,7 @@ export default function OsasunaPage() {
             <Reveal delay={0.15}>
               <div className="flex flex-col gap-3 sm:flex-row">
                 <Button href="/contact" size="lg" rightIcon={<ArrowRight size={16} />}>
-                  Become our next case study
+                  Become the next case study
                 </Button>
                 <Button
                   href="https://osasuna-project.vercel.app/clients/osasuna"
@@ -184,7 +184,7 @@ export default function OsasunaPage() {
                   <em className="italic text-gradient-brand">prove the model.</em>
                 </h2>
                 <p className="mt-5 text-[15px] leading-relaxed text-[#F4EFE6]/65">
-                  Osasuna is the first club running SponsorTrack end-to-end —
+                  Osasuna is the first club running SponsorTrack end-to-end:
                   the social analytics layer, the match-day computer vision and
                   the per-sponsor portals all wired against a real LaLiga
                   schedule. Everything you see on this page is live data, not a
@@ -258,7 +258,7 @@ export default function OsasunaPage() {
               />
               <p className="mt-6 font-[family-name:var(--font-display)] text-balance text-2xl italic leading-relaxed text-[#F4EFE6] sm:text-3xl lg:text-[34px]">
                 “SponsorTrack gave us, in twenty weeks, a measurement layer our
-                board could read — and our sponsors could trust. Every minute
+                board could read, and our sponsors could trust. Every minute
                 of broadcast time finally has a number on it.”
               </p>
               <div className="mt-8 flex flex-col gap-1 text-[#F4EFE6]/65">
@@ -288,7 +288,7 @@ export default function OsasunaPage() {
                 </div>
                 <p className="mt-2 text-[14px] leading-relaxed text-[#F4EFE6]/65">
                   The detailed strategy deck shared with the CA Osasuna board
-                  on 30 April 2026 — palette, methodology, and competitive
+                  on 30 April 2026: palette, methodology, and competitive
                   positioning all on the public site.
                 </p>
               </div>
@@ -319,7 +319,7 @@ export default function OsasunaPage() {
               <em className="italic text-gradient-brand">next case study.</em>
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-pretty text-[#F4EFE6]/65">
-              We onboard one new design partner per month — clubs, leagues or
+              I onboard one new design partner per month: clubs, leagues or
               brands who want a measurement layer they can publish, defend, and
               renew on. Book a 30-minute discovery call.
             </p>
@@ -331,7 +331,7 @@ export default function OsasunaPage() {
                 href="/changelog"
                 className="text-sm text-[#B8975A] underline underline-offset-4 hover:text-[#D8BC85]"
               >
-                See what we shipped this month
+                See what shipped this month
               </Link>
             </div>
           </div>

@@ -50,19 +50,19 @@ export default function PrivacyPage() {
             <h2>2. What we collect</h2>
             <ul>
               <li>
-                <strong>Contact data you submit</strong> — name, work email, company,
+                <strong>Contact data you submit</strong>: name, work email, company,
                 phone (optional), and the message you send through our forms.
               </li>
               <li>
-                <strong>Account data</strong> (for customers only) — workspace name,
+                <strong>Account data</strong> (for customers only): workspace name,
                 billing address, invoices.
               </li>
               <li>
-                <strong>Product data</strong> — public social metrics and broadcast
+                <strong>Product data</strong>: public social metrics and broadcast
                 assets you choose to connect to your workspace.
               </li>
               <li>
-                <strong>Technical data</strong> — strictly necessary cookies, IP
+                <strong>Technical data</strong>: strictly necessary cookies, IP
                 address, device &amp; browser used, anonymised analytics for page
                 performance.
               </li>
@@ -73,7 +73,7 @@ export default function PrivacyPage() {
               <li>Respond to a request you sent (legitimate interest).</li>
               <li>Deliver the contracted service and bill for it (contract).</li>
               <li>
-                Send product updates &mdash; only with your explicit consent, with a
+                Send product updates: only with your explicit consent, with a
                 one-click opt-out in every email.
               </li>
               <li>Comply with accounting, tax and security obligations (legal).</li>

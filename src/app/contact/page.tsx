@@ -105,8 +105,8 @@ export default function ContactPage() {
               <span className="text-gradient-brand">talk sponsorships.</span>
             </h1>
             <p className="mt-6 max-w-xl text-pretty text-lg text-white/60 sm:text-xl">
-              Whether you’re a top-tier club, an ambitious agency, a brand sponsor
-              or a journalist — we usually reply same-day.
+              Top-tier club, ambitious agency, brand sponsor or journalist:
+              I usually reply same-day.
             </p>
           </div>
         </Container>
@@ -130,8 +130,8 @@ export default function ContactPage() {
                     We got it.
                   </h3>
                   <p className="mt-3 max-w-sm text-[15px] text-white/60">
-                    A human from our team will get back to you within one business
-                    day — usually much sooner. Thanks for reaching out.
+                    Guillaume will get back to you within one business
+                    day, usually much sooner. Thanks for reaching out.
                   </p>
                   <div className="mt-8">
                     <Button href="/" variant="outline">
@@ -268,7 +268,7 @@ export default function ContactPage() {
                       role="alert"
                       className="rounded-xl border border-red-400/30 bg-red-500/10 px-4 py-3 text-[13px] text-red-200"
                     >
-                      Couldn&apos;t send — {error}. Email us directly at{" "}
+                      Couldn&apos;t send: {error}. Email me directly at{" "}
                       <a
                         href="mailto:hello@sponsortrack.io"
                         className="underline underline-offset-4"
@@ -360,9 +360,9 @@ export default function ContactPage() {
                   </div>
                 </div>
                 <div className="mt-5 rounded-xl border border-white/[0.06] bg-white/[0.02] p-4 text-[13px] leading-relaxed text-white/60">
-                  <span className="text-white/80">Tip —</span> mentioning your club
-                  or brand name lets us route you directly to the right success
-                  manager.
+                  <span className="text-white/80">Tip:</span> mentioning your club
+                  or brand name lets me route you straight to the right
+                  conversation.
                 </div>
                 <div className="mt-5">
                   <Button
