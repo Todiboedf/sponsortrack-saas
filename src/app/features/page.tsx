@@ -23,9 +23,9 @@ import { Reveal } from "@/components/ui/Reveal";
 import { GradientOrb } from "@/components/GradientOrb";
 
 export const metadata: Metadata = {
-  title: "Features — The sponsor intelligence stack",
+  title: "Features · The sponsor intelligence stack",
   description:
-    "Cross-platform analytics, match-day computer vision, branded sponsor portals, an AI-powered prospection engine, white-label reporting, and enterprise security — all in one platform.",
+    "Cross-platform analytics, match-day computer vision, branded sponsor portals, an AI-powered prospection engine, white-label reporting, and production-grade security. One platform.",
 };
 
 /* -------------------------------------------------------------------------- */
@@ -92,11 +92,11 @@ const pillars: Pillar[] = [
   {
     tag: "Analytics",
     title: "Cross-platform analytics",
-    body: "Every post, every story, every reel — Instagram, TikTok, X, YouTube, Facebook and LinkedIn. Automatically attributed to the sponsors who appear in it.",
+    body: "Every post, every story, every reel. Instagram, TikTok, X, YouTube, Facebook and LinkedIn. Automatically attributed to the sponsors who appear in it.",
     bullets: [
       "Automatic sponsor detection from captions, hashtags and visuals",
       "Deduplicated cross-platform reach with confidence scores",
-      "Organic vs paid vs owned vs earned — properly split",
+      "Organic vs paid vs owned vs earned, properly split",
       "Time-zone aware daily, weekly and season aggregations",
     ],
     plan: ["Starter", "Pro", "Enterprise"],
@@ -106,7 +106,7 @@ const pillars: Pillar[] = [
   {
     tag: "Match day",
     title: "Match-day computer vision",
-    body: "Our in-house model watches the broadcast feed — live or recorded — and measures the exact seconds of visibility for every jersey, LED rotation, interview backdrop and pitch-side board.",
+    body: "An in-house model watches the broadcast feed (live or recorded) and measures the exact seconds of visibility for every jersey, LED rotation, interview backdrop and pitch-side board.",
     bullets: [
       "Live logo detection with broadcast-quality scoring",
       "LED rotation optimisation and inventory pricing",
@@ -134,12 +134,12 @@ const pillars: Pillar[] = [
   {
     tag: "Prospection",
     title: "Prospection engine + AI outreach",
-    body: "Find the brands most likely to sponsor you — based on what they already sponsor, who their audience is, and where your club fits their media mix.",
+    body: "Find the brands most likely to sponsor you, based on what they already sponsor, who their audience is, and where your club fits their media mix.",
     bullets: [
       "10M+ company database with sponsorship signals",
       "Fit score per brand × property × region",
       "AI-drafted outreach in your commercial team's voice",
-      "CRM-ready — HubSpot, Salesforce, Pipedrive, Notion",
+      "CRM-ready: HubSpot, Salesforce, Pipedrive, Notion",
     ],
     plan: ["Pro", "Enterprise"],
     icon: <Radar size={20} />,
@@ -148,12 +148,12 @@ const pillars: Pillar[] = [
   {
     tag: "Reporting",
     title: "White-label reporting",
-    body: "Beautiful, defensible PDFs in your sponsor’s brand — generated automatically every Monday. The same engine powers in-app reports, email digests and CSV exports.",
+    body: "Beautiful, defensible PDFs in your sponsor’s brand, generated automatically every Monday. The same engine powers in-app reports, email digests and CSV exports.",
     bullets: [
       "Branded templates with logo, palette and typography",
       "Methodology appendix that satisfies finance teams",
       "Auto-scheduled email + PDF + Slack delivery",
-      "Versioned exports — every monthly recap is auditable",
+      "Versioned exports: every monthly recap is auditable",
     ],
     plan: ["Pro", "Enterprise"],
     icon: <FileBadge size={20} />,
@@ -162,7 +162,7 @@ const pillars: Pillar[] = [
   {
     tag: "Security",
     title: "Security & compliance",
-    body: "The boring parts done properly. SSO, SCIM, fine-grained RBAC, EU data residency by default, and a SOC 2 Type II audit in progress — so procurement isn’t the slow lane.",
+    body: "The boring parts done properly. SSO, SCIM, fine-grained RBAC, EU data residency by default, and a SOC 2 Type II audit in progress, so procurement isn’t the slow lane.",
     bullets: [
       "SAML / OIDC SSO and SCIM provisioning",
       "Role-based access at workspace, sponsor and report level",
@@ -271,14 +271,14 @@ function ComparisonSection() {
       <Container>
         <div className="mx-auto max-w-3xl text-center">
           <Badge tone="cream" icon={<Target size={12} />}>
-            How we compare
+            How it compares
           </Badge>
           <h2 className="mt-5 font-[family-name:var(--font-display)] text-balance text-4xl font-semibold tracking-[-0.01em] sm:text-5xl">
             A product-led alternative to{" "}
             <em className="italic text-[#8B0028]">legacy vendors.</em>
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-[#0F1A2E]/65">
-            Self-assessed and honestly opinionated — happy to revisit any line
+            Self-assessed and honestly opinionated. Happy to revisit any line
             with anyone who knows the space.
           </p>
         </div>
@@ -326,7 +326,7 @@ function ComparisonSection() {
                           {ok ? (
                             <Check size={18} className="mx-auto text-[#8B0028]" />
                           ) : (
-                            <span className="text-[#0F1A2E]/30">—</span>
+                            <span className="text-[#0F1A2E]/30">–</span>
                           )}
                         </td>
                       ))}
@@ -360,7 +360,7 @@ function CtaSection() {
             <em className="italic text-gradient-brand">under 30 minutes.</em>
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-pretty text-[#F4EFE6]/65">
-            Our team will walk you through the platform, map it to your current
+            I’ll walk you through the platform, map it to your current
             workflow, and hand you a 14-day trial on the spot.
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
@@ -627,8 +627,8 @@ function ProspectionMockup() {
         ))}
       </ul>
       <div className="mt-4 rounded-lg border border-[#B8975A]/30 bg-[#B8975A]/[0.08] p-3 text-[11px] leading-relaxed text-[#F4EFE6]/75">
-        <span className="font-semibold text-[#F4EFE6]">AI draft —</span>{" "}
-        “Hola Iberia team — we noticed your Madrid–Iruña route lands 14 minutes
+        <span className="font-semibold text-[#F4EFE6]">AI draft:</span>{" "}
+        “Hola Iberia team, we noticed your Madrid–Iruña route lands 14 minutes
         from El Sadar; here’s the audience overlap…”
       </div>
     </div>
@@ -667,7 +667,7 @@ function ReportingMockup() {
         <div className="mt-4 rounded-md border border-[#0F1A2E]/10 bg-white p-3 text-[11px] leading-relaxed text-[#0F1A2E]/65">
           The Caja Rural jersey crest hit{" "}
           <span className="font-semibold text-[#0F1A2E]">14 broadcasts</span>{" "}
-          this quarter — €0.62 CPM, 38% below market.
+          this quarter at €0.62 CPM, 38% below market.
         </div>
         <div className="mt-3 flex items-center justify-between text-[10px] uppercase tracking-[0.18em] text-[#0F1A2E]/45">
           <span>Methodology · MVE 3.1</span>

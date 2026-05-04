@@ -7,7 +7,7 @@ import { GradientOrb } from "@/components/GradientOrb";
 
 export const metadata: Metadata = {
   title: "Page not found",
-  description: "This page does not exist — or not yet.",
+  description: "This page does not exist (or not yet).",
   robots: { index: false, follow: false },
 };
 
@@ -24,7 +24,7 @@ export default function NotFound() {
             <span className="text-gradient-brand">broadcast.</span>
           </h1>
           <p className="mt-6 max-w-lg text-lg text-white/60">
-            The page you&apos;re looking for doesn&apos;t exist — or hasn&apos;t
+            The page you&apos;re looking for doesn&apos;t exist, or hasn&apos;t
             shipped yet. Head back to the home page or explore the product.
           </p>
           <div className="mt-10 flex flex-col items-center gap-3 sm:flex-row">

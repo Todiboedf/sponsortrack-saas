@@ -55,7 +55,15 @@ export function Navbar() {
           aria-label="Primary"
           className="flex h-16 items-center justify-between"
         >
-          <Logo />
+          <div className="flex flex-col">
+            <Logo />
+            <Link
+              href="/about"
+              className="mt-0.5 hidden pl-[40px] text-[10px] leading-none text-[#F4EFE6]/55 transition-colors hover:text-[#B8975A] sm:inline-block"
+            >
+              Built solo by Guillaume.
+            </Link>
+          </div>
 
           <div className="hidden items-center gap-1 lg:flex">
             {links.map((l) => {

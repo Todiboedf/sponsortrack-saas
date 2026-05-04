@@ -30,11 +30,11 @@ const SITE_URL = "https://sponsortrack.io";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "SponsorTrack — Sponsor intelligence, lived in real time.",
+    default: "SponsorTrack · Sponsor intelligence, lived in real time.",
     template: "%s · SponsorTrack",
   },
   description:
-    "The sponsor intelligence platform built for clubs, leagues and brands. Cross-platform analytics, match-day computer vision, and the reports that renew contracts.",
+    "The sponsor intelligence platform built for clubs and leagues. Cross-platform analytics, match-day computer vision, and the reports that close renewals.",
   keywords: [
     "sponsor tracking",
     "sports sponsorship ROI",
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     type: "website",
     url: SITE_URL,
     siteName: "SponsorTrack",
-    title: "SponsorTrack — Sponsor intelligence, lived in real time.",
+    title: "SponsorTrack · Sponsor intelligence, lived in real time.",
     description:
       "Measure, prove and grow sponsorship value. Transparent pricing from €1,500/mo. 14-day free trial.",
     images: [
@@ -58,15 +58,15 @@ export const metadata: Metadata = {
         url: "/og.svg",
         width: 1200,
         height: 630,
-        alt: "SponsorTrack — Sponsor Intelligence Platform",
+        alt: "SponsorTrack · sponsor intelligence platform",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "SponsorTrack — Sponsor intelligence for modern sports",
+    title: "SponsorTrack · Sponsor intelligence for modern sports",
     description:
-      "The all-in-one sponsor intelligence platform for clubs, leagues and brands.",
+      "The all-in-one sponsor intelligence platform for clubs and leagues.",
     images: ["/og.svg"],
   },
   robots: {
@@ -95,7 +95,7 @@ const jsonLd = {
   url: SITE_URL,
   logo: `${SITE_URL}/icon.svg`,
   description:
-    "Sponsor intelligence platform for clubs, leagues and brands — social analytics, match-day computer vision, ROI reporting.",
+    "Sponsor intelligence platform for clubs and leagues. Social analytics, match-day computer vision, ROI reporting.",
   sameAs: [
     "https://x.com/sponsortrack",
     "https://www.linkedin.com/company/sponsortrack",

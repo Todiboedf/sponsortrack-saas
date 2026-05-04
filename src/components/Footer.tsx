@@ -37,9 +37,16 @@ export function Footer() {
           <div className="flex flex-col gap-5">
             <Logo />
             <p className="max-w-xs text-sm leading-relaxed text-[#F4EFE6]/60">
-              Sponsor intelligence, lived in real time. Built for the clubs,
-              leagues and brands who measure what matters.
+              Sponsor intelligence, lived in real time. Built for clubs and
+              leagues that close renewals.
             </p>
+            <Link
+              href="/about"
+              className="inline-flex w-fit items-center gap-1.5 text-[12px] text-[#F4EFE6]/60 transition-colors hover:text-[#B8975A]"
+            >
+              <span className="inline-block h-1.5 w-1.5 rounded-full bg-[#B8975A]" />
+              Built solo by Guillaume.
+            </Link>
             <div className="flex items-center gap-2">
               <SocialIcon label="X" href="https://x.com/sponsortrack" />
               <SocialIcon label="LinkedIn" href="https://www.linkedin.com/company/sponsortrack" />
@@ -87,8 +94,14 @@ export function Footer() {
         </div>
         <div className="flex flex-col gap-3 border-t border-[#F4EFE6]/[0.06] py-6 text-xs text-[#F4EFE6]/50 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            © {new Date().getFullYear()} SponsorTrack · Built by TFM Team · Real
-            Madrid Graduate School, Universidad Europea de Madrid
+            © {new Date().getFullYear()} SponsorTrack · A solo project by{" "}
+            <Link
+              href="/about"
+              className="text-[#F4EFE6]/65 underline underline-offset-4 hover:text-[#B8975A]"
+            >
+              Guillaume Haas
+            </Link>{" "}
+            · Madrid, Spain
           </div>
           <div className="flex items-center gap-4">
             <span className="inline-flex items-center gap-1.5">
@@ -98,7 +111,7 @@ export function Footer() {
               </span>
               All systems operational
             </span>
-            <span className="hidden sm:inline">EU-first · Paris hub</span>
+            <span className="hidden sm:inline">EU-first · GDPR compliant</span>
           </div>
         </div>
       </Container>

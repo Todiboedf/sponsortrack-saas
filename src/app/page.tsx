@@ -6,15 +6,15 @@ import {
   Check,
   FileSpreadsheet,
   Gauge,
-  LineChart,
+  Layers,
   Mail,
   PlugZap,
   ScanSearch,
   ScrollText,
+  ShieldCheck,
   Sparkles,
   Target,
   TrendingUp,
-  Users,
   Workflow,
 } from "lucide-react";
 import { Container } from "@/components/ui/Container";
@@ -26,7 +26,8 @@ import { Reveal } from "@/components/ui/Reveal";
 import { GradientOrb } from "@/components/GradientOrb";
 import { LogoMarquee } from "@/components/LogoMarquee";
 import { DashboardMockup } from "@/components/DashboardMockup";
-import { CountUp } from "@/components/CountUp";
+import { BeforeAfterDemo } from "@/components/sections/BeforeAfterDemo";
+import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
 
 export default function HomePage() {
   return (
@@ -34,10 +35,11 @@ export default function HomePage() {
       <Hero />
       <TrustedBy />
       <ProblemSection />
+      <BeforeAfterDemo />
       <PlatformSection />
       <HowItWorks />
       <PerSponsorSection />
-      <StatsSection />
+      <ProofBand />
       <PricingTeaser />
       <TestimonialsSection />
       <FinalCta />
@@ -70,9 +72,8 @@ function Hero() {
           </Reveal>
           <Reveal delay={0.1}>
             <p className="mt-7 max-w-2xl text-pretty text-lg text-[#F4EFE6]/70 sm:text-xl">
-              Built for the clubs, leagues and brands who measure what matters.
-              Cross-platform analytics, match-day computer vision, and the
-              reports that actually renew contracts.
+              Built for clubs and leagues. Cross-platform analytics,
+              match-day computer vision, and the reports that close renewals.
             </p>
           </Reveal>
           <Reveal delay={0.15}>
@@ -81,7 +82,7 @@ function Hero() {
                 Start free trial
               </Button>
               <Button href="/demo" size="lg" variant="outline">
-                Watch live demo
+                Open the live demo
               </Button>
             </div>
           </Reveal>
@@ -148,7 +149,7 @@ const problems = [
   {
     icon: <TrendingUp size={22} />,
     title: "Growth goes untracked",
-    body: "You miss the spikes that matter — a viral post, a breakout match — because tracking is manual, slow, and usually after the fact.",
+    body: "You miss the spikes that matter: a viral post, a breakout match. Tracking is manual, slow, and usually after the fact.",
   },
 ];
 
@@ -171,7 +172,7 @@ function ProblemSection() {
         <div className="mt-14 grid gap-5 md:grid-cols-3">
           {problems.map((p, i) => (
             <Reveal key={p.title} delay={i * 0.06}>
-              <Card className="h-full p-7">
+              <Card className="h-full p-7 transition-transform duration-200 hover:-translate-y-0.5">
                 <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-[#B8975A]/30 bg-[#B8975A]/[0.08] text-[#B8975A]">
                   {p.icon}
                 </div>
@@ -191,29 +192,8 @@ function ProblemSection() {
 }
 
 /* -------------------------------------------------------------------------- */
-/* The platform                                                               */
+/* The platform · bento layout                                                */
 /* -------------------------------------------------------------------------- */
-const features = [
-  {
-    icon: <BarChart3 size={22} />,
-    title: "Unified social analytics",
-    body: "Instagram, TikTok, X, YouTube, Facebook — aggregated, deduplicated, normalised. One number per sponsor, per match, per week.",
-    points: ["Cross-platform reach", "Post-level attribution", "Organic vs paid"],
-  },
-  {
-    icon: <Camera size={22} />,
-    title: "Match-day computer vision",
-    body: "Our model watches the broadcast feed and measures the exact screen time of every sponsor logo, jersey, LED rotation and interview backdrop.",
-    points: ["Live logo tracking", "Broadcast quality scoring", "GDPR-safe processing"],
-  },
-  {
-    icon: <LineChart size={22} />,
-    title: "ROI that renews contracts",
-    body: "Auto-generated reports in the sponsor’s brand, sent every Monday. They see their investment compound. You close larger renewals faster.",
-    points: ["White-label PDFs", "Benchmarks vs market", "Contract alerts"],
-  },
-];
-
 function PlatformSection() {
   return (
     <section className="relative py-24 lg:py-32">
@@ -227,53 +207,149 @@ function PlatformSection() {
           title={
             <>
               One platform.{" "}
-              <em className="italic text-gradient-brand">Complete visibility.</em>
+              <em className="italic text-gradient-brand">Bigger renewals.</em>
             </>
           }
-          description="Everything your commercial team needs to measure a sponsorship, prove the value, and sell the renewal — in a single source of truth."
+          description="Everything I built to measure a sponsorship, prove the value, and close the renewal."
         />
-        <div className="mt-16 grid gap-5 md:grid-cols-3">
-          {features.map((f, i) => (
-            <Reveal key={f.title} delay={i * 0.07}>
-              <Card className="group relative h-full p-8">
-                <div
-                  aria-hidden
-                  className="pointer-events-none absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-[#B8975A]/55 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-                />
+
+        <div className="mt-16 grid grid-cols-1 gap-4 lg:grid-cols-4 lg:grid-rows-2">
+          {/* Flagship · 2x2 */}
+          <Reveal className="lg:col-span-2 lg:row-span-2">
+            <Card className="group relative h-full p-8 transition-transform duration-200 hover:-translate-y-0.5">
+              <div className="flex items-center gap-3">
                 <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-[#8B0028]/15 text-[#F4EFE6] ring-1 ring-[#8B0028]/45">
-                  {f.icon}
+                  <Camera size={22} />
                 </div>
-                <h3 className="mt-5 font-[family-name:var(--font-display)] text-xl font-semibold tracking-tight text-[#F4EFE6]">
-                  {f.title}
-                </h3>
-                <p className="mt-3 text-[15px] leading-relaxed text-[#F4EFE6]/65">
-                  {f.body}
-                </p>
-                <ul className="mt-5 flex flex-col gap-2">
-                  {f.points.map((pt) => (
-                    <li
-                      key={pt}
-                      className="inline-flex items-center gap-2 text-[13px] text-[#F4EFE6]/75"
-                    >
-                      <Check size={14} className="text-[#B8975A]" />
-                      {pt}
-                    </li>
-                  ))}
-                </ul>
-              </Card>
-            </Reveal>
-          ))}
+                <Badge tone="red" className="text-[10px]">
+                  Flagship
+                </Badge>
+              </div>
+              <h3 className="mt-5 font-[family-name:var(--font-display)] text-2xl font-semibold tracking-tight text-[#F4EFE6] sm:text-3xl">
+                Match-day computer vision.
+              </h3>
+              <p className="mt-3 text-[15px] leading-relaxed text-[#F4EFE6]/70">
+                A model watches the broadcast feed and measures the exact
+                screen time of every logo, jersey, LED rotation, and interview
+                backdrop. No guessing. No asterisks.
+              </p>
+              <ul className="mt-5 grid gap-2 sm:grid-cols-2">
+                {["Live logo tracking", "Broadcast quality scoring", "GDPR-safe processing", "Per-broadcaster breakdown"].map((pt) => (
+                  <li
+                    key={pt}
+                    className="inline-flex items-center gap-2 text-[13px] text-[#F4EFE6]/80"
+                  >
+                    <Check size={14} className="text-[#B8975A]" />
+                    {pt}
+                  </li>
+                ))}
+              </ul>
+              <BroadcastPreview />
+            </Card>
+          </Reveal>
+
+          <Reveal delay={0.05}>
+            <Card className="group h-full p-7 transition-transform duration-200 hover:-translate-y-0.5">
+              <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-[#8B0028]/15 text-[#F4EFE6] ring-1 ring-[#8B0028]/45">
+                <BarChart3 size={20} />
+              </div>
+              <h3 className="mt-4 font-[family-name:var(--font-display)] text-lg font-semibold tracking-tight text-[#F4EFE6]">
+                Cross-platform analytics.
+              </h3>
+              <p className="mt-2 text-[14px] leading-relaxed text-[#F4EFE6]/65">
+                Instagram, TikTok, X, YouTube, Facebook. One dashboard. One
+                number per sponsor, per match, per week.
+              </p>
+            </Card>
+          </Reveal>
+
+          <Reveal delay={0.1}>
+            <Card className="group h-full p-7 transition-transform duration-200 hover:-translate-y-0.5">
+              <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-[#8B0028]/15 text-[#F4EFE6] ring-1 ring-[#8B0028]/45">
+                <Layers size={20} />
+              </div>
+              <h3 className="mt-4 font-[family-name:var(--font-display)] text-lg font-semibold tracking-tight text-[#F4EFE6]">
+                Branded sponsor portals.
+              </h3>
+              <p className="mt-2 text-[14px] leading-relaxed text-[#F4EFE6]/65">
+                Invite sponsors directly. They see only their data, in their
+                brand colors, in their language.
+              </p>
+            </Card>
+          </Reveal>
+
+          <Reveal delay={0.15}>
+            <Card className="group h-full p-7 transition-transform duration-200 hover:-translate-y-0.5">
+              <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-[#8B0028]/15 text-[#F4EFE6] ring-1 ring-[#8B0028]/45">
+                <ScrollText size={20} />
+              </div>
+              <h3 className="mt-4 font-[family-name:var(--font-display)] text-lg font-semibold tracking-tight text-[#F4EFE6]">
+                Monday-morning recaps.
+              </h3>
+              <p className="mt-2 text-[14px] leading-relaxed text-[#F4EFE6]/65">
+                Auto-generated PDF in the sponsor’s brand. Lands at 07:00
+                local. They open the email, you open the renewal.
+              </p>
+            </Card>
+          </Reveal>
+
+          <Reveal delay={0.2}>
+            <Card className="group h-full p-7 transition-transform duration-200 hover:-translate-y-0.5">
+              <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-[#8B0028]/15 text-[#F4EFE6] ring-1 ring-[#8B0028]/45">
+                <ShieldCheck size={20} />
+              </div>
+              <h3 className="mt-4 font-[family-name:var(--font-display)] text-lg font-semibold tracking-tight text-[#F4EFE6]">
+                Methodology that survives an audit.
+              </h3>
+              <p className="mt-2 text-[14px] leading-relaxed text-[#F4EFE6]/65">
+                Configurable EMV, transparent rate cards, and an appendix the
+                CFO can sign off on.
+              </p>
+            </Card>
+          </Reveal>
         </div>
 
-        <Reveal delay={0.2}>
+        <Reveal delay={0.25}>
           <div className="mt-10 flex justify-center">
             <Button href="/features" variant="outline" rightIcon={<ArrowRight size={16} />}>
-              See all features
+              Inside the platform
             </Button>
           </div>
         </Reveal>
       </Container>
     </section>
+  );
+}
+
+function BroadcastPreview() {
+  return (
+    <div className="mt-7 rounded-xl border border-[#F4EFE6]/[0.08] bg-[#0A1628] p-3">
+      <div className="relative aspect-[16/8] overflow-hidden rounded-md bg-gradient-to-b from-[#0F1A2E] to-[#060D18]">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_70%,rgba(31,122,82,0.45)_0%,transparent_60%)]" />
+        <div className="absolute left-[14%] top-[44%] h-[10%] w-[20%] border-2 border-[#8B0028] shadow-[0_0_0_1px_rgba(244,239,230,0.35)]">
+          <span className="absolute -top-4 left-0 rounded bg-[#8B0028] px-1 py-0.5 text-[8px] font-semibold uppercase tracking-[0.16em] text-[#F4EFE6]">
+            Caja Rural · 0.96
+          </span>
+        </div>
+        <div className="absolute left-[44%] top-[44%] h-[10%] w-[16%] border-2 border-[#8B0028]">
+          <span className="absolute -top-4 left-0 rounded bg-[#8B0028] px-1 py-0.5 text-[8px] font-semibold uppercase tracking-[0.16em] text-[#F4EFE6]">
+            Macron · 0.92
+          </span>
+        </div>
+        <div className="absolute right-[14%] top-[44%] h-[10%] w-[12%] border-2 border-[#B8975A]">
+          <span className="absolute -top-4 right-0 rounded bg-[#B8975A] px-1 py-0.5 text-[8px] font-semibold uppercase tracking-[0.16em] text-[#0A1628]">
+            Digi · 0.74
+          </span>
+        </div>
+        <div className="absolute right-2 top-2 inline-flex items-center gap-1.5 rounded-full bg-[#0A1628]/80 px-2 py-0.5 text-[10px] uppercase tracking-[0.16em] text-[#F4EFE6]">
+          <span className="relative flex h-1.5 w-1.5">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#8B0028] opacity-70" />
+            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#8B0028]" />
+          </span>
+          Live · El Sadar
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -291,19 +367,19 @@ const steps = [
     n: "02",
     icon: <ScanSearch size={20} />,
     title: "Detect",
-    body: "Our models watch every post and every broadcast frame, attribute exposures to the right sponsor, normalise the numbers.",
+    body: "Models watch every post and every broadcast frame, attribute exposures to the right sponsor, normalise the numbers.",
   },
   {
     n: "03",
     icon: <ScrollText size={20} />,
     title: "Report",
-    body: "White-label dashboards refresh in real time. Branded PDF + email recap goes out every Monday at 07:00 local.",
+    body: "White-label dashboards refresh in real time. Branded PDF and email recap go out every Monday at 07:00 local.",
   },
   {
     n: "04",
     icon: <Workflow size={20} />,
     title: "Renew",
-    body: "Renewal alerts, benchmark scenarios and a contract calendar — so commercial conversations start with evidence.",
+    body: "Renewal alerts, benchmark scenarios and a contract calendar, so commercial conversations start with evidence.",
   },
 ];
 
@@ -324,7 +400,7 @@ function HowItWorks() {
         <div className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           {steps.map((s, i) => (
             <Reveal key={s.n} delay={i * 0.06}>
-              <div className="relative h-full rounded-2xl border border-[#F4EFE6]/[0.08] bg-[#0F1A2E]/70 p-6">
+              <div className="relative h-full rounded-2xl border border-[#F4EFE6]/[0.08] bg-[#0F1A2E]/70 p-6 transition-transform duration-200 hover:-translate-y-0.5">
                 <div className="flex items-center justify-between">
                   <span className="font-[family-name:var(--font-mono)] text-[11px] tracking-[0.22em] text-[#B8975A]">
                     {s.n}
@@ -361,13 +437,12 @@ function PerSponsorSection() {
               Workspaces
             </Badge>
             <h2 className="mt-6 font-[family-name:var(--font-display)] text-balance text-4xl font-semibold tracking-[-0.01em] text-[#F4EFE6] sm:text-5xl">
-              Two views.{" "}
-              <em className="italic text-gradient-brand">One source of truth.</em>
+              Club view. Sponsor view.{" "}
+              <em className="italic text-gradient-brand">Same data. No spreadsheets.</em>
             </h2>
             <p className="mt-5 text-pretty text-lg text-[#F4EFE6]/65">
               The club watches the whole portfolio. Each sponsor sees only
-              what&apos;s theirs — branded, in their currency, in their language.
-              Same data, two narratives, zero spreadsheets.
+              what&apos;s theirs: branded, in their currency, in their language.
             </p>
             <ul className="mt-8 flex flex-col gap-4">
               {[
@@ -377,10 +452,10 @@ function PerSponsorSection() {
                 },
                 {
                   title: "Multi-platform, multi-language",
-                  body: "We normalise currencies, time zones and engagement rates automatically.",
+                  body: "Currencies, time zones and engagement rates normalised automatically.",
                 },
                 {
-                  title: "Enterprise-grade security",
+                  title: "Production-grade security",
                   body: "SSO, SOC 2 Type II in progress, EU data residency, GDPR compliant.",
                 },
               ].map((it) => (
@@ -397,7 +472,7 @@ function PerSponsorSection() {
             </ul>
             <div className="mt-8">
               <Button href="/demo" rightIcon={<ArrowRight size={16} />}>
-                Open live demo
+                Open the live demo
               </Button>
             </div>
           </div>
@@ -479,7 +554,7 @@ function SplitWorkspace() {
           <div className="mt-3 rounded-lg border border-[#0F1A2E]/10 bg-white p-3 text-[11px] leading-relaxed text-[#0F1A2E]/65">
             Your jersey crest appeared on{" "}
             <span className="font-semibold text-[#0F1A2E]">14 broadcasts</span>{" "}
-            this month — €0.62 CPM, below market by 38%.
+            this month at €0.62 CPM, 38% below market.
           </div>
         </div>
       </div>
@@ -488,76 +563,57 @@ function SplitWorkspace() {
 }
 
 /* -------------------------------------------------------------------------- */
-/* Stats                                                                      */
+/* Proof band (replaces empty stats)                                          */
 /* -------------------------------------------------------------------------- */
-type StatKey = "media" | "leagues" | "renewal" | "speed";
-
-const stats: Array<{
-  key: StatKey;
-  label: string;
-  to: number;
-  prefix?: string;
-  suffix?: string;
-  decimals?: number;
-}> = [
-  {
-    key: "media",
-    label: "Media value analysed in 2025",
-    to: 2.4,
-    prefix: "€",
-    suffix: "B",
-    decimals: 1,
-  },
-  {
-    key: "leagues",
-    label: "Leagues & federations live",
-    to: 48,
-  },
-  {
-    key: "renewal",
-    label: "Renewal rate for our clients’ sponsors",
-    to: 94,
-    suffix: "%",
-  },
-  {
-    key: "speed",
-    label: "Faster than a spreadsheet workflow",
-    to: 11,
-    suffix: "×",
-  },
-];
-
-function StatsSection() {
+function ProofBand() {
+  const proofs: { value: string; label: string }[] = [
+    {
+      value: "€5.57M",
+      label: "Media value tracked for one club, this season.",
+    },
+    {
+      value: "14 weeks",
+      label: "Rolling exposure, computed live, end-to-end.",
+    },
+    {
+      value: "Mon · 07:00",
+      label: "When the weekly sponsor recap lands in every inbox.",
+    },
+  ];
   return (
     <section className="py-16">
       <Container>
         <div className="overflow-hidden rounded-3xl border border-[#B8975A]/25 bg-gradient-to-br from-[#0F1A2E] via-[#0A1628] to-[#0F1A2E] p-10 lg:p-14">
-          <div className="grid gap-10 md:grid-cols-4">
-            {stats.map((s, i) => (
-              <Reveal key={s.key} delay={i * 0.05}>
+          <div className="mb-8 flex flex-wrap items-center gap-3">
+            <Badge tone="gold" icon={<Sparkles size={12} />}>
+              Proof
+            </Badge>
+            <span className="text-[12px] uppercase tracking-[0.22em] text-[#F4EFE6]/45">
+              Live numbers from the CA Osasuna pilot
+            </span>
+          </div>
+          <div className="grid gap-10 md:grid-cols-3">
+            {proofs.map((p, i) => (
+              <Reveal key={p.value} delay={i * 0.05}>
                 <div>
                   <div className="font-[family-name:var(--font-mono)] text-4xl font-semibold tracking-tight text-[#F4EFE6] tabular-nums sm:text-5xl">
-                    <CountUp
-                      to={s.to}
-                      prefix={s.prefix}
-                      suffix={s.suffix}
-                      decimals={s.decimals ?? 0}
-                      duration={1.6}
-                    />
+                    {p.value}
                   </div>
-                  <div className="mt-2 text-sm text-[#F4EFE6]/60">{s.label}</div>
+                  <div className="mt-3 text-sm leading-relaxed text-[#F4EFE6]/65">
+                    {p.label}
+                  </div>
                 </div>
               </Reveal>
             ))}
           </div>
-          <p className="mt-10 text-[11px] uppercase tracking-[0.22em] text-[#F4EFE6]/40">
-            Illustrative · pre-launch.{" "}
+          <p className="mt-10 text-[12px] uppercase tracking-[0.22em] text-[#F4EFE6]/40">
             <Link
-              href="/about"
+              href="/customers/osasuna"
               className="text-[#B8975A] underline underline-offset-4 hover:text-[#D8BC85]"
             >
-              Read the story
-            </Link>
+              Read the case study
+            </Link>{" "}
+            · pilot live since 1 May 2026
           </p>
         </div>
       </Container>
@@ -633,13 +689,13 @@ function PricingTeaser() {
               <em className="italic text-gradient-brand">No surprises.</em>
             </>
           }
-          description="Most of our competitors hide pricing behind a demo. We don’t. Pick a plan, start a 14-day trial, switch at any time."
+          description="Most competitors hide pricing behind a demo. SponsorTrack doesn’t. Pick a plan, start a 14-day trial, switch any time."
         />
         <div className="mt-16 grid gap-6 lg:grid-cols-3">
           {tiers.map((t, i) => (
             <Reveal key={t.name} delay={i * 0.07}>
               <Card
-                className={`h-full p-8 ${
+                className={`h-full p-8 transition-transform duration-200 hover:-translate-y-0.5 ${
                   t.featured
                     ? "border-[#B8975A]/40 bg-gradient-to-b from-[#1A2B45] to-[#0A1628] glow-brand"
                     : ""
@@ -705,85 +761,6 @@ function PricingTeaser() {
 }
 
 /* -------------------------------------------------------------------------- */
-/* Testimonials                                                               */
-/* -------------------------------------------------------------------------- */
-const testimonials = [
-  {
-    quote:
-      "We replaced three tools and two agencies with SponsorTrack. Our sponsor retention went from 68% to 91% in one season.",
-    name: "Marta Lindgren",
-    role: "Head of Commercial · Nordic FC",
-  },
-  {
-    quote:
-      "The match-day vision product is a different league. Our LED rotation is now priced like inventory — not guesswork.",
-    name: "Pablo Reyes",
-    role: "CMO · Club Deportivo Valencia",
-  },
-  {
-    quote:
-      "Our sponsors get a Monday morning email with their numbers. We closed two renewals before the quarter even ended.",
-    name: "Aisha N’Dour",
-    role: "Partnerships Director · Paris Métropole",
-  },
-];
-
-function TestimonialsSection() {
-  return (
-    <section className="relative py-24 lg:py-32">
-      <Container>
-        <SectionHeader
-          eyebrow="What our customers say"
-          eyebrowIcon={<Users size={13} />}
-          title={
-            <>
-              Trusted by the teams who{" "}
-              <em className="italic text-gradient-brand">already moved on</em>{" "}
-              from spreadsheets.
-            </>
-          }
-          description="Names and quotes are illustrative composites of our design partners while we finalise public case studies — real ones from CA Osasuna and others land in Q3."
-        />
-        <div className="mt-14 grid gap-5 md:grid-cols-3">
-          {testimonials.map((t, i) => (
-            <Reveal key={t.name} delay={i * 0.07}>
-              <Card className="h-full p-8">
-                <div
-                  aria-hidden
-                  className="font-[family-name:var(--font-display)] text-6xl italic leading-none text-[#B8975A]/70"
-                >
-                  &ldquo;
-                </div>
-                <p className="mt-2 text-[15px] leading-relaxed text-[#F4EFE6]/85">
-                  {t.quote}
-                </p>
-                <div className="mt-6 flex items-center gap-3 border-t border-[#F4EFE6]/[0.06] pt-5">
-                  <div className="grid h-10 w-10 place-items-center rounded-full bg-[#8B0028]/30 text-[13px] font-semibold text-[#F4EFE6] ring-1 ring-[#B8975A]/30">
-                    {t.name
-                      .split(" ")
-                      .map((n) => n[0])
-                      .join("")
-                      .slice(0, 2)}
-                  </div>
-                  <div className="min-w-0">
-                    <div className="truncate text-sm font-medium text-[#F4EFE6]">
-                      {t.name}
-                    </div>
-                    <div className="truncate text-[12px] text-[#F4EFE6]/55">
-                      {t.role}
-                    </div>
-                  </div>
-                </div>
-              </Card>
-            </Reveal>
-          ))}
-        </div>
-      </Container>
-    </section>
-  );
-}
-
-/* -------------------------------------------------------------------------- */
 /* Final CTA                                                                  */
 /* -------------------------------------------------------------------------- */
 function FinalCta() {
@@ -810,8 +787,8 @@ function FinalCta() {
           </Reveal>
           <Reveal delay={0.15}>
             <p className="mx-auto mt-5 max-w-xl text-pretty text-lg text-[#F4EFE6]/65">
-              Join the clubs, leagues and brands turning every match into
-              measurable value — from the first post to the final whistle.
+              Join the clubs and leagues turning every match into measurable
+              value, from the first post to the final whistle.
             </p>
           </Reveal>
           <Reveal delay={0.2}>
@@ -819,8 +796,8 @@ function FinalCta() {
               <Button href="/contact" size="lg" rightIcon={<ArrowRight size={16} />}>
                 Start free trial
               </Button>
-              <Button href="/demo" size="lg" variant="outline">
-                Book a demo
+              <Button href="/contact" size="lg" variant="outline">
+                Try it on your league
               </Button>
             </div>
           </Reveal>
