@@ -7,6 +7,7 @@ import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { ArrowRight, Check, Sparkles } from "lucide-react";
+import { DetectionOverlay } from "./DetectionOverlay";
 
 const PitchCanvas = dynamic(() => import("./PitchCanvas"), {
   ssr: false,
@@ -71,6 +72,9 @@ export function BroadcastHero() {
             "radial-gradient(circle at 50% 35%, rgba(10,22,40,0) 0%, rgba(10,22,40,0.35) 50%, rgba(6,13,24,0.85) 100%)",
         }}
       />
+
+      {/* Live logo detection bounding boxes (HTML overlay above the Canvas) */}
+      <DetectionOverlay />
 
       {/* Headline overlay (will be replaced by split-text reveal in a later commit) */}
       <Container className="relative flex h-full flex-col items-start justify-center pt-32 pb-24">
