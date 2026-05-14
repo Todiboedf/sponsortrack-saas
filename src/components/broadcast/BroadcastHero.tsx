@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense } from "react";
+import { Suspense, useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { useReducedMotion } from "motion/react";
 import { Container } from "@/components/ui/Container";
@@ -15,6 +15,55 @@ const PitchCanvas = dynamic(() => import("./PitchCanvas"), {
   ssr: false,
   loading: () => <PosterFrame />,
 });
+
+/**
+ * True once the browser is past first paint and reports >=768px width.
+ * Drives whether we mount the R3F Canvas — under that breakpoint, or
+ * before idle, we keep the poster frame in place.
+ */
+function useShouldLoad3D() {
+  const reduced = useReducedMotion();
+  const [shouldLoad, setShouldLoad] = useState(false);
+
+  useEffect(() => {
+    if (reduced) return;
+    if (typeof window === "undefined") return;
+    const mq = window.matchMedia("(min-width: 768px)");
+    let scheduled = false;
+    let cancelIdle: number | undefined;
+    const tryLoad = () => {
+      if (mq.matches && !scheduled) {
+        scheduled = true;
+        const ric = (
+          window as unknown as {
+            requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number;
+          }
+        ).requestIdleCallback;
+        if (ric) {
+          cancelIdle = ric(() => setShouldLoad(true), { timeout: 1500 });
+        } else {
+          setTimeout(() => setShouldLoad(true), 250);
+        }
+      }
+      if (!mq.matches) setShouldLoad(false);
+    };
+    tryLoad();
+    mq.addEventListener("change", tryLoad);
+    return () => {
+      mq.removeEventListener("change", tryLoad);
+      if (cancelIdle !== undefined) {
+        const cic = (
+          window as unknown as {
+            cancelIdleCallback?: (id: number) => void;
+          }
+        ).cancelIdleCallback;
+        cic?.(cancelIdle);
+      }
+    };
+  }, [reduced]);
+
+  return shouldLoad;
+}
 
 /**
  * Static fallback shown while the 3D scene is loading, on viewports
@@ -51,17 +100,18 @@ function PosterFrame() {
 
 export function BroadcastHero() {
   const reduced = useReducedMotion();
+  const shouldLoad3D = useShouldLoad3D();
 
   return (
     <section className="relative h-[100svh] min-h-[640px] w-full overflow-hidden">
-      {/* 3D layer */}
+      {/* 3D layer — gated by viewport (>=md) and reduced-motion */}
       <div className="absolute inset-0 -z-10">
-        {reduced ? (
-          <PosterFrame />
-        ) : (
+        {!reduced && shouldLoad3D ? (
           <Suspense fallback={<PosterFrame />}>
             <PitchCanvas />
           </Suspense>
+        ) : (
+          <PosterFrame />
         )}
       </div>
 
