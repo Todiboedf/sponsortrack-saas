@@ -60,8 +60,10 @@ const tiers: Tier[] = [
       "Unlimited sponsors",
       "Branded per-sponsor self-service portals",
       "Prospection engine + AI outreach",
-      "SSO · SCIM · RBAC",
-      "Priority support + SLA",
+      "AI sponsor brief generator",
+      "Multi-language sponsor portals (ES / FR / DE / IT / PT)",
+      "Real-time match alerts (social-based)",
+      "Read-only API access",
     ],
   },
   {
