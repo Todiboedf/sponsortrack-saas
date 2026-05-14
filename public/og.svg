@@ -37,7 +37,7 @@
     <path d="M16 40 L27 29 L34 36 L48 20" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
     <circle cx="48" cy="20" r="3.6" fill="white"/>
   </g>
-  <text x="164" y="123" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="30" font-weight="600" fill="#FFFFFF">SponsorTrack</text>
+  <text x="164" y="123" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="30" font-weight="600" fill="#FFFFFF">Sponsorlens</text>
 
   <!-- Tagline -->
   <text x="80" y="260" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="22" font-weight="500" fill="#A78BFA" letter-spacing="4">SPONSOR INTELLIGENCE · BUILT FOR SPORT</text>
@@ -58,5 +58,5 @@
   </g>
 
   <!-- Domain -->
-  <text x="1120" y="590" text-anchor="end" font-family="system-ui,-apple-system,sans-serif" font-size="18" fill="rgba(255,255,255,0.5)">sponsortrack.io</text>
+  <text x="1120" y="590" text-anchor="end" font-family="system-ui,-apple-system,sans-serif" font-size="18" fill="rgba(255,255,255,0.5)">sponsorlens.io</text>
 </svg>

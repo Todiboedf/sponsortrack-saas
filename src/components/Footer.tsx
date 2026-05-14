@@ -9,19 +9,19 @@ const nav = {
     { href: "/customers/osasuna", label: "Customers" },
     { href: "/changelog", label: "Changelog" },
     { href: "/demo", label: "Live demo" },
-    { href: "https://status.sponsortrack.io", label: "Status", external: true },
+    { href: "https://status.sponsorlens.io", label: "Status", external: true },
   ],
   Company: [
     { href: "/about", label: "About" },
-    { href: "mailto:hello@sponsortrack.io?subject=Blog%20RSS", label: "Blog" },
-    { href: "mailto:careers@sponsortrack.io", label: "Careers" },
+    { href: "mailto:hello@sponsorlens.io?subject=Blog%20RSS", label: "Blog" },
+    { href: "mailto:careers@sponsorlens.io", label: "Careers" },
     { href: "/contact", label: "Contact" },
   ],
   Legal: [
     { href: "/privacy", label: "Privacy" },
     { href: "/terms", label: "Terms" },
-    { href: "mailto:privacy@sponsortrack.io?subject=DPA%20request", label: "DPA" },
-    { href: "mailto:security@sponsortrack.io", label: "Security" },
+    { href: "mailto:privacy@sponsorlens.io?subject=DPA%20request", label: "DPA" },
+    { href: "mailto:security@sponsorlens.io", label: "Security" },
   ],
 };
 
@@ -41,8 +41,8 @@ export function Footer() {
               leagues and brands who measure what matters.
             </p>
             <div className="flex items-center gap-2">
-              <SocialIcon label="X" href="https://x.com/sponsortrack" />
-              <SocialIcon label="LinkedIn" href="https://www.linkedin.com/company/sponsortrack" />
+              <SocialIcon label="X" href="https://x.com/sponsorlens" />
+              <SocialIcon label="LinkedIn" href="https://www.linkedin.com/company/sponsorlens" />
               <SocialIcon label="YouTube" href="https://youtube.com" />
             </div>
           </div>
@@ -87,7 +87,7 @@ export function Footer() {
         </div>
         <div className="flex flex-col gap-3 border-t border-[#F4EFE6]/[0.06] py-6 text-xs text-[#F4EFE6]/50 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            © {new Date().getFullYear()} SponsorTrack · Built by TFM Team · Real
+            © {new Date().getFullYear()} Sponsorlens · Built by TFM Team · Real
             Madrid Graduate School, Universidad Europea de Madrid
           </div>
           <div className="flex items-center gap-4">

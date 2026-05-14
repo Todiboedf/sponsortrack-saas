@@ -21,8 +21,8 @@ import { GradientOrb } from "@/components/GradientOrb";
 export const metadata: Metadata = {
   title: "Changelog — what we shipped, when",
   description:
-    "Public changelog for SponsorTrack. Every meaningful release, every week, in chronological order.",
-  alternates: { canonical: "https://sponsortrack.io/changelog" },
+    "Public changelog for Sponsorlens. Every meaningful release, every week, in chronological order.",
+  alternates: { canonical: "https://sponsorlens.io/changelog" },
 };
 
 type EntryTag = "launch" | "feature" | "improvement" | "pilot" | "design";
@@ -55,7 +55,7 @@ const entries: Entry[] = [
     date: "2026-04-30",
     tag: "pilot",
     title: "CA Osasuna pilot validated by board",
-    body: "20-week pilot signed off in board video conference. SponsorTrack named the measurement layer for the Caja Rural / Macron / Digi / Cervezas El Águila / Asisa portfolio.",
+    body: "20-week pilot signed off in board video conference. Sponsorlens named the measurement layer for the Caja Rural / Macron / Digi / Cervezas El Águila / Asisa portfolio.",
     icon: <Sparkles size={18} />,
     href: {
       label: "Read the case study",
@@ -87,7 +87,7 @@ const entries: Entry[] = [
     date: "2026-04-24",
     tag: "launch",
     title: "Public site v1",
-    body: "Initial commit of the SponsorTrack marketing site — homepage, features, pricing, demo, about, contact, privacy, terms.",
+    body: "Initial commit of the Sponsorlens marketing site — homepage, features, pricing, demo, about, contact, privacy, terms.",
     icon: <ClipboardList size={18} />,
   },
 ];
@@ -138,7 +138,7 @@ export default function ChangelogPage() {
             <div className="mt-2 flex flex-wrap items-center gap-2 text-[12px] text-[#F4EFE6]/55">
               <span>RSS feed coming soon ·</span>
               <a
-                href="mailto:hello@sponsortrack.io?subject=Changelog%20RSS%20notify"
+                href="mailto:hello@sponsorlens.io?subject=Changelog%20RSS%20notify"
                 className="text-[#B8975A] underline underline-offset-4 hover:text-[#D8BC85]"
               >
                 ping us to be notified

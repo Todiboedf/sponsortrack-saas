@@ -1,4 +1,4 @@
-# SponsorTrack SaaS — Live data setup
+# Sponsorlens SaaS — Live data setup
 
 Three steps to go live. Two of them are 30 seconds in a browser, one is a curl.
 
@@ -13,7 +13,7 @@ That creates `sponsors`, `sponsor_kpis_daily`, `sponsor_users`, RLS policies, an
 ## 2. Seed the 5 starter sponsors
 
 ```bash
-curl -X POST https://sponsortrack-saas.vercel.app/api/seed \
+curl -X POST https://sponsorlens-saas.vercel.app/api/seed \
   -H "Authorization: Bearer 03542b04b2a0bd140cd2c5fd8638ed9d7d67f1d3b67e2d97"
 ```
 
@@ -22,13 +22,13 @@ Inserts: Nike, Adidas, Red Bull, Macron, Emirates (all real public Instagram han
 ## 3. Run the first daily collect manually
 
 ```bash
-curl https://sponsortrack-saas.vercel.app/api/cron/collect-instagram \
+curl https://sponsorlens-saas.vercel.app/api/cron/collect-instagram \
   -H "Authorization: Bearer 03542b04b2a0bd140cd2c5fd8638ed9d7d67f1d3b67e2d97"
 ```
 
 Fetches `followers / posts / likes / comments / engagement_rate / EMV` for each sponsor's Instagram and writes today's row to `sponsor_kpis_daily`.
 
-After that, refresh <https://sponsortrack-saas.vercel.app/demo> — the page now shows live data with a **Live data** badge.
+After that, refresh <https://sponsorlens-saas.vercel.app/demo> — the page now shows live data with a **Live data** badge.
 
 ## 4. Recurring daily refresh
 
@@ -38,7 +38,7 @@ Vercel cron (`vercel.json`) hits `/api/cron/collect-instagram` every day at 06:0
 
 ## 5. Per-sponsor login (optional)
 
-1. Go to <https://sponsortrack-saas.vercel.app/login> → **Create account** with the sponsor's email.
+1. Go to <https://sponsorlens-saas.vercel.app/login> → **Create account** with the sponsor's email.
 2. Confirm the email (Supabase sends the verification link automatically).
 3. In the Supabase SQL editor, link the user to a sponsor:
    ```sql

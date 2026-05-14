@@ -7,8 +7,8 @@ import { GradientOrb } from "@/components/GradientOrb";
 export const metadata: Metadata = {
   title: "Privacy policy",
   description:
-    "How SponsorTrack collects, uses and protects your personal data. EU data residency, GDPR-compliant, never used for shared model training.",
-  alternates: { canonical: "https://sponsortrack.io/privacy" },
+    "How Sponsorlens collects, uses and protects your personal data. EU data residency, GDPR-compliant, never used for shared model training.",
+  alternates: { canonical: "https://sponsorlens.io/privacy" },
 };
 
 const LAST_UPDATED = "April 24, 2026";
@@ -34,17 +34,17 @@ export default function PrivacyPage() {
         <Container>
           <article className="prose-dark mx-auto max-w-3xl">
             <p>
-              This policy explains what personal data SponsorTrack (&ldquo;we&rdquo;,
+              This policy explains what personal data Sponsorlens (&ldquo;we&rdquo;,
               &ldquo;us&rdquo;) collects from visitors and customers, why we collect it,
-              and how we keep it safe. It applies to sponsortrack.io and any
-              SponsorTrack product or service that links to it.
+              and how we keep it safe. It applies to sponsorlens.io and any
+              Sponsorlens product or service that links to it.
             </p>
 
             <h2>1. Who we are</h2>
             <p>
-              SponsorTrack is operated by SponsorTrack Labs S.A.S., registered in
+              Sponsorlens is operated by Sponsorlens Labs S.A.S., registered in
               France. For any privacy-related request you can reach us at{" "}
-              <a href="mailto:privacy@sponsortrack.io">privacy@sponsortrack.io</a>.
+              <a href="mailto:privacy@sponsorlens.io">privacy@sponsorlens.io</a>.
             </p>
 
             <h2>2. What we collect</h2>
@@ -107,7 +107,7 @@ export default function PrivacyPage() {
               Under the GDPR you have the right to access, rectify, port, delete, or
               restrict the processing of your personal data, and to object to it at
               any time. Email{" "}
-              <a href="mailto:privacy@sponsortrack.io">privacy@sponsortrack.io</a> and
+              <a href="mailto:privacy@sponsorlens.io">privacy@sponsorlens.io</a> and
               we&apos;ll respond within 30 days. You may also lodge a complaint with
               your local data-protection authority (in France, the CNIL).
             </p>

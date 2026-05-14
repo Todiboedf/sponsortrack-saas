@@ -17,7 +17,7 @@ export function Logo({
   return (
     <Link
       href="/"
-      aria-label="SponsorTrack home"
+      aria-label="Sponsorlens home"
       className={cn(
         "inline-flex items-center gap-2.5 font-[family-name:var(--font-display)] font-semibold tracking-tight",
         text,

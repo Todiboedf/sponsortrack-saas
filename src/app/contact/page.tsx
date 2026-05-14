@@ -251,7 +251,7 @@ export default function ContactPage() {
                       className="mt-0.5 h-4 w-4 cursor-pointer rounded border-white/20 bg-white/[0.05]"
                     />
                     <span>
-                      I agree that SponsorTrack may contact me about my request and
+                      I agree that Sponsorlens may contact me about my request and
                       store my information according to the{" "}
                       <a
                         href="/privacy"
@@ -270,10 +270,10 @@ export default function ContactPage() {
                     >
                       Couldn&apos;t send — {error}. Email us directly at{" "}
                       <a
-                        href="mailto:hello@sponsortrack.io"
+                        href="mailto:hello@sponsorlens.io"
                         className="underline underline-offset-4"
                       >
-                        hello@sponsortrack.io
+                        hello@sponsorlens.io
                       </a>
                       .
                     </div>
@@ -314,20 +314,20 @@ export default function ContactPage() {
                   <Contact
                     icon={<Mail size={16} />}
                     label="Sales & partnerships"
-                    value="hello@sponsortrack.io"
-                    href="mailto:hello@sponsortrack.io"
+                    value="hello@sponsorlens.io"
+                    href="mailto:hello@sponsorlens.io"
                   />
                   <Contact
                     icon={<Mail size={16} />}
                     label="Press"
-                    value="press@sponsortrack.io"
-                    href="mailto:press@sponsortrack.io"
+                    value="press@sponsorlens.io"
+                    href="mailto:press@sponsorlens.io"
                   />
                   <Contact
                     icon={<Mail size={16} />}
                     label="Support"
-                    value="support@sponsortrack.io"
-                    href="mailto:support@sponsortrack.io"
+                    value="support@sponsorlens.io"
+                    href="mailto:support@sponsorlens.io"
                   />
                 </ul>
               </Card>

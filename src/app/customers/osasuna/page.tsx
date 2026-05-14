@@ -22,15 +22,15 @@ import { CountUp } from "@/components/CountUp";
 export const metadata: Metadata = {
   title: "CA Osasuna — How we built sponsor intelligence with a centenary club",
   description:
-    "The 20-week pilot that put SponsorTrack on the El Sadar broadcast feed and turned every Caja Rural, Macron and Digi exposure into evidence.",
-  alternates: { canonical: "https://sponsortrack.io/customers/osasuna" },
+    "The 20-week pilot that put Sponsorlens on the El Sadar broadcast feed and turned every Caja Rural, Macron and Digi exposure into evidence.",
+  alternates: { canonical: "https://sponsorlens.io/customers/osasuna" },
 };
 
 const pilotMilestones = [
   {
     date: "2026-04-30",
     label: "Board approval",
-    body: "Visio with the CA Osasuna executive board · pilot validated, SponsorTrack named the measurement layer.",
+    body: "Visio with the CA Osasuna executive board · pilot validated, Sponsorlens named the measurement layer.",
   },
   {
     date: "2026-05-01",
@@ -184,7 +184,7 @@ export default function OsasunaPage() {
                   <em className="italic text-gradient-brand">prove the model.</em>
                 </h2>
                 <p className="mt-5 text-[15px] leading-relaxed text-[#F4EFE6]/65">
-                  Osasuna is the first club running SponsorTrack end-to-end —
+                  Osasuna is the first club running Sponsorlens end-to-end —
                   the social analytics layer, the match-day computer vision and
                   the per-sponsor portals all wired against a real LaLiga
                   schedule. Everything you see on this page is live data, not a
@@ -257,7 +257,7 @@ export default function OsasunaPage() {
                 strokeWidth={1.4}
               />
               <p className="mt-6 font-[family-name:var(--font-display)] text-balance text-2xl italic leading-relaxed text-[#F4EFE6] sm:text-3xl lg:text-[34px]">
-                “SponsorTrack gave us, in twenty weeks, a measurement layer our
+                “Sponsorlens gave us, in twenty weeks, a measurement layer our
                 board could read — and our sponsors could trust. Every minute
                 of broadcast time finally has a number on it.”
               </p>

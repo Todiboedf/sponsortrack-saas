@@ -24,7 +24,7 @@ import { GradientOrb } from "@/components/GradientOrb";
 export const metadata: Metadata = {
   title: "About — Building the sponsor intelligence layer for sport",
   description:
-    "SponsorTrack is a solo-founded, public-build sports sponsorship platform measuring every match, post and impression — currently piloting with CA Osasuna.",
+    "Sponsorlens is a solo-founded, public-build sports sponsorship platform measuring every match, post and impression — currently piloting with CA Osasuna.",
 };
 
 const values = [
@@ -53,14 +53,14 @@ const values = [
 const founder = {
   name: "Guillaume Haas",
   role: "Founder",
-  bio: "Entrepreneur with a product engineering background, building SponsorTrack solo — from the data model to the first board pitch. Based in Madrid, currently piloting with CA Osasuna.",
+  bio: "Entrepreneur with a product engineering background, building Sponsorlens solo — from the data model to the first board pitch. Based in Madrid, currently piloting with CA Osasuna.",
 };
 
 const milestones = [
   {
     year: "2026",
     title: "An idea, then a prototype",
-    body: "SponsorTrack starts as a solo side-project — a hunch that sponsorship measurement deserves a real data layer, not a PDF recap.",
+    body: "Sponsorlens starts as a solo side-project — a hunch that sponsorship measurement deserves a real data layer, not a PDF recap.",
   },
   {
     year: "2026",
@@ -205,7 +205,7 @@ export default function AboutPage() {
                     </em>
                   </h2>
                   <p className="mt-4 text-[15px] leading-relaxed text-[#F4EFE6]/65">
-                    A centenary LaLiga club piloting SponsorTrack end-to-end:
+                    A centenary LaLiga club piloting Sponsorlens end-to-end:
                     social analytics, match-day computer vision, and per-sponsor
                     portals all wired against a real season schedule.
                   </p>
@@ -304,7 +304,7 @@ export default function AboutPage() {
                 <em className="italic text-gradient-brand">shipping in public.</em>
               </>
             }
-            description="SponsorTrack is an independent project — built from scratch, without a pre-existing team or external funding."
+            description="Sponsorlens is an independent project — built from scratch, without a pre-existing team or external funding."
           />
           <div className="mt-14 flex justify-center">
             <Reveal>
@@ -340,10 +340,10 @@ export default function AboutPage() {
                     <ArrowUpRight size={12} />
                   </a>
                   <a
-                    href="mailto:guillaume@sponsortrack.io"
+                    href="mailto:guillaume@sponsorlens.io"
                     className="inline-flex items-center gap-1.5 text-[#B8975A] underline underline-offset-4 hover:text-[#D8BC85]"
                   >
-                    guillaume@sponsortrack.io
+                    guillaume@sponsorlens.io
                   </a>
                 </div>
               </Card>

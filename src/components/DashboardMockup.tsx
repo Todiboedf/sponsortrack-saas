@@ -78,7 +78,7 @@ export function DashboardMockup() {
           </div>
           <div className="mx-auto flex max-w-xs flex-1 items-center gap-1.5 rounded-md bg-[#F4EFE6]/[0.04] px-3 py-1 text-[11px] text-[#F4EFE6]/45">
             <span className="h-1.5 w-1.5 rounded-full bg-[#2F8F5A]" />
-            app.sponsortrack.io / osasuna
+            app.sponsorlens.io / osasuna
           </div>
           <div className="hidden gap-1.5 sm:flex">
             <span className="h-5 w-12 rounded bg-[#F4EFE6]/[0.04]" />

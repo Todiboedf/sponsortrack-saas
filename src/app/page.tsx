@@ -743,7 +743,7 @@ function PricingTeaser() {
 const testimonials = [
   {
     quote:
-      "We replaced three tools and two agencies with SponsorTrack. Our sponsor retention went from 68% to 91% in one season.",
+      "We replaced three tools and two agencies with Sponsorlens. Our sponsor retention went from 68% to 91% in one season.",
     name: "Marta Lindgren",
     role: "Head of Commercial · Nordic FC",
   },

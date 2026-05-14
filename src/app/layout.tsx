@@ -25,13 +25,13 @@ const mono = JetBrains_Mono({
   weight: ["400", "500", "600"],
 });
 
-const SITE_URL = "https://sponsortrack.io";
+const SITE_URL = "https://sponsorlens.io";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "SponsorTrack — Sponsor intelligence, lived in real time.",
-    template: "%s · SponsorTrack",
+    default: "Sponsorlens — Sponsor intelligence, lived in real time.",
+    template: "%s · Sponsorlens",
   },
   description:
     "The sponsor intelligence platform built for clubs, leagues and brands. Cross-platform analytics, match-day computer vision, and the reports that renew contracts.",
@@ -44,13 +44,13 @@ export const metadata: Metadata = {
     "media value measurement",
     "sports marketing platform",
   ],
-  authors: [{ name: "SponsorTrack" }],
-  creator: "SponsorTrack",
+  authors: [{ name: "Sponsorlens" }],
+  creator: "Sponsorlens",
   openGraph: {
     type: "website",
     url: SITE_URL,
-    siteName: "SponsorTrack",
-    title: "SponsorTrack — Sponsor intelligence, lived in real time.",
+    siteName: "Sponsorlens",
+    title: "Sponsorlens — Sponsor intelligence, lived in real time.",
     description:
       "Measure, prove and grow sponsorship value. Transparent pricing from €1,500/mo. 14-day free trial.",
     images: [
@@ -58,13 +58,13 @@ export const metadata: Metadata = {
         url: "/og.svg",
         width: 1200,
         height: 630,
-        alt: "SponsorTrack — Sponsor Intelligence Platform",
+        alt: "Sponsorlens — Sponsor Intelligence Platform",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "SponsorTrack — Sponsor intelligence for modern sports",
+    title: "Sponsorlens — Sponsor intelligence for modern sports",
     description:
       "The all-in-one sponsor intelligence platform for clubs, leagues and brands.",
     images: ["/og.svg"],
@@ -90,21 +90,21 @@ export const viewport: Viewport = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "SponsorTrack",
-  legalName: "SponsorTrack Labs S.A.S.",
+  name: "Sponsorlens",
+  legalName: "Sponsorlens Labs S.A.S.",
   url: SITE_URL,
   logo: `${SITE_URL}/icon.svg`,
   description:
     "Sponsor intelligence platform for clubs, leagues and brands — social analytics, match-day computer vision, ROI reporting.",
   sameAs: [
-    "https://x.com/sponsortrack",
-    "https://www.linkedin.com/company/sponsortrack",
+    "https://x.com/sponsorlens",
+    "https://www.linkedin.com/company/sponsorlens",
   ],
   contactPoint: [
     {
       "@type": "ContactPoint",
       contactType: "sales",
-      email: "hello@sponsortrack.io",
+      email: "hello@sponsorlens.io",
       availableLanguage: ["English", "French", "Spanish"],
     },
   ],
