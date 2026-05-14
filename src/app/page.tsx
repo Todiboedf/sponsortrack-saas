@@ -24,6 +24,7 @@ import { LogoMarquee } from "@/components/LogoMarquee";
 import { HeroDashboard } from "@/components/HeroDashboard";
 import { AnimatedMesh } from "@/components/AnimatedMesh";
 import { HowItWorksScene } from "@/components/HowItWorksScene";
+import { SectionDivider } from "@/components/SectionDivider";
 import { CountUp } from "@/components/CountUp";
 
 export default function HomePage() {
@@ -34,9 +35,11 @@ export default function HomePage() {
       <ProblemSection />
       <PlatformSection />
       <HowItWorks />
+      <SectionDivider className="my-2" />
       <PerSponsorSection />
       <StatsSection />
       <PricingTeaser />
+      <SectionDivider className="my-2" />
       <TestimonialsSection />
       <FinalCta />
     </>
