@@ -52,22 +52,26 @@ export const metadata: Metadata = {
     siteName: "Sponsorlens",
     title: "Sponsorlens — Sponsor intelligence, lived in real time.",
     description:
-      "Measure, prove and grow sponsorship value. Transparent pricing from €1,500/mo. 14-day free trial.",
+      "Cross-platform analytics, match-day computer vision, and the reports that renew contracts. Built for clubs, leagues and brands.",
+    locale: "en_US",
     images: [
       {
-        url: "/og.svg",
+        url: "/og",
         width: 1200,
         height: 630,
         alt: "Sponsorlens — Sponsor Intelligence Platform",
+        type: "image/png",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
+    site: "@sponsorlens",
+    creator: "@sponsorlens",
     title: "Sponsorlens — Sponsor intelligence for modern sports",
     description:
-      "The all-in-one sponsor intelligence platform for clubs, leagues and brands.",
-    images: ["/og.svg"],
+      "Sponsor intelligence platform for clubs, leagues and brands. Cross-platform analytics, match-day computer vision, ROI that renews.",
+    images: ["/og"],
   },
   robots: {
     index: true,
@@ -76,7 +80,11 @@ export const metadata: Metadata = {
   },
   alternates: { canonical: SITE_URL },
   icons: {
-    icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+    shortcut: "/favicon.svg",
   },
 };
 
