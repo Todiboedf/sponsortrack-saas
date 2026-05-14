@@ -9,6 +9,7 @@ import {
   Group,
   LineBasicMaterial,
   LineSegments,
+  type Points,
   type ShaderMaterial,
   type SRGBColorSpace,
 } from "three";
@@ -25,22 +26,24 @@ function useGrassTexture(): CanvasTexture | null {
   return useMemo(() => {
     if (typeof document === "undefined") return null;
     const canvas = document.createElement("canvas");
-    const W = 512;
+    const W = 1024;
     const H = 512;
     canvas.width = W;
     canvas.height = H;
     const ctx = canvas.getContext("2d");
     if (!ctx) return null;
-    const STRIPES = 14;
-    const stripeH = H / STRIPES;
+    // Vertical stripes (perpendicular to long pitch axis = mowing
+    // across the field, the broadcast-classic look).
+    const STRIPES = 16;
+    const stripeW = W / STRIPES;
     for (let i = 0; i < STRIPES; i++) {
-      ctx.fillStyle = i % 2 === 0 ? "#1d5e30" : "#226833";
-      ctx.fillRect(0, i * stripeH, W, stripeH);
+      ctx.fillStyle = i % 2 === 0 ? "#1d5e30" : "#236b35";
+      ctx.fillRect(i * stripeW, 0, stripeW, H);
     }
-    // Subtle noise so the field isn't too flat.
+    // Subtle organic noise so the field isn't too flat.
     const img = ctx.getImageData(0, 0, W, H);
     for (let p = 0; p < img.data.length; p += 4) {
-      const n = (Math.random() - 0.5) * 12;
+      const n = (Math.random() - 0.5) * 14;
       img.data[p] = Math.max(0, Math.min(255, img.data[p] + n));
       img.data[p + 1] = Math.max(0, Math.min(255, img.data[p + 1] + n));
       img.data[p + 2] = Math.max(0, Math.min(255, img.data[p + 2] + n));
@@ -49,6 +52,7 @@ function useGrassTexture(): CanvasTexture | null {
     const tex = new CanvasTexture(canvas);
     tex.wrapS = THREE.RepeatWrapping;
     tex.wrapT = THREE.RepeatWrapping;
+    tex.anisotropy = 4;
     (tex as unknown as { colorSpace?: typeof SRGBColorSpace }).colorSpace = (THREE as unknown as { SRGBColorSpace: typeof SRGBColorSpace }).SRGBColorSpace;
     return tex;
   }, []);
@@ -116,6 +120,10 @@ function PitchLines() {
     arc(halfW, -halfH, 1, Math.PI / 2, Math.PI);
     arc(halfW, halfH, 1, Math.PI, Math.PI * 1.5);
     arc(-halfW, halfH, 1, Math.PI * 1.5, Math.PI * 2);
+    // Centre spot + penalty spots
+    arc(0, 0, 0.25, 0, Math.PI * 2, 16);
+    arc(-halfW + 11, 0, 0.25, 0, Math.PI * 2, 16);
+    arc(halfW - 11, 0, 0.25, 0, Math.PI * 2, 16);
 
     const geom = new BufferGeometry();
     geom.setAttribute("position", new Float32BufferAttribute(points, 3));
@@ -230,12 +238,14 @@ function LedPanel({
             } else {
               col = mix(uColorC, uColorA, (t - 0.666) / 0.334);
             }
-            // Pixel grid suggestion (vertical stripes)
+            // Pixel-grid suggestion (vertical stripes)
             float px = step(0.5, fract(vUv.x * 80.0));
-            col *= 0.85 + 0.15 * px;
+            col *= 0.82 + 0.18 * px;
             // Brighter top edge to suggest LED bloom
             float edge = smoothstep(0.7, 1.0, vUv.y);
-            col += edge * 0.25;
+            col += edge * 0.35;
+            // Boost overall intensity so the global Bloom pass picks it up
+            col *= 1.35;
             gl_FragColor = vec4(col, 1.0);
           }
         `,
@@ -260,28 +270,110 @@ function LedPanel({
 }
 
 /* -------------------------------------------------------------------------- */
+/* Volumetric spotlight beam (additive cone, custom alpha)                    */
+/* -------------------------------------------------------------------------- */
+
+function SpotlightBeam({
+  origin,
+  target,
+  radius,
+  color,
+  opacity = 0.35,
+}: {
+  origin: [number, number, number];
+  target: [number, number, number];
+  radius: number;
+  color: string;
+  opacity?: number;
+}) {
+  const { mid, height, quat } = useMemo(() => {
+    const o = new THREE.Vector3(...origin);
+    const t = new THREE.Vector3(...target);
+    const dir = t.clone().sub(o);
+    const h = dir.length();
+    const mid = o.clone().add(t).multiplyScalar(0.5);
+    // Default cone axis is +Y. Align it with (target - origin).
+    const up = new THREE.Vector3(0, 1, 0);
+    const dirNorm = dir.clone().normalize();
+    // The cone defaults to apex at +Y/2, base at -Y/2 — so we want to
+    // orient the +Y axis to point from target to origin (apex at the
+    // light, base where it lands).
+    const wantedUp = dirNorm.clone().multiplyScalar(-1);
+    const quat = new THREE.Quaternion().setFromUnitVectors(up, wantedUp);
+    return { mid, height: h, quat };
+  }, [origin, target]);
+
+  const shader = useMemo(
+    () =>
+      new THREE.ShaderMaterial({
+        uniforms: {
+          uColor: { value: new THREE.Color(color) },
+          uOpacity: { value: opacity },
+        },
+        vertexShader: /* glsl */ `
+          varying vec2 vUv;
+          varying vec3 vPos;
+          void main() {
+            vUv = uv;
+            vPos = position;
+            gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+          }
+        `,
+        fragmentShader: /* glsl */ `
+          varying vec2 vUv;
+          uniform vec3 uColor;
+          uniform float uOpacity;
+          void main() {
+            // Radial fade from cone axis to edge
+            float radial = 1.0 - smoothstep(0.0, 0.5, abs(vUv.x - 0.5) * 2.0);
+            // Vertical fade — brighter near the light source (top of UV)
+            float vert = smoothstep(0.0, 0.85, vUv.y);
+            float a = radial * vert * uOpacity;
+            gl_FragColor = vec4(uColor, a);
+          }
+        `,
+        transparent: true,
+        depthWrite: false,
+        blending: THREE.AdditiveBlending,
+        side: THREE.DoubleSide,
+      }),
+    [color, opacity]
+  );
+
+  return (
+    <mesh
+      position={[mid.x, mid.y, mid.z]}
+      quaternion={[quat.x, quat.y, quat.z, quat.w]}
+    >
+      <coneGeometry args={[radius, height, 32, 1, true]} />
+      <primitive object={shader} attach="material" />
+    </mesh>
+  );
+}
+
+/* -------------------------------------------------------------------------- */
 /* Lights                                                                     */
 /* -------------------------------------------------------------------------- */
 
 function BroadcastLights() {
   return (
     <>
-      <ambientLight intensity={0.25} />
+      <ambientLight intensity={0.28} />
       <spotLight
         position={[-30, 80, -10]}
         angle={0.4}
         penumbra={0.5}
-        intensity={1.4}
+        intensity={1.5}
         color="#fff8e1"
       />
       <spotLight
         position={[30, 80, 10]}
         angle={0.4}
         penumbra={0.5}
-        intensity={1.4}
+        intensity={1.5}
         color="#fff8e1"
       />
-      <directionalLight position={[20, 40, 60]} intensity={0.35} color="#4a90e2" />
+      <directionalLight position={[20, 40, 60]} intensity={0.32} color="#4a90e2" />
     </>
   );
 }
@@ -306,15 +398,99 @@ function CameraDirector() {
 }
 
 /* -------------------------------------------------------------------------- */
-/* Stadium silhouette (flattened torus)                                       */
+/* Tiered stadium silhouette (three concentric flattened tori)                */
 /* -------------------------------------------------------------------------- */
 
-function Stadium() {
+function TieredStadium() {
+  // Three rings stacked outward + upward suggest tiered seating without
+  // the cost of an actual stadium mesh. Each ring is a flat-laid torus.
+  const rings = [
+    { major: 76, minor: 10, y: 2, color: "#161b27" },
+    { major: 82, minor: 14, y: 6, color: "#1a1f2e" },
+    { major: 88, minor: 18, y: 11, color: "#1f2436" },
+  ];
   return (
-    <mesh position={[0, -2, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-      <torusGeometry args={[78, 14, 12, 64]} />
-      <meshStandardMaterial color="#1a1f2e" roughness={0.95} />
-    </mesh>
+    <group>
+      {rings.map((r, i) => (
+        <mesh
+          key={i}
+          position={[0, r.y, 0]}
+          rotation={[-Math.PI / 2, 0, 0]}
+        >
+          <torusGeometry args={[r.major, r.minor, 10, 80]} />
+          <meshStandardMaterial color={r.color} roughness={0.95} metalness={0} />
+        </mesh>
+      ))}
+      {/* Inner faint glow ring suggesting concourse lighting */}
+      <mesh position={[0, 8, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+        <ringGeometry args={[71, 71.8, 96]} />
+        <meshBasicMaterial
+          color="#0891b2"
+          transparent
+          opacity={0.18}
+          side={THREE.DoubleSide}
+          blending={THREE.AdditiveBlending}
+          depthWrite={false}
+        />
+      </mesh>
+    </group>
+  );
+}
+
+/* -------------------------------------------------------------------------- */
+/* Atmospheric dust particles                                                 */
+/* -------------------------------------------------------------------------- */
+
+function DustParticles({ count = 220 }: { count?: number }) {
+  const pointsRef = useRef<Points>(null);
+
+  const { positions, speeds } = useMemo(() => {
+    const positions = new Float32Array(count * 3);
+    const speeds = new Float32Array(count);
+    for (let i = 0; i < count; i++) {
+      positions[i * 3] = (Math.random() - 0.5) * 220;
+      positions[i * 3 + 1] = Math.random() * 28 + 0.5;
+      positions[i * 3 + 2] = (Math.random() - 0.5) * 160;
+      speeds[i] = 0.04 + Math.random() * 0.08;
+    }
+    return { positions, speeds };
+  }, [count]);
+
+  useFrame(({ clock }) => {
+    if (!pointsRef.current) return;
+    const t = clock.elapsedTime;
+    const pos = pointsRef.current.geometry.getAttribute(
+      "position"
+    ) as THREE.BufferAttribute;
+    const arr = pos.array as Float32Array;
+    for (let i = 0; i < count; i++) {
+      const idx = i * 3;
+      arr[idx + 1] += speeds[i] * 0.05;
+      arr[idx] += Math.sin(t * 0.3 + i) * 0.005;
+      if (arr[idx + 1] > 30) arr[idx + 1] = 0.5;
+    }
+    pos.needsUpdate = true;
+  });
+
+  return (
+    <points ref={pointsRef} frustumCulled={false}>
+      <bufferGeometry>
+        <bufferAttribute
+          attach="attributes-position"
+          args={[positions, 3]}
+          count={count}
+        />
+      </bufferGeometry>
+      <pointsMaterial
+        size={0.13}
+        color="#bee4ff"
+        transparent
+        opacity={0.45}
+        depthWrite={false}
+        blending={THREE.AdditiveBlending}
+        sizeAttenuation
+      />
+    </points>
   );
 }
 
@@ -335,7 +511,7 @@ export function Pitch() {
     <group ref={groupRef}>
       <BroadcastLights />
       <CameraDirector />
-      <Stadium />
+      <TieredStadium />
 
       {/* Pitch plane */}
       <mesh rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
@@ -343,7 +519,7 @@ export function Pitch() {
         <meshStandardMaterial
           color="#1d5e30"
           map={grass ?? undefined}
-          roughness={0.8}
+          roughness={0.85}
         />
       </mesh>
 
@@ -372,6 +548,25 @@ export function Pitch() {
         size={[panelDepth, sidePanelHeight, PITCH_H]}
         phase={0.5}
       />
+
+      {/* Volumetric spotlight beams — visible cones from the rig down
+          to the pitch. Apex at the lamp, base at the lit pool. */}
+      <SpotlightBeam
+        origin={[-30, 80, -10]}
+        target={[-12, 0, -4]}
+        radius={26}
+        color="#fff8e1"
+        opacity={0.28}
+      />
+      <SpotlightBeam
+        origin={[30, 80, 10]}
+        target={[12, 0, 4]}
+        radius={26}
+        color="#fff8e1"
+        opacity={0.28}
+      />
+
+      <DustParticles />
     </group>
   );
 }
