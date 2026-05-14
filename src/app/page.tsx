@@ -21,16 +21,21 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Reveal } from "@/components/ui/Reveal";
 import { GradientOrb } from "@/components/GradientOrb";
 import { LogoMarquee } from "@/components/LogoMarquee";
-import { HeroDashboard } from "@/components/HeroDashboard";
 import { AnimatedMesh } from "@/components/AnimatedMesh";
 import { HowItWorksScene } from "@/components/HowItWorksScene";
 import { SectionDivider } from "@/components/SectionDivider";
+import { PricingTeaser } from "@/components/home/PricingTeaser";
+import { BroadcastHero } from "@/components/broadcast/BroadcastHero";
+import { ChaosBackground } from "@/components/scenes/ChaosBackground";
+import { PlatformConvergence } from "@/components/scenes/PlatformConvergence";
+import { TwoViewsConvergence } from "@/components/scenes/TwoViewsConvergence";
+import { GoldenHourBackdrop } from "@/components/scenes/GoldenHourBackdrop";
 import { CountUp } from "@/components/CountUp";
 
 export default function HomePage() {
   return (
     <>
-      <Hero />
+      <BroadcastHero />
       <TrustedBy />
       <ProblemSection />
       <PlatformSection />
@@ -38,84 +43,17 @@ export default function HomePage() {
       <SectionDivider className="my-2" />
       <PerSponsorSection />
       <StatsSection />
-      <PricingTeaser />
-      <SectionDivider className="my-2" />
-      <TestimonialsSection />
-      <FinalCta />
+      <GoldenHourBackdrop>
+        <PricingTeaser />
+        <SectionDivider className="my-2" />
+        <TestimonialsSection />
+        <FinalCta />
+      </GoldenHourBackdrop>
     </>
   );
 }
 
-/* -------------------------------------------------------------------------- */
-/* Hero                                                                       */
-/* -------------------------------------------------------------------------- */
-function Hero() {
-  return (
-    <section className="relative overflow-hidden pt-36 pb-12 lg:pt-44 lg:pb-16">
-      <div aria-hidden className="absolute inset-0 -z-20 bg-grid mask-fade-radial opacity-30" />
-      <div aria-hidden className="absolute inset-0 -z-10">
-        <AnimatedMesh variant="soft" />
-      </div>
-      <GradientOrb color="red" size={620} className="-left-40 -top-20" />
-      <GradientOrb color="gold" size={520} className="-right-40 top-40" intensity="soft" />
-      <Container>
-        <div className="mx-auto flex max-w-4xl flex-col items-center text-center">
-          <Reveal>
-            <Badge tone="red" icon={<Sparkles size={12} />}>
-              New · Match-day computer vision is live
-            </Badge>
-          </Reveal>
-          <Reveal delay={0.05}>
-            <h1 className="mt-7 font-[family-name:var(--font-display)] text-balance text-[44px] font-medium leading-[1.04] tracking-[-0.01em] text-[#F4EFE6] sm:text-6xl lg:text-[80px]">
-              Sponsor intelligence,
-              <br />
-              <em className="italic font-medium text-gradient-brand">lived in real time.</em>
-            </h1>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <p className="mt-7 max-w-2xl text-pretty text-lg text-[#F4EFE6]/70 sm:text-xl">
-              Built for the clubs, leagues and brands who measure what matters.
-              Cross-platform analytics, match-day computer vision, and the
-              reports that actually renew contracts.
-            </p>
-          </Reveal>
-          <Reveal delay={0.15}>
-            <div className="mt-10 flex flex-col items-center gap-3 sm:flex-row">
-              <Button href="/contact" size="lg" rightIcon={<ArrowRight size={16} />}>
-                Start free trial
-              </Button>
-              <Button href="/demo" size="lg" variant="outline">
-                Watch live demo
-              </Button>
-            </div>
-          </Reveal>
-          <Reveal delay={0.2}>
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[13px] text-[#F4EFE6]/55">
-              <span className="inline-flex items-center gap-2">
-                <Check size={14} className="text-[#B8975A]" />
-                14-day free trial
-              </span>
-              <span className="inline-flex items-center gap-2">
-                <Check size={14} className="text-[#B8975A]" />
-                No credit card required
-              </span>
-              <span className="inline-flex items-center gap-2">
-                <Check size={14} className="text-[#B8975A]" />
-                EU data residency
-              </span>
-            </div>
-          </Reveal>
-        </div>
-
-        <div className="relative mt-20 lg:mt-24">
-          <Reveal delay={0.1} y={36}>
-            <HeroDashboard />
-          </Reveal>
-        </div>
-      </Container>
-    </section>
-  );
-}
+/* Hero lives in components/broadcast/BroadcastHero.tsx (3D pitch + overlays). */
 
 /* -------------------------------------------------------------------------- */
 /* Trusted by                                                                 */
@@ -158,7 +96,8 @@ const problems = [
 
 function ProblemSection() {
   return (
-    <section className="relative py-24 lg:py-32">
+    <section className="relative overflow-hidden py-24 lg:py-32">
+      <ChaosBackground />
       <Container>
         <SectionHeader
           eyebrow="The problem"
@@ -236,6 +175,7 @@ function PlatformSection() {
           }
           description="Everything your commercial team needs to measure a sponsorship, prove the value, and sell the renewal — in a single source of truth."
         />
+        <PlatformConvergence />
         <div className="mt-16 grid gap-5 md:grid-cols-3">
           {features.map((f, i) => (
             <Reveal key={f.title} delay={i * 0.07}>
@@ -350,88 +290,10 @@ function PerSponsorSection() {
             </div>
           </div>
 
-          <Reveal delay={0.1}>
-            <SplitWorkspace />
-          </Reveal>
+          <TwoViewsConvergence />
         </div>
       </Container>
     </section>
-  );
-}
-
-function SplitWorkspace() {
-  return (
-    <div className="relative">
-      <GradientOrb color="red" size={420} className="-right-20 top-10" intensity="soft" />
-      <div className="relative grid grid-cols-2 overflow-hidden rounded-2xl border border-[#F4EFE6]/[0.08] bg-[#0F1A2E] shadow-2xl">
-        {/* Club view */}
-        <div className="border-r border-[#F4EFE6]/[0.06] p-5">
-          <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#B8975A]">
-            Club view · CA Osasuna
-          </div>
-          <div className="mt-2 font-[family-name:var(--font-display)] text-base font-semibold text-[#F4EFE6]">
-            Portfolio
-          </div>
-          <ul className="mt-4 flex flex-col gap-2.5 text-[12px]">
-            {[
-              ["Caja Rural", "92%"],
-              ["Macron", "78%"],
-              ["Digi", "64%"],
-              ["Cervezas El Águila", "48%"],
-              ["Asisa", "32%"],
-            ].map(([n, v]) => (
-              <li key={n} className="flex items-center gap-3">
-                <span className="flex-1 truncate text-[#F4EFE6]/80">{n}</span>
-                <div className="h-1 w-16 overflow-hidden rounded-full bg-[#F4EFE6]/[0.06]">
-                  <div
-                    style={{ width: v }}
-                    className="h-full rounded-full bg-gradient-to-r from-[#8B0028] to-[#B8975A]"
-                  />
-                </div>
-                <span className="w-9 text-right font-[family-name:var(--font-mono)] tabular-nums text-[#F4EFE6]/85">
-                  {v}
-                </span>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Sponsor view (white-labelled) */}
-        <div className="bg-[#FBF7EF] p-5 text-[#0F1A2E]">
-          <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#8B0028]">
-            Sponsor view · Caja Rural
-          </div>
-          <div className="mt-2 font-[family-name:var(--font-display)] text-base font-semibold">
-            Brand exposure
-          </div>
-          <div className="mt-4 grid grid-cols-2 gap-3">
-            <div className="rounded-lg border border-[#0F1A2E]/10 bg-white p-3">
-              <div className="text-[10px] uppercase tracking-[0.18em] text-[#0F1A2E]/55">
-                EMV · 30d
-              </div>
-              <div className="mt-1 font-[family-name:var(--font-mono)] text-base font-semibold tabular-nums">
-                €1.84M
-              </div>
-              <div className="text-[10px] text-[#1F7A52]">+24%</div>
-            </div>
-            <div className="rounded-lg border border-[#0F1A2E]/10 bg-white p-3">
-              <div className="text-[10px] uppercase tracking-[0.18em] text-[#0F1A2E]/55">
-                Logo seconds
-              </div>
-              <div className="mt-1 font-[family-name:var(--font-mono)] text-base font-semibold tabular-nums">
-                26:14
-              </div>
-              <div className="text-[10px] text-[#1F7A52]">+18%</div>
-            </div>
-          </div>
-          <div className="mt-3 rounded-lg border border-[#0F1A2E]/10 bg-white p-3 text-[11px] leading-relaxed text-[#0F1A2E]/65">
-            Your jersey crest appeared on{" "}
-            <span className="font-semibold text-[#0F1A2E]">14 broadcasts</span>{" "}
-            this month — €0.62 CPM, below market by 38%.
-          </div>
-        </div>
-      </div>
-    </div>
   );
 }
 
@@ -513,177 +375,8 @@ function StatsSection() {
   );
 }
 
-/* -------------------------------------------------------------------------- */
-/* Pricing teaser                                                             */
-/* -------------------------------------------------------------------------- */
-type TeaserTier = {
-  name: string;
-  price: string;
-  suffix: string;
-  description: string;
-  features: string[];
-  cta: string;
-  href: string;
-  featured: boolean;
-  priceFrom?: boolean;
-  setupNote?: string;
-  trialNote?: boolean;
-};
-
-const tiers: TeaserTier[] = [
-  {
-    name: "Starter",
-    price: "€1,500",
-    suffix: "/mo",
-    description:
-      "For ambitious clubs that want to stop managing sponsors in spreadsheets.",
-    features: [
-      "Up to 10 active sponsors",
-      "On-demand PDF export",
-      "AI weekly digest",
-      "Slack / Teams alerts",
-    ],
-    cta: "Start free trial",
-    href: "/contact",
-    featured: false,
-    trialNote: true,
-  },
-  {
-    name: "Pro",
-    price: "€3,500",
-    suffix: "/mo",
-    description:
-      "For leagues, federations and top-tier clubs running full partner portfolios.",
-    features: [
-      "Unlimited sponsors",
-      "AI sponsor brief generator",
-      "Multi-language sponsor portals",
-      "Real-time match alerts",
-    ],
-    cta: "Start free trial",
-    href: "/contact",
-    featured: true,
-    trialNote: true,
-  },
-  {
-    name: "Enterprise",
-    price: "€7,000",
-    suffix: "/mo",
-    description:
-      "For multi-club groups, agencies and federations with bespoke needs.",
-    features: [
-      "Match-day computer vision",
-      "Dedicated success manager",
-      "Custom data pipelines & API",
-      "White-glove onboarding (90 days)",
-    ],
-    cta: "Book a discovery call",
-    href: "/contact",
-    featured: false,
-    priceFrom: true,
-    setupNote: "+ €8,000 one-shot setup fee",
-  },
-];
-
-function PricingTeaser() {
-  return (
-    <section id="pricing" className="relative py-24 lg:py-32">
-      <GradientOrb color="red" size={520} className="-left-32 top-0" intensity="soft" />
-      <Container>
-        <SectionHeader
-          eyebrow="Pricing"
-          eyebrowIcon={<Sparkles size={13} />}
-          title={
-            <>
-              Transparent pricing.{" "}
-              <em className="italic text-gradient-brand">No surprises.</em>
-            </>
-          }
-          description="Most of our competitors hide pricing behind a demo. We don’t. Pick a plan, start a 14-day trial, switch at any time."
-        />
-        <div className="mt-16 grid gap-6 lg:grid-cols-3">
-          {tiers.map((t, i) => (
-            <Reveal key={t.name} delay={i * 0.07}>
-              <Card
-                className={`h-full p-8 ${
-                  t.featured
-                    ? "border-[#B8975A]/40 bg-gradient-to-b from-[#1A2B45] to-[#0A1628] glow-brand"
-                    : ""
-                }`}
-              >
-                <div className="flex items-center justify-between">
-                  <h3 className="font-[family-name:var(--font-display)] text-xl font-semibold tracking-tight text-[#F4EFE6]">
-                    {t.name}
-                  </h3>
-                  {t.featured && (
-                    <span className="rounded-full bg-[#B8975A] px-3 py-0.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-[#0A1628]">
-                      Most popular
-                    </span>
-                  )}
-                </div>
-                <div className="mt-5 flex items-baseline gap-1">
-                  {t.priceFrom && (
-                    <span className="mr-1 text-sm font-medium uppercase tracking-[0.18em] text-[#B8975A]">
-                      from
-                    </span>
-                  )}
-                  <span className="font-[family-name:var(--font-mono)] text-5xl font-semibold tracking-tight text-[#F4EFE6] tabular-nums">
-                    {t.price}
-                  </span>
-                  <span className="text-sm text-[#F4EFE6]/55">{t.suffix}</span>
-                </div>
-                {t.setupNote && (
-                  <div className="mt-1 text-[12px] font-medium text-[#B8975A]">
-                    {t.setupNote}
-                  </div>
-                )}
-                <p className="mt-4 text-sm leading-relaxed text-[#F4EFE6]/60">
-                  {t.description}
-                </p>
-                <div className="mt-6">
-                  <Button
-                    href={t.href}
-                    variant={t.featured ? "primary" : "secondary"}
-                    className="w-full"
-                  >
-                    {t.cta}
-                  </Button>
-                </div>
-                {t.trialNote && (
-                  <p className="mt-3 text-center text-[11px] text-[#F4EFE6]/50">
-                    14-day free trial · no credit card · EU data residency
-                  </p>
-                )}
-                <ul className="mt-7 flex flex-col gap-3 border-t border-[#F4EFE6]/[0.06] pt-6">
-                  {t.features.map((f) => (
-                    <li
-                      key={f}
-                      className="inline-flex items-start gap-2.5 text-[14px] text-[#F4EFE6]/80"
-                    >
-                      <Check size={16} className="mt-0.5 shrink-0 text-[#B8975A]" />
-                      <span>{f}</span>
-                    </li>
-                  ))}
-                </ul>
-              </Card>
-            </Reveal>
-          ))}
-        </div>
-        <Reveal delay={0.2}>
-          <p className="mt-10 text-center text-sm text-[#F4EFE6]/55">
-            Looking for a side-by-side comparison?{" "}
-            <Link
-              href="/pricing"
-              className="text-[#B8975A] underline underline-offset-4 hover:text-[#D8BC85]"
-            >
-              See the full pricing page →
-            </Link>
-          </p>
-        </Reveal>
-      </Container>
-    </section>
-  );
-}
+/* Pricing teaser lives in components/home/PricingTeaser.tsx (client component
+ * with billing toggle + full canonical feature lists). */
 
 /* -------------------------------------------------------------------------- */
 /* Testimonials                                                               */
