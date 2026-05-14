@@ -1,6 +1,13 @@
 "use client";
 
-import { Suspense, useEffect, useState } from "react";
+import {
+  Component,
+  Suspense,
+  useEffect,
+  useState,
+  type ErrorInfo,
+  type ReactNode,
+} from "react";
 import dynamic from "next/dynamic";
 import { motion, useReducedMotion } from "motion/react";
 import { Container } from "@/components/ui/Container";
@@ -103,13 +110,53 @@ export function BroadcastHero() {
   const reduced = useReducedMotion();
   const shouldLoad3D = useShouldLoad3D();
 
+  /* DEBUG instrumentation — chore(hero/debug). Logs canvas-element counts
+   * and visibility metrics from the host DOM at three checkpoints so we
+   * can tell whether the canvas ever lands in the document, what size
+   * it ends up at, and whether anything else is competing for the same
+   * mount point. Filter the console with the prefix "[SL/" to see only
+   * our diagnostic traces. Remove once the root cause is identified. */
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    console.log("[SL/hero] BroadcastHero mounted", {
+      reduced: !!reduced,
+      shouldLoad3D,
+      userAgent: navigator.userAgent,
+      innerSize: { w: window.innerWidth, h: window.innerHeight },
+      dpr: window.devicePixelRatio,
+    });
+
+    const sampleCanvases = (label: string) => {
+      const all = document.querySelectorAll("canvas");
+      const info = Array.from(all).map((c, i) => ({
+        i,
+        attrWH: [c.width, c.height],
+        clientWH: [c.clientWidth, c.clientHeight],
+        visible: c.offsetParent !== null,
+        parent: c.parentElement?.tagName ?? null,
+        gl2: !!c.getContext("webgl2"),
+      }));
+      console.log(`[SL/hero] canvases @${label}`, all.length, info);
+    };
+
+    sampleCanvases("t=0");
+    const t1 = setTimeout(() => sampleCanvases("t=1s"), 1000);
+    const t2 = setTimeout(() => sampleCanvases("t=3s"), 3000);
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+    };
+  }, [reduced, shouldLoad3D]);
+
   return (
     <section className="relative h-[100svh] min-h-[640px] w-full overflow-hidden">
       {/* 3D layer — gated by viewport (>=md) and reduced-motion */}
       <div className="absolute inset-0 -z-10">
         {!reduced && shouldLoad3D ? (
           <Suspense fallback={<PosterFrame />}>
-            <PitchCanvas />
+            <PitchErrorBoundary>
+              <PitchCanvas />
+            </PitchErrorBoundary>
           </Suspense>
         ) : (
           <PosterFrame />
@@ -197,6 +244,54 @@ export function BroadcastHero() {
       </Container>
     </section>
   );
+}
+
+/* -------------------------------------------------------------------------- */
+/* DEBUG error boundary — chore(hero/debug)                                   */
+/* Surfaces any error thrown inside <Canvas> so we can see in DevTools        */
+/* whether the blank canvas is the result of an exception in R3F / Three /    */
+/* postprocessing / Pitch tree.                                               */
+/* -------------------------------------------------------------------------- */
+
+class PitchErrorBoundary extends Component<
+  { children: ReactNode },
+  { err: Error | null }
+> {
+  state: { err: Error | null } = { err: null };
+
+  static getDerivedStateFromError(err: Error) {
+    return { err };
+  }
+
+  componentDidCatch(err: Error, info: ErrorInfo) {
+    console.error("[SL/error] PitchCanvas threw", {
+      message: err.message,
+      name: err.name,
+      stack: err.stack,
+      componentStack: info.componentStack,
+    });
+  }
+
+  render() {
+    if (this.state.err) {
+      return (
+        <div
+          role="alert"
+          className="absolute inset-0 flex items-center justify-center p-6 text-center"
+          style={{
+            background: "rgba(7, 15, 30, 0.92)",
+            color: "#ef4444",
+            fontFamily:
+              "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace",
+            fontSize: 12,
+          }}
+        >
+          [SL/error] PitchCanvas threw — {this.state.err.message}
+        </div>
+      );
+    }
+    return this.props.children;
+  }
 }
 
 /* -------------------------------------------------------------------------- */

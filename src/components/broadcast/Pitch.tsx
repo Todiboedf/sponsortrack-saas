@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
 import {
   BufferGeometry,
@@ -495,12 +495,43 @@ function DustParticles({ count = 220 }: { count?: number }) {
 }
 
 /* -------------------------------------------------------------------------- */
+/* DEBUG heartbeat — logs every 60 frames; remove after diagnostic            */
+/* -------------------------------------------------------------------------- */
+
+function FrameHeartbeat() {
+  const frameRef = useRef(0);
+  const { camera, scene, gl } = useThree();
+  useFrame(({ clock }) => {
+    frameRef.current += 1;
+    if (frameRef.current === 1 || frameRef.current % 60 === 0) {
+      const dir = new THREE.Vector3();
+      camera.getWorldDirection(dir);
+      console.log("[SL/pitch] frame", frameRef.current, {
+        elapsed: clock.elapsedTime.toFixed(2),
+        cameraPos: camera.position.toArray().map((n) => Number(n.toFixed(2))),
+        worldDir: dir.toArray().map((n) => Number(n.toFixed(2))),
+        rendererCalls: gl.info.render.calls,
+        rendererTriangles: gl.info.render.triangles,
+        rendererFrame: gl.info.render.frame,
+        sceneChildren: scene.children.length,
+      });
+    }
+  });
+  return null;
+}
+
+/* -------------------------------------------------------------------------- */
 /* Composed Pitch scene                                                       */
 /* -------------------------------------------------------------------------- */
 
 export function Pitch() {
   const grass = useGrassTexture();
   const groupRef = useRef<Group>(null);
+
+  useEffect(() => {
+    console.log("[SL/pitch] Pitch tree mounted (R3F subtree)");
+    return () => console.log("[SL/pitch] Pitch tree unmounted");
+  }, []);
 
   // Place LEDs around the perimeter just above the pitch
   const ledY = 0.4;
@@ -509,6 +540,7 @@ export function Pitch() {
 
   return (
     <group ref={groupRef}>
+      <FrameHeartbeat />
       <BroadcastLights />
       <CameraDirector />
       <TieredStadium />
