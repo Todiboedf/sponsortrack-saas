@@ -9,6 +9,7 @@ import { Badge } from "@/components/ui/Badge";
 import { ArrowRight, Check, Sparkles } from "lucide-react";
 import { DetectionOverlay } from "./DetectionOverlay";
 import { LiveHUD } from "./LiveHUD";
+import { AnimatedHeadline } from "./AnimatedHeadline";
 
 const PitchCanvas = dynamic(() => import("./PitchCanvas"), {
   ssr: false,
@@ -84,25 +85,27 @@ export function BroadcastHero() {
         </div>
       </div>
 
-      {/* Headline overlay (will be replaced by split-text reveal in a later commit) */}
-      <Container className="relative flex h-full flex-col items-start justify-center pt-32 pb-24">
+      {/* Headline + CTAs */}
+      <Container className="relative flex h-full max-w-5xl flex-col items-start justify-center pt-32 pb-24">
         <Badge tone="red" icon={<Sparkles size={12} />}>
           Live · Inside the Broadcast
         </Badge>
-        <h1 className="mt-6 max-w-3xl font-[family-name:var(--font-display)] text-balance text-5xl font-medium leading-[1.04] tracking-[-0.01em] text-[#F4EFE6] sm:text-6xl lg:text-[72px]">
-          Sponsor intelligence,{" "}
-          <em className="italic font-medium text-gradient-brand">
-            lived in real time.
-          </em>
-        </h1>
-        <p className="mt-6 max-w-xl text-pretty text-lg text-[#F4EFE6]/70 sm:text-xl">
+        <div className="mt-6 max-w-3xl">
+          <AnimatedHeadline />
+        </div>
+        <p className="mt-6 max-w-xl text-pretty text-[17px] text-slate-300 sm:text-lg">
           Built for the clubs, leagues and brands who measure what matters.
         </p>
         <div className="mt-10 flex flex-col items-start gap-3 sm:flex-row">
-          <Button href="/contact" size="lg" rightIcon={<ArrowRight size={16} />}>
+          <Button
+            href="/contact"
+            size="lg"
+            variant="cyan"
+            rightIcon={<ArrowRight size={16} />}
+          >
             Start free trial
           </Button>
-          <Button href="/demo" size="lg" variant="outline">
+          <Button href="/demo" size="lg" variant="ghost">
             Watch live demo
           </Button>
         </div>
