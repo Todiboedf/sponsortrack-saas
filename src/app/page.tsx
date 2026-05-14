@@ -26,6 +26,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { GradientOrb } from "@/components/GradientOrb";
 import { LogoMarquee } from "@/components/LogoMarquee";
 import { HeroDashboard } from "@/components/HeroDashboard";
+import { AnimatedMesh } from "@/components/AnimatedMesh";
 import { CountUp } from "@/components/CountUp";
 
 export default function HomePage() {
@@ -52,6 +53,9 @@ function Hero() {
   return (
     <section className="relative overflow-hidden pt-36 pb-12 lg:pt-44 lg:pb-16">
       <div aria-hidden className="absolute inset-0 -z-20 bg-grid mask-fade-radial opacity-30" />
+      <div aria-hidden className="absolute inset-0 -z-10">
+        <AnimatedMesh variant="soft" />
+      </div>
       <GradientOrb color="red" size={620} className="-left-40 -top-20" />
       <GradientOrb color="gold" size={520} className="-right-40 top-40" intensity="soft" />
       <Container>
@@ -309,7 +313,10 @@ const steps = [
 
 function HowItWorks() {
   return (
-    <section className="relative py-24 lg:py-32">
+    <section className="relative overflow-hidden py-24 lg:py-32">
+      <div aria-hidden className="absolute inset-0 -z-10">
+        <AnimatedMesh variant="soft" />
+      </div>
       <Container>
         <SectionHeader
           eyebrow="How it works"
