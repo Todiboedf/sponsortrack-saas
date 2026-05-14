@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useEffect, useLayoutEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { motion, useReducedMotion } from "motion/react";
 import { Container } from "@/components/ui/Container";
@@ -103,10 +103,45 @@ export function BroadcastHero() {
   const reduced = useReducedMotion();
   const shouldLoad3D = useShouldLoad3D();
 
+  /* Force the R3F ResizeObserver to re-measure once the Canvas chunk
+   * lands. In prod we kept seeing the canvas attribute size stuck at the
+   * HTML default 300×150 — the parent box is `position: absolute; inset:
+   * 0` but on the first measurement pass the observer was reading a
+   * stale (or zero) rect. Reading `body.getBoundingClientRect()` forces
+   * a layout flush, then a synthetic `resize` event covers any code path
+   * that listens to the window. We fire three times (sync + 50ms + 250ms)
+   * so the Canvas, its dpr-scaled framebuffer, and the EffectComposer
+   * passes all settle on the right dimensions. */
+  useLayoutEffect(() => {
+    if (!shouldLoad3D || typeof window === "undefined") return;
+    document.body.getBoundingClientRect();
+    window.dispatchEvent(new Event("resize"));
+    const t1 = setTimeout(() => window.dispatchEvent(new Event("resize")), 50);
+    const t2 = setTimeout(() => window.dispatchEvent(new Event("resize")), 250);
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+    };
+  }, [shouldLoad3D]);
+
   return (
     <section className="relative h-[100svh] min-h-[640px] w-full overflow-hidden">
-      {/* 3D layer — gated by viewport (>=md) and reduced-motion */}
-      <div className="absolute inset-0 -z-10">
+      {/* 3D layer — gated by viewport (>=md) and reduced-motion. Explicit
+          inline dimensions: Tailwind's `absolute inset-0 -z-10` gives the
+          right CSS, but R3F's first ResizeObserver pass was occasionally
+          reading the box as 0×0 in prod, which collapsed the canvas back
+          to its HTML default 300×150. Belt-and-suspenders inline style
+          guarantees a measurable rect on first observation. */}
+      <div
+        className="absolute inset-0 -z-10"
+        style={{
+          position: "absolute",
+          inset: 0,
+          width: "100%",
+          height: "100%",
+          minHeight: 640,
+        }}
+      >
         {!reduced && shouldLoad3D ? (
           <Suspense fallback={<PosterFrame />}>
             <PitchCanvas />
