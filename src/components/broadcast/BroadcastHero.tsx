@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { ArrowRight, Check, Sparkles } from "lucide-react";
 import { DetectionOverlay } from "./DetectionOverlay";
+import { LiveHUD } from "./LiveHUD";
 
 const PitchCanvas = dynamic(() => import("./PitchCanvas"), {
   ssr: false,
@@ -75,6 +76,13 @@ export function BroadcastHero() {
 
       {/* Live logo detection bounding boxes (HTML overlay above the Canvas) */}
       <DetectionOverlay />
+
+      {/* Live HUD pill pinned to the bottom-left of the hero */}
+      <div className="pointer-events-none absolute bottom-6 left-4 right-4 z-10 flex justify-start sm:bottom-8 sm:left-8">
+        <div className="pointer-events-auto">
+          <LiveHUD />
+        </div>
+      </div>
 
       {/* Headline overlay (will be replaced by split-text reveal in a later commit) */}
       <Container className="relative flex h-full flex-col items-start justify-center pt-32 pb-24">
