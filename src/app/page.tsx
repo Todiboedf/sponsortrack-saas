@@ -27,6 +27,7 @@ import { SectionDivider } from "@/components/SectionDivider";
 import { PricingTeaser } from "@/components/home/PricingTeaser";
 import { BroadcastHero } from "@/components/broadcast/BroadcastHero";
 import { ChaosBackground } from "@/components/scenes/ChaosBackground";
+import { PlatformConvergence } from "@/components/scenes/PlatformConvergence";
 import { CountUp } from "@/components/CountUp";
 
 export default function HomePage() {
@@ -170,6 +171,7 @@ function PlatformSection() {
           }
           description="Everything your commercial team needs to measure a sponsorship, prove the value, and sell the renewal — in a single source of truth."
         />
+        <PlatformConvergence />
         <div className="mt-16 grid gap-5 md:grid-cols-3">
           {features.map((f, i) => (
             <Reveal key={f.title} delay={i * 0.07}>
