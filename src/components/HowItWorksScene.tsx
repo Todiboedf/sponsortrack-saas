@@ -13,6 +13,15 @@ import {
   Signature,
   Workflow,
 } from "lucide-react";
+import { RibbonPath } from "@/components/scenes/RibbonPath";
+
+function Ribbon() {
+  return (
+    <div className="absolute inset-x-0 top-1/2 -z-[1] hidden h-32 -translate-y-1/2 opacity-50 lg:block">
+      <RibbonPath />
+    </div>
+  );
+}
 
 type Phase = 0 | 1 | 2 | 3;
 
@@ -94,6 +103,7 @@ export function HowItWorksScene() {
       aria-labelledby="how-it-works-heading"
     >
       <div className="scene-stage relative flex items-center" style={{ minHeight: "100svh" }}>
+        <Ribbon />
         <div className="mx-auto w-full max-w-7xl px-6 lg:px-10">
           <div className="mb-10 flex flex-col gap-3">
             <span className="inline-flex w-fit items-center gap-1.5 rounded-full border border-[#B8975A]/35 bg-[#B8975A]/[0.08] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#B8975A]">
