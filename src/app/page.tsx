@@ -8,14 +8,10 @@ import {
   Gauge,
   LineChart,
   Mail,
-  PlugZap,
-  ScanSearch,
-  ScrollText,
   Sparkles,
   Target,
   TrendingUp,
   Users,
-  Workflow,
 } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
@@ -27,6 +23,7 @@ import { GradientOrb } from "@/components/GradientOrb";
 import { LogoMarquee } from "@/components/LogoMarquee";
 import { HeroDashboard } from "@/components/HeroDashboard";
 import { AnimatedMesh } from "@/components/AnimatedMesh";
+import { HowItWorksScene } from "@/components/HowItWorksScene";
 import { CountUp } from "@/components/CountUp";
 
 export default function HomePage() {
@@ -282,75 +279,16 @@ function PlatformSection() {
 }
 
 /* -------------------------------------------------------------------------- */
-/* How it works                                                               */
+/* How it works — scroll-pinned scene lives in HowItWorksScene.tsx            */
 /* -------------------------------------------------------------------------- */
-const steps = [
-  {
-    n: "01",
-    icon: <PlugZap size={20} />,
-    title: "Connect",
-    body: "Plug your social channels, broadcast feed and CRM. One-click via OAuth, dedicated SDK for everything else.",
-  },
-  {
-    n: "02",
-    icon: <ScanSearch size={20} />,
-    title: "Detect",
-    body: "Our models watch every post and every broadcast frame, attribute exposures to the right sponsor, normalise the numbers.",
-  },
-  {
-    n: "03",
-    icon: <ScrollText size={20} />,
-    title: "Report",
-    body: "White-label dashboards refresh in real time. Branded PDF + email recap goes out every Monday at 07:00 local.",
-  },
-  {
-    n: "04",
-    icon: <Workflow size={20} />,
-    title: "Renew",
-    body: "Renewal alerts, benchmark scenarios and a contract calendar — so commercial conversations start with evidence.",
-  },
-];
 
 function HowItWorks() {
   return (
-    <section className="relative overflow-hidden py-24 lg:py-32">
+    <section className="relative overflow-hidden">
       <div aria-hidden className="absolute inset-0 -z-10">
         <AnimatedMesh variant="soft" />
       </div>
-      <Container>
-        <SectionHeader
-          eyebrow="How it works"
-          eyebrowIcon={<Workflow size={13} />}
-          title={
-            <>
-              Four steps from{" "}
-              <em className="italic text-gradient-brand">channel chaos</em> to renewed contract.
-            </>
-          }
-        />
-        <div className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-          {steps.map((s, i) => (
-            <Reveal key={s.n} delay={i * 0.06}>
-              <div className="relative h-full rounded-2xl border border-[#F4EFE6]/[0.08] bg-[#0F1A2E]/70 p-6">
-                <div className="flex items-center justify-between">
-                  <span className="font-[family-name:var(--font-mono)] text-[11px] tracking-[0.22em] text-[#B8975A]">
-                    {s.n}
-                  </span>
-                  <span className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[#B8975A]/30 bg-[#B8975A]/[0.08] text-[#B8975A]">
-                    {s.icon}
-                  </span>
-                </div>
-                <h3 className="mt-4 font-[family-name:var(--font-display)] text-lg font-semibold tracking-tight text-[#F4EFE6]">
-                  {s.title}
-                </h3>
-                <p className="mt-2 text-[14px] leading-relaxed text-[#F4EFE6]/65">
-                  {s.body}
-                </p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </Container>
+      <HowItWorksScene />
     </section>
   );
 }
