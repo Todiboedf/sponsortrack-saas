@@ -29,6 +29,7 @@ import { BroadcastHero } from "@/components/broadcast/BroadcastHero";
 import { ChaosBackground } from "@/components/scenes/ChaosBackground";
 import { PlatformConvergence } from "@/components/scenes/PlatformConvergence";
 import { TwoViewsConvergence } from "@/components/scenes/TwoViewsConvergence";
+import { GoldenHourBackdrop } from "@/components/scenes/GoldenHourBackdrop";
 import { CountUp } from "@/components/CountUp";
 
 export default function HomePage() {
@@ -42,10 +43,12 @@ export default function HomePage() {
       <SectionDivider className="my-2" />
       <PerSponsorSection />
       <StatsSection />
-      <PricingTeaser />
-      <SectionDivider className="my-2" />
-      <TestimonialsSection />
-      <FinalCta />
+      <GoldenHourBackdrop>
+        <PricingTeaser />
+        <SectionDivider className="my-2" />
+        <TestimonialsSection />
+        <FinalCta />
+      </GoldenHourBackdrop>
     </>
   );
 }
