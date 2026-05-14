@@ -6,7 +6,7 @@ import {
   useInView,
   useMotionValue,
   useReducedMotion,
-} from "framer-motion";
+} from "motion/react";
 
 type Props = {
   to: number;

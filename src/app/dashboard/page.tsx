@@ -10,7 +10,7 @@ import { SignOutButton } from "./SignOutButton";
 export const dynamic = "force-dynamic";
 
 export const metadata = {
-  title: "Workspace — SponsorTrack",
+  title: "Workspace — Sponsorlens",
   robots: { index: false, follow: false },
 };
 

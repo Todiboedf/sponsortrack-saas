@@ -1,16 +1,16 @@
 ---
-title: Dispatch Claude Code · SponsorTrack SaaS Redesign V2
+title: Dispatch Claude Code · Sponsorlens SaaS Redesign V2
 date: 2026-05-01
-tags: [dispatch, sponsortrack, claude-code, redesign, urgent]
-target_repo: ~/work/sponsortrack-saas/
-production_url: https://sponsortrack-saas.vercel.app
+tags: [dispatch, sponsorlens, claude-code, redesign, urgent]
+target_repo: ~/work/sponsorlens-saas/
+production_url: https://sponsorlens-saas.vercel.app
 estimated_duration: 4-8h
 related_session: [[Sessions/2026-05-01-osasuna-board-debrief]]
 ---
 
-# Dispatch · SponsorTrack SaaS · Redesign V2 (Sport-Branded Premium)
+# Dispatch · Sponsorlens SaaS · Redesign V2 (Sport-Branded Premium)
 
-> Brief à coller dans Claude Code (WSL ou Dispatch mobile) après `cd ~/work/sponsortrack-saas/` puis `claude`.
+> Brief à coller dans Claude Code (WSL ou Dispatch mobile) après `cd ~/work/sponsorlens-saas/` puis `claude`.
 > **Méthode imposée : spec-driven + plan-first + opérateur pattern (cf. best practices 2026).**
 
 ---
@@ -32,19 +32,19 @@ Avant toute édition, tu dois :
 
 ## 1. CONTEXTE
 
-SponsorTrack SaaS a été créé fin avril 2026. Le site existe (sponsortrack-saas.vercel.app) avec :
+Sponsorlens SaaS a été créé fin avril 2026. Le site existe (sponsorlens-saas.vercel.app) avec :
 - Site vitrine (Next.js 16, Tailwind 4, Framer Motion, Recharts)
 - Backend Supabase wired (sponsors / sponsor_kpis_daily / sponsor_users + RLS)
 - Auth email+password + dashboard protégé
 - Cron Instagram + EMV computation
 - Pages /, /features, /pricing, /demo, /about, /contact, /privacy, /terms
 
-**Le 30 avril 2026, visio board CA Osasuna passée.** Le board a validé l'approche et SponsorTrack devient l'outil de mesure du pilote. Voir [[Sessions/2026-05-01-osasuna-board-debrief]].
+**Le 30 avril 2026, visio board CA Osasuna passée.** Le board a validé l'approche et Sponsorlens devient l'outil de mesure du pilote. Voir [[Sessions/2026-05-01-osasuna-board-debrief]].
 
 **Décision Guillaume (1er mai 2026)** : refonte complète du design sur direction "sport-branded premium". L'esthétique générique violet/dark "AI startup" actuelle ne porte pas le positionnement sport pro. On vise une identité éditoriale forte, un mélange de tech rigueur (Linear/Vercel) et de gravitas sport (palette club, typo serif éditoriale).
 
 **Sources de vérité** :
-- Brain : [[projet-sponsortrack]] (post-refonte du 1er mai, **lis-le entièrement**)
+- Brain : [[projet-sponsorlens]] (post-refonte du 1er mai, **lis-le entièrement**)
 - Pitch board CA Osasuna : `https://osasuna-project.vercel.app/clients/osasuna` (palette, typo, ton)
 - Session log : [[Sessions/2026-04-30-osasuna-board-pitch/SESSION-LOG]]
 
@@ -210,7 +210,7 @@ Garder. Juste refresh le styling pour matcher la DA.
 ### Nav principale
 
 ```
-Logo SponsorTrack · Features · Pricing · Customers · Changelog · About | Sign in · Start free trial
+Logo Sponsorlens · Features · Pricing · Customers · Changelog · About | Sign in · Start free trial
 ```
 
 (Retirer "Live demo" de la nav, l'envoyer dans Features ou en CTA secondary)
@@ -222,7 +222,7 @@ Logo SponsorTrack · Features · Pricing · Customers · Changelog · About | Si
 - Company (About / Blog / Careers (=mailto en attendant) / Contact)
 - Legal (Privacy / Terms / DPA / Security)
 
-Bottom : `© 2026 SponsorTrack · Built by TFM Team · Real Madrid Graduate School, Universidad Europea de Madrid`
+Bottom : `© 2026 Sponsorlens · Built by TFM Team · Real Madrid Graduate School, Universidad Europea de Madrid`
 
 ---
 
@@ -249,7 +249,7 @@ Bottom : `© 2026 SponsorTrack · Built by TFM Team · Real Madrid Graduate Scho
 ## 6. WORKFLOW RECOMMANDÉ
 
 ```bash
-cd ~/work/sponsortrack-saas/
+cd ~/work/sponsorlens-saas/
 git checkout main && git pull
 git checkout -b feat/redesign-v2-sport-branded
 
@@ -277,7 +277,7 @@ pnpm build
 
 # Commit & push
 git add -A
-git commit -m "feat: SponsorTrack V2 redesign · sport-branded premium · pricing Enterprise €7K"
+git commit -m "feat: Sponsorlens V2 redesign · sport-branded premium · pricing Enterprise €7K"
 git push -u origin feat/redesign-v2-sport-branded
 # PR + merge main · Vercel auto-deploy
 ```
@@ -318,11 +318,11 @@ Pattern opérateur : tu es le contrôleur, tu délègues les blocs indépendants
 
 Une fois mergé en main et Vercel deployed :
 
-1. Tester `https://sponsortrack-saas.vercel.app` en navigation privée + mobile
+1. Tester `https://sponsorlens-saas.vercel.app` en navigation privée + mobile
 2. Vérifier que les acceptance criteria sont tous ✅
 3. Capturer 5 screenshots clés (home / pricing / features / customers/osasuna / dashboard)
-4. Mettre à jour [[projet-sponsortrack]] dans le brain · ajouter "V2 redesign live"
-5. Mettre à jour [[status]] · sponsortrack passe en 🟢 (refonte design done)
+4. Mettre à jour [[projet-sponsorlens]] dans le brain · ajouter "V2 redesign live"
+5. Mettre à jour [[status]] · sponsorlens passe en 🟢 (refonte design done)
 6. Notifier Guillaume avec lien + screenshots
 
 ---
@@ -345,7 +345,7 @@ Avant de coder, valide mentalement :
 
 - [[Sessions/2026-05-01-osasuna-board-debrief]] — contexte visio
 - [[Sessions/2026-04-30-osasuna-board-pitch/DISPATCH-osasuna-project-public-pitch]] — pattern dispatch précédent (référence)
-- [[projet-sponsortrack]] — source de vérité produit
+- [[projet-sponsorlens]] — source de vérité produit
 - [[projet-osasuna-project]] — case study principal
 - [[brand-voice]] — ton à respecter
 - [[stack-technique]] — stack écosystème

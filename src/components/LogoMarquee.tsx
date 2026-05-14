@@ -22,8 +22,8 @@ export function LogoMarquee() {
         aria-hidden
         className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-[#0A1628] to-transparent"
       />
-      <div className="flex overflow-hidden">
-        <div className="flex shrink-0 animate-marquee items-center gap-14 pr-14">
+      <div className="group flex overflow-hidden">
+        <div className="marquee-track flex shrink-0 items-center gap-14 pr-14 group-hover:[animation-play-state:paused]">
           {[...logos, ...logos].map((name, i) => (
             <div
               key={i}

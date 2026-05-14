@@ -7,8 +7,8 @@ import { GradientOrb } from "@/components/GradientOrb";
 export const metadata: Metadata = {
   title: "Terms of service",
   description:
-    "SponsorTrack terms of service. Plain-language rules governing your use of the product and website.",
-  alternates: { canonical: "https://sponsortrack.io/terms" },
+    "Sponsorlens terms of service. Plain-language rules governing your use of the product and website.",
+  alternates: { canonical: "https://sponsorlens.io/terms" },
 };
 
 const LAST_UPDATED = "April 24, 2026";
@@ -34,9 +34,9 @@ export default function TermsPage() {
         <Container>
           <article className="prose-dark mx-auto max-w-3xl">
             <p>
-              These terms govern your access to and use of the SponsorTrack website
+              These terms govern your access to and use of the Sponsorlens website
               and any related product (together, the &ldquo;Service&rdquo;), operated
-              by SponsorTrack Labs S.A.S. By using the Service you agree to them. If
+              by Sponsorlens Labs S.A.S. By using the Service you agree to them. If
               you don&apos;t, please don&apos;t use the Service.
             </p>
 
@@ -44,7 +44,7 @@ export default function TermsPage() {
             <p>
               You&apos;re responsible for keeping your credentials safe and for any
               activity on your workspace. Tell us immediately at{" "}
-              <a href="mailto:security@sponsortrack.io">security@sponsortrack.io</a>{" "}
+              <a href="mailto:security@sponsorlens.io">security@sponsorlens.io</a>{" "}
               if you suspect unauthorised access.
             </p>
 
@@ -103,7 +103,7 @@ export default function TermsPage() {
             <h2>9. Contact</h2>
             <p>
               Questions? Write to{" "}
-              <a href="mailto:legal@sponsortrack.io">legal@sponsortrack.io</a>.
+              <a href="mailto:legal@sponsorlens.io">legal@sponsorlens.io</a>.
             </p>
           </article>
         </Container>

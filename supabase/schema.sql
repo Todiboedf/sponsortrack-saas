@@ -1,5 +1,5 @@
 -- ═══════════════════════════════════════════════════════════════════
--- SponsorTrack SaaS — Database Schema
+-- Sponsorlens SaaS — Database Schema
 -- Run in Supabase SQL Editor (Dashboard > SQL Editor > New query)
 -- Project: isboggphmcpnjeigrach
 -- ═══════════════════════════════════════════════════════════════════

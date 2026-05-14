@@ -274,7 +274,7 @@ export default function DemoClient({ live }: { live?: LiveData | null }) {
             <div className="flex w-full flex-col items-start justify-between gap-6 lg:flex-row lg:items-end">
               <div>
                 <h1 className="font-[family-name:var(--font-display)] text-balance text-4xl font-semibold leading-[1.05] tracking-[-0.02em] text-white sm:text-5xl lg:text-[56px]">
-                  The SponsorTrack dashboard.{" "}
+                  The Sponsorlens dashboard.{" "}
                   <span className="text-gradient-brand">Live, in your browser.</span>
                 </h1>
                 <p className="mt-4 max-w-xl text-[15px] text-white/60">

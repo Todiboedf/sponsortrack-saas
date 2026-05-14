@@ -1,7 +1,7 @@
 "use client";
 
-import { useMemo } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { useEffect, useMemo, useState } from "react";
+import { motion, useReducedMotion } from "motion/react";
 import {
   Area,
   AreaChart,
@@ -54,15 +54,62 @@ const weeks = [
 const fmtCompactM = (n: number) => `${n.toFixed(1)}M`;
 
 /* -------------------------------------------------------------------------- */
-/* Dashboard mockup                                                           */
+/* Hero dashboard — live-match simulation                                     */
 /* -------------------------------------------------------------------------- */
 
-export function DashboardMockup() {
+const BASE_MEDIA_VALUE = 1.92;
+const BASE_KICKOFF_DELTA = 412;
+
+const DETECTIONS = [
+  { label: "Caja Rural · jersey", t: "26:14", icon: "camera" as const },
+  { label: "Macron · LED", t: "18:42", icon: "radio" as const },
+  { label: "Digi · backdrop", t: "11:08", icon: "eye" as const },
+];
+
+export function HeroDashboard() {
   const reduced = useReducedMotion();
   const trend = useMemo(() => weeks, []);
 
+  // Live-match increment: every 4s, bump media value by +€2–5k. After three
+  // increments stop so the number stays believable for static screenshots.
+  const [mediaValue, setMediaValue] = useState(BASE_MEDIA_VALUE);
+  const [kickoffDelta, setKickoffDelta] = useState(BASE_KICKOFF_DELTA);
+  useEffect(() => {
+    if (reduced) return;
+    let ticks = 0;
+    const id = setInterval(() => {
+      ticks += 1;
+      const bumpM = Math.random() * 0.003 + 0.002; // +€2–5k expressed in € M
+      const bumpK = Math.round(bumpM * 1000);
+      setMediaValue((v) => v + bumpM);
+      setKickoffDelta((k) => k + bumpK);
+      if (ticks >= 6) clearInterval(id);
+    }, 4000);
+    return () => clearInterval(id);
+  }, [reduced]);
+
+  // Sequential reveal of live detections — first one 600ms after mount, then
+  // the next two with 800ms between, as if they were arriving in real time.
+  const [revealedCount, setRevealedCount] = useState(reduced ? DETECTIONS.length : 0);
+  useEffect(() => {
+    if (reduced) return;
+    setRevealedCount(0);
+    const timers: ReturnType<typeof setTimeout>[] = [];
+    DETECTIONS.forEach((_, i) => {
+      timers.push(
+        setTimeout(() => setRevealedCount((c) => Math.max(c, i + 1)), 600 + i * 800)
+      );
+    });
+    return () => timers.forEach(clearTimeout);
+  }, [reduced]);
+
   return (
-    <div className="relative mx-auto w-full max-w-[1140px]">
+    <motion.div
+      className="relative mx-auto w-full max-w-[1140px]"
+      initial={reduced ? false : { opacity: 0, y: 8 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+    >
       {/* Subtle gold/red ring frame */}
       <div
         aria-hidden
@@ -78,7 +125,7 @@ export function DashboardMockup() {
           </div>
           <div className="mx-auto flex max-w-xs flex-1 items-center gap-1.5 rounded-md bg-[#F4EFE6]/[0.04] px-3 py-1 text-[11px] text-[#F4EFE6]/45">
             <span className="h-1.5 w-1.5 rounded-full bg-[#2F8F5A]" />
-            app.sponsortrack.io / osasuna
+            app.sponsorlens.io / osasuna
           </div>
           <div className="hidden gap-1.5 sm:flex">
             <span className="h-5 w-12 rounded bg-[#F4EFE6]/[0.04]" />
@@ -157,29 +204,47 @@ export function DashboardMockup() {
               </div>
             </div>
 
-            {/* KPI row */}
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+            {/* KPI row — staggered entrance (80ms between cards) */}
+            <motion.div
+              className="grid grid-cols-2 gap-3 sm:grid-cols-4"
+              initial="hidden"
+              animate="visible"
+              variants={{
+                hidden: {},
+                visible: { transition: { staggerChildren: 0.08, delayChildren: 0.15 } },
+              }}
+            >
               <Kpi
                 label="Media value"
-                value={<CountUp to={5.57} prefix="€" suffix="M" decimals={2} />}
+                live
+                value={
+                  <span>
+                    €
+                    {mediaValue.toLocaleString("en-US", {
+                      minimumFractionDigits: 2,
+                      maximumFractionDigits: 2,
+                    })}
+                    M
+                  </span>
+                }
                 delta="+24.2%"
               />
               <Kpi
                 label="Impressions"
-                value={<CountUp to={284} suffix="M" />}
+                value={<CountUp to={18.4} suffix="M" decimals={1} />}
                 delta="+11.6%"
               />
               <Kpi
                 label="Engagements"
-                value={<CountUp to={2.4} suffix="M" decimals={1} />}
+                value={<CountUp to={1.2} suffix="M" decimals={1} />}
                 delta="+18%"
               />
               <Kpi
                 label="Logos / match"
-                value={<CountUp to={94100} />}
+                value={<CountUp to={47} />}
                 delta="+6%"
               />
-            </div>
+            </motion.div>
 
             {/* Chart */}
             <div className="mt-4 overflow-hidden rounded-xl border border-[#F4EFE6]/[0.06] bg-[#0A1628]/70 p-4">
@@ -330,27 +395,45 @@ export function DashboardMockup() {
                   </span>
                 </div>
                 <div className="grid grid-cols-3 gap-2 text-[11px]">
-                  {[
-                    { label: "Caja Rural · jersey", t: "26:14", icon: <Camera size={11} /> },
-                    { label: "Macron · LED", t: "18:42", icon: <Radio size={11} /> },
-                    { label: "Digi · backdrop", t: "11:08", icon: <Eye size={11} /> },
-                  ].map((d) => (
-                    <div
-                      key={d.label}
-                      className="rounded-lg border border-[#F4EFE6]/[0.06] bg-[#F4EFE6]/[0.02] p-2.5"
-                    >
-                      <div className="flex items-center gap-1.5 text-[#B8975A]">
-                        {d.icon}
-                        <span className="text-[10px] uppercase tracking-[0.14em] text-[#F4EFE6]/55">
-                          Detection
-                        </span>
-                      </div>
-                      <div className="mt-1.5 truncate text-[#F4EFE6]">{d.label}</div>
-                      <div className="mt-0.5 font-[family-name:var(--font-mono)] tabular-nums text-[#B8975A]">
-                        {d.t}
-                      </div>
-                    </div>
-                  ))}
+                  {DETECTIONS.map((d, i) => {
+                    const iconNode =
+                      d.icon === "camera" ? (
+                        <Camera size={11} />
+                      ) : d.icon === "radio" ? (
+                        <Radio size={11} />
+                      ) : (
+                        <Eye size={11} />
+                      );
+                    const visible = i < revealedCount;
+                    return (
+                      <motion.div
+                        key={d.label}
+                        initial={reduced ? false : { opacity: 0, y: 6, scale: 0.97 }}
+                        animate={
+                          visible
+                            ? { opacity: 1, y: 0, scale: 1 }
+                            : reduced
+                              ? { opacity: 1 }
+                              : { opacity: 0, y: 6, scale: 0.97 }
+                        }
+                        transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                        className="rounded-lg border border-[#F4EFE6]/[0.06] bg-[#F4EFE6]/[0.02] p-2.5"
+                      >
+                        <div className="flex items-center gap-1.5 text-[#B8975A]">
+                          {iconNode}
+                          <span className="text-[10px] uppercase tracking-[0.14em] text-[#F4EFE6]/55">
+                            Detection
+                          </span>
+                        </div>
+                        <div className="mt-1.5 truncate text-[#F4EFE6]">
+                          {d.label}
+                        </div>
+                        <div className="mt-0.5 font-[family-name:var(--font-mono)] tabular-nums text-[#B8975A]">
+                          {d.t}
+                        </div>
+                      </motion.div>
+                    );
+                  })}
                 </div>
                 <div className="mt-3 flex items-start gap-3 rounded-lg bg-[#F4EFE6]/[0.03] p-3 text-[11px] leading-relaxed text-[#F4EFE6]/65">
                   <Heart size={12} className="mt-0.5 shrink-0 text-[#B8975A]" />
@@ -393,10 +476,27 @@ export function DashboardMockup() {
       </motion.div>
 
       <motion.div
-        initial={reduced ? undefined : { opacity: 0, x: 16, y: -16 }}
-        whileInView={{ opacity: 1, x: 0, y: 0 }}
-        viewport={{ once: true, margin: "-20px" }}
-        transition={{ duration: 0.8, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
+        initial={reduced ? undefined : { opacity: 0, x: 16, y: -16, scale: 0.95 }}
+        animate={
+          reduced
+            ? { opacity: 1, x: 0, y: 0, scale: 1 }
+            : { opacity: 1, x: 0, y: 0, scale: [1, 1.05, 1] }
+        }
+        transition={
+          reduced
+            ? { duration: 0.4 }
+            : {
+                opacity: { duration: 0.6, delay: 0.45, ease: [0.22, 1, 0.36, 1] },
+                x: { duration: 0.6, delay: 0.45, ease: [0.22, 1, 0.36, 1] },
+                y: { duration: 0.6, delay: 0.45, ease: [0.22, 1, 0.36, 1] },
+                scale: {
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: [0.4, 0, 0.2, 1],
+                  delay: 1.4,
+                },
+              }
+        }
         className="absolute -right-3 -top-4 hidden rounded-xl border border-[#8B0028]/45 bg-[#0F1A2E]/95 px-3.5 py-3 shadow-2xl backdrop-blur sm:block"
       >
         <div className="flex items-center gap-2">
@@ -407,11 +507,11 @@ export function DashboardMockup() {
           <span className="text-[11px] text-[#F4EFE6]/65">Live · Caja Rural</span>
         </div>
         <div className="mt-1 font-[family-name:var(--font-mono)] text-lg font-semibold tabular-nums text-[#F4EFE6]">
-          +€412k
+          +€{kickoffDelta.toLocaleString("en-US")}k
         </div>
         <div className="text-[11px] text-[#B8975A]">since kick-off</div>
       </motion.div>
-    </div>
+    </motion.div>
   );
 }
 
@@ -423,21 +523,35 @@ function Kpi({
   label,
   value,
   delta,
+  live,
 }: {
   label: string;
   value: React.ReactNode;
   delta: string;
+  live?: boolean;
 }) {
   return (
-    <div className="rounded-xl border border-[#F4EFE6]/[0.06] bg-[#0A1628]/70 p-3">
-      <div className="text-[10px] uppercase tracking-[0.18em] text-[#B8975A]">
-        {label}
+    <motion.div
+      variants={{
+        hidden: { opacity: 0, y: 8 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] } },
+      }}
+      className="rounded-xl border border-[#F4EFE6]/[0.06] bg-[#0A1628]/70 p-3"
+    >
+      <div className="flex items-center gap-1.5 text-[10px] uppercase tracking-[0.18em] text-[#B8975A]">
+        <span>{label}</span>
+        {live && (
+          <span
+            aria-hidden
+            className="ml-auto inline-flex h-1.5 w-1.5 rounded-full bg-[#2F8F5A]"
+          />
+        )}
       </div>
       <div className="mt-1 font-[family-name:var(--font-mono)] text-lg font-semibold tracking-tight text-[#F4EFE6] tabular-nums">
         {value}
       </div>
       <div className="text-[11px] text-[#2F8F5A]">{delta}</div>
-    </div>
+    </motion.div>
   );
 }
 

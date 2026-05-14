@@ -301,7 +301,7 @@ function ComparisonSection() {
                       Legacy B
                     </th>
                     <th className="bg-[#8B0028]/[0.06] px-4 py-4 text-center text-[12px] font-semibold uppercase tracking-[0.18em] text-[#0F1A2E]">
-                      SponsorTrack
+                      Sponsorlens
                     </th>
                   </tr>
                 </thead>

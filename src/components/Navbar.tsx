@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion } from "motion/react";
 import { Menu, X } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
@@ -68,7 +68,7 @@ export function Navbar() {
                   key={l.href}
                   href={l.href}
                   className={cn(
-                    "relative rounded-full px-4 py-2 text-sm text-[#F4EFE6]/72 transition-colors hover:text-[#F4EFE6]",
+                    "group relative rounded-full px-4 py-2 text-sm text-[#F4EFE6]/72 transition-colors hover:text-[#F4EFE6]",
                     active && "text-[#F4EFE6]"
                   )}
                 >
@@ -80,6 +80,12 @@ export function Navbar() {
                     />
                   )}
                   <span className="relative">{l.label}</span>
+                  {!active && (
+                    <span
+                      aria-hidden
+                      className="pointer-events-none absolute bottom-1 left-4 right-4 h-px origin-left scale-x-0 bg-gradient-to-r from-[#7dd3fc] via-[#7dd3fc]/70 to-transparent transition-transform duration-150 ease-out group-hover:scale-x-100"
+                    />
+                  )}
                 </Link>
               );
             })}
