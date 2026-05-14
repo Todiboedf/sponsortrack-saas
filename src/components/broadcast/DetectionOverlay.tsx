@@ -16,6 +16,14 @@ type Detection = {
   height: string;
 };
 
+/**
+ * Positions are calibrated for the right half of the hero viewport —
+ * the left half is reserved for the headline + CTAs. All `left` values
+ * stay >= 50% so the boxes never overlap the type column on common
+ * desktop widths (1280–1920px). Array order matches the chronological
+ * sequence of timestamps so the appearance loop ticks the minute clock
+ * forward from 23:14 to 25:24.
+ */
 const DETECTIONS: Detection[] = [
   {
     id: "jersey",
@@ -23,8 +31,8 @@ const DETECTIONS: Detection[] = [
     brand: "Caja Rural",
     asset: "jersey",
     timestamp: "23:14",
-    left: "39%",
-    top: "58%",
+    left: "58%",
+    top: "56%",
     width: "132px",
     height: "36px",
   },
@@ -34,9 +42,9 @@ const DETECTIONS: Detection[] = [
     brand: "Macron",
     asset: "LED",
     timestamp: "23:42",
-    left: "10%",
-    top: "63%",
-    width: "188px",
+    left: "51%",
+    top: "68%",
+    width: "168px",
     height: "30px",
   },
   {
@@ -45,9 +53,9 @@ const DETECTIONS: Detection[] = [
     brand: "Digi",
     asset: "LED",
     timestamp: "24:08",
-    left: "68%",
-    top: "63%",
-    width: "160px",
+    left: "80%",
+    top: "68%",
+    width: "150px",
     height: "30px",
   },
   {
@@ -56,9 +64,9 @@ const DETECTIONS: Detection[] = [
     brand: "Asisa",
     asset: "LED",
     timestamp: "24:31",
-    left: "34%",
-    top: "73%",
-    width: "210px",
+    left: "60%",
+    top: "80%",
+    width: "200px",
     height: "28px",
   },
   {
@@ -67,9 +75,9 @@ const DETECTIONS: Detection[] = [
     brand: "Cervezas El Águila",
     asset: "backdrop",
     timestamp: "25:02",
-    left: "62%",
+    left: "72%",
     top: "27%",
-    width: "200px",
+    width: "195px",
     height: "48px",
   },
   {
@@ -78,10 +86,10 @@ const DETECTIONS: Detection[] = [
     brand: "BBVA",
     asset: "armband",
     timestamp: "25:24",
-    left: "51%",
-    top: "49%",
-    width: "70px",
-    height: "26px",
+    left: "66%",
+    top: "48%",
+    width: "76px",
+    height: "28px",
   },
 ];
 
