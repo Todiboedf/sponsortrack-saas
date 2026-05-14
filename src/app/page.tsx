@@ -568,7 +568,21 @@ function StatsSection() {
 /* -------------------------------------------------------------------------- */
 /* Pricing teaser                                                             */
 /* -------------------------------------------------------------------------- */
-const tiers = [
+type TeaserTier = {
+  name: string;
+  price: string;
+  suffix: string;
+  description: string;
+  features: string[];
+  cta: string;
+  href: string;
+  featured: boolean;
+  priceFrom?: boolean;
+  setupNote?: string;
+  trialNote?: boolean;
+};
+
+const tiers: TeaserTier[] = [
   {
     name: "Starter",
     price: "€1,500",
@@ -577,13 +591,14 @@ const tiers = [
       "For ambitious clubs that want to stop managing sponsors in spreadsheets.",
     features: [
       "Up to 10 active sponsors",
-      "Cross-platform social analytics",
-      "Weekly auto-reports",
-      "1 admin · 5 viewer seats",
+      "On-demand PDF export",
+      "AI weekly digest",
+      "Slack / Teams alerts",
     ],
     cta: "Start free trial",
     href: "/contact",
     featured: false,
+    trialNote: true,
   },
   {
     name: "Pro",
@@ -593,13 +608,14 @@ const tiers = [
       "For leagues, federations and top-tier clubs running full partner portfolios.",
     features: [
       "Unlimited sponsors",
-      "Match-day computer vision",
-      "Branded sponsor portals",
-      "Prospection engine + AI outreach",
+      "AI sponsor brief generator",
+      "Multi-language sponsor portals",
+      "Real-time match alerts",
     ],
     cta: "Start free trial",
     href: "/contact",
     featured: true,
+    trialNote: true,
   },
   {
     name: "Enterprise",
@@ -608,14 +624,16 @@ const tiers = [
     description:
       "For multi-club groups, agencies and federations with bespoke needs.",
     features: [
+      "Match-day computer vision",
       "Dedicated success manager",
       "Custom data pipelines & API",
-      "On-prem / EU data residency",
       "White-glove onboarding (90 days)",
     ],
     cta: "Book a discovery call",
     href: "/contact",
     featured: false,
+    priceFrom: true,
+    setupNote: "+ €8,000 one-shot setup fee",
   },
 ];
 
@@ -656,11 +674,21 @@ function PricingTeaser() {
                   )}
                 </div>
                 <div className="mt-5 flex items-baseline gap-1">
+                  {t.priceFrom && (
+                    <span className="mr-1 text-sm font-medium uppercase tracking-[0.18em] text-[#B8975A]">
+                      from
+                    </span>
+                  )}
                   <span className="font-[family-name:var(--font-mono)] text-5xl font-semibold tracking-tight text-[#F4EFE6] tabular-nums">
                     {t.price}
                   </span>
                   <span className="text-sm text-[#F4EFE6]/55">{t.suffix}</span>
                 </div>
+                {t.setupNote && (
+                  <div className="mt-1 text-[12px] font-medium text-[#B8975A]">
+                    {t.setupNote}
+                  </div>
+                )}
                 <p className="mt-4 text-sm leading-relaxed text-[#F4EFE6]/60">
                   {t.description}
                 </p>
@@ -673,6 +701,11 @@ function PricingTeaser() {
                     {t.cta}
                   </Button>
                 </div>
+                {t.trialNote && (
+                  <p className="mt-3 text-center text-[11px] text-[#F4EFE6]/50">
+                    14-day free trial · no credit card · EU data residency
+                  </p>
+                )}
                 <ul className="mt-7 flex flex-col gap-3 border-t border-[#F4EFE6]/[0.06] pt-6">
                   {t.features.map((f) => (
                     <li
