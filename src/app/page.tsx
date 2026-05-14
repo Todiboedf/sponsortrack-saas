@@ -26,6 +26,7 @@ import { HowItWorksScene } from "@/components/HowItWorksScene";
 import { SectionDivider } from "@/components/SectionDivider";
 import { PricingTeaser } from "@/components/home/PricingTeaser";
 import { BroadcastHero } from "@/components/broadcast/BroadcastHero";
+import { ChaosBackground } from "@/components/scenes/ChaosBackground";
 import { CountUp } from "@/components/CountUp";
 
 export default function HomePage() {
@@ -90,7 +91,8 @@ const problems = [
 
 function ProblemSection() {
   return (
-    <section className="relative py-24 lg:py-32">
+    <section className="relative overflow-hidden py-24 lg:py-32">
+      <ChaosBackground />
       <Container>
         <SectionHeader
           eyebrow="The problem"
