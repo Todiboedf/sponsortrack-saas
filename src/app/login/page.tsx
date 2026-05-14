@@ -6,6 +6,7 @@ import { ArrowRight, Lock, Mail } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
+import { Logo } from "@/components/Logo";
 import { createClient } from "@/lib/supabase/client";
 
 export default function LoginPage() {
@@ -46,6 +47,9 @@ export default function LoginPage() {
   return (
     <section className="pt-32 pb-20 lg:pt-40">
       <Container className="max-w-md">
+        <div className="mb-8 flex justify-start">
+          <Logo size={26} />
+        </div>
         <div className="flex flex-col items-start gap-5">
           <Badge icon={<Lock size={13} />}>Sign in</Badge>
           <h1 className="font-[family-name:var(--font-display)] text-balance text-3xl font-semibold leading-[1.1] tracking-[-0.02em] text-white sm:text-4xl">
