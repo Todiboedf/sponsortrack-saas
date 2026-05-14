@@ -113,7 +113,7 @@ const pillars: Pillar[] = [
       "Per-camera angle and per-broadcaster breakdown",
       "GDPR-safe: no face identification, ever",
     ],
-    plan: ["Pro", "Enterprise"],
+    plan: ["Enterprise"],
     icon: <Camera size={20} />,
     Mockup: BroadcastMockup,
   },
