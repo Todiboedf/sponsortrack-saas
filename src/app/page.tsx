@@ -21,17 +21,17 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Reveal } from "@/components/ui/Reveal";
 import { GradientOrb } from "@/components/GradientOrb";
 import { LogoMarquee } from "@/components/LogoMarquee";
-import { HeroDashboard } from "@/components/HeroDashboard";
 import { AnimatedMesh } from "@/components/AnimatedMesh";
 import { HowItWorksScene } from "@/components/HowItWorksScene";
 import { SectionDivider } from "@/components/SectionDivider";
 import { PricingTeaser } from "@/components/home/PricingTeaser";
+import { BroadcastHero } from "@/components/broadcast/BroadcastHero";
 import { CountUp } from "@/components/CountUp";
 
 export default function HomePage() {
   return (
     <>
-      <Hero />
+      <BroadcastHero />
       <TrustedBy />
       <ProblemSection />
       <PlatformSection />
@@ -47,76 +47,7 @@ export default function HomePage() {
   );
 }
 
-/* -------------------------------------------------------------------------- */
-/* Hero                                                                       */
-/* -------------------------------------------------------------------------- */
-function Hero() {
-  return (
-    <section className="relative overflow-hidden pt-36 pb-12 lg:pt-44 lg:pb-16">
-      <div aria-hidden className="absolute inset-0 -z-20 bg-grid mask-fade-radial opacity-30" />
-      <div aria-hidden className="absolute inset-0 -z-10">
-        <AnimatedMesh variant="soft" />
-      </div>
-      <GradientOrb color="red" size={620} className="-left-40 -top-20" />
-      <GradientOrb color="gold" size={520} className="-right-40 top-40" intensity="soft" />
-      <Container>
-        <div className="mx-auto flex max-w-4xl flex-col items-center text-center">
-          <Reveal>
-            <Badge tone="red" icon={<Sparkles size={12} />}>
-              New · Match-day computer vision is live
-            </Badge>
-          </Reveal>
-          <Reveal delay={0.05}>
-            <h1 className="mt-7 font-[family-name:var(--font-display)] text-balance text-[44px] font-medium leading-[1.04] tracking-[-0.01em] text-[#F4EFE6] sm:text-6xl lg:text-[80px]">
-              Sponsor intelligence,
-              <br />
-              <em className="italic font-medium text-gradient-brand">lived in real time.</em>
-            </h1>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <p className="mt-7 max-w-2xl text-pretty text-lg text-[#F4EFE6]/70 sm:text-xl">
-              Built for the clubs, leagues and brands who measure what matters.
-              Cross-platform analytics, match-day computer vision, and the
-              reports that actually renew contracts.
-            </p>
-          </Reveal>
-          <Reveal delay={0.15}>
-            <div className="mt-10 flex flex-col items-center gap-3 sm:flex-row">
-              <Button href="/contact" size="lg" rightIcon={<ArrowRight size={16} />}>
-                Start free trial
-              </Button>
-              <Button href="/demo" size="lg" variant="outline">
-                Watch live demo
-              </Button>
-            </div>
-          </Reveal>
-          <Reveal delay={0.2}>
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[13px] text-[#F4EFE6]/55">
-              <span className="inline-flex items-center gap-2">
-                <Check size={14} className="text-[#B8975A]" />
-                14-day free trial
-              </span>
-              <span className="inline-flex items-center gap-2">
-                <Check size={14} className="text-[#B8975A]" />
-                No credit card required
-              </span>
-              <span className="inline-flex items-center gap-2">
-                <Check size={14} className="text-[#B8975A]" />
-                EU data residency
-              </span>
-            </div>
-          </Reveal>
-        </div>
-
-        <div className="relative mt-20 lg:mt-24">
-          <Reveal delay={0.1} y={36}>
-            <HeroDashboard />
-          </Reveal>
-        </div>
-      </Container>
-    </section>
-  );
-}
+/* Hero lives in components/broadcast/BroadcastHero.tsx (3D pitch + overlays). */
 
 /* -------------------------------------------------------------------------- */
 /* Trusted by                                                                 */
