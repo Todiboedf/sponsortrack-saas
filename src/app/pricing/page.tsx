@@ -19,6 +19,9 @@ type Tier = {
   monthly: number;
   yearly: number;
   featured?: boolean;
+  priceFrom?: boolean;
+  setupNote?: string;
+  trialNote?: boolean;
   cta: string;
   href: string;
   features: string[];
@@ -63,15 +66,16 @@ const tiers: Tier[] = [
     description: "For multi-club groups, agencies and federations.",
     monthly: 7000,
     yearly: 67200,
+    priceFrom: true,
+    setupNote: "+ €8,000 one-shot setup fee (includes 90-day onboarding)",
     cta: "Book a discovery call",
     href: "/contact",
     features: [
+      "Match-day computer vision (broadcast logo detection, LED rotation, interview backdrop)",
       "Dedicated success manager",
       "Custom data pipelines & API",
-      "On-prem / private cloud option",
-      "Custom computer-vision models",
-      "Rights & contract management",
-      "99.95% uptime SLA",
+      "On-prem / EU data residency",
+      "White-glove onboarding (90 days)",
     ],
   },
 ];
@@ -98,7 +102,7 @@ const matrix: {
   {
     section: "Onboarding & setup",
     rows: [
-      { label: "Setup fee", starter: "€0", pro: "€0", ent: "€5,000 (negotiable)" },
+      { label: "Setup fee", starter: "€0", pro: "€0", ent: "€8,000 one-shot" },
       {
         label: "Onboarding included",
         starter: "2h kick-off call",
@@ -165,7 +169,7 @@ const faqs = [
   },
   {
     q: "Why is there a setup fee on Enterprise?",
-    a: "Enterprise rollouts mean custom data pipelines, security reviews, and a 90-day white-glove onboarding. The €5,000 setup fee covers the dedicated team and is negotiable on multi-year contracts.",
+    a: "Enterprise rollouts mean custom data pipelines, security reviews, and a 90-day white-glove onboarding. The €8,000 one-shot setup fee covers the dedicated team for that 90-day window, and is adjustable on multi-club groups and federation engagements.",
   },
   {
     q: "What does ‘per property’ mean?",
@@ -293,14 +297,24 @@ export default function PricingPage() {
                     )}
                   </div>
                   <p className="mt-2 text-sm text-[#F4EFE6]/60">{t.description}</p>
-                  <div className="mt-6 min-h-[72px]">
+                  <div className="mt-6 min-h-[88px]">
                     <div className="flex items-baseline gap-1">
+                      {t.priceFrom && (
+                        <span className="mr-1 text-sm font-medium uppercase tracking-[0.18em] text-[#B8975A]">
+                          from
+                        </span>
+                      )}
                       <span className="font-[family-name:var(--font-mono)] text-5xl font-semibold tracking-tight text-[#F4EFE6] tabular-nums">
                         {price.big}
                       </span>
                       <span className="text-sm text-[#F4EFE6]/55">{price.small}</span>
                     </div>
                     <div className="mt-1 text-[12px] text-[#F4EFE6]/50">{price.sub}</div>
+                    {t.setupNote && (
+                      <div className="mt-1 text-[12px] font-medium text-[#B8975A]">
+                        {t.setupNote}
+                      </div>
+                    )}
                   </div>
                   <div className="mt-6">
                     <Button
@@ -312,6 +326,11 @@ export default function PricingPage() {
                       {t.cta}
                     </Button>
                   </div>
+                  {t.trialNote && (
+                    <p className="mt-3 text-center text-[11px] text-[#F4EFE6]/50">
+                      14-day free trial · no credit card · EU data residency
+                    </p>
+                  )}
                   <ul className="mt-7 flex flex-col gap-3 border-t border-[#F4EFE6]/[0.06] pt-6">
                     {t.features.map((f) => (
                       <li
@@ -402,10 +421,10 @@ export default function PricingPage() {
 
           <div className="mx-auto mt-10 max-w-3xl rounded-2xl border border-[#0F1A2E]/12 bg-[#FBF7EF] p-5 text-[13px] leading-relaxed text-[#0F1A2E]/75">
             <span className="font-semibold text-[#0F1A2E]">A note on the setup fee.</span>{" "}
-            The Enterprise tier is the only plan with a setup component
-            (€5,000). It funds the white-glove rollout, security review and
-            custom data pipeline work — and it is fully negotiable on
-            multi-year contracts.
+            Enterprise is the only plan with a one-shot setup component
+            (€8,000). It funds the 90-day white-glove onboarding, security
+            review and custom data pipeline work — adjustable on multi-club
+            groups and federation engagements.
           </div>
         </Container>
       </section>
