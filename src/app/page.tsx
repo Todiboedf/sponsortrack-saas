@@ -28,6 +28,7 @@ import { PricingTeaser } from "@/components/home/PricingTeaser";
 import { BroadcastHero } from "@/components/broadcast/BroadcastHero";
 import { ChaosBackground } from "@/components/scenes/ChaosBackground";
 import { PlatformConvergence } from "@/components/scenes/PlatformConvergence";
+import { TwoViewsConvergence } from "@/components/scenes/TwoViewsConvergence";
 import { CountUp } from "@/components/CountUp";
 
 export default function HomePage() {
@@ -286,88 +287,10 @@ function PerSponsorSection() {
             </div>
           </div>
 
-          <Reveal delay={0.1}>
-            <SplitWorkspace />
-          </Reveal>
+          <TwoViewsConvergence />
         </div>
       </Container>
     </section>
-  );
-}
-
-function SplitWorkspace() {
-  return (
-    <div className="relative">
-      <GradientOrb color="red" size={420} className="-right-20 top-10" intensity="soft" />
-      <div className="relative grid grid-cols-2 overflow-hidden rounded-2xl border border-[#F4EFE6]/[0.08] bg-[#0F1A2E] shadow-2xl">
-        {/* Club view */}
-        <div className="border-r border-[#F4EFE6]/[0.06] p-5">
-          <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#B8975A]">
-            Club view · CA Osasuna
-          </div>
-          <div className="mt-2 font-[family-name:var(--font-display)] text-base font-semibold text-[#F4EFE6]">
-            Portfolio
-          </div>
-          <ul className="mt-4 flex flex-col gap-2.5 text-[12px]">
-            {[
-              ["Caja Rural", "92%"],
-              ["Macron", "78%"],
-              ["Digi", "64%"],
-              ["Cervezas El Águila", "48%"],
-              ["Asisa", "32%"],
-            ].map(([n, v]) => (
-              <li key={n} className="flex items-center gap-3">
-                <span className="flex-1 truncate text-[#F4EFE6]/80">{n}</span>
-                <div className="h-1 w-16 overflow-hidden rounded-full bg-[#F4EFE6]/[0.06]">
-                  <div
-                    style={{ width: v }}
-                    className="h-full rounded-full bg-gradient-to-r from-[#8B0028] to-[#B8975A]"
-                  />
-                </div>
-                <span className="w-9 text-right font-[family-name:var(--font-mono)] tabular-nums text-[#F4EFE6]/85">
-                  {v}
-                </span>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Sponsor view (white-labelled) */}
-        <div className="bg-[#FBF7EF] p-5 text-[#0F1A2E]">
-          <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#8B0028]">
-            Sponsor view · Caja Rural
-          </div>
-          <div className="mt-2 font-[family-name:var(--font-display)] text-base font-semibold">
-            Brand exposure
-          </div>
-          <div className="mt-4 grid grid-cols-2 gap-3">
-            <div className="rounded-lg border border-[#0F1A2E]/10 bg-white p-3">
-              <div className="text-[10px] uppercase tracking-[0.18em] text-[#0F1A2E]/55">
-                EMV · 30d
-              </div>
-              <div className="mt-1 font-[family-name:var(--font-mono)] text-base font-semibold tabular-nums">
-                €1.84M
-              </div>
-              <div className="text-[10px] text-[#1F7A52]">+24%</div>
-            </div>
-            <div className="rounded-lg border border-[#0F1A2E]/10 bg-white p-3">
-              <div className="text-[10px] uppercase tracking-[0.18em] text-[#0F1A2E]/55">
-                Logo seconds
-              </div>
-              <div className="mt-1 font-[family-name:var(--font-mono)] text-base font-semibold tabular-nums">
-                26:14
-              </div>
-              <div className="text-[10px] text-[#1F7A52]">+18%</div>
-            </div>
-          </div>
-          <div className="mt-3 rounded-lg border border-[#0F1A2E]/10 bg-white p-3 text-[11px] leading-relaxed text-[#0F1A2E]/65">
-            Your jersey crest appeared on{" "}
-            <span className="font-semibold text-[#0F1A2E]">14 broadcasts</span>{" "}
-            this month — €0.62 CPM, below market by 38%.
-          </div>
-        </div>
-      </div>
-    </div>
   );
 }
 
