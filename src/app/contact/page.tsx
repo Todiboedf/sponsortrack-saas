@@ -14,7 +14,7 @@ import {
   Sparkles,
   User,
 } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { Container } from "@/components/ui/Container";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";

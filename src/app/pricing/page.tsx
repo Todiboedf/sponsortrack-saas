@@ -3,7 +3,7 @@
 import { Fragment, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, Check, HelpCircle, Minus, Sparkles } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
