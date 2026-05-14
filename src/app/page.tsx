@@ -25,7 +25,7 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Reveal } from "@/components/ui/Reveal";
 import { GradientOrb } from "@/components/GradientOrb";
 import { LogoMarquee } from "@/components/LogoMarquee";
-import { DashboardMockup } from "@/components/DashboardMockup";
+import { HeroDashboard } from "@/components/HeroDashboard";
 import { CountUp } from "@/components/CountUp";
 
 export default function HomePage() {
@@ -105,7 +105,7 @@ function Hero() {
 
         <div className="relative mt-20 lg:mt-24">
           <Reveal delay={0.1} y={36}>
-            <DashboardMockup />
+            <HeroDashboard />
           </Reveal>
         </div>
       </Container>
