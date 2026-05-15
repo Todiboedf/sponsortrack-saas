@@ -9,23 +9,18 @@ import { LiveHUD } from "./LiveHUD";
 import { AnimatedHeadline } from "./AnimatedHeadline";
 import { BroadcastFX } from "./BroadcastFX";
 import { HeroDashboard } from "./HeroDashboard";
+import { AuroraBackground } from "./AuroraBackground";
 
 export function BroadcastHero() {
   const reduced = useReducedMotion();
 
   return (
     <section className="relative min-h-[100svh] w-full overflow-hidden">
-      {/* Background — subtle navy + two soft radial highlights. No 3D. */}
-      <div
-        aria-hidden
-        className="absolute inset-0 -z-10 bg-[#0A1628]"
-        style={{
-          background:
-            "radial-gradient(ellipse 60% 50% at 70% 40%, rgba(125,211,252,0.08), transparent 60%), radial-gradient(ellipse 50% 40% at 20% 70%, rgba(168,85,247,0.06), transparent 60%), #0A1628",
-        }}
-      />
+      {/* Aurora — 4 drifting blurred orbs (cyan / violet / gold / red) on
+          pure CSS keyframes; replaces the flat navy background. */}
+      <AuroraBackground />
 
-      {/* CSS broadcast vignette + top blur cue */}
+      {/* CSS broadcast vignette + top blur cue, layered above aurora */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 -z-[5]"
@@ -53,62 +48,73 @@ export function BroadcastHero() {
         <RecBadge reduced={!!reduced} />
       </div>
 
-      <Container className="relative grid max-w-7xl grid-cols-1 items-center gap-10 pt-28 pb-24 md:grid-cols-2 md:gap-10 lg:grid-cols-12 lg:gap-12 lg:pt-32">
-        {/* LEFT — headline / CTAs / trust line / LiveHUD */}
-        <div className="flex flex-col items-start justify-center md:col-span-1 lg:col-span-7">
-          <Badge tone="red" icon={<Sparkles size={12} />}>
-            Live · Inside the Broadcast
-          </Badge>
-          <div className="mt-6 max-w-3xl">
-            <AnimatedHeadline />
-          </div>
-          <p className="mt-6 max-w-xl text-pretty text-[17px] text-slate-300 sm:text-lg">
-            Built for the clubs, leagues and brands who measure what matters.
-          </p>
-          <div className="mt-8 flex flex-col items-start gap-3 sm:flex-row">
-            <Button
-              href="/contact"
-              size="lg"
-              variant="cyan"
-              rightIcon={<ArrowRight size={16} />}
-            >
-              Start free trial
-            </Button>
-            <Button href="/demo" size="lg" variant="ghost">
-              Watch live demo
-            </Button>
-          </div>
-          <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-[13px] text-[#F4EFE6]/55">
-            <span className="inline-flex items-center gap-2">
-              <Check size={14} className="text-[#B8975A]" />
-              14-day free trial
-            </span>
-            <span className="inline-flex items-center gap-2">
-              <Check size={14} className="text-[#B8975A]" />
-              No credit card required
-            </span>
-            <span className="inline-flex items-center gap-2">
-              <Check size={14} className="text-[#B8975A]" />
-              EU data residency
-            </span>
-          </div>
-          <div className="mt-8">
-            <LiveHUD />
-          </div>
+      <Container className="relative mx-auto flex w-full max-w-6xl flex-col items-center justify-center px-6 pt-32 pb-24 text-center">
+        <Badge tone="red" icon={<Sparkles size={12} />}>
+          Live · Inside the Broadcast
+        </Badge>
+
+        <div className="mt-6 max-w-4xl">
+          <AnimatedHeadline />
         </div>
 
-        {/* RIGHT — interactive dashboard mockup
-            Mobile: stacked under the headline, capped at max-w-md so it
-            stays readable. Tablet: takes its column with no cap. Desktop:
-            5 of 12 cols + a 1° counter-clockwise tilt to suggest a screen
-            posed on the desk, with a cyan drop-shadow glow projected
-            behind. */}
-        <div className="relative mx-auto w-full max-w-md md:col-span-1 md:max-w-none md:mx-0 lg:col-span-5 lg:pl-2">
+        <p className="mt-6 max-w-2xl text-pretty text-[17px] text-slate-300 sm:text-lg">
+          Built for the clubs, leagues and brands who measure what matters.
+        </p>
+
+        <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row">
+          <Button
+            href="/contact"
+            size="lg"
+            variant="cyan"
+            rightIcon={<ArrowRight size={16} />}
+          >
+            Start free trial
+          </Button>
+          <Button href="/demo" size="lg" variant="ghost">
+            Watch live demo
+          </Button>
+        </div>
+
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[13px] text-[#F4EFE6]/55">
+          <span className="inline-flex items-center gap-2">
+            <Check size={14} className="text-[#B8975A]" />
+            14-day free trial
+          </span>
+          <span className="inline-flex items-center gap-2">
+            <Check size={14} className="text-[#B8975A]" />
+            No credit card required
+          </span>
+          <span className="inline-flex items-center gap-2">
+            <Check size={14} className="text-[#B8975A]" />
+            EU data residency
+          </span>
+        </div>
+
+        <div className="mt-10">
+          <LiveHUD />
+        </div>
+
+        {/* Dashboard — full-width landscape mockup tilted on a 3D perspective.
+            Outer wrapper carries the perspective context; inner wrapper
+            does the rotateX so the dashboard reads as a screen posed on a
+            cockpit desk. Tilt amount is driven by the `--hero-tilt` CSS
+            variable defined in globals.css: 0deg mobile, -4deg tablet,
+            -8deg desktop. Drop-shadow projects a cyan + red ember haze
+            behind the transparent rounded corners. */}
+        <div
+          className="mt-12 w-full max-w-md sm:max-w-2xl lg:max-w-5xl"
+          style={{
+            perspective: "2400px",
+            perspectiveOrigin: "50% 30%",
+          }}
+        >
           <div
-            className="relative lg:[transform:rotate(-1deg)]"
+            className="origin-top transform-gpu transition-transform"
             style={{
+              transform: "rotateX(var(--hero-tilt, 0deg))",
+              transformStyle: "preserve-3d",
               filter:
-                "drop-shadow(0 24px 60px rgba(125,211,252,0.22)) drop-shadow(0 30px 80px rgba(139,0,40,0.18))",
+                "drop-shadow(0 24px 60px rgba(125,211,252,0.25)) drop-shadow(0 40px 90px rgba(139,0,40,0.18))",
             }}
           >
             <HeroDashboard />
