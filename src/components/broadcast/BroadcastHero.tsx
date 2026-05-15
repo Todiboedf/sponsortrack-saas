@@ -9,23 +9,18 @@ import { LiveHUD } from "./LiveHUD";
 import { AnimatedHeadline } from "./AnimatedHeadline";
 import { BroadcastFX } from "./BroadcastFX";
 import { HeroDashboard } from "./HeroDashboard";
+import { AuroraBackground } from "./AuroraBackground";
 
 export function BroadcastHero() {
   const reduced = useReducedMotion();
 
   return (
     <section className="relative min-h-[100svh] w-full overflow-hidden">
-      {/* Background — subtle navy + two soft radial highlights. No 3D. */}
-      <div
-        aria-hidden
-        className="absolute inset-0 -z-10 bg-[#0A1628]"
-        style={{
-          background:
-            "radial-gradient(ellipse 60% 50% at 70% 40%, rgba(125,211,252,0.08), transparent 60%), radial-gradient(ellipse 50% 40% at 20% 70%, rgba(168,85,247,0.06), transparent 60%), #0A1628",
-        }}
-      />
+      {/* Aurora — 4 drifting blurred orbs (cyan / violet / gold / red) on
+          pure CSS keyframes; replaces the flat navy background. */}
+      <AuroraBackground />
 
-      {/* CSS broadcast vignette + top blur cue */}
+      {/* CSS broadcast vignette + top blur cue, layered above aurora */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 -z-[5]"
