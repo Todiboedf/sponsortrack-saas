@@ -53,9 +53,9 @@ export function BroadcastHero() {
         <RecBadge reduced={!!reduced} />
       </div>
 
-      <Container className="relative grid max-w-7xl grid-cols-1 items-center gap-10 pt-28 pb-24 lg:grid-cols-12 lg:gap-12 lg:pt-32">
+      <Container className="relative grid max-w-7xl grid-cols-1 items-center gap-10 pt-28 pb-24 md:grid-cols-2 md:gap-10 lg:grid-cols-12 lg:gap-12 lg:pt-32">
         {/* LEFT — headline / CTAs / trust line / LiveHUD */}
-        <div className="flex flex-col items-start justify-center lg:col-span-7">
+        <div className="flex flex-col items-start justify-center md:col-span-1 lg:col-span-7">
           <Badge tone="red" icon={<Sparkles size={12} />}>
             Live · Inside the Broadcast
           </Badge>
@@ -97,9 +97,22 @@ export function BroadcastHero() {
           </div>
         </div>
 
-        {/* RIGHT — interactive dashboard mockup */}
-        <div className="relative lg:col-span-5 lg:pl-2">
-          <HeroDashboard />
+        {/* RIGHT — interactive dashboard mockup
+            Mobile: stacked under the headline, capped at max-w-md so it
+            stays readable. Tablet: takes its column with no cap. Desktop:
+            5 of 12 cols + a 1° counter-clockwise tilt to suggest a screen
+            posed on the desk, with a cyan drop-shadow glow projected
+            behind. */}
+        <div className="relative mx-auto w-full max-w-md md:col-span-1 md:max-w-none md:mx-0 lg:col-span-5 lg:pl-2">
+          <div
+            className="relative lg:[transform:rotate(-1deg)]"
+            style={{
+              filter:
+                "drop-shadow(0 24px 60px rgba(125,211,252,0.22)) drop-shadow(0 30px 80px rgba(139,0,40,0.18))",
+            }}
+          >
+            <HeroDashboard />
+          </div>
         </div>
       </Container>
     </section>
