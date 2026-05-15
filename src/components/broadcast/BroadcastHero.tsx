@@ -1,167 +1,39 @@
 "use client";
 
-import { Suspense, useEffect, useLayoutEffect, useState } from "react";
-import dynamic from "next/dynamic";
 import { motion, useReducedMotion } from "motion/react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { ArrowRight, Check, Sparkles } from "lucide-react";
-import { DetectionOverlay } from "./DetectionOverlay";
 import { LiveHUD } from "./LiveHUD";
 import { AnimatedHeadline } from "./AnimatedHeadline";
 import { BroadcastFX } from "./BroadcastFX";
-
-const PitchCanvas = dynamic(() => import("./PitchCanvas"), {
-  ssr: false,
-  loading: () => <PosterFrame />,
-});
-
-/**
- * True once the browser is past first paint and reports >=768px width.
- * Drives whether we mount the R3F Canvas — under that breakpoint, or
- * before idle, we keep the poster frame in place.
- */
-function useShouldLoad3D() {
-  const reduced = useReducedMotion();
-  const [shouldLoad, setShouldLoad] = useState(false);
-
-  useEffect(() => {
-    if (reduced) return;
-    if (typeof window === "undefined") return;
-    const mq = window.matchMedia("(min-width: 768px)");
-    let scheduled = false;
-    let cancelIdle: number | undefined;
-    const tryLoad = () => {
-      if (mq.matches && !scheduled) {
-        scheduled = true;
-        const ric = (
-          window as unknown as {
-            requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number;
-          }
-        ).requestIdleCallback;
-        if (ric) {
-          cancelIdle = ric(() => setShouldLoad(true), { timeout: 1500 });
-        } else {
-          setTimeout(() => setShouldLoad(true), 250);
-        }
-      }
-      if (!mq.matches) setShouldLoad(false);
-    };
-    tryLoad();
-    mq.addEventListener("change", tryLoad);
-    return () => {
-      mq.removeEventListener("change", tryLoad);
-      if (cancelIdle !== undefined) {
-        const cic = (
-          window as unknown as {
-            cancelIdleCallback?: (id: number) => void;
-          }
-        ).cancelIdleCallback;
-        cic?.(cancelIdle);
-      }
-    };
-  }, [reduced]);
-
-  return shouldLoad;
-}
-
-/**
- * Static fallback shown while the 3D scene is loading, on viewports
- * below the mobile breakpoint, and for users who prefer reduced
- * motion. Pure CSS so it carries no JS cost.
- */
-function PosterFrame() {
-  return (
-    <div
-      aria-hidden
-      className="absolute inset-0 overflow-hidden"
-      style={{
-        background:
-          "radial-gradient(ellipse 70% 50% at 50% 70%, rgba(31,122,82,0.45) 0%, rgba(10,22,40,0.85) 65%, #060D18 100%)",
-      }}
-    >
-      <div
-        className="absolute inset-x-0 bottom-0 h-2/3"
-        style={{
-          background:
-            "linear-gradient(180deg, transparent 0%, rgba(10, 22, 40, 0.55) 60%, rgba(10, 22, 40, 0.85) 100%)",
-        }}
-      />
-      <div
-        className="absolute left-1/2 top-[60%] h-px w-2/3 -translate-x-1/2"
-        style={{
-          background:
-            "linear-gradient(90deg, transparent, rgba(244,239,230,0.45), transparent)",
-        }}
-      />
-    </div>
-  );
-}
+import { HeroDashboard } from "./HeroDashboard";
 
 export function BroadcastHero() {
   const reduced = useReducedMotion();
-  const shouldLoad3D = useShouldLoad3D();
-
-  /* Force the R3F ResizeObserver to re-measure once the Canvas chunk
-   * lands. In prod we kept seeing the canvas attribute size stuck at the
-   * HTML default 300×150 — the parent box is `position: absolute; inset:
-   * 0` but on the first measurement pass the observer was reading a
-   * stale (or zero) rect. Reading `body.getBoundingClientRect()` forces
-   * a layout flush, then a synthetic `resize` event covers any code path
-   * that listens to the window. We fire three times (sync + 50ms + 250ms)
-   * so the Canvas, its dpr-scaled framebuffer, and the EffectComposer
-   * passes all settle on the right dimensions. */
-  useLayoutEffect(() => {
-    if (!shouldLoad3D || typeof window === "undefined") return;
-    document.body.getBoundingClientRect();
-    window.dispatchEvent(new Event("resize"));
-    const t1 = setTimeout(() => window.dispatchEvent(new Event("resize")), 50);
-    const t2 = setTimeout(() => window.dispatchEvent(new Event("resize")), 250);
-    return () => {
-      clearTimeout(t1);
-      clearTimeout(t2);
-    };
-  }, [shouldLoad3D]);
 
   return (
-    <section className="relative h-[100svh] min-h-[640px] w-full overflow-hidden">
-      {/* 3D layer — gated by viewport (>=md) and reduced-motion. Explicit
-          inline dimensions: Tailwind's `absolute inset-0 -z-10` gives the
-          right CSS, but R3F's first ResizeObserver pass was occasionally
-          reading the box as 0×0 in prod, which collapsed the canvas back
-          to its HTML default 300×150. Belt-and-suspenders inline style
-          guarantees a measurable rect on first observation. */}
+    <section className="relative min-h-[100svh] w-full overflow-hidden">
+      {/* Background — subtle navy + two soft radial highlights. No 3D. */}
       <div
-        className="absolute inset-0 -z-10"
+        aria-hidden
+        className="absolute inset-0 -z-10 bg-[#0A1628]"
         style={{
-          position: "absolute",
-          inset: 0,
-          width: "100%",
-          height: "100%",
-          minHeight: 640,
+          background:
+            "radial-gradient(ellipse 60% 50% at 70% 40%, rgba(125,211,252,0.08), transparent 60%), radial-gradient(ellipse 50% 40% at 20% 70%, rgba(168,85,247,0.06), transparent 60%), #0A1628",
         }}
-      >
-        {!reduced && shouldLoad3D ? (
-          <Suspense fallback={<PosterFrame />}>
-            <PitchCanvas />
-          </Suspense>
-        ) : (
-          <PosterFrame />
-        )}
-      </div>
+      />
 
-      {/* CSS broadcast vignette — DoF + vignette are faked here so we
-          can keep the GPU bill on Bloom alone. */}
+      {/* CSS broadcast vignette + top blur cue */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 -z-[5]"
         style={{
           background:
-            "radial-gradient(ellipse 80% 60% at 50% 35%, rgba(10,22,40,0) 0%, rgba(10,22,40,0.18) 45%, rgba(10,22,40,0.55) 70%, rgba(6,13,24,0.92) 100%)",
+            "radial-gradient(ellipse 90% 70% at 50% 40%, rgba(10,22,40,0) 0%, rgba(10,22,40,0.18) 50%, rgba(10,22,40,0.45) 75%, rgba(6,13,24,0.85) 100%)",
         }}
       />
-      {/* Soft top-edge focus pull (DoF cue) */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-x-0 top-0 -z-[4] h-32"
@@ -173,7 +45,7 @@ export function BroadcastHero() {
         }}
       />
 
-      {/* Atmospheric broadcast FX: subtle scan-line + bottom crawl ticker */}
+      {/* Atmospheric scan-line + bottom crawl ticker */}
       <BroadcastFX />
 
       {/* REC badge — top-right, broadcast camera cue */}
@@ -181,62 +53,71 @@ export function BroadcastHero() {
         <RecBadge reduced={!!reduced} />
       </div>
 
-      {/* Live logo detection bounding boxes (HTML overlay above the Canvas) */}
-      <DetectionOverlay />
-
-      {/* Live HUD pill pinned to the bottom-left of the hero */}
-      <div className="pointer-events-none absolute bottom-12 left-4 right-4 z-10 flex justify-start sm:bottom-14 sm:left-8">
-        <div className="pointer-events-auto">
-          <LiveHUD />
+      <Container className="relative grid max-w-7xl grid-cols-1 items-center gap-10 pt-28 pb-24 md:grid-cols-2 md:gap-10 lg:grid-cols-12 lg:gap-12 lg:pt-32">
+        {/* LEFT — headline / CTAs / trust line / LiveHUD */}
+        <div className="flex flex-col items-start justify-center md:col-span-1 lg:col-span-7">
+          <Badge tone="red" icon={<Sparkles size={12} />}>
+            Live · Inside the Broadcast
+          </Badge>
+          <div className="mt-6 max-w-3xl">
+            <AnimatedHeadline />
+          </div>
+          <p className="mt-6 max-w-xl text-pretty text-[17px] text-slate-300 sm:text-lg">
+            Built for the clubs, leagues and brands who measure what matters.
+          </p>
+          <div className="mt-8 flex flex-col items-start gap-3 sm:flex-row">
+            <Button
+              href="/contact"
+              size="lg"
+              variant="cyan"
+              rightIcon={<ArrowRight size={16} />}
+            >
+              Start free trial
+            </Button>
+            <Button href="/demo" size="lg" variant="ghost">
+              Watch live demo
+            </Button>
+          </div>
+          <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-[13px] text-[#F4EFE6]/55">
+            <span className="inline-flex items-center gap-2">
+              <Check size={14} className="text-[#B8975A]" />
+              14-day free trial
+            </span>
+            <span className="inline-flex items-center gap-2">
+              <Check size={14} className="text-[#B8975A]" />
+              No credit card required
+            </span>
+            <span className="inline-flex items-center gap-2">
+              <Check size={14} className="text-[#B8975A]" />
+              EU data residency
+            </span>
+          </div>
+          <div className="mt-8">
+            <LiveHUD />
+          </div>
         </div>
-      </div>
 
-      {/* Headline + CTAs */}
-      <Container className="relative flex h-full max-w-5xl flex-col items-start justify-center pt-32 pb-32">
-        <Badge tone="red" icon={<Sparkles size={12} />}>
-          Live · Inside the Broadcast
-        </Badge>
-        <div className="mt-6 max-w-3xl">
-          <AnimatedHeadline />
-        </div>
-        <p className="mt-6 max-w-xl text-pretty text-[17px] text-slate-300 sm:text-lg">
-          Built for the clubs, leagues and brands who measure what matters.
-        </p>
-        <div className="mt-10 flex flex-col items-start gap-3 sm:flex-row">
-          <Button
-            href="/contact"
-            size="lg"
-            variant="cyan"
-            rightIcon={<ArrowRight size={16} />}
+        {/* RIGHT — interactive dashboard mockup
+            Mobile: stacked under the headline, capped at max-w-md so it
+            stays readable. Tablet: takes its column with no cap. Desktop:
+            5 of 12 cols + a 1° counter-clockwise tilt to suggest a screen
+            posed on the desk, with a cyan drop-shadow glow projected
+            behind. */}
+        <div className="relative mx-auto w-full max-w-md md:col-span-1 md:max-w-none md:mx-0 lg:col-span-5 lg:pl-2">
+          <div
+            className="relative lg:[transform:rotate(-1deg)]"
+            style={{
+              filter:
+                "drop-shadow(0 24px 60px rgba(125,211,252,0.22)) drop-shadow(0 30px 80px rgba(139,0,40,0.18))",
+            }}
           >
-            Start free trial
-          </Button>
-          <Button href="/demo" size="lg" variant="ghost">
-            Watch live demo
-          </Button>
-        </div>
-        <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-[13px] text-[#F4EFE6]/55">
-          <span className="inline-flex items-center gap-2">
-            <Check size={14} className="text-[#B8975A]" />
-            14-day free trial
-          </span>
-          <span className="inline-flex items-center gap-2">
-            <Check size={14} className="text-[#B8975A]" />
-            No credit card required
-          </span>
-          <span className="inline-flex items-center gap-2">
-            <Check size={14} className="text-[#B8975A]" />
-            EU data residency
-          </span>
+            <HeroDashboard />
+          </div>
         </div>
       </Container>
     </section>
   );
 }
-
-/* -------------------------------------------------------------------------- */
-/* REC badge — broadcast camera "recording" cue at top-right                  */
-/* -------------------------------------------------------------------------- */
 
 function RecBadge({ reduced }: { reduced: boolean }) {
   return (
@@ -244,11 +125,7 @@ function RecBadge({ reduced }: { reduced: boolean }) {
       <motion.span
         aria-hidden
         className="inline-flex h-1.5 w-1.5 rounded-full bg-[#ef4444]"
-        animate={
-          reduced
-            ? { opacity: 1 }
-            : { opacity: [1, 0.25, 1] }
-        }
+        animate={reduced ? { opacity: 1 } : { opacity: [1, 0.25, 1] }}
         transition={
           reduced
             ? { duration: 0 }

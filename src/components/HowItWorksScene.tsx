@@ -13,13 +13,19 @@ import {
   Signature,
   Workflow,
 } from "lucide-react";
-import { RibbonPath } from "@/components/scenes/RibbonPath";
-
 function Ribbon() {
+  // Decorative cyan beam — pure CSS now (the 3D TubeGeometry version
+  // was retired with the rest of the Three.js stack in PR #10).
   return (
-    <div className="absolute inset-x-0 top-1/2 -z-[1] hidden h-32 -translate-y-1/2 opacity-50 lg:block">
-      <RibbonPath />
-    </div>
+    <div
+      aria-hidden
+      className="absolute inset-x-0 top-1/2 -z-[1] hidden h-px -translate-y-1/2 lg:block"
+      style={{
+        background:
+          "linear-gradient(90deg, transparent 0%, rgba(125,211,252,0.35) 25%, rgba(167,139,250,0.40) 55%, rgba(125,211,252,0.25) 80%, transparent 100%)",
+        boxShadow: "0 0 24px rgba(125,211,252,0.18)",
+      }}
+    />
   );
 }
 
