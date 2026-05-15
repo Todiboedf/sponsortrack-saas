@@ -5,35 +5,33 @@ import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { ArrowRight, Check, Sparkles } from "lucide-react";
-import { DetectionOverlay } from "./DetectionOverlay";
 import { LiveHUD } from "./LiveHUD";
 import { AnimatedHeadline } from "./AnimatedHeadline";
 import { BroadcastFX } from "./BroadcastFX";
+import { HeroDashboard } from "./HeroDashboard";
 
 export function BroadcastHero() {
   const reduced = useReducedMotion();
 
   return (
-    <section className="relative h-[100svh] min-h-[640px] w-full overflow-hidden">
-      {/* Background — 3D pitch was here, now replaced by a soft radial
-          gradient. The full split-screen + dashboard mockup lands in a
-          follow-up commit. */}
+    <section className="relative min-h-[100svh] w-full overflow-hidden">
+      {/* Background — subtle navy + two soft radial highlights. No 3D. */}
       <div
         aria-hidden
-        className="absolute inset-0 -z-10"
+        className="absolute inset-0 -z-10 bg-[#0A1628]"
         style={{
           background:
-            "radial-gradient(ellipse 70% 50% at 50% 70%, rgba(31,122,82,0.35) 0%, rgba(10,22,40,0.85) 65%, #060D18 100%)",
+            "radial-gradient(ellipse 60% 50% at 70% 40%, rgba(125,211,252,0.08), transparent 60%), radial-gradient(ellipse 50% 40% at 20% 70%, rgba(168,85,247,0.06), transparent 60%), #0A1628",
         }}
       />
 
-      {/* CSS broadcast vignette */}
+      {/* CSS broadcast vignette + top blur cue */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 -z-[5]"
         style={{
           background:
-            "radial-gradient(ellipse 80% 60% at 50% 35%, rgba(10,22,40,0) 0%, rgba(10,22,40,0.18) 45%, rgba(10,22,40,0.55) 70%, rgba(6,13,24,0.92) 100%)",
+            "radial-gradient(ellipse 90% 70% at 50% 40%, rgba(10,22,40,0) 0%, rgba(10,22,40,0.18) 50%, rgba(10,22,40,0.45) 75%, rgba(6,13,24,0.85) 100%)",
         }}
       />
       <div
@@ -47,56 +45,61 @@ export function BroadcastHero() {
         }}
       />
 
+      {/* Atmospheric scan-line + bottom crawl ticker */}
       <BroadcastFX />
 
+      {/* REC badge — top-right, broadcast camera cue */}
       <div className="pointer-events-none absolute right-5 top-5 z-10 hidden lg:block">
         <RecBadge reduced={!!reduced} />
       </div>
 
-      <DetectionOverlay />
+      <Container className="relative grid max-w-7xl grid-cols-1 items-center gap-10 pt-28 pb-24 lg:grid-cols-12 lg:gap-12 lg:pt-32">
+        {/* LEFT — headline / CTAs / trust line / LiveHUD */}
+        <div className="flex flex-col items-start justify-center lg:col-span-7">
+          <Badge tone="red" icon={<Sparkles size={12} />}>
+            Live · Inside the Broadcast
+          </Badge>
+          <div className="mt-6 max-w-3xl">
+            <AnimatedHeadline />
+          </div>
+          <p className="mt-6 max-w-xl text-pretty text-[17px] text-slate-300 sm:text-lg">
+            Built for the clubs, leagues and brands who measure what matters.
+          </p>
+          <div className="mt-8 flex flex-col items-start gap-3 sm:flex-row">
+            <Button
+              href="/contact"
+              size="lg"
+              variant="cyan"
+              rightIcon={<ArrowRight size={16} />}
+            >
+              Start free trial
+            </Button>
+            <Button href="/demo" size="lg" variant="ghost">
+              Watch live demo
+            </Button>
+          </div>
+          <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-[13px] text-[#F4EFE6]/55">
+            <span className="inline-flex items-center gap-2">
+              <Check size={14} className="text-[#B8975A]" />
+              14-day free trial
+            </span>
+            <span className="inline-flex items-center gap-2">
+              <Check size={14} className="text-[#B8975A]" />
+              No credit card required
+            </span>
+            <span className="inline-flex items-center gap-2">
+              <Check size={14} className="text-[#B8975A]" />
+              EU data residency
+            </span>
+          </div>
+          <div className="mt-8">
+            <LiveHUD />
+          </div>
+        </div>
 
-      <div className="pointer-events-none absolute bottom-12 left-4 right-4 z-10 flex justify-start sm:bottom-14 sm:left-8">
-        <div className="pointer-events-auto">
-          <LiveHUD />
-        </div>
-      </div>
-
-      <Container className="relative flex h-full max-w-5xl flex-col items-start justify-center pt-32 pb-32">
-        <Badge tone="red" icon={<Sparkles size={12} />}>
-          Live · Inside the Broadcast
-        </Badge>
-        <div className="mt-6 max-w-3xl">
-          <AnimatedHeadline />
-        </div>
-        <p className="mt-6 max-w-xl text-pretty text-[17px] text-slate-300 sm:text-lg">
-          Built for the clubs, leagues and brands who measure what matters.
-        </p>
-        <div className="mt-10 flex flex-col items-start gap-3 sm:flex-row">
-          <Button
-            href="/contact"
-            size="lg"
-            variant="cyan"
-            rightIcon={<ArrowRight size={16} />}
-          >
-            Start free trial
-          </Button>
-          <Button href="/demo" size="lg" variant="ghost">
-            Watch live demo
-          </Button>
-        </div>
-        <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-[13px] text-[#F4EFE6]/55">
-          <span className="inline-flex items-center gap-2">
-            <Check size={14} className="text-[#B8975A]" />
-            14-day free trial
-          </span>
-          <span className="inline-flex items-center gap-2">
-            <Check size={14} className="text-[#B8975A]" />
-            No credit card required
-          </span>
-          <span className="inline-flex items-center gap-2">
-            <Check size={14} className="text-[#B8975A]" />
-            EU data residency
-          </span>
+        {/* RIGHT — interactive dashboard mockup */}
+        <div className="relative lg:col-span-5 lg:pl-2">
+          <HeroDashboard />
         </div>
       </Container>
     </section>
