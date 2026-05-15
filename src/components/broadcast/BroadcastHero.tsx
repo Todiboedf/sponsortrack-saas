@@ -94,10 +94,31 @@ export function BroadcastHero() {
           <LiveHUD />
         </div>
 
-        {/* Dashboard — full-width landscape mockup. Perspective tilt wraps
-            in a follow-up commit so this change stays focused on layout. */}
-        <div className="mt-12 w-full max-w-md sm:max-w-2xl lg:max-w-5xl">
-          <HeroDashboard />
+        {/* Dashboard — full-width landscape mockup tilted on a 3D perspective.
+            Outer wrapper carries the perspective context; inner wrapper
+            does the rotateX so the dashboard reads as a screen posed on a
+            cockpit desk. Tilt amount is driven by the `--hero-tilt` CSS
+            variable defined in globals.css: 0deg mobile, -4deg tablet,
+            -8deg desktop. Drop-shadow projects a cyan + red ember haze
+            behind the transparent rounded corners. */}
+        <div
+          className="mt-12 w-full max-w-md sm:max-w-2xl lg:max-w-5xl"
+          style={{
+            perspective: "2400px",
+            perspectiveOrigin: "50% 30%",
+          }}
+        >
+          <div
+            className="origin-top transform-gpu transition-transform"
+            style={{
+              transform: "rotateX(var(--hero-tilt, 0deg))",
+              transformStyle: "preserve-3d",
+              filter:
+                "drop-shadow(0 24px 60px rgba(125,211,252,0.25)) drop-shadow(0 40px 90px rgba(139,0,40,0.18))",
+            }}
+          >
+            <HeroDashboard />
+          </div>
         </div>
       </Container>
     </section>

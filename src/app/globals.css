@@ -56,6 +56,16 @@
   color-scheme: dark;
   --background: #0A1628;
   --foreground: #F4EFE6;
+  /* Hero dashboard perspective tilt — flat on mobile, deeper on wider
+     viewports. Read by BroadcastHero's dashboard wrapper. */
+  --hero-tilt: 0deg;
+}
+
+@media (min-width: 768px) {
+  :root { --hero-tilt: -4deg; }
+}
+@media (min-width: 1024px) {
+  :root { --hero-tilt: -8deg; }
 }
 
 *,
