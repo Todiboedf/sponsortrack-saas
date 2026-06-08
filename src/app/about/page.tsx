@@ -3,7 +3,6 @@ import Link from "next/link";
 import {
   ArrowRight,
   ArrowUpRight,
-  ExternalLink,
   Flag,
   HeartHandshake,
   LineChart,
@@ -24,7 +23,7 @@ import { GradientOrb } from "@/components/GradientOrb";
 export const metadata: Metadata = {
   title: "About, Building the sponsor intelligence layer for sport",
   description:
-    "Sponsorlens is a solo-founded, public-build sports sponsorship platform measuring every match, post and impression, currently piloting with Atlético Demo.",
+    "Sponsorlens is a solo-founded, public-build sports sponsorship platform measuring every match, post and impression. Pre-launch, looking for its first design partners.",
 };
 
 const values = [
@@ -53,7 +52,7 @@ const values = [
 const founder = {
   name: "Guillaume Haas",
   role: "Founder",
-  bio: "Entrepreneur with a product engineering background, building Sponsorlens solo, from the data model to the first board pitch. Based in Madrid, currently piloting with Atlético Demo.",
+  bio: "Entrepreneur with a product engineering background, building Sponsorlens solo, from the data model to the first board pitch. Based in Madrid, pre-launch and looking for the first design partners.",
 };
 
 const milestones = [
@@ -69,8 +68,8 @@ const milestones = [
   },
   {
     year: "2026",
-    title: "Atlético Demo pilot",
-    body: "First design partner: a centenary LaLiga club. A twenty-week pilot, eight sponsors, with match-day computer vision in active development.",
+    title: "Looking for the first pilot",
+    body: "Product built end-to-end, with match-day computer vision in active development. Now looking for the first club to run a real pilot with.",
   },
   {
     year: "Next",
@@ -163,8 +162,8 @@ export default function AboutPage() {
                 <div className="grid grid-cols-2 gap-4">
                   {[
                     { stat: "$100B", label: "Global sponsorship market" },
-                    { stat: "1", label: "Pilot club live (Atlético Demo)" },
-                    { stat: "8", label: "Sponsors in the pilot scope" },
+                    { stat: "1", label: "Solo founder, in public" },
+                    { stat: "8", label: "Sponsors in the live demo" },
                     { stat: "11×", label: "Faster than a spreadsheet" },
                     { stat: "EU-first", label: "Data residency policy" },
                     { stat: "2026", label: "Building in the open" },
@@ -196,34 +195,26 @@ export default function AboutPage() {
               <div className="grid gap-0 lg:grid-cols-[1.05fr_0.95fr]">
                 <div className="p-8 lg:p-10">
                   <Badge tone="gold" icon={<Trophy size={12} />}>
-                    Our case study
+                    Sample scenario
                   </Badge>
                   <h2 className="mt-5 font-[family-name:var(--font-display)] text-balance text-3xl font-semibold tracking-[-0.01em] text-[#F4EFE6] sm:text-4xl">
-                    Atlético Demo -{" "}
+                    What a 20-week pilot{" "}
                     <em className="italic text-gradient-brand">
-                      twenty weeks to prove the model.
+                      looks like.
                     </em>
                   </h2>
                   <p className="mt-4 text-[15px] leading-relaxed text-[#F4EFE6]/65">
-                    A centenary LaLiga club piloting Sponsorlens: live social
-                    analytics and per-sponsor portals wired against a real
-                    season schedule, with match-day computer vision in active
-                    development.
+                    An illustrative pilot: live social analytics and per-sponsor
+                    portals wired against a real season schedule, with match-day
+                    computer vision in active development. (Sample data, not a
+                    real client.)
                   </p>
                   <div className="mt-6 flex flex-wrap items-center gap-3">
                     <Button
                       href="/demo"
                       rightIcon={<ArrowRight size={15} />}
                     >
-                      Read the case study
-                    </Button>
-                    <Button
-                      href="https://osasuna-project.vercel.app/clients/osasuna"
-                      external
-                      variant="outline"
-                      rightIcon={<ExternalLink size={14} />}
-                    >
-                      View public pitch
+                      See the live demo
                     </Button>
                   </div>
                 </div>

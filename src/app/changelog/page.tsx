@@ -47,20 +47,16 @@ const entries: Entry[] = [
   {
     date: "2026-05-01",
     tag: "feature",
-    title: "Match-day computer vision (preview)",
-    body: "First production deployment of our broadcast-feed model: live logo, jersey and LED detection running on Movistar+ and the in-house feed during Atlético Demo fixtures.",
+    title: "Match-day computer vision (in development)",
+    body: "Building the computer-vision pipeline: detect sponsor logos, jerseys and LED rotations on recorded broadcast footage and compute exact screen-time. In active development, not yet in production.",
     icon: <Camera size={18} />,
   },
   {
     date: "2026-04-30",
     tag: "pilot",
-    title: "Atlético Demo pilot validated by board",
-    body: "20-week pilot signed off in board video conference. Sponsorlens named the measurement layer for the Northwind / Vertex / Lumina / Bravo Lager / Meridian portfolio.",
+    title: "Pitched to a LaLiga club",
+    body: "Presented Sponsorlens to a LaLiga club's commercial team through my Real Madrid Graduate School TFM. Genuine interest in the social / API analytics; a full pilot and broadcast CV still to land.",
     icon: <Sparkles size={18} />,
-    href: {
-      label: "Read the case study",
-      url: "/demo",
-    },
   },
   {
     date: "2026-04-25",
