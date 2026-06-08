@@ -88,7 +88,7 @@ const problems = [
   {
     icon: <TrendingUp size={22} />,
     title: "Growth goes untracked",
-    body: "You miss the spikes that matter — a viral post, a breakout match — because tracking is manual, slow, and usually after the fact.",
+    body: "You miss the spikes that matter, a viral post, a breakout match, because tracking is manual, slow, and usually after the fact.",
   },
 ];
 
@@ -138,13 +138,13 @@ const features = [
   {
     icon: <BarChart3 size={22} />,
     title: "Unified social analytics",
-    body: "Instagram, TikTok, X, YouTube, Facebook — aggregated, deduplicated, normalised. One number per sponsor, per match, per week.",
+    body: "Instagram, TikTok, X, YouTube, Facebook, aggregated, deduplicated, normalised. One number per sponsor, per match, per week.",
     points: ["Cross-platform reach", "Post-level attribution", "Organic vs paid"],
   },
   {
     icon: <Camera size={22} />,
     title: "Match-day computer vision",
-    body: "Logo-level exposure on match footage — jersey, LED and on-screen time. In active development; starting on owned and in-venue content, broadcast next.",
+    body: "Logo-level exposure on match footage, jersey, LED and on-screen time. In active development; starting on owned and in-venue content, broadcast next.",
     points: ["Logo & screen-time detection", "Owned + in-venue sources first", "GDPR-safe processing"],
   },
   {
@@ -171,7 +171,7 @@ function PlatformSection() {
               <em className="italic text-gradient-brand">Complete visibility.</em>
             </>
           }
-          description="Everything your commercial team needs to measure a sponsorship, prove the value, and sell the renewal — in a single source of truth."
+          description="Everything your commercial team needs to measure a sponsorship, prove the value, and sell the renewal, in a single source of truth."
         />
         <PlatformConvergence />
         <div className="mt-16 grid gap-5 md:grid-cols-3">
@@ -220,7 +220,7 @@ function PlatformSection() {
 }
 
 /* -------------------------------------------------------------------------- */
-/* How it works — scroll-pinned scene lives in HowItWorksScene.tsx            */
+/* How it works, scroll-pinned scene lives in HowItWorksScene.tsx            */
 /* -------------------------------------------------------------------------- */
 
 function HowItWorks() {
@@ -252,7 +252,7 @@ function PerSponsorSection() {
             </h2>
             <p className="mt-5 text-pretty text-lg text-[#F4EFE6]/65">
               The club watches the whole portfolio. Each sponsor sees only
-              what&apos;s theirs — branded, in their currency, in their language.
+              what&apos;s theirs, branded, in their currency, in their language.
               Same data, two narratives, zero spreadsheets.
             </p>
             <ul className="mt-8 flex flex-col gap-4">
@@ -404,7 +404,7 @@ function FinalCta() {
           <Reveal delay={0.15}>
             <p className="mx-auto mt-5 max-w-xl text-pretty text-lg text-[#F4EFE6]/65">
               Join the clubs, leagues and brands turning every match into
-              measurable value — from the first post to the final whistle.
+              measurable value, from the first post to the final whistle.
             </p>
           </Reveal>
           <Reveal delay={0.2}>

@@ -3,7 +3,7 @@
 import { motion, useReducedMotion } from "motion/react";
 
 /**
- * Sponsorlens animated mesh — two softly blurred brand orbs drifting behind
+ * Sponsorlens animated mesh, two softly blurred brand orbs drifting behind
  * lower sections to give a quiet sense of motion. Deliberately light: 2 orbs
  * (was 3), 70px blur (was 120px), no `will-change`, and `contain: paint`, so it
  * stays cheap to composite on integrated GPUs. Honours prefers-reduced-motion.

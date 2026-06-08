@@ -22,9 +22,9 @@ import { Reveal } from "@/components/ui/Reveal";
 import { GradientOrb } from "@/components/GradientOrb";
 
 export const metadata: Metadata = {
-  title: "About — Building the sponsor intelligence layer for sport",
+  title: "About, Building the sponsor intelligence layer for sport",
   description:
-    "Sponsorlens is a solo-founded, public-build sports sponsorship platform measuring every match, post and impression — currently piloting with CA Osasuna.",
+    "Sponsorlens is a solo-founded, public-build sports sponsorship platform measuring every match, post and impression, currently piloting with CA Osasuna.",
 };
 
 const values = [
@@ -36,12 +36,12 @@ const values = [
   {
     icon: <LineChart size={18} />,
     title: "Measurement is a craft",
-    body: "We build models we would bet on — not ones that happen to make customers feel good. Integrity over vanity.",
+    body: "We build models we would bet on, not ones that happen to make customers feel good. Integrity over vanity.",
   },
   {
     icon: <Users size={18} />,
     title: "Customer-first, truly",
-    body: "Support goes straight to the founder. You won’t hear ‘I’ll escalate it’ — you’ll hear ‘I’m shipping it.’",
+    body: "Support goes straight to the founder. You won’t hear ‘I’ll escalate it’, you’ll hear ‘I’m shipping it.’",
   },
   {
     icon: <Shield size={18} />,
@@ -53,19 +53,19 @@ const values = [
 const founder = {
   name: "Guillaume Haas",
   role: "Founder",
-  bio: "Entrepreneur with a product engineering background, building Sponsorlens solo — from the data model to the first board pitch. Based in Madrid, currently piloting with CA Osasuna.",
+  bio: "Entrepreneur with a product engineering background, building Sponsorlens solo, from the data model to the first board pitch. Based in Madrid, currently piloting with CA Osasuna.",
 };
 
 const milestones = [
   {
     year: "2026",
     title: "An idea, then a prototype",
-    body: "Sponsorlens starts as a solo side-project — a hunch that sponsorship measurement deserves a real data layer, not a PDF recap.",
+    body: "Sponsorlens starts as a solo side-project, a hunch that sponsorship measurement deserves a real data layer, not a PDF recap.",
   },
   {
     year: "2026",
     title: "Public build",
-    body: "The site goes live. The product roadmap is public from day one — features ship small, often, and in the open.",
+    body: "The site goes live. The product roadmap is public from day one, features ship small, often, and in the open.",
   },
   {
     year: "2026",
@@ -106,7 +106,7 @@ export default function AboutPage() {
             <Reveal delay={0.1}>
               <p className="mt-6 max-w-2xl text-pretty text-lg text-[#F4EFE6]/65 sm:text-xl">
                 Sponsorship is a $100B industry running on gut feel and PDF
-                recaps. We think it deserves better — specifically, a modern
+                recaps. We think it deserves better, specifically, a modern
                 platform that turns every match, post and impression into
                 evidence.
               </p>
@@ -125,7 +125,7 @@ export default function AboutPage() {
                   Our mission
                 </Badge>
                 <h2 className="mt-6 font-[family-name:var(--font-display)] text-balance text-4xl font-semibold tracking-[-0.01em] text-[#F4EFE6] sm:text-5xl">
-                  Make every euro of sponsorship measurable —{" "}
+                  Make every euro of sponsorship measurable -{" "}
                   <em className="italic text-gradient-brand">and defensible.</em>
                 </h2>
                 <div className="prose-dark mt-6 max-w-xl">
@@ -137,9 +137,9 @@ export default function AboutPage() {
                   </p>
                   <p>
                     We&apos;re changing that by building a measurement layer
-                    that understands sport the way the people inside it do —
+                    that understands sport the way the people inside it do -
                     contracts, matchdays, jersey deals, LED rotations, viral
-                    posts — and turns them into numbers a CFO can sign off on.
+                    posts, and turns them into numbers a CFO can sign off on.
                   </p>
                   <p>
                     If you care about sport and you care about craft, you&apos;ll
@@ -199,7 +199,7 @@ export default function AboutPage() {
                     Our case study
                   </Badge>
                   <h2 className="mt-5 font-[family-name:var(--font-display)] text-balance text-3xl font-semibold tracking-[-0.01em] text-[#F4EFE6] sm:text-4xl">
-                    CA Osasuna —{" "}
+                    CA Osasuna -{" "}
                     <em className="italic text-gradient-brand">
                       twenty weeks to prove the model.
                     </em>
@@ -305,7 +305,7 @@ export default function AboutPage() {
                 <em className="italic text-gradient-brand">shipping in public.</em>
               </>
             }
-            description="Sponsorlens is an independent project — built from scratch, without a pre-existing team or external funding."
+            description="Sponsorlens is an independent project, built from scratch, without a pre-existing team or external funding."
           />
           <div className="mt-14 flex justify-center">
             <Reveal>

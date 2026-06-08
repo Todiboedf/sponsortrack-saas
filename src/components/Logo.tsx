@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 /**
  * Sponsorlens wordmark + lens mark.
  *
- * Mark: outer dashed ring, inner solid ring, center dot — all stroked in
+ * Mark: outer dashed ring, inner solid ring, center dot, all stroked in
  * `currentColor` so the mark tints with whatever text color surrounds it.
  * On hover the outer ring sweeps 360° via CSS keyframes (no JS / motion
  * dependency) and `prefers-reduced-motion: reduce` halts the animation.

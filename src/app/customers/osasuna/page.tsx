@@ -20,7 +20,7 @@ import { GradientOrb } from "@/components/GradientOrb";
 import { CountUp } from "@/components/CountUp";
 
 export const metadata: Metadata = {
-  title: "CA Osasuna — How we built sponsor intelligence with a centenary club",
+  title: "CA Osasuna, How we built sponsor intelligence with a centenary club",
   description:
     "The 20-week pilot bringing Sponsorlens to CA Osasuna: live social analytics today, match-day computer vision in development, turning every Caja Rural, Macron and Digi exposure into evidence.",
   alternates: { canonical: "https://sponsorlens.io/customers/osasuna" },
@@ -83,7 +83,7 @@ const focusAreas = [
   },
   {
     title: "Per-sponsor portals, white-labelled",
-    body: "Caja Rural, Macron and Digi each get their own workspace — branded, scoped, and a click away from a defensible PDF report.",
+    body: "Caja Rural, Macron and Digi each get their own workspace, branded, scoped, and a click away from a defensible PDF report.",
   },
   {
     title: "A measurement layer the CFO trusts",
@@ -258,7 +258,7 @@ export default function OsasunaPage() {
               />
               <p className="mt-6 font-[family-name:var(--font-display)] text-balance text-2xl italic leading-relaxed text-[#F4EFE6] sm:text-3xl lg:text-[34px]">
                 “Sponsorlens gave us, in twenty weeks, a measurement layer our
-                board could read — and our sponsors could trust. Every minute
+                board could read, and our sponsors could trust. Every minute
                 of broadcast time finally has a number on it.”
               </p>
               <div className="mt-8 flex flex-col gap-1 text-[#F4EFE6]/65">
@@ -288,7 +288,7 @@ export default function OsasunaPage() {
                 </div>
                 <p className="mt-2 text-[14px] leading-relaxed text-[#F4EFE6]/65">
                   The detailed strategy deck shared with the CA Osasuna board
-                  on 30 April 2026 — palette, methodology, and competitive
+                  on 30 April 2026, palette, methodology, and competitive
                   positioning all on the public site.
                 </p>
               </div>
@@ -319,7 +319,7 @@ export default function OsasunaPage() {
               <em className="italic text-gradient-brand">next case study.</em>
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-pretty text-[#F4EFE6]/65">
-              We onboard one new design partner per month — clubs, leagues or
+              We onboard one new design partner per month, clubs, leagues or
               brands who want a measurement layer they can publish, defend, and
               renew on. Book a 30-minute discovery call.
             </p>

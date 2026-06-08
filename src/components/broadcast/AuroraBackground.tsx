@@ -3,7 +3,7 @@
 import { useReducedMotion } from "motion/react";
 
 /**
- * Aurora gradient — two softly blurred brand-colour orbs drifting behind the
+ * Aurora gradient, two softly blurred brand-colour orbs drifting behind the
  * hero. Deliberately light: 2 orbs (was 4), 80px blur (was 120–140px), no
  * `will-change`, and `contain: paint` so the hero stays cheap to composite on
  * integrated GPUs (the previous 4-orb / 120–140px version could exhaust the
@@ -23,7 +23,7 @@ export function AuroraBackground() {
       className="aurora-bg pointer-events-none absolute inset-0 -z-20 overflow-hidden"
       style={{ background: "#060D18", contain: "paint" }}
     >
-      {/* Gold ember — drifts down-right */}
+      {/* Gold ember, drifts down-right */}
       <div
         className="absolute rounded-full"
         style={{
@@ -37,7 +37,7 @@ export function AuroraBackground() {
           animation: anim("aurora-1", "30s"),
         }}
       />
-      {/* Red ember — drifts up-right */}
+      {/* Red ember, drifts up-right */}
       <div
         className="absolute rounded-full"
         style={{

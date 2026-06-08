@@ -10,7 +10,7 @@ import { SignOutButton } from "./SignOutButton";
 export const dynamic = "force-dynamic";
 
 export const metadata = {
-  title: "Workspace — Sponsorlens",
+  title: "Workspace, Sponsorlens",
   robots: { index: false, follow: false },
 };
 
@@ -42,7 +42,7 @@ export default async function DashboardPage() {
             Welcome, {user.email}
           </h1>
           <p className="mt-4 text-white/60">
-            Your account isn't linked to a sponsor yet. We attach sponsors during onboarding —
+            Your account isn't linked to a sponsor yet. We attach sponsors during onboarding -
             reach out to your account manager or contact us and we'll connect you to the right
             workspace.
           </p>
@@ -144,7 +144,7 @@ export default async function DashboardPage() {
                 {(kpis ?? []).length === 0 && (
                   <tr>
                     <td colSpan={7} className="py-6 text-center text-white/40">
-                      No data collected yet — first sync runs at 06:00 UTC daily.
+                      No data collected yet, first sync runs at 06:00 UTC daily.
                     </td>
                   </tr>
                 )}

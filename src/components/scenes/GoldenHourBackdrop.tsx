@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 
 /**
  * Wraps the pricing + final CTA tail of the home in a warm "golden
- * hour over the stadium" backdrop. Pure CSS — a layered gradient that
+ * hour over the stadium" backdrop. Pure CSS, a layered gradient that
  * suggests evening light spilling onto a pitch silhouette without
  * pinning a 3D Canvas to this section.
  *

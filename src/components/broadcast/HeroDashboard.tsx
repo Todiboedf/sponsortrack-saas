@@ -33,7 +33,7 @@ const sponsors = [
   { name: "Asisa", initials: "A", color: "#0E4A8C", value: 0.51, share: 32 },
 ];
 
-// 14 weeks of synthetic exposure data — Osasuna pilot proxy.
+// 14 weeks of synthetic exposure data, Osasuna pilot proxy.
 const weeks = [
   { w: "W1", reach: 1.4, broadcast: 0.9, social: 0.5 },
   { w: "W2", reach: 1.9, broadcast: 1.2, social: 0.7 },
@@ -54,7 +54,7 @@ const weeks = [
 const fmtCompactM = (n: number) => `${n.toFixed(1)}M`;
 
 /* -------------------------------------------------------------------------- */
-/* Hero dashboard — live-match simulation                                     */
+/* Hero dashboard, live-match simulation                                     */
 /* -------------------------------------------------------------------------- */
 
 const BASE_MEDIA_VALUE = 1.92;
@@ -88,7 +88,7 @@ export function HeroDashboard() {
     return () => clearInterval(id);
   }, [reduced]);
 
-  // Sequential reveal of live detections — first one 600ms after mount, then
+  // Sequential reveal of live detections, first one 600ms after mount, then
   // the next two with 800ms between, as if they were arriving in real time.
   const [revealedCount, setRevealedCount] = useState(reduced ? DETECTIONS.length : 0);
   useEffect(() => {
@@ -204,7 +204,7 @@ export function HeroDashboard() {
               </div>
             </div>
 
-            {/* KPI row — staggered entrance (80ms between cards) */}
+            {/* KPI row, staggered entrance (80ms between cards) */}
             <motion.div
               className="grid grid-cols-2 gap-3 sm:grid-cols-4"
               initial="hidden"
@@ -442,7 +442,7 @@ export function HeroDashboard() {
                     <span className="font-[family-name:var(--font-mono)] tabular-nums text-[#F4EFE6]">
                       18.4M
                     </span>{" "}
-                    views — ask renewals for Caja Rural before kick-off Sunday.
+                    views, ask renewals for Caja Rural before kick-off Sunday.
                   </span>
                 </div>
                 <div className="mt-3 flex items-center gap-3 text-[11px] text-[#F4EFE6]/55">

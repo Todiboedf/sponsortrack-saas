@@ -158,7 +158,7 @@ const matrix: {
       { label: "SCIM provisioning", starter: false, pro: true, ent: true },
       { label: "Audit logs", starter: "90 days", pro: "2 years", ent: "Unlimited" },
       { label: "Data residency", starter: "EU", pro: "EU / US", ent: "Custom region" },
-      { label: "Uptime SLA", starter: "—", pro: "99.9%", ent: "99.95%" },
+      { label: "Uptime SLA", starter: "-", pro: "99.9%", ent: "99.95%" },
     ],
   },
 ];
@@ -166,11 +166,11 @@ const matrix: {
 const faqs = [
   {
     q: "How does the 14-day free trial work?",
-    a: "You get full access to the Pro plan for 14 days. No credit card required. If you decide to continue, pick the plan that fits — otherwise your workspace is archived and you lose nothing.",
+    a: "You get full access to the Pro plan for 14 days. No credit card required. If you decide to continue, pick the plan that fits, otherwise your workspace is archived and you lose nothing.",
   },
   {
     q: "Can I change plan later?",
-    a: "Yes — up or down, at any time. Pro-rated credits are applied automatically on your next invoice.",
+    a: "Yes, up or down, at any time. Pro-rated credits are applied automatically on your next invoice.",
   },
   {
     q: "Why is there a setup fee on Enterprise?",
@@ -178,7 +178,7 @@ const faqs = [
   },
   {
     q: "What does ‘per property’ mean?",
-    a: "A property is a club, team, league, athlete or venue that you analyse inside your workspace. You can mix and match — 1 club + 3 academy teams counts as 4 properties.",
+    a: "A property is a club, team, league, athlete or venue that you analyse inside your workspace. You can mix and match, 1 club + 3 academy teams counts as 4 properties.",
   },
   {
     q: "Is my data safe?",
@@ -186,15 +186,15 @@ const faqs = [
   },
   {
     q: "Do you offer non-profit / federation pricing?",
-    a: "We do. Recognised federations, national teams and non-profit sports organisations get a tailored discount — just mention it when you book a discovery call.",
+    a: "We do. Recognised federations, national teams and non-profit sports organisations get a tailored discount, just mention it when you book a discovery call.",
   },
   {
     q: "Can I cancel any time?",
-    a: "Yes. Monthly subscriptions can be cancelled at any time and stop at the end of the period. Annual subscriptions can be cancelled at the end of the term — no auto-renewal lock-in.",
+    a: "Yes. Monthly subscriptions can be cancelled at any time and stop at the end of the period. Annual subscriptions can be cancelled at the end of the term, no auto-renewal lock-in.",
   },
   {
     q: "Can I see the contract before I sign?",
-    a: "Of course. We share the full MSA and DPA up-front. Annual plans get a standard order form — we won’t send you 30 pages of legalese for a €1,500 monthly contract.",
+    a: "Of course. We share the full MSA and DPA up-front. Annual plans get a standard order form, we won’t send you 30 pages of legalese for a €1,500 monthly contract.",
   },
 ];
 
@@ -369,7 +369,7 @@ export default function PricingPage() {
               The full plan comparison.
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-[#0F1A2E]/65">
-              Everything is on the table — including the boring bits like setup
+              Everything is on the table, including the boring bits like setup
               fees and onboarding hours.
             </p>
           </div>
@@ -428,7 +428,7 @@ export default function PricingPage() {
             <span className="font-semibold text-[#0F1A2E]">A note on the setup fee.</span>{" "}
             Enterprise is the only plan with a one-shot setup component
             (€8,000). It funds the 90-day white-glove onboarding, security
-            review and custom data pipeline work — adjustable on multi-club
+            review and custom data pipeline work, adjustable on multi-club
             groups and federation engagements.
           </div>
         </Container>
@@ -453,7 +453,7 @@ export default function PricingPage() {
                 >
                   Talk to a human
                 </Link>{" "}
-                — usually same-day.
+               , usually same-day.
               </p>
             </div>
             <div className="flex flex-col gap-3">

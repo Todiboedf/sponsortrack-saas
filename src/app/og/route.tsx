@@ -39,7 +39,7 @@ export async function GET() {
           }}
         />
 
-        {/* Lens mark — top right */}
+        {/* Lens mark, top right */}
         <div
           style={{
             position: "absolute",
@@ -139,7 +139,7 @@ export async function GET() {
           </span>
         </div>
 
-        {/* Bottom — leagues line */}
+        {/* Bottom, leagues line */}
         <div
           style={{
             display: "flex",

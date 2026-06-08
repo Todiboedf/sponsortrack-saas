@@ -16,7 +16,7 @@ export function BroadcastHero() {
 
   return (
     <section className="relative min-h-[100svh] w-full overflow-hidden">
-      {/* Aurora — 4 drifting blurred orbs (cyan / violet / gold / red) on
+      {/* Aurora, 4 drifting blurred orbs (cyan / violet / gold / red) on
           pure CSS keyframes; replaces the flat navy background. */}
       <AuroraBackground />
 
@@ -43,7 +43,7 @@ export function BroadcastHero() {
       {/* Atmospheric scan-line + bottom crawl ticker */}
       <BroadcastFX />
 
-      {/* REC badge — top-right, broadcast camera cue */}
+      {/* REC badge, top-right, broadcast camera cue */}
       <div className="pointer-events-none absolute right-5 top-5 z-10 hidden lg:block">
         <RecBadge reduced={!!reduced} />
       </div>
@@ -94,7 +94,7 @@ export function BroadcastHero() {
           <LiveHUD />
         </div>
 
-        {/* Dashboard — full-width landscape mockup tilted on a 3D perspective.
+        {/* Dashboard, full-width landscape mockup tilted on a 3D perspective.
             Outer wrapper carries the perspective context; inner wrapper
             does the rotateX so the dashboard reads as a screen posed on a
             cockpit desk. Tilt amount is driven by the `--hero-tilt` CSS

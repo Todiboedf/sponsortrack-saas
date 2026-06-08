@@ -31,7 +31,7 @@ export function TwoViewsConvergence() {
     <div className="relative">
       <GradientOrb color="red" size={420} className="-right-20 top-10" intensity="soft" />
       <div className="relative grid grid-cols-2 overflow-hidden rounded-2xl border border-[#F4EFE6]/[0.08] bg-[#0F1A2E] shadow-2xl">
-        {/* Club view — slides in from the left */}
+        {/* Club view, slides in from the left */}
         <motion.div
           initial={enter(-1)}
           whileInView={visible}
@@ -63,7 +63,7 @@ export function TwoViewsConvergence() {
           </ul>
         </motion.div>
 
-        {/* Sponsor view — slides in from the right */}
+        {/* Sponsor view, slides in from the right */}
         <motion.div
           initial={enter(1)}
           whileInView={visible}
@@ -104,7 +104,7 @@ export function TwoViewsConvergence() {
           <div className="mt-3 rounded-lg border border-[#0F1A2E]/10 bg-white p-3 text-[11px] leading-relaxed text-[#0F1A2E]/65">
             Your jersey crest appeared on{" "}
             <span className="font-semibold text-[#0F1A2E]">14 broadcasts</span>{" "}
-            this month — €0.62 CPM, below market by 38%.
+            this month, €0.62 CPM, below market by 38%.
           </div>
         </motion.div>
       </div>

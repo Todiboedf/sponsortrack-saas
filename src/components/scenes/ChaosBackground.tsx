@@ -58,7 +58,7 @@ const TABS: Tab[] = [
   },
   {
     id: "email",
-    title: "Re: Renewal — Asisa",
+    title: "Re: Renewal, Asisa",
     body: "Sent · awaiting reply since Tue",
     Icon: Mail,
     initial: { x: "40%", y: "-5%", rot: -3, scale: 0.93 },

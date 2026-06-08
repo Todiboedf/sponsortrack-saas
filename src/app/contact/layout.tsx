@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Contact — Talk to the team",
+  title: "Contact: Talk to the team",
   description:
     "Book a demo, start a trial, or reach sales, press and support directly. We usually reply same-day, 9:00–19:00 CET, Monday to Friday.",
   alternates: { canonical: "https://sponsorlens.io/contact" },

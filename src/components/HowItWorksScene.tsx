@@ -14,7 +14,7 @@ import {
   Workflow,
 } from "lucide-react";
 function Ribbon() {
-  // Decorative cyan beam — pure CSS now (the 3D TubeGeometry version
+  // Decorative cyan beam, pure CSS now (the 3D TubeGeometry version
   // was retired with the rest of the Three.js stack in PR #10).
   return (
     <div
@@ -58,7 +58,7 @@ const STEPS: {
   {
     n: "04",
     title: "Renew",
-    body: "Renewal alerts, benchmark scenarios and a contract calendar — so commercial conversations start with evidence.",
+    body: "Renewal alerts, benchmark scenarios and a contract calendar, so commercial conversations start with evidence.",
     Icon: Workflow,
   },
 ];

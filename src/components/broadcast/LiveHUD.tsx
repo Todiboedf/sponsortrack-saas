@@ -9,7 +9,7 @@ const START_DETECTIONS = 73;
 const START_EMV_K = 412;
 
 /**
- * Live HUD pill — pinned at the bottom-left of the hero. Communicates
+ * Live HUD pill, pinned at the bottom-left of the hero. Communicates
  * the "match is happening right now" feel by ticking the detections
  * count and EMV at the same cadence as the bounding-box overlay
  * (every 4 seconds) and advancing the minute clock once a real second.

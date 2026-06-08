@@ -2,7 +2,7 @@
  * Motion design tokens for Sponsorlens.
  *
  * Principle (Linear-flavoured): motion explains, never decorates.
- * Every animation should prove something about the product —
+ * Every animation should prove something about the product -
  * speed, real-time, precision.
  */
 
@@ -13,11 +13,11 @@ import type { Transition } from "motion/react";
  * (motion/react's preferred prop) to keep transitions consistent.
  */
 export const easings = {
-  /** Default for most animations — smooth deceleration. */
+  /** Default for most animations, smooth deceleration. */
   smooth: [0.32, 0.72, 0, 1] as const,
   /** Element entering the viewport / mounting. */
   enter: [0.16, 1, 0.3, 1] as const,
-  /** Element leaving — slightly faster ramp. */
+  /** Element leaving, slightly faster ramp. */
   exit: [0.7, 0, 0.84, 0] as const,
 } as const;
 

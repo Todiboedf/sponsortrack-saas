@@ -19,7 +19,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { GradientOrb } from "@/components/GradientOrb";
 
 export const metadata: Metadata = {
-  title: "Changelog — what we shipped, when",
+  title: "Changelog, what we shipped, when",
   description:
     "Public changelog for Sponsorlens. Every meaningful release, every week, in chronological order.",
   alternates: { canonical: "https://sponsorlens.io/changelog" },
@@ -66,7 +66,7 @@ const entries: Entry[] = [
     date: "2026-04-25",
     tag: "feature",
     title: "Per-sponsor dashboards",
-    body: "Workspace UI now scopes to the logged-in sponsor: live KPIs, EMV trend and platform breakdown — all white-labelled and behind RLS.",
+    body: "Workspace UI now scopes to the logged-in sponsor: live KPIs, EMV trend and platform breakdown, all white-labelled and behind RLS.",
     icon: <Layers size={18} />,
   },
   {
@@ -87,7 +87,7 @@ const entries: Entry[] = [
     date: "2026-04-24",
     tag: "launch",
     title: "Public site v1",
-    body: "Initial commit of the Sponsorlens marketing site — homepage, features, pricing, demo, about, contact, privacy, terms.",
+    body: "Initial commit of the Sponsorlens marketing site, homepage, features, pricing, demo, about, contact, privacy, terms.",
     icon: <ClipboardList size={18} />,
   },
 ];
@@ -132,7 +132,7 @@ export default function ChangelogPage() {
             </h1>
             <p className="max-w-2xl text-pretty text-lg text-[#F4EFE6]/65 sm:text-xl">
               Every meaningful release, in chronological order. We ship small,
-              often, and in the open — including the boring infrastructure
+              often, and in the open, including the boring infrastructure
               parts.
             </p>
             <div className="mt-2 flex flex-wrap items-center gap-2 text-[12px] text-[#F4EFE6]/55">
@@ -224,7 +224,7 @@ export default function ChangelogPage() {
             </h3>
             <p className="mx-auto mt-3 max-w-xl text-[14px] text-[#F4EFE6]/65">
               Our roadmap is shaped by design partners. Tell us what would move
-              the needle for your sponsorship workflow — we ship most requests
+              the needle for your sponsorship workflow, we ship most requests
               within a sprint.
             </p>
             <div className="mt-6">

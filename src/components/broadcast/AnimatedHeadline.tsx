@@ -14,7 +14,7 @@ import { motion, useReducedMotion } from "motion/react";
  * regression we kept seeing on narrow viewports).
  *
  * Under prefers-reduced-motion the characters render immediately at
- * their final position — no staircase.
+ * their final position, no staircase.
  */
 export function AnimatedHeadline() {
   const reduced = useReducedMotion();

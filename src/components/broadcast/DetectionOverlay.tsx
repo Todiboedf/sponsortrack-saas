@@ -17,7 +17,7 @@ type Detection = {
 };
 
 /**
- * Positions are calibrated for the right half of the hero viewport —
+ * Positions are calibrated for the right half of the hero viewport -
  * the left half is reserved for the headline + CTAs. All `left` values
  * stay >= 50% so the boxes never overlap the type column on common
  * desktop widths (1280–1920px). Array order matches the chronological
@@ -151,7 +151,7 @@ export function DetectionOverlay({ paused = false }: { paused?: boolean }) {
 }
 
 /* -------------------------------------------------------------------------- */
-/* Animated detection — broadcast lock-on with corner brackets                */
+/* Animated detection, broadcast lock-on with corner brackets                */
 /* -------------------------------------------------------------------------- */
 
 function BoxAnimated({ detection: d }: { detection: Detection }) {
@@ -195,7 +195,7 @@ function BoxStatic({ detection: d }: { detection: Detection }) {
 }
 
 /* -------------------------------------------------------------------------- */
-/* Brackets — four L-shape corner markers (broadcast TV style)                */
+/* Brackets, four L-shape corner markers (broadcast TV style)                */
 /* -------------------------------------------------------------------------- */
 
 const CORNER_LEN = 14;
@@ -271,7 +271,7 @@ function Brackets({ animated = false }: { animated?: boolean }) {
           />
         </motion.div>
       ))}
-      {/* Center crosshair tick — appears with a beat after the corners */}
+      {/* Center crosshair tick, appears with a beat after the corners */}
       <motion.span
         aria-hidden
         initial={animated ? { opacity: 0, scale: 0 } : false}
