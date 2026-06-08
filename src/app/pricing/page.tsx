@@ -182,7 +182,7 @@ const faqs = [
   },
   {
     q: "Is my data safe?",
-    a: "Yes. Data is encrypted in transit and at rest, hosted in the EU by default, and never used to train shared models. Our SOC 2 Type II audit is in progress; EU-US and UK DPAs are available on request.",
+    a: "Yes. Data is encrypted in transit and at rest, hosted in the EU by default, and never used to train shared models. A SOC 2 Type II audit is planned; EU-US and UK DPAs are available on request.",
   },
   {
     q: "Do you offer non-profit / federation pricing?",

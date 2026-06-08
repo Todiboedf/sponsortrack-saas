@@ -34,7 +34,7 @@ export async function GET() {
             height: 600,
             borderRadius: 600,
             background:
-              "radial-gradient(circle at 50% 50%, rgba(125, 211, 252, 0.32), transparent 65%)",
+              "radial-gradient(circle at 50% 50%, rgba(184, 151, 90, 0.32), transparent 65%)",
             display: "flex",
           }}
         />
@@ -61,7 +61,7 @@ export async function GET() {
               cy="12"
               r="10"
               fill="none"
-              stroke="#7dd3fc"
+              stroke="#B8975A"
               strokeWidth="2"
               strokeDasharray="2 1.5"
               opacity="0.7"
@@ -71,7 +71,7 @@ export async function GET() {
               cy="12"
               r="6"
               fill="none"
-              stroke="#7dd3fc"
+              stroke="#B8975A"
               strokeWidth="2"
             />
             <circle cx="12" cy="12" r="2" fill="#FFFFFF" />
@@ -106,7 +106,7 @@ export async function GET() {
               fontSize: 22,
               fontWeight: 600,
               letterSpacing: "0.24em",
-              color: "#7dd3fc",
+              color: "#B8975A",
               textTransform: "uppercase",
               display: "flex",
             }}
@@ -158,7 +158,7 @@ export async function GET() {
               display: "flex",
               alignItems: "center",
               gap: 10,
-              color: "#7dd3fc",
+              color: "#B8975A",
             }}
           >
             <span
@@ -167,7 +167,7 @@ export async function GET() {
                 width: 8,
                 height: 8,
                 borderRadius: 8,
-                background: "#7dd3fc",
+                background: "#B8975A",
               }}
             />
             <span style={{ display: "flex" }}>Live · 2026</span>

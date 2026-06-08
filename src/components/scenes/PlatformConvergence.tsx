@@ -42,7 +42,7 @@ export function PlatformConvergence() {
             }}
             className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 inline-flex items-center gap-2 rounded-lg border border-white/10 bg-[#0F1A2E]/85 px-3 py-2 text-[11px] font-medium text-white shadow-[0_20px_50px_-25px_rgba(0,0,0,0.6)] backdrop-blur"
           >
-            <s.Icon size={13} className="text-[#7dd3fc]" />
+            <s.Icon size={13} className="text-[#B8975A]" />
             {s.label}
           </motion.div>
         );
@@ -53,9 +53,9 @@ export function PlatformConvergence() {
         whileInView={{ scale: 1, opacity: 1 }}
         viewport={{ once: true, margin: "-25%" }}
         transition={{ duration: 0.6, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-72 rounded-2xl border border-[#7dd3fc]/40 bg-gradient-to-br from-[#0F1A2E] to-[#0A1628] p-5 shadow-[0_30px_80px_-25px_rgba(125,211,252,0.45)] backdrop-blur"
+        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-72 rounded-2xl border border-[#B8975A]/40 bg-gradient-to-br from-[#0F1A2E] to-[#0A1628] p-5 shadow-[0_30px_80px_-25px_rgba(184, 151, 90,0.45)] backdrop-blur"
       >
-        <div className="flex items-center justify-between text-[10px] uppercase tracking-[0.22em] text-[#7dd3fc]">
+        <div className="flex items-center justify-between text-[10px] uppercase tracking-[0.22em] text-[#B8975A]">
           <span>Sponsorlens · unified</span>
           <span className="inline-flex h-2 w-2 rounded-full bg-[#2F8F5A]" />
         </div>

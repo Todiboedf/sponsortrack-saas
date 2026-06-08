@@ -11,7 +11,7 @@ export function Card({
         "relative overflow-hidden rounded-2xl border border-[#F4EFE6]/[0.08] bg-[#0F1A2E]/70 p-6",
         "transition-[transform,box-shadow,border-color] duration-300 ease-out",
         "hover:border-[#B8975A]/35 motion-safe:hover:-translate-y-1 motion-safe:hover:scale-[1.01]",
-        "hover:shadow-[0_22px_70px_-30px_rgba(139,0,40,0.55),0_0_40px_-12px_rgba(125,211,252,0.30)]",
+        "hover:shadow-[0_22px_70px_-30px_rgba(139,0,40,0.55),0_0_40px_-12px_rgba(184, 151, 90,0.30)]",
         className
       )}
       {...props}

@@ -65,7 +65,7 @@ export function BroadcastHero() {
           <Button
             href="/contact"
             size="lg"
-            variant="cyan"
+            variant="primary"
             rightIcon={<ArrowRight size={16} />}
           >
             Start free trial
@@ -114,7 +114,7 @@ export function BroadcastHero() {
               transform: "rotateX(var(--hero-tilt, 0deg))",
               transformStyle: "preserve-3d",
               filter:
-                "drop-shadow(0 24px 60px rgba(125,211,252,0.25)) drop-shadow(0 40px 90px rgba(139,0,40,0.18))",
+                "drop-shadow(0 24px 60px rgba(184, 151, 90,0.25)) drop-shadow(0 40px 90px rgba(139,0,40,0.18))",
             }}
           >
             <HeroDashboard />

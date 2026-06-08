@@ -38,7 +38,7 @@ export function AnimatedHeadline() {
       <span className="block">
         <Line text={line1} reduced={!!reduced} />
       </span>
-      <span className="mt-1 block italic text-[#7dd3fc]">
+      <span className="mt-1 block italic text-[#B8975A]">
         <Line text={line2} reduced={!!reduced} prefix="l2" />
       </span>
     </motion.h1>

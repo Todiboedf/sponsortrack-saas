@@ -22,7 +22,7 @@ import { CountUp } from "@/components/CountUp";
 export const metadata: Metadata = {
   title: "CA Osasuna — How we built sponsor intelligence with a centenary club",
   description:
-    "The 20-week pilot that put Sponsorlens on the El Sadar broadcast feed and turned every Caja Rural, Macron and Digi exposure into evidence.",
+    "The 20-week pilot bringing Sponsorlens to CA Osasuna: live social analytics today, match-day computer vision in development, turning every Caja Rural, Macron and Digi exposure into evidence.",
   alternates: { canonical: "https://sponsorlens.io/customers/osasuna" },
 };
 
@@ -39,8 +39,8 @@ const pilotMilestones = [
   },
   {
     date: "2026-05-15",
-    label: "Match-day vision goes live",
-    body: "Computer-vision model deployed on the El Sadar broadcast feed — first jersey-second metrics in production.",
+    label: "Match-day vision (in development)",
+    body: "Computer-vision logo measurement scoped on the El Sadar feed; building the detection pipeline toward first jersey-second metrics.",
   },
   {
     date: "2026-08",
@@ -63,23 +63,23 @@ const kpiTiles = [
     note: "Tier-1 and tier-2 partners across the kit, LED and digital inventory",
   },
   {
-    label: "Match-day exposure tracked",
+    label: "Match-day exposure (target)",
     big: 142,
     suffix: " min",
-    note: "Cumulative jersey + LED time across the first six matches",
+    note: "Projected jersey + LED time across the first six matches",
   },
   {
-    label: "Lift on Caja Rural EMV",
+    label: "Caja Rural EMV lift (target)",
     big: 24,
     suffix: "%",
-    note: "Q-on-Q growth measured from the pilot baseline",
+    note: "Q-on-Q growth modelled from the pilot baseline",
   },
 ];
 
 const focusAreas = [
   {
-    title: "Live computer vision on every match",
-    body: "Logo, jersey, LED rotation and interview-backdrop detection — running on the Movistar+ broadcast and the in-house feed simultaneously.",
+    title: "Match-day computer vision (in development)",
+    body: "Logo, jersey, LED-rotation and interview-backdrop detection, being built against the Movistar+ broadcast and the club's in-house feed.",
   },
   {
     title: "Per-sponsor portals, white-labelled",
@@ -184,11 +184,11 @@ export default function OsasunaPage() {
                   <em className="italic text-gradient-brand">prove the model.</em>
                 </h2>
                 <p className="mt-5 text-[15px] leading-relaxed text-[#F4EFE6]/65">
-                  Osasuna is the first club running Sponsorlens end-to-end —
-                  the social analytics layer, the match-day computer vision and
-                  the per-sponsor portals all wired against a real LaLiga
-                  schedule. Everything you see on this page is live data, not a
-                  rendered marketing brief.
+                  Osasuna is the first club running Sponsorlens: the live social
+                  analytics layer and per-sponsor portals wired against a real
+                  LaLiga schedule, with match-day computer vision in active
+                  development. Figures on this page reflect pilot scope and
+                  targets, not audited results.
                 </p>
                 <ul className="mt-8 grid gap-4">
                   {focusAreas.map((f) => (

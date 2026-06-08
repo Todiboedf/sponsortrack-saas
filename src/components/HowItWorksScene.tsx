@@ -22,8 +22,8 @@ function Ribbon() {
       className="absolute inset-x-0 top-1/2 -z-[1] hidden h-px -translate-y-1/2 lg:block"
       style={{
         background:
-          "linear-gradient(90deg, transparent 0%, rgba(125,211,252,0.35) 25%, rgba(167,139,250,0.40) 55%, rgba(125,211,252,0.25) 80%, transparent 100%)",
-        boxShadow: "0 0 24px rgba(125,211,252,0.18)",
+          "linear-gradient(90deg, transparent 0%, rgba(184, 151, 90,0.35) 25%, rgba(139, 0, 40,0.40) 55%, rgba(184, 151, 90,0.25) 80%, transparent 100%)",
+        boxShadow: "0 0 24px rgba(184, 151, 90,0.18)",
       }}
     />
   );
@@ -136,7 +136,7 @@ export function HowItWorksScene() {
                     key={s.n}
                     className={`rounded-2xl border p-5 transition-all duration-300 ${
                       active
-                        ? "border-[#7dd3fc]/40 bg-[#0F1A2E]/85 shadow-[0_18px_60px_-30px_rgba(125,211,252,0.55)]"
+                        ? "border-[#B8975A]/40 bg-[#0F1A2E]/85 shadow-[0_18px_60px_-30px_rgba(184, 151, 90,0.55)]"
                         : past
                           ? "border-[#F4EFE6]/[0.08] bg-[#0F1A2E]/55 opacity-70"
                           : "border-[#F4EFE6]/[0.06] bg-[#0F1A2E]/40 opacity-55"
@@ -147,7 +147,7 @@ export function HowItWorksScene() {
                       <span
                         className={`font-[family-name:var(--font-mono)] text-[12px] tracking-[0.22em] ${
                           active
-                            ? "bg-gradient-to-r from-[#7dd3fc] to-[#a78bfa] bg-clip-text text-transparent"
+                            ? "bg-gradient-to-r from-[#B8975A] to-[#8B0028] bg-clip-text text-transparent"
                             : "text-[#B8975A]"
                         }`}
                       >
@@ -156,7 +156,7 @@ export function HowItWorksScene() {
                       <span
                         className={`inline-flex h-8 w-8 items-center justify-center rounded-full border ${
                           active
-                            ? "border-[#7dd3fc]/55 bg-[#7dd3fc]/[0.10] text-[#bae6fd]"
+                            ? "border-[#B8975A]/55 bg-[#B8975A]/[0.10] text-[#D8BC85]"
                             : "border-[#B8975A]/30 bg-[#B8975A]/[0.08] text-[#B8975A]"
                         }`}
                       >
@@ -191,7 +191,7 @@ export function HowItWorksScene() {
                     key={i}
                     className={`h-0.5 flex-1 rounded-full transition-all duration-300 ${
                       i <= phase
-                        ? "bg-gradient-to-r from-[#7dd3fc] to-[#a78bfa]"
+                        ? "bg-gradient-to-r from-[#B8975A] to-[#8B0028]"
                         : "bg-[#F4EFE6]/[0.08]"
                     }`}
                   />
@@ -228,11 +228,11 @@ function ConnectScene({ reduced }: { reduced: boolean }) {
       {...fadeMotion(reduced)}
       className="relative flex h-full min-h-[360px] items-center justify-center"
     >
-      <div className="text-[11px] uppercase tracking-[0.22em] text-[#7dd3fc] absolute left-0 top-0">
+      <div className="text-[11px] uppercase tracking-[0.22em] text-[#B8975A] absolute left-0 top-0">
         Phase 01 · Connect
       </div>
       <div className="relative h-72 w-72">
-        <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 inline-flex h-16 w-16 items-center justify-center rounded-2xl border border-[#7dd3fc]/40 bg-[#0F1A2E] text-[#7dd3fc] shadow-[0_0_60px_rgba(125,211,252,0.35)]">
+        <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 inline-flex h-16 w-16 items-center justify-center rounded-2xl border border-[#B8975A]/40 bg-[#0F1A2E] text-[#B8975A] shadow-[0_0_60px_rgba(184, 151, 90,0.35)]">
           <Workflow size={22} />
         </span>
         {platforms.map((p, i) => {
@@ -273,7 +273,7 @@ function ConnectScene({ reduced }: { reduced: boolean }) {
                 y1={y}
                 x2={0}
                 y2={0}
-                stroke="#7dd3fc"
+                stroke="#B8975A"
                 strokeWidth="0.6"
                 strokeDasharray="3 3"
                 opacity="0.5"
@@ -300,7 +300,7 @@ function DetectScene({ reduced }: { reduced: boolean }) {
       {...fadeMotion(reduced)}
       className="relative flex h-full min-h-[360px] items-center justify-center"
     >
-      <div className="text-[11px] uppercase tracking-[0.22em] text-[#7dd3fc] absolute left-0 top-0">
+      <div className="text-[11px] uppercase tracking-[0.22em] text-[#B8975A] absolute left-0 top-0">
         Phase 02 · Detect
       </div>
       <div className="relative aspect-[16/9] w-full max-w-md overflow-hidden rounded-xl border border-[#F4EFE6]/[0.08] bg-gradient-to-b from-[#0F1A2E] to-[#060D18]">
@@ -374,7 +374,7 @@ function ReportScene({ reduced }: { reduced: boolean }) {
       {...fadeMotion(reduced)}
       className="relative flex h-full min-h-[360px] items-center justify-center"
     >
-      <div className="text-[11px] uppercase tracking-[0.22em] text-[#7dd3fc] absolute left-0 top-0">
+      <div className="text-[11px] uppercase tracking-[0.22em] text-[#B8975A] absolute left-0 top-0">
         Phase 03 · Report
       </div>
       <div className="relative w-full max-w-md rounded-xl border border-[#0F1A2E]/15 bg-[#FBF7EF] p-6 text-[#0F1A2E] shadow-[0_30px_70px_-30px_rgba(184,151,90,0.45)]">
@@ -425,7 +425,7 @@ function RenewScene({ reduced }: { reduced: boolean }) {
       {...fadeMotion(reduced)}
       className="relative flex h-full min-h-[360px] items-center justify-center"
     >
-      <div className="text-[11px] uppercase tracking-[0.22em] text-[#7dd3fc] absolute left-0 top-0">
+      <div className="text-[11px] uppercase tracking-[0.22em] text-[#B8975A] absolute left-0 top-0">
         Phase 04 · Renew
       </div>
       <div className="relative grid w-full max-w-md grid-cols-[1fr_auto_1fr] items-center gap-4">
@@ -435,7 +435,7 @@ function RenewScene({ reduced }: { reduced: boolean }) {
           transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
           className="rounded-xl border border-[#F4EFE6]/[0.08] bg-[#0F1A2E]/85 p-4"
         >
-          <Mail size={20} className="text-[#7dd3fc]" />
+          <Mail size={20} className="text-[#B8975A]" />
           <div className="mt-3 text-[11px] uppercase tracking-[0.18em] text-[#B8975A]">
             Renewal email
           </div>
@@ -446,14 +446,14 @@ function RenewScene({ reduced }: { reduced: boolean }) {
             Open rate 100% · 14:32
           </div>
         </motion.div>
-        <ArrowRight size={16} className="text-[#7dd3fc]" />
+        <ArrowRight size={16} className="text-[#B8975A]" />
         <motion.div
           initial={reduced ? false : { opacity: 0, x: 16 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.45, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-          className="rounded-xl border border-[#7dd3fc]/40 bg-gradient-to-br from-[#0F1A2E] to-[#0A1628] p-4 shadow-[0_0_40px_rgba(125,211,252,0.35)]"
+          className="rounded-xl border border-[#B8975A]/40 bg-gradient-to-br from-[#0F1A2E] to-[#0A1628] p-4 shadow-[0_0_40px_rgba(184, 151, 90,0.35)]"
         >
-          <Signature size={20} className="text-[#bae6fd]" />
+          <Signature size={20} className="text-[#D8BC85]" />
           <div className="mt-3 text-[11px] uppercase tracking-[0.18em] text-[#B8975A]">
             Contract signed
           </div>

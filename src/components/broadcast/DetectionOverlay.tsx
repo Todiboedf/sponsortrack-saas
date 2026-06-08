@@ -200,7 +200,7 @@ function BoxStatic({ detection: d }: { detection: Detection }) {
 
 const CORNER_LEN = 14;
 const CORNER_THICK = 2;
-const CORNER_COLOR = "#7dd3fc";
+const CORNER_COLOR = "#B8975A";
 
 function Brackets({ animated = false }: { animated?: boolean }) {
   const corners = [
@@ -216,7 +216,7 @@ function Brackets({ animated = false }: { animated?: boolean }) {
         aria-hidden
         className="absolute inset-0 rounded-[3px]"
         style={{
-          boxShadow: "0 0 18px -2px rgba(125,211,252,0.35)",
+          boxShadow: "0 0 18px -2px rgba(184, 151, 90,0.35)",
         }}
       />
       {corners.map((c, i) => (
@@ -253,7 +253,7 @@ function Brackets({ animated = false }: { animated?: boolean }) {
               width: CORNER_LEN,
               height: CORNER_THICK,
               background: CORNER_COLOR,
-              boxShadow: "0 0 6px rgba(125,211,252,0.55)",
+              boxShadow: "0 0 6px rgba(184, 151, 90,0.55)",
             } as React.CSSProperties}
           />
           {/* Vertical stroke */}
@@ -266,7 +266,7 @@ function Brackets({ animated = false }: { animated?: boolean }) {
               width: CORNER_THICK,
               height: CORNER_LEN,
               background: CORNER_COLOR,
-              boxShadow: "0 0 6px rgba(125,211,252,0.55)",
+              boxShadow: "0 0 6px rgba(184, 151, 90,0.55)",
             } as React.CSSProperties}
           />
         </motion.div>
@@ -306,15 +306,15 @@ function Label({
       initial={animated ? { opacity: 0, y: -4 } : false}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3, delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
-      className="absolute -top-[26px] left-0 inline-flex items-center gap-1 whitespace-nowrap rounded bg-[rgba(7,15,30,0.86)] px-2 py-[3px] text-[10.5px] font-medium text-white/95 backdrop-blur-md ring-1 ring-[#7dd3fc]/20"
+      className="absolute -top-[26px] left-0 inline-flex items-center gap-1 whitespace-nowrap rounded bg-[rgba(7,15,30,0.86)] px-2 py-[3px] text-[10.5px] font-medium text-white/95 backdrop-blur-md ring-1 ring-[#B8975A]/20"
       style={{ letterSpacing: "0.01em" }}
     >
-      <span className="font-[family-name:var(--font-mono)] tabular-nums text-[#7dd3fc]/90">
+      <span className="font-[family-name:var(--font-mono)] tabular-nums text-[#B8975A]/90">
         {d.serial}
       </span>
       <span className="text-white/30">|</span>
       <span className="text-white">{d.brand}</span>
-      <span className="text-[#7dd3fc]/70">·</span>
+      <span className="text-[#B8975A]/70">·</span>
       <span className="text-white/80">{d.asset}</span>
       <span className="text-white/30">·</span>
       <span className="font-[family-name:var(--font-mono)] tabular-nums text-white/70">
