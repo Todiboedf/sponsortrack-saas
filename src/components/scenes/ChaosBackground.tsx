@@ -114,7 +114,7 @@ export function ChaosBackground() {
           className="absolute w-[260px] rounded-xl border border-white/10 bg-[#0F1A2E]/85 p-4 shadow-[0_30px_60px_-20px_rgba(0,0,0,0.6)] backdrop-blur"
           style={{ transformStyle: "preserve-3d" }}
         >
-          <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.18em] text-[#7dd3fc]">
+          <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.18em] text-[#B8975A]">
             <t.Icon size={13} />
             Source
           </div>

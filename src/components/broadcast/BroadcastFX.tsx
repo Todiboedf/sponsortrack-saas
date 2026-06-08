@@ -30,8 +30,8 @@ function ScanLine() {
       className="pointer-events-none absolute inset-x-0 z-[2] hidden h-px lg:block"
       style={{
         background:
-          "linear-gradient(90deg, transparent 0%, rgba(125,211,252,0.55) 30%, rgba(125,211,252,0.85) 50%, rgba(125,211,252,0.55) 70%, transparent 100%)",
-        boxShadow: "0 0 16px rgba(125,211,252,0.35)",
+          "linear-gradient(90deg, transparent 0%, rgba(184, 151, 90,0.55) 30%, rgba(184, 151, 90,0.85) 50%, rgba(184, 151, 90,0.55) 70%, transparent 100%)",
+        boxShadow: "0 0 16px rgba(184, 151, 90,0.35)",
         mixBlendMode: "screen",
       }}
       initial={{ top: "-2%", opacity: 0 }}
@@ -87,7 +87,7 @@ function CrawlTicker() {
                 className="mx-5 inline-flex items-center gap-2 font-[family-name:var(--font-mono)] text-[10.5px] uppercase tracking-[0.18em]"
               >
                 {item.kind === "tag" ? (
-                  <span className="inline-flex items-center gap-1 rounded-[3px] bg-[#7dd3fc]/15 px-1.5 py-0.5 text-[#7dd3fc]">
+                  <span className="inline-flex items-center gap-1 rounded-[3px] bg-[#B8975A]/15 px-1.5 py-0.5 text-[#B8975A]">
                     {item.text}
                   </span>
                 ) : item.kind === "alert" ? (

@@ -55,7 +55,7 @@ export function LiveHUD() {
     <div
       role="status"
       aria-live="polite"
-      className="inline-flex items-center gap-3 rounded-full border border-white/[0.08] bg-[rgba(7,15,30,0.72)] px-4 py-2 text-[12px] font-medium text-white/90 backdrop-blur-md shadow-[0_18px_40px_-20px_rgba(125,211,252,0.35)] sm:gap-4 sm:px-5 sm:py-2.5 sm:text-[13px]"
+      className="inline-flex items-center gap-3 rounded-full border border-white/[0.08] bg-[rgba(7,15,30,0.72)] px-4 py-2 text-[12px] font-medium text-white/90 backdrop-blur-md shadow-[0_18px_40px_-20px_rgba(184, 151, 90,0.35)] sm:gap-4 sm:px-5 sm:py-2.5 sm:text-[13px]"
     >
       <span className="inline-flex items-center gap-2 uppercase tracking-[0.22em] text-white">
         <span className="relative inline-flex h-2 w-2 items-center justify-center">
@@ -111,7 +111,7 @@ export function LiveHUD() {
       </span>
       <span className="text-white/55">detections</span>
       <span className="text-slate-500">·</span>
-      <span className="text-[#7dd3fc]">EMV</span>
+      <span className="text-[#B8975A]">EMV</span>
       <span className="font-[family-name:var(--font-mono)] tabular-nums text-white">
         +€{emv}k
       </span>

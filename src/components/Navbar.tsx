@@ -83,7 +83,7 @@ export function Navbar() {
                   {!active && (
                     <span
                       aria-hidden
-                      className="pointer-events-none absolute bottom-1 left-4 right-4 h-px origin-left scale-x-0 bg-gradient-to-r from-[#7dd3fc] via-[#7dd3fc]/70 to-transparent transition-transform duration-150 ease-out group-hover:scale-x-100"
+                      className="pointer-events-none absolute bottom-1 left-4 right-4 h-px origin-left scale-x-0 bg-gradient-to-r from-[#B8975A] via-[#B8975A]/70 to-transparent transition-transform duration-150 ease-out group-hover:scale-x-100"
                     />
                   )}
                 </Link>

@@ -33,7 +33,7 @@ export function AuroraBackground() {
           top: "-10%",
           left: "-10%",
           background:
-            "radial-gradient(circle, rgba(125,211,252,0.35) 0%, rgba(125,211,252,0) 60%)",
+            "radial-gradient(circle, rgba(184, 151, 90,0.35) 0%, rgba(184, 151, 90,0) 60%)",
           filter: "blur(120px)",
           animation: anim("aurora-1", "28s"),
           willChange: reduced ? undefined : "transform",
@@ -48,7 +48,7 @@ export function AuroraBackground() {
           bottom: "-15%",
           left: "10%",
           background:
-            "radial-gradient(circle, rgba(167,139,250,0.30) 0%, rgba(167,139,250,0) 60%)",
+            "radial-gradient(circle, rgba(139, 0, 40,0.30) 0%, rgba(139, 0, 40,0) 60%)",
           filter: "blur(120px)",
           animation: anim("aurora-2", "35s"),
           willChange: reduced ? undefined : "transform",
