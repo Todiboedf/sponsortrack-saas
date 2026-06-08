@@ -5,7 +5,7 @@ import Link from "next/link";
 import { forwardRef } from "react";
 import type { ButtonHTMLAttributes, ReactNode } from "react";
 
-type Variant = "primary" | "secondary" | "ghost" | "outline" | "gold" | "cyan";
+type Variant = "primary" | "secondary" | "ghost" | "outline" | "gold";
 type Size = "sm" | "md" | "lg";
 
 const base =
@@ -30,10 +30,6 @@ const variants: Record<Variant, string> = {
     "text-[#0A1628] bg-[#B8975A] hover:bg-[#D8BC85] " +
     "shadow-[0_10px_30px_-12px_rgba(184,151,90,0.55),inset_0_1px_0_rgba(255,255,255,0.25)] " +
     "hover:shadow-[0_14px_40px_-8px_rgba(184,151,90,0.7),0_0_32px_-6px_rgba(184, 151, 90,0.35),inset_0_1px_0_rgba(255,255,255,0.32)]",
-  cyan:
-    "text-[#0A1628] bg-[#B8975A] hover:bg-[#D8BC85] " +
-    "shadow-[0_10px_36px_-12px_rgba(184, 151, 90,0.7),inset_0_1px_0_rgba(255,255,255,0.32)] " +
-    "hover:shadow-[0_18px_50px_-10px_rgba(184, 151, 90,0.9),0_0_40px_-6px_rgba(184, 151, 90,0.55),inset_0_1px_0_rgba(255,255,255,0.45)]",
 };
 
 const sizes: Record<Size, string> = {
