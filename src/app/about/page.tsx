@@ -70,7 +70,7 @@ const milestones = [
   {
     year: "2026",
     title: "CA Osasuna pilot",
-    body: "First design partner: a centenary LaLiga club. Twenty-week pilot, eight sponsors, live broadcast computer vision in production.",
+    body: "First design partner: a centenary LaLiga club. A twenty-week pilot, eight sponsors, with match-day computer vision in active development.",
   },
   {
     year: "Next",
@@ -162,12 +162,12 @@ export default function AboutPage() {
                 <GradientOrb color="red" size={380} className="-left-10 -top-10" intensity="soft" />
                 <div className="grid grid-cols-2 gap-4">
                   {[
-                    { stat: "€2.4B", label: "Media value analysed" },
-                    { stat: "48", label: "Leagues / federations targeted" },
-                    { stat: "5,200", label: "Matches observed live" },
-                    { stat: "94%", label: "Sponsor renewal rate" },
+                    { stat: "$100B", label: "Global sponsorship market" },
+                    { stat: "1", label: "Pilot club live (CA Osasuna)" },
+                    { stat: "8", label: "Sponsors in the pilot scope" },
                     { stat: "11×", label: "Faster than a spreadsheet" },
                     { stat: "EU-first", label: "Data residency policy" },
+                    { stat: "2026", label: "Building in the open" },
                   ].map((s) => (
                     <div
                       key={s.label}
@@ -205,9 +205,10 @@ export default function AboutPage() {
                     </em>
                   </h2>
                   <p className="mt-4 text-[15px] leading-relaxed text-[#F4EFE6]/65">
-                    A centenary LaLiga club piloting Sponsorlens end-to-end:
-                    social analytics, match-day computer vision, and per-sponsor
-                    portals all wired against a real season schedule.
+                    A centenary LaLiga club piloting Sponsorlens: live social
+                    analytics and per-sponsor portals wired against a real
+                    season schedule, with match-day computer vision in active
+                    development.
                   </p>
                   <div className="mt-6 flex flex-wrap items-center gap-3">
                     <Button
@@ -235,8 +236,8 @@ export default function AboutPage() {
                     {[
                       { label: "Pilot weeks", value: "20" },
                       { label: "Sponsors", value: "8" },
-                      { label: "Detections / s", value: "18" },
-                      { label: "EMV lift", value: "+24%" },
+                      { label: "Platforms wired", value: "5" },
+                      { label: "EMV lift (target)", value: "+24%" },
                     ].map((m) => (
                       <div
                         key={m.label}

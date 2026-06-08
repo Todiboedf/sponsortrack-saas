@@ -106,9 +106,9 @@ const pillars: Pillar[] = [
   {
     tag: "Match day",
     title: "Match-day computer vision",
-    body: "Our in-house model watches the broadcast feed — live or recorded — and measures the exact seconds of visibility for every jersey, LED rotation, interview backdrop and pitch-side board.",
+    body: "An in-house model that measures the exact seconds of visibility for every jersey, LED rotation, interview backdrop and pitch-side board, on recorded footage first and broadcast next. In active development.",
     bullets: [
-      "Live logo detection with broadcast-quality scoring",
+      "Logo detection with broadcast-quality scoring",
       "LED rotation optimisation and inventory pricing",
       "Per-camera angle and per-broadcaster breakdown",
       "GDPR-safe: no face identification, ever",
@@ -162,7 +162,7 @@ const pillars: Pillar[] = [
   {
     tag: "Security",
     title: "Security & compliance",
-    body: "The boring parts done properly. SSO, SCIM, fine-grained RBAC, EU data residency by default, and a SOC 2 Type II audit in progress — so procurement isn’t the slow lane.",
+    body: "The boring parts done properly. SSO, SCIM, fine-grained RBAC, EU data residency by default, and a SOC 2 Type II audit planned, so procurement isn’t the slow lane.",
     bullets: [
       "SAML / OIDC SSO and SCIM provisioning",
       "Role-based access at workspace, sponsor and report level",
@@ -693,7 +693,7 @@ function ReportCell({ label, value }: { label: string; value: string }) {
 
 function SecurityMockup() {
   const certs = [
-    { label: "SOC 2 Type II", sub: "Audit in progress", icon: <ShieldCheck size={16} /> },
+    { label: "SOC 2 Type II", sub: "Planned", icon: <ShieldCheck size={16} /> },
     { label: "GDPR + DPA", sub: "EU data residency", icon: <FileBadge size={16} /> },
     { label: "SSO · SAML / OIDC", sub: "Workspace-wide", icon: <Lock size={16} /> },
     { label: "RBAC + audit logs", sub: "Per-sponsor scope", icon: <Zap size={16} /> },

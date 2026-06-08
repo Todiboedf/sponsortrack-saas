@@ -11,7 +11,6 @@ import {
   Sparkles,
   Target,
   TrendingUp,
-  Users,
 } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
@@ -46,7 +45,6 @@ export default function HomePage() {
       <GoldenHourBackdrop>
         <PricingTeaser />
         <SectionDivider className="my-2" />
-        <TestimonialsSection />
         <FinalCta />
       </GoldenHourBackdrop>
     </>
@@ -146,8 +144,8 @@ const features = [
   {
     icon: <Camera size={22} />,
     title: "Match-day computer vision",
-    body: "Our model watches the broadcast feed and measures the exact screen time of every sponsor logo, jersey, LED rotation and interview backdrop.",
-    points: ["Live logo tracking", "Broadcast quality scoring", "GDPR-safe processing"],
+    body: "Logo-level exposure on match footage — jersey, LED and on-screen time. In active development; starting on owned and in-venue content, broadcast next.",
+    points: ["Logo & screen-time detection", "Owned + in-venue sources first", "GDPR-safe processing"],
   },
   {
     icon: <LineChart size={22} />,
@@ -269,7 +267,7 @@ function PerSponsorSection() {
                 },
                 {
                   title: "Enterprise-grade security",
-                  body: "SSO, SOC 2 Type II in progress, EU data residency, GDPR compliant.",
+                  body: "SSO-ready, EU data residency by default, GDPR compliant. SOC 2 Type II planned.",
                 },
               ].map((it) => (
                 <li key={it.title} className="flex items-start gap-3">
@@ -312,26 +310,23 @@ const stats: Array<{
 }> = [
   {
     key: "media",
-    label: "Media value analysed in 2025",
-    to: 2.4,
-    prefix: "€",
-    suffix: "B",
-    decimals: 1,
+    label: "Pilot club live · CA Osasuna",
+    to: 1,
   },
   {
     key: "leagues",
-    label: "Leagues & federations live",
-    to: 48,
+    label: "Sponsors in the pilot scope",
+    to: 8,
   },
   {
     key: "renewal",
-    label: "Renewal rate for our clients’ sponsors",
-    to: 94,
+    label: "EU data residency · GDPR-native",
+    to: 100,
     suffix: "%",
   },
   {
     key: "speed",
-    label: "Faster than a spreadsheet workflow",
+    label: "Faster than spreadsheet reporting",
     to: 11,
     suffix: "×",
   },
@@ -361,7 +356,7 @@ function StatsSection() {
             ))}
           </div>
           <p className="mt-10 text-[11px] uppercase tracking-[0.22em] text-[#F4EFE6]/40">
-            Illustrative · pre-launch.{" "}
+            Pre-launch · pilot in progress with CA Osasuna.{" "}
             <Link
               href="/about"
               className="text-[#B8975A] underline underline-offset-4 hover:text-[#D8BC85]"
@@ -379,83 +374,7 @@ function StatsSection() {
  * with billing toggle + full canonical feature lists). */
 
 /* -------------------------------------------------------------------------- */
-/* Testimonials                                                               */
 /* -------------------------------------------------------------------------- */
-const testimonials = [
-  {
-    quote:
-      "We replaced three tools and two agencies with Sponsorlens. Our sponsor retention went from 68% to 91% in one season.",
-    name: "Marta Lindgren",
-    role: "Head of Commercial · Nordic FC",
-  },
-  {
-    quote:
-      "The match-day vision product is a different league. Our LED rotation is now priced like inventory — not guesswork.",
-    name: "Pablo Reyes",
-    role: "CMO · Club Deportivo Valencia",
-  },
-  {
-    quote:
-      "Our sponsors get a Monday morning email with their numbers. We closed two renewals before the quarter even ended.",
-    name: "Aisha N’Dour",
-    role: "Partnerships Director · Paris Métropole",
-  },
-];
-
-function TestimonialsSection() {
-  return (
-    <section className="relative py-24 lg:py-32">
-      <Container>
-        <SectionHeader
-          eyebrow="What our customers say"
-          eyebrowIcon={<Users size={13} />}
-          title={
-            <>
-              Trusted by the teams who{" "}
-              <em className="italic text-gradient-brand">already moved on</em>{" "}
-              from spreadsheets.
-            </>
-          }
-          description="Names and quotes are illustrative composites of our design partners while we finalise public case studies — real ones from CA Osasuna and others land in Q3."
-        />
-        <div className="mt-14 grid gap-5 md:grid-cols-3">
-          {testimonials.map((t, i) => (
-            <Reveal key={t.name} delay={i * 0.07}>
-              <Card className="h-full p-8">
-                <div
-                  aria-hidden
-                  className="font-[family-name:var(--font-display)] text-6xl italic leading-none text-[#B8975A]/70"
-                >
-                  &ldquo;
-                </div>
-                <p className="mt-2 text-[15px] leading-relaxed text-[#F4EFE6]/85">
-                  {t.quote}
-                </p>
-                <div className="mt-6 flex items-center gap-3 border-t border-[#F4EFE6]/[0.06] pt-5">
-                  <div className="grid h-10 w-10 place-items-center rounded-full bg-[#8B0028]/30 text-[13px] font-semibold text-[#F4EFE6] ring-1 ring-[#B8975A]/30">
-                    {t.name
-                      .split(" ")
-                      .map((n) => n[0])
-                      .join("")
-                      .slice(0, 2)}
-                  </div>
-                  <div className="min-w-0">
-                    <div className="truncate text-sm font-medium text-[#F4EFE6]">
-                      {t.name}
-                    </div>
-                    <div className="truncate text-[12px] text-[#F4EFE6]/55">
-                      {t.role}
-                    </div>
-                  </div>
-                </div>
-              </Card>
-            </Reveal>
-          ))}
-        </div>
-      </Container>
-    </section>
-  );
-}
 
 /* -------------------------------------------------------------------------- */
 /* Final CTA                                                                  */
