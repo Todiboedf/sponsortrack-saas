@@ -3,15 +3,14 @@
 import { useReducedMotion } from "motion/react";
 
 /**
- * Aurora gradient — four large blurred orbs drifting on independent CSS
- * keyframe loops behind the hero. Animation is pure CSS; this component
- * only decides whether to attach the `animation` property based on the
- * user's prefers-reduced-motion preference.
+ * Aurora gradient — two softly blurred brand-colour orbs drifting behind the
+ * hero. Deliberately light: 2 orbs (was 4), 80px blur (was 120–140px), no
+ * `will-change`, and `contain: paint` so the hero stays cheap to composite on
+ * integrated GPUs (the previous 4-orb / 120–140px version could exhaust the
+ * GPU process and crash the tab). Animation is pure CSS; honours
+ * prefers-reduced-motion.
  *
- * Keyframes (aurora-1/2/3/4) live in globals.css.
- *
- * The wrapper carries the `.aurora-bg` class so a single media query in
- * globals.css can dim the orbs on small viewports without re-rendering.
+ * Keyframes (aurora-1 / aurora-2) live in globals.css.
  */
 export function AuroraBackground() {
   const reduced = useReducedMotion();
@@ -22,66 +21,34 @@ export function AuroraBackground() {
     <div
       aria-hidden
       className="aurora-bg pointer-events-none absolute inset-0 -z-20 overflow-hidden"
-      style={{ background: "#060D18" }}
+      style={{ background: "#060D18", contain: "paint" }}
     >
-      {/* Cyan — drifts down-right */}
+      {/* Gold ember — drifts down-right */}
       <div
         className="absolute rounded-full"
         style={{
-          height: "60vh",
-          width: "60vw",
-          top: "-10%",
-          left: "-10%",
+          height: "52vh",
+          width: "52vw",
+          top: "-8%",
+          left: "-8%",
           background:
-            "radial-gradient(circle, rgba(184, 151, 90,0.35) 0%, rgba(184, 151, 90,0) 60%)",
-          filter: "blur(120px)",
-          animation: anim("aurora-1", "28s"),
-          willChange: reduced ? undefined : "transform",
+            "radial-gradient(circle, rgba(184,151,90,0.20) 0%, rgba(184,151,90,0) 60%)",
+          filter: "blur(80px)",
+          animation: anim("aurora-1", "30s"),
         }}
       />
-      {/* Violet — drifts up-right */}
+      {/* Red ember — drifts up-right */}
       <div
         className="absolute rounded-full"
         style={{
-          height: "55vh",
-          width: "55vw",
-          bottom: "-15%",
-          left: "10%",
+          height: "48vh",
+          width: "48vw",
+          bottom: "-12%",
+          right: "-6%",
           background:
-            "radial-gradient(circle, rgba(139, 0, 40,0.30) 0%, rgba(139, 0, 40,0) 60%)",
-          filter: "blur(120px)",
-          animation: anim("aurora-2", "35s"),
-          willChange: reduced ? undefined : "transform",
-        }}
-      />
-      {/* Gold ember — drifts left-down */}
-      <div
-        className="absolute rounded-full"
-        style={{
-          height: "45vh",
-          width: "45vw",
-          top: "30%",
-          left: "40%",
-          background:
-            "radial-gradient(circle, rgba(251,191,36,0.18) 0%, rgba(251,191,36,0) 60%)",
-          filter: "blur(140px)",
-          animation: anim("aurora-3", "42s"),
-          willChange: reduced ? undefined : "transform",
-        }}
-      />
-      {/* Red ember — drifts left-down */}
-      <div
-        className="absolute rounded-full"
-        style={{
-          height: "40vh",
-          width: "40vw",
-          top: "10%",
-          right: "-5%",
-          background:
-            "radial-gradient(circle, rgba(239,68,68,0.20) 0%, rgba(239,68,68,0) 60%)",
-          filter: "blur(120px)",
-          animation: anim("aurora-4", "50s"),
-          willChange: reduced ? undefined : "transform",
+            "radial-gradient(circle, rgba(139,0,40,0.22) 0%, rgba(139,0,40,0) 60%)",
+          filter: "blur(80px)",
+          animation: anim("aurora-2", "38s"),
         }}
       />
     </div>

@@ -3,12 +3,10 @@
 import { motion, useReducedMotion } from "motion/react";
 
 /**
- * Sponsorlens animated mesh — three deeply blurred orbs orbiting on
- * intertwined Lissajous-flavoured paths. Sits behind hero sections to
- * give the page a quiet sense of motion without competing for attention.
- *
- * Performance: pointer-events: none, transform-only animation, will-change
- * hinted on each orb. Honours prefers-reduced-motion by staying still.
+ * Sponsorlens animated mesh — two softly blurred brand orbs drifting behind
+ * lower sections to give a quiet sense of motion. Deliberately light: 2 orbs
+ * (was 3), 70px blur (was 120px), no `will-change`, and `contain: paint`, so it
+ * stays cheap to composite on integrated GPUs. Honours prefers-reduced-motion.
  */
 export function AnimatedMesh({
   className,
@@ -18,8 +16,7 @@ export function AnimatedMesh({
   variant?: "default" | "soft";
 }) {
   const reduced = useReducedMotion();
-  const opacity = variant === "soft" ? 0.28 : 0.4;
-  const easeLoop = "easeInOut" as const;
+  const opacity = variant === "soft" ? 0.22 : 0.3;
 
   return (
     <div
@@ -28,37 +25,24 @@ export function AnimatedMesh({
       style={{ contain: "paint" }}
     >
       <Orb
-        color="#1e3a8a"
+        color="#142238"
         opacity={opacity}
         reduced={!!reduced}
-        ease={easeLoop}
-        keyframesX={["-12%", "18%", "-6%", "22%", "-12%"]}
-        keyframesY={["-10%", "14%", "28%", "-4%", "-10%"]}
-        duration={26}
-        size={520}
+        keyframesX={["-12%", "18%", "-12%"]}
+        keyframesY={["-10%", "16%", "-10%"]}
+        duration={30}
+        size={460}
         delay={0}
       />
       <Orb
-        color="#0891b2"
-        opacity={opacity}
+        color="#8B0028"
+        opacity={opacity * 0.7}
         reduced={!!reduced}
-        ease={easeLoop}
-        keyframesX={["72%", "44%", "84%", "56%", "72%"]}
-        keyframesY={["18%", "62%", "30%", "76%", "18%"]}
-        duration={32}
-        size={460}
-        delay={4}
-      />
-      <Orb
-        color="#7c3aed"
-        opacity={opacity * 0.75}
-        reduced={!!reduced}
-        ease={easeLoop}
-        keyframesX={["30%", "60%", "10%", "50%", "30%"]}
-        keyframesY={["80%", "30%", "55%", "10%", "80%"]}
-        duration={22}
+        keyframesX={["64%", "40%", "64%"]}
+        keyframesY={["22%", "60%", "22%"]}
+        duration={36}
         size={400}
-        delay={2}
+        delay={3}
       />
     </div>
   );
@@ -68,7 +52,6 @@ function Orb({
   color,
   opacity,
   reduced,
-  ease,
   keyframesX,
   keyframesY,
   duration,
@@ -78,27 +61,26 @@ function Orb({
   color: string;
   opacity: number;
   reduced: boolean;
-  ease: "easeInOut";
   keyframesX: string[];
   keyframesY: string[];
   duration: number;
   size: number;
   delay: number;
 }) {
+  const base = {
+    width: size,
+    height: size,
+    opacity,
+    filter: "blur(70px)",
+    borderRadius: "50%",
+    background: `radial-gradient(circle at 50% 50%, ${color}, transparent 70%)`,
+  } as const;
+
   if (reduced) {
     return (
       <div
         className="absolute"
-        style={{
-          left: keyframesX[0],
-          top: keyframesY[0],
-          width: size,
-          height: size,
-          opacity,
-          filter: "blur(120px)",
-          borderRadius: "50%",
-          background: `radial-gradient(circle at 50% 50%, ${color}, transparent 70%)`,
-        }}
+        style={{ left: keyframesX[0], top: keyframesY[0], ...base }}
       />
     );
   }
@@ -108,20 +90,12 @@ function Orb({
       transition={{
         duration,
         repeat: Infinity,
-        ease,
+        ease: "easeInOut",
         repeatType: "loop",
         delay,
       }}
       className="absolute"
-      style={{
-        width: size,
-        height: size,
-        opacity,
-        filter: "blur(120px)",
-        borderRadius: "50%",
-        background: `radial-gradient(circle at 50% 50%, ${color}, transparent 70%)`,
-        willChange: "transform",
-      }}
+      style={base}
     />
   );
 }

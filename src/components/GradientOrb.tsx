@@ -15,9 +15,9 @@ const palettes: Record<NonNullable<Props["color"]>, string> = {
 };
 
 const blurs: Record<NonNullable<Props["intensity"]>, string> = {
-  soft: "blur-[140px] opacity-60",
-  default: "blur-[110px] opacity-80",
-  strong: "blur-[90px] opacity-100",
+  soft: "blur-[72px] opacity-55",
+  default: "blur-[60px] opacity-70",
+  strong: "blur-[48px] opacity-90",
 };
 
 export function GradientOrb({
