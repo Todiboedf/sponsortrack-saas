@@ -1,0 +1,12 @@
+{
+  "property": "Atlético Demo",
+  "classes": ["Northwind", "Vertex", "Lumina", "Meridian", "Bravo"],
+  "placements": {
+    "Northwind": "jersey",
+    "Vertex": "jersey",
+    "Lumina": "led",
+    "Meridian": "backdrop",
+    "Bravo": "led"
+  },
+  "_notes": "`classes` are the YOLO class names and MUST match the labels you annotate in Roboflow (same spelling, same order = same class ids). `placements` is optional metadata used when uploading to Supabase. Copy this file to sponsors.json and adapt per property."
+}

@@ -110,3 +110,44 @@ create index if not exists contact_messages_created_idx on public.contact_messag
 alter table public.contact_messages enable row level security;
 -- No anon/authenticated policy on purpose: only the service role (the
 -- /api/contact route, via SUPABASE_SERVICE_ROLE_KEY) can read/write leads.
+
+-- 7. Computer-vision broadcast / in-venue exposure ───────────────
+-- Populated by the Python pipeline in cv/ (see cv/README.md).
+create table if not exists public.cv_matches (
+  id uuid primary key default gen_random_uuid(),
+  property text not null,
+  opponent text,
+  competition text,
+  match_date date,
+  source text check (source in ('recorded-broadcast','in-venue','owned')),
+  video_label text,
+  duration_seconds numeric,
+  sample_fps numeric,
+  processed_at timestamptz not null default now()
+);
+
+create table if not exists public.cv_sponsor_exposure (
+  id uuid primary key default gen_random_uuid(),
+  match_id uuid not null references public.cv_matches(id) on delete cascade,
+  sponsor text not null,
+  placement text check (placement in ('jersey','led','backdrop','pitch','other')),
+  visible_seconds numeric not null default 0,
+  detections int not null default 0,
+  avg_area_pct numeric,
+  peak_area_pct numeric,
+  first_seen_seconds numeric,
+  last_seen_seconds numeric,
+  est_media_value numeric,
+  created_at timestamptz not null default now()
+);
+
+create index if not exists cv_exposure_match_idx on public.cv_sponsor_exposure(match_id);
+
+alter table public.cv_matches enable row level security;
+alter table public.cv_sponsor_exposure enable row level security;
+-- Writes happen via the service role (the cv/ pipeline). Anon read is allowed so
+-- the public demo can render results; tighten to authenticated if you go private.
+drop policy if exists cv_matches_anon_read on public.cv_matches;
+create policy cv_matches_anon_read on public.cv_matches for select to anon using (true);
+drop policy if exists cv_exposure_anon_read on public.cv_sponsor_exposure;
+create policy cv_exposure_anon_read on public.cv_sponsor_exposure for select to anon using (true);

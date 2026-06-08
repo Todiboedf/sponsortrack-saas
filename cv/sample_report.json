@@ -1,0 +1,21 @@
+{
+  "match": {
+    "property": "Atlético Demo",
+    "opponent": "Rivals FC",
+    "competition": "Demo League",
+    "match_date": "2026-05-30",
+    "source": "recorded-broadcast",
+    "video_label": "atletico-demo-vs-rivals-2026-05-30.mp4"
+  },
+  "video": { "src_fps": 25.0, "frame_count": 135000, "width": 1920, "height": 1080, "duration_seconds": 5400.0 },
+  "sample_fps": 2.0,
+  "conf_threshold": 0.35,
+  "sampled_frames": 10800,
+  "processed_at": "2026-06-08T22:10:00+00:00",
+  "sponsors": [
+    { "sponsor": "Northwind", "placement": "jersey", "detections": 7421, "visible_seconds": 3110.5, "avg_area_pct": 0.92, "peak_area_pct": 3.4, "first_seen_seconds": 12.0, "last_seen_seconds": 5388.0, "est_media_value": 27994.5 },
+    { "sponsor": "Vertex", "placement": "jersey", "detections": 5980, "visible_seconds": 2480.0, "avg_area_pct": 0.61, "peak_area_pct": 2.1, "first_seen_seconds": 12.0, "last_seen_seconds": 5388.0, "est_media_value": 22320.0 },
+    { "sponsor": "Lumina", "placement": "led", "detections": 3120, "visible_seconds": 1290.5, "avg_area_pct": 1.8, "peak_area_pct": 6.2, "first_seen_seconds": 40.0, "last_seen_seconds": 5310.0, "est_media_value": 11614.5 },
+    { "sponsor": "Meridian", "placement": "backdrop", "detections": 410, "visible_seconds": 188.0, "avg_area_pct": 4.1, "peak_area_pct": 9.0, "first_seen_seconds": 2700.0, "last_seen_seconds": 2880.0, "est_media_value": 1692.0 }
+  ]
+}

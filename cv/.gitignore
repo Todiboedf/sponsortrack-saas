@@ -1,0 +1,11 @@
+.venv/
+.env
+__pycache__/
+*.pt
+*.onnx
+*.mp4
+*.mov
+*.mkv
+report*.json
+runs/
+datasets/

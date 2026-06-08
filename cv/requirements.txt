@@ -1,0 +1,8 @@
+# Sponsorlens computer-vision pipeline — Python deps
+# Install on a machine with a GPU (or CPU for small tests):
+#   python -m venv .venv && source .venv/bin/activate
+#   pip install -r requirements.txt
+ultralytics>=8.3,<9        # YOLO11 training + inference
+opencv-python>=4.10        # video decoding + frame sampling (no ffmpeg needed)
+supabase>=2.7              # push results into the same Supabase project as the app
+python-dotenv>=1.0         # load .env for the upload step
