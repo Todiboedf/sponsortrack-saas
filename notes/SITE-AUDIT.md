@@ -1,4 +1,6 @@
-# Audit complet — Sponsorlens (repo `sponsortrack-saas`)
+> 🔄 **Mise à jour 8 juin (post-fixes).** La plupart des points ci-dessous sont **faits** : P0 sécurité (CRON_SECRET rotaté), P1 domaine (sponsorlens.io live) + crédibilité, puis une **passe dé-Osasuna** (PR #12 mergée + commits `9e5e55c` crash-fix, `bc0dc2c` em-dashes, `53f558a`/`434c0ed` dé-Osasuna). **Posture actuelle : 0 pilot signé, produit construit, démo club fictif « Atlético Demo », premier prospect = Group 1.** Toute mention « pilote / case study Osasuna » ci-dessous est **historique** (retirée du site). Reste ouvert : formulaire contact, Stripe/onboarding, POC computer vision.
+
+# Audit complet : Sponsorlens (repo `sponsortrack-saas`)
 
 *8 juin 2026 · `main` @ b5d747c · build ✓ propre (17 routes) · déployé `sponsortrack-saas.vercel.app` (200)*
 
