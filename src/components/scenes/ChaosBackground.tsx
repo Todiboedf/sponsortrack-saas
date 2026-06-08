@@ -28,7 +28,7 @@ const TABS: Tab[] = [
   },
   {
     id: "ig",
-    title: "Instagram · Caja Rural",
+    title: "Instagram · Northwind",
     body: "Reels 14d · 124k impressions",
     Icon: ImageIcon,
     initial: { x: "60%", y: "12%", rot: 6, scale: 0.92 },
@@ -48,7 +48,7 @@ const TABS: Tab[] = [
   },
   {
     id: "tweet",
-    title: "X · Digi mentions · 24h",
+    title: "X · Lumina mentions · 24h",
     body: "Eng. 0.42 · sentiment +0.21",
     Icon: Hash,
     initial: { x: "-20%", y: "62%", rot: 4, scale: 0.94 },
@@ -58,7 +58,7 @@ const TABS: Tab[] = [
   },
   {
     id: "email",
-    title: "Re: Renewal, Asisa",
+    title: "Re: Renewal, Meridian",
     body: "Sent · awaiting reply since Tue",
     Icon: Mail,
     initial: { x: "40%", y: "-5%", rot: -3, scale: 0.93 },

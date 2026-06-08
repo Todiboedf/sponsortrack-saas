@@ -4,11 +4,11 @@ import { motion, useReducedMotion } from "motion/react";
 import { GradientOrb } from "@/components/GradientOrb";
 
 const PORTFOLIO: [string, string][] = [
-  ["Caja Rural", "92%"],
-  ["Macron", "78%"],
-  ["Digi", "64%"],
-  ["Cervezas El Águila", "48%"],
-  ["Asisa", "32%"],
+  ["Northwind", "92%"],
+  ["Vertex", "78%"],
+  ["Lumina", "64%"],
+  ["Bravo Lager", "48%"],
+  ["Meridian", "32%"],
 ];
 
 /**
@@ -40,7 +40,7 @@ export function TwoViewsConvergence() {
           className="border-r border-[#F4EFE6]/[0.06] p-5"
         >
           <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#B8975A]">
-            Club view · CA Osasuna
+            Club view · Atlético Demo
           </div>
           <div className="mt-2 font-[family-name:var(--font-display)] text-base font-semibold text-[#F4EFE6]">
             Portfolio
@@ -76,7 +76,7 @@ export function TwoViewsConvergence() {
           className="bg-[#FBF7EF] p-5 text-[#0F1A2E]"
         >
           <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#8B0028]">
-            Sponsor view · Caja Rural
+            Sponsor view · Northwind
           </div>
           <div className="mt-2 font-[family-name:var(--font-display)] text-base font-semibold">
             Brand exposure

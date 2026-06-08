@@ -405,7 +405,7 @@ function AnalyticsMockup() {
       <div className="flex items-center justify-between">
         <div>
           <div className="text-[10px] uppercase tracking-[0.18em] text-[#B8975A]">
-            Sponsor · Caja Rural
+            Sponsor · Northwind
           </div>
           <div className="font-[family-name:var(--font-display)] text-base font-semibold text-[#F4EFE6]">
             Cross-platform reach
@@ -475,22 +475,22 @@ function BroadcastMockup() {
             fontFamily="var(--font-display)"
             fontStyle="italic"
           >
-            Caja Rural · Macron · Digi
+            Northwind · Vertex · Lumina
           </text>
         </svg>
         <div className="absolute left-[14%] top-[54%] h-[8%] w-[18%] border-2 border-[#8B0028] shadow-[0_0_0_1px_rgba(244,239,230,0.4)]">
           <span className="absolute -top-5 left-0 rounded bg-[#8B0028] px-1 py-0.5 text-[8px] font-semibold uppercase tracking-[0.16em] text-[#F4EFE6]">
-            Caja Rural · 0.96
+            Northwind · 0.96
           </span>
         </div>
         <div className="absolute left-[44%] top-[54%] h-[8%] w-[14%] border-2 border-[#8B0028]">
           <span className="absolute -top-5 left-0 rounded bg-[#8B0028] px-1 py-0.5 text-[8px] font-semibold uppercase tracking-[0.16em] text-[#F4EFE6]">
-            Macron · 0.92
+            Vertex · 0.92
           </span>
         </div>
         <div className="absolute right-[14%] top-[54%] h-[8%] w-[12%] border-2 border-[#B8975A]">
           <span className="absolute -top-5 right-0 rounded bg-[#B8975A] px-1 py-0.5 text-[8px] font-semibold uppercase tracking-[0.16em] text-[#0A1628]">
-            Digi · 0.74
+            Lumina · 0.74
           </span>
         </div>
         <div className="absolute right-2 top-2 inline-flex items-center gap-1.5 rounded-full bg-[#0A1628]/80 px-2 py-0.5 text-[10px] uppercase tracking-[0.16em] text-[#F4EFE6]">
@@ -498,7 +498,7 @@ function BroadcastMockup() {
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#8B0028] opacity-70" />
             <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#8B0028]" />
           </span>
-          Live · El Sadar
+          Live · Demo Arena
         </div>
         <div className="absolute bottom-2 left-2 flex items-center gap-2 rounded-md bg-[#0A1628]/80 px-2 py-1 text-[10px] text-[#F4EFE6]">
           <ScanLine size={11} className="text-[#B8975A]" />
@@ -509,9 +509,9 @@ function BroadcastMockup() {
       </div>
       <div className="mt-3 grid grid-cols-3 gap-2 text-[11px]">
         {[
-          ["Caja Rural", "26:14"],
-          ["Macron", "18:42"],
-          ["Digi", "11:08"],
+          ["Northwind", "26:14"],
+          ["Vertex", "18:42"],
+          ["Lumina", "11:08"],
         ].map(([n, t]) => (
           <div
             key={n}
@@ -536,13 +536,13 @@ function PortalMockup() {
           Club view
         </div>
         <div className="mt-2 font-[family-name:var(--font-display)] text-sm font-semibold text-[#F4EFE6]">
-          CA Osasuna · all sponsors
+          Atlético Demo · all sponsors
         </div>
         <ul className="mt-3 space-y-1.5 text-[11px]">
           {[
-            ["Caja Rural", "92%"],
-            ["Macron", "78%"],
-            ["Digi", "64%"],
+            ["Northwind", "92%"],
+            ["Vertex", "78%"],
+            ["Lumina", "64%"],
           ].map(([n, v]) => (
             <li key={n} className="flex items-center justify-between">
               <span className="text-[#F4EFE6]/75">{n}</span>
@@ -558,7 +558,7 @@ function PortalMockup() {
           Sponsor view
         </div>
         <div className="mt-2 font-[family-name:var(--font-display)] text-sm font-semibold">
-          Caja Rural · Q2
+          Northwind · Q2
         </div>
         <div className="mt-3 rounded-md border border-[#0F1A2E]/10 bg-white p-2.5 text-[11px]">
           <div className="text-[10px] uppercase tracking-[0.16em] text-[#0F1A2E]/55">
@@ -597,7 +597,7 @@ function ProspectionMockup() {
             Prospects · top fit
           </div>
           <div className="font-[family-name:var(--font-display)] text-base font-semibold text-[#F4EFE6]">
-            For CA Osasuna · LaLiga
+            For Atlético Demo · LaLiga
           </div>
         </div>
         <Radar size={14} className="text-[#B8975A]" />
@@ -629,7 +629,7 @@ function ProspectionMockup() {
       <div className="mt-4 rounded-lg border border-[#B8975A]/30 bg-[#B8975A]/[0.08] p-3 text-[11px] leading-relaxed text-[#F4EFE6]/75">
         <span className="font-semibold text-[#F4EFE6]">AI draft -</span>{" "}
         “Hola Iberia team, we noticed your Madrid–Iruña route lands 14 minutes
-        from El Sadar; here’s the audience overlap…”
+        from Demo Arena; here’s the audience overlap…”
       </div>
     </div>
   );
@@ -642,14 +642,14 @@ function ReportingMockup() {
         <div className="flex items-center justify-between">
           <div>
             <div className="text-[10px] uppercase tracking-[0.22em] text-[#8B0028]">
-              Caja Rural · Q2 2026
+              Northwind · Q2 2026
             </div>
             <div className="font-[family-name:var(--font-display)] text-lg font-semibold">
               Sponsorship report
             </div>
           </div>
           <div className="font-[family-name:var(--font-display)] italic text-[11px] text-[#0F1A2E]/55">
-            CA Osasuna
+            Atlético Demo
           </div>
         </div>
         <div className="mt-4 grid grid-cols-3 gap-3">
@@ -665,7 +665,7 @@ function ReportingMockup() {
           <span className="font-[family-name:var(--font-mono)] tabular-nums">72%</span>
         </div>
         <div className="mt-4 rounded-md border border-[#0F1A2E]/10 bg-white p-3 text-[11px] leading-relaxed text-[#0F1A2E]/65">
-          The Caja Rural jersey crest hit{" "}
+          The Northwind jersey crest hit{" "}
           <span className="font-semibold text-[#0F1A2E]">14 broadcasts</span>{" "}
           this quarter, €0.62 CPM, 38% below market.
         </div>

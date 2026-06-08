@@ -10,10 +10,9 @@ import { Button } from "@/components/ui/Button";
 import { Logo } from "@/components/Logo";
 import { cn } from "@/lib/utils";
 
-const links = [
+const links: { href: string; label: string; match?: string }[] = [
   { href: "/features", label: "Features" },
   { href: "/pricing", label: "Pricing" },
-  { href: "/customers/osasuna", label: "Customers", match: "/customers" },
   { href: "/changelog", label: "Changelog" },
   { href: "/about", label: "About" },
 ];

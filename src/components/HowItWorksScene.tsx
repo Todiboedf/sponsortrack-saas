@@ -291,9 +291,9 @@ function ConnectScene({ reduced }: { reduced: boolean }) {
 
 function DetectScene({ reduced }: { reduced: boolean }) {
   const boxes = [
-    { left: "14%", top: "55%", w: "22%", h: "10%", label: "Caja Rural · 0.96", color: "#8B0028" },
-    { left: "46%", top: "55%", w: "16%", h: "10%", label: "Macron · 0.92", color: "#8B0028" },
-    { left: "68%", top: "55%", w: "14%", h: "10%", label: "Digi · 0.74", color: "#B8975A" },
+    { left: "14%", top: "55%", w: "22%", h: "10%", label: "Northwind · 0.96", color: "#8B0028" },
+    { left: "46%", top: "55%", w: "16%", h: "10%", label: "Vertex · 0.92", color: "#8B0028" },
+    { left: "68%", top: "55%", w: "14%", h: "10%", label: "Lumina · 0.74", color: "#B8975A" },
   ];
   return (
     <motion.div
@@ -363,11 +363,11 @@ function DetectScene({ reduced }: { reduced: boolean }) {
 function ReportScene({ reduced }: { reduced: boolean }) {
   const lines = [
     { w: "70%", label: "Methodology · MVE 3.1" },
-    { w: "92%", label: "Caja Rural · €1.84M" },
-    { w: "82%", label: "Macron · €1.42M" },
-    { w: "64%", label: "Digi · €1.06M" },
-    { w: "54%", label: "Cervezas · €0.74M" },
-    { w: "44%", label: "Asisa · €0.51M" },
+    { w: "92%", label: "Northwind · €1.84M" },
+    { w: "82%", label: "Vertex · €1.42M" },
+    { w: "64%", label: "Lumina · €1.06M" },
+    { w: "54%", label: "Bravo Lager · €0.74M" },
+    { w: "44%", label: "Meridian · €0.51M" },
   ];
   return (
     <motion.div
@@ -381,7 +381,7 @@ function ReportScene({ reduced }: { reduced: boolean }) {
         <div className="flex items-center justify-between">
           <div>
             <div className="text-[10px] uppercase tracking-[0.22em] text-[#8B0028]">
-              Caja Rural · Q2 2026
+              Northwind · Q2 2026
             </div>
             <div className="mt-1 font-[family-name:var(--font-display)] text-lg font-semibold">
               Sponsorship report
@@ -440,7 +440,7 @@ function RenewScene({ reduced }: { reduced: boolean }) {
             Renewal email
           </div>
           <div className="mt-1 text-[13px] text-[#F4EFE6]">
-            Sent · Caja Rural Q2 recap
+            Sent · Northwind Q2 recap
           </div>
           <div className="mt-1 text-[11px] text-[#F4EFE6]/55">
             Open rate 100% · 14:32

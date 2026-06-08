@@ -52,15 +52,15 @@ function ScanLine() {
 
 const TICKER_ITEMS: { kind: "tag" | "data" | "alert"; text: string }[] = [
   { kind: "tag", text: "LIVE FEED" },
-  { kind: "data", text: "CA OSASUNA  vs  ATHLETIC CLUB" },
-  { kind: "data", text: "MIN 24 · EL SADAR STADIUM" },
+  { kind: "data", text: "ATLÉTICO DEMO  vs  RIVALS FC" },
+  { kind: "data", text: "MIN 24 · DEMO ARENA" },
   { kind: "alert", text: "BBVA · armband detected" },
-  { kind: "data", text: "MACRON · LED rotation confirmed" },
-  { kind: "data", text: "Caja Rural · jersey · +0.4s" },
+  { kind: "data", text: "VERTEX · LED rotation confirmed" },
+  { kind: "data", text: "Northwind · jersey · +0.4s" },
   { kind: "tag", text: "EMV +€412K" },
   { kind: "data", text: "73 detections so far" },
-  { kind: "alert", text: "Cervezas El Águila · backdrop · 25:02" },
-  { kind: "data", text: "Digi · sideline LED · 24:08" },
+  { kind: "alert", text: "Bravo Lager · backdrop · 25:02" },
+  { kind: "data", text: "Lumina · sideline LED · 24:08" },
   { kind: "tag", text: "Sponsorlens" },
   { kind: "data", text: "feed integrity 99.6% · 30 fps" },
 ];

@@ -24,7 +24,7 @@ import { GradientOrb } from "@/components/GradientOrb";
 export const metadata: Metadata = {
   title: "About, Building the sponsor intelligence layer for sport",
   description:
-    "Sponsorlens is a solo-founded, public-build sports sponsorship platform measuring every match, post and impression, currently piloting with CA Osasuna.",
+    "Sponsorlens is a solo-founded, public-build sports sponsorship platform measuring every match, post and impression, currently piloting with Atlético Demo.",
 };
 
 const values = [
@@ -53,7 +53,7 @@ const values = [
 const founder = {
   name: "Guillaume Haas",
   role: "Founder",
-  bio: "Entrepreneur with a product engineering background, building Sponsorlens solo, from the data model to the first board pitch. Based in Madrid, currently piloting with CA Osasuna.",
+  bio: "Entrepreneur with a product engineering background, building Sponsorlens solo, from the data model to the first board pitch. Based in Madrid, currently piloting with Atlético Demo.",
 };
 
 const milestones = [
@@ -69,7 +69,7 @@ const milestones = [
   },
   {
     year: "2026",
-    title: "CA Osasuna pilot",
+    title: "Atlético Demo pilot",
     body: "First design partner: a centenary LaLiga club. A twenty-week pilot, eight sponsors, with match-day computer vision in active development.",
   },
   {
@@ -163,7 +163,7 @@ export default function AboutPage() {
                 <div className="grid grid-cols-2 gap-4">
                   {[
                     { stat: "$100B", label: "Global sponsorship market" },
-                    { stat: "1", label: "Pilot club live (CA Osasuna)" },
+                    { stat: "1", label: "Pilot club live (Atlético Demo)" },
                     { stat: "8", label: "Sponsors in the pilot scope" },
                     { stat: "11×", label: "Faster than a spreadsheet" },
                     { stat: "EU-first", label: "Data residency policy" },
@@ -188,7 +188,7 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      {/* Case study highlight (Osasuna) */}
+      {/* Case study highlight (Atlético Demo) */}
       <section className="py-16 lg:py-24">
         <Container>
           <Reveal>
@@ -199,7 +199,7 @@ export default function AboutPage() {
                     Our case study
                   </Badge>
                   <h2 className="mt-5 font-[family-name:var(--font-display)] text-balance text-3xl font-semibold tracking-[-0.01em] text-[#F4EFE6] sm:text-4xl">
-                    CA Osasuna -{" "}
+                    Atlético Demo -{" "}
                     <em className="italic text-gradient-brand">
                       twenty weeks to prove the model.
                     </em>
@@ -212,7 +212,7 @@ export default function AboutPage() {
                   </p>
                   <div className="mt-6 flex flex-wrap items-center gap-3">
                     <Button
-                      href="/customers/osasuna"
+                      href="/demo"
                       rightIcon={<ArrowRight size={15} />}
                     >
                       Read the case study
@@ -428,10 +428,10 @@ export default function AboutPage() {
                 Get in touch
               </Button>
               <Link
-                href="/customers/osasuna"
+                href="/demo"
                 className="text-sm text-[#B8975A] underline underline-offset-4 hover:text-[#D8BC85]"
               >
-                See how Osasuna does it →
+                See how Atlético Demo does it →
               </Link>
             </div>
           </div>

@@ -104,7 +104,7 @@ export function LiveHUD() {
         {minute.toString().padStart(2, "0")}:{second.toString().padStart(2, "0")}
       </span>
       <span className="text-slate-500">·</span>
-      <span className="hidden sm:inline">El Sadar Stadium</span>
+      <span className="hidden sm:inline">Demo Arena Stadium</span>
       <span className="hidden text-slate-500 sm:inline">·</span>
       <span className="font-[family-name:var(--font-mono)] tabular-nums text-white">
         {detections}

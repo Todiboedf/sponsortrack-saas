@@ -26,14 +26,14 @@ import { CountUp } from "@/components/CountUp";
 /* -------------------------------------------------------------------------- */
 
 const sponsors = [
-  { name: "Caja Rural", initials: "CR", color: "#1F7A52", value: 1.84, share: 92 },
-  { name: "Macron", initials: "M", color: "#101820", value: 1.42, share: 78 },
-  { name: "Digi", initials: "D", color: "#E73B3B", value: 1.06, share: 64 },
-  { name: "Cervezas El Águila", initials: "EA", color: "#A87B3A", value: 0.74, share: 48 },
-  { name: "Asisa", initials: "A", color: "#0E4A8C", value: 0.51, share: 32 },
+  { name: "Northwind", initials: "CR", color: "#1F7A52", value: 1.84, share: 92 },
+  { name: "Vertex", initials: "M", color: "#101820", value: 1.42, share: 78 },
+  { name: "Lumina", initials: "D", color: "#E73B3B", value: 1.06, share: 64 },
+  { name: "Bravo Lager", initials: "EA", color: "#A87B3A", value: 0.74, share: 48 },
+  { name: "Meridian", initials: "A", color: "#0E4A8C", value: 0.51, share: 32 },
 ];
 
-// 14 weeks of synthetic exposure data, Osasuna pilot proxy.
+// 14 weeks of synthetic exposure data, Atlético Demo pilot proxy.
 const weeks = [
   { w: "W1", reach: 1.4, broadcast: 0.9, social: 0.5 },
   { w: "W2", reach: 1.9, broadcast: 1.2, social: 0.7 },
@@ -61,9 +61,9 @@ const BASE_MEDIA_VALUE = 1.92;
 const BASE_KICKOFF_DELTA = 412;
 
 const DETECTIONS = [
-  { label: "Caja Rural · jersey", t: "26:14", icon: "camera" as const },
-  { label: "Macron · LED", t: "18:42", icon: "radio" as const },
-  { label: "Digi · backdrop", t: "11:08", icon: "eye" as const },
+  { label: "Northwind · jersey", t: "26:14", icon: "camera" as const },
+  { label: "Vertex · LED", t: "18:42", icon: "radio" as const },
+  { label: "Lumina · backdrop", t: "11:08", icon: "eye" as const },
 ];
 
 export function HeroDashboard() {
@@ -125,7 +125,7 @@ export function HeroDashboard() {
           </div>
           <div className="mx-auto flex max-w-xs flex-1 items-center gap-1.5 rounded-md bg-[#F4EFE6]/[0.04] px-3 py-1 text-[11px] text-[#F4EFE6]/45">
             <span className="h-1.5 w-1.5 rounded-full bg-[#2F8F5A]" />
-            app.sponsorlens.io / osasuna
+            app.sponsorlens.io / demo
           </div>
           <div className="hidden gap-1.5 sm:flex">
             <span className="h-5 w-12 rounded bg-[#F4EFE6]/[0.04]" />
@@ -141,7 +141,7 @@ export function HeroDashboard() {
               <span className="grid h-6 w-6 place-items-center rounded bg-[#8B0028] text-[10px] font-bold text-[#F4EFE6]">
                 CA
               </span>
-              <div className="min-w-0 flex-1 truncate font-medium">CA Osasuna</div>
+              <div className="min-w-0 flex-1 truncate font-medium">Atlético Demo</div>
               <ArrowUpRight size={12} className="text-[#B8975A]" />
             </div>
             <nav className="mt-5 flex flex-col gap-0.5">
@@ -384,7 +384,7 @@ export function HeroDashboard() {
               <div className="overflow-hidden rounded-xl border border-[#F4EFE6]/[0.06] bg-[#0A1628]/70 p-4">
                 <div className="mb-3 flex items-center justify-between">
                   <div className="font-[family-name:var(--font-display)] font-semibold text-[#F4EFE6]">
-                    Live match · El Sadar
+                    Live match · Demo Arena
                   </div>
                   <span className="inline-flex items-center gap-1.5 rounded-full border border-[#8B0028]/45 bg-[#8B0028]/15 px-2 py-0.5 text-[10px] uppercase tracking-[0.16em] text-[#F4EFE6]">
                     <span className="relative flex h-1.5 w-1.5">
@@ -442,7 +442,7 @@ export function HeroDashboard() {
                     <span className="font-[family-name:var(--font-mono)] tabular-nums text-[#F4EFE6]">
                       18.4M
                     </span>{" "}
-                    views, ask renewals for Caja Rural before kick-off Sunday.
+                    views, ask renewals for Northwind before kick-off Sunday.
                   </span>
                 </div>
                 <div className="mt-3 flex items-center gap-3 text-[11px] text-[#F4EFE6]/55">
@@ -504,7 +504,7 @@ export function HeroDashboard() {
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#8B0028] opacity-70" />
             <span className="relative inline-flex h-2 w-2 rounded-full bg-[#8B0028]" />
           </span>
-          <span className="text-[11px] text-[#F4EFE6]/65">Live · Caja Rural</span>
+          <span className="text-[11px] text-[#F4EFE6]/65">Live · Northwind</span>
         </div>
         <div className="mt-1 font-[family-name:var(--font-mono)] text-lg font-semibold tabular-nums text-[#F4EFE6]">
           +€{kickoffDelta.toLocaleString("en-US")}k

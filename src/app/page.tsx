@@ -310,12 +310,12 @@ const stats: Array<{
 }> = [
   {
     key: "media",
-    label: "Pilot club live · CA Osasuna",
+    label: "Solo founder, in public",
     to: 1,
   },
   {
     key: "leagues",
-    label: "Sponsors in the pilot scope",
+    label: "Sponsors in the live demo",
     to: 8,
   },
   {
@@ -356,7 +356,7 @@ function StatsSection() {
             ))}
           </div>
           <p className="mt-10 text-[11px] uppercase tracking-[0.22em] text-[#F4EFE6]/40">
-            Pre-launch · pilot in progress with CA Osasuna.{" "}
+            Pre-launch · illustrative figures.{" "}
             <Link
               href="/about"
               className="text-[#B8975A] underline underline-offset-4 hover:text-[#D8BC85]"

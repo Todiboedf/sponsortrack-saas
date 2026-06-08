@@ -6,7 +6,6 @@ const nav = {
   Product: [
     { href: "/features", label: "Features" },
     { href: "/pricing", label: "Pricing" },
-    { href: "/customers/osasuna", label: "Customers" },
     { href: "/changelog", label: "Changelog" },
     { href: "/demo", label: "Live demo" },
     { href: "https://status.sponsorlens.io", label: "Status", external: true },

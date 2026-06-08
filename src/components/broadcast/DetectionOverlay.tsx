@@ -28,7 +28,7 @@ const DETECTIONS: Detection[] = [
   {
     id: "jersey",
     serial: "DT-0237",
-    brand: "Caja Rural",
+    brand: "Northwind",
     asset: "jersey",
     timestamp: "23:14",
     left: "58%",
@@ -39,7 +39,7 @@ const DETECTIONS: Detection[] = [
   {
     id: "led-left",
     serial: "DT-0238",
-    brand: "Macron",
+    brand: "Vertex",
     asset: "LED",
     timestamp: "23:42",
     left: "51%",
@@ -50,7 +50,7 @@ const DETECTIONS: Detection[] = [
   {
     id: "led-right",
     serial: "DT-0239",
-    brand: "Digi",
+    brand: "Lumina",
     asset: "LED",
     timestamp: "24:08",
     left: "80%",
@@ -61,7 +61,7 @@ const DETECTIONS: Detection[] = [
   {
     id: "led-back",
     serial: "DT-0240",
-    brand: "Asisa",
+    brand: "Meridian",
     asset: "LED",
     timestamp: "24:31",
     left: "60%",
@@ -72,7 +72,7 @@ const DETECTIONS: Detection[] = [
   {
     id: "backdrop",
     serial: "DT-0241",
-    brand: "Cervezas El Águila",
+    brand: "Bravo Lager",
     asset: "backdrop",
     timestamp: "25:02",
     left: "72%",
