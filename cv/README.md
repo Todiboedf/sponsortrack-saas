@@ -40,7 +40,7 @@ pip install -r requirements.txt
 
 The pipeline needs a YOLO model fine-tuned on **your** sponsor logos.
 
-1. Create a project on [Roboflow](https://roboflow.com), upload frames (export some with `--dump-frames`, or screenshot the clip).
+1. Create a project on [Roboflow](https://roboflow.com), upload frames (export some with `python dump_frames.py --video clip.mp4 --fps 0.5 --out frames/`, or screenshot the clip).
 2. Draw boxes around each sponsor logo. **Class names must match `sponsors.json` `classes`** (same spelling/order = stable class ids).
 3. Generate a dataset (YOLO format) and train, either in Roboflow or locally:
 
@@ -94,6 +94,8 @@ A ready, presentational React component lives at
 | `detect.py` | YOLO wrapper + `Detection` dataclass |
 | `screen_time.py` | frame sampling + per-sponsor aggregation |
 | `upload_supabase.py` | report.json → Supabase |
+| `dump_frames.py` | export frames from a video for annotation |
+| `test_screen_time.py` | stdlib tests for the aggregation math (`python3 test_screen_time.py`) |
 | `sponsors.example.json` | class names + placements config (copy to `sponsors.json`) |
 | `sample_report.json` | example output / schema reference |
 | `requirements.txt` · `.env.example` | deps + env template |

@@ -26,6 +26,17 @@ from detect import LogoDetector
 from screen_time import ExposureAggregator, iter_sampled_frames, video_meta
 
 
+def _load_placements(path: str | None) -> dict[str, str]:
+    """Read the optional sponsors.json -> {sponsor: placement} (jersey/led/...)."""
+    if not path:
+        return {}
+    try:
+        with open(path, encoding="utf-8") as f:
+            return dict(json.load(f).get("placements", {}))
+    except (FileNotFoundError, ValueError):
+        return {}
+
+
 def run(args: argparse.Namespace) -> dict:
     meta = video_meta(args.video)
     frame_area = float(meta["width"] * meta["height"])
@@ -43,6 +54,11 @@ def run(args: argparse.Namespace) -> dict:
         if n_frames % 50 == 0:
             print(f"  processed {n_frames} sampled frames...", file=sys.stderr)
 
+    sponsors = agg.results()
+    placements = _load_placements(args.sponsors)
+    for row in sponsors:
+        row["placement"] = placements.get(row["sponsor"], "other")
+
     return {
         "match": {
             "property": args.property,
@@ -57,7 +73,7 @@ def run(args: argparse.Namespace) -> dict:
         "conf_threshold": args.conf,
         "sampled_frames": n_frames,
         "processed_at": datetime.now(timezone.utc).isoformat(),
-        "sponsors": agg.results(),
+        "sponsors": sponsors,
     }
 
 
@@ -66,6 +82,7 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--video", required=True)
     p.add_argument("--model", required=True, help="path to trained YOLO weights (best.pt)")
     p.add_argument("--out", default="report.json")
+    p.add_argument("--sponsors", default=None, help="sponsors.json -> tags placement (jersey/led/...) per sponsor")
     p.add_argument("--sample-fps", type=float, default=2.0, dest="sample_fps")
     p.add_argument("--conf", type=float, default=0.35)
     p.add_argument("--device", default=None, help="cuda:0 | cpu | None (auto)")
