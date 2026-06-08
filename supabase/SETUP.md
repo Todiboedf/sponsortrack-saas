@@ -14,7 +14,7 @@ That creates `sponsors`, `sponsor_kpis_daily`, `sponsor_users`, RLS policies, an
 
 ```bash
 curl -X POST https://sponsorlens-saas.vercel.app/api/seed \
-  -H "Authorization: Bearer 03542b04b2a0bd140cd2c5fd8638ed9d7d67f1d3b67e2d97"
+  -H "Authorization: Bearer $CRON_SECRET"
 ```
 
 Inserts: Nike, Adidas, Red Bull, Macron, Emirates (all real public Instagram handles).
@@ -23,7 +23,7 @@ Inserts: Nike, Adidas, Red Bull, Macron, Emirates (all real public Instagram han
 
 ```bash
 curl https://sponsorlens-saas.vercel.app/api/cron/collect-instagram \
-  -H "Authorization: Bearer 03542b04b2a0bd140cd2c5fd8638ed9d7d67f1d3b67e2d97"
+  -H "Authorization: Bearer $CRON_SECRET"
 ```
 
 Fetches `followers / posts / likes / comments / engagement_rate / EMV` for each sponsor's Instagram and writes today's row to `sponsor_kpis_daily`.
@@ -61,4 +61,4 @@ Vercel cron (`vercel.json`) hits `/api/cron/collect-instagram` every day at 06:0
 | `SUPABASE_SERVICE_ROLE_KEY` | Vercel + `.env.local` | server only |
 | `CRON_SECRET` | Vercel + `.env.local` | gates `/api/cron/*` and `/api/seed` |
 
-`CRON_SECRET = 03542b04b2a0bd140cd2c5fd8638ed9d7d67f1d3b67e2d97`
+`CRON_SECRET` — set as an environment variable (Vercel + `.env.local`). **The previously-committed value was exposed in this public repo and must be rotated; never commit it again.**
