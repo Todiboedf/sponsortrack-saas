@@ -57,10 +57,10 @@ export type LiveData = {
 
 const FALLBACK_SPONSORS = [
   { id: "all", label: "All sponsors", color: "#B8975A" },
-  { id: "santander", label: "Santander", color: "#EC1C23" },
-  { id: "adidas", label: "Adidas", color: "#6B7280" },
-  { id: "emirates", label: "Emirates", color: "#D71920" },
-  { id: "hublot", label: "Hublot", color: "#2B2B2B" },
+  { id: "northwind", label: "Northwind", color: "#EC1C23" },
+  { id: "vertex", label: "Vertex", color: "#6B7280" },
+  { id: "lumina", label: "Lumina", color: "#D71920" },
+  { id: "meridian", label: "Meridian", color: "#2B2B2B" },
 ];
 
 const ranges = [
@@ -102,18 +102,18 @@ const FALLBACK_EMV = [
 ];
 
 const FALLBACK_ENGAGEMENT = [
-  { sponsor: "Santander", reach: 148, engagement: 4.2 },
-  { sponsor: "Adidas", reach: 122, engagement: 5.1 },
-  { sponsor: "Emirates", reach: 91, engagement: 3.6 },
-  { sponsor: "Hublot", reach: 42, engagement: 2.9 },
-  { sponsor: "Visit Rwanda", reach: 58, engagement: 3.1 },
+  { sponsor: "Northwind", reach: 148, engagement: 4.2 },
+  { sponsor: "Vertex", reach: 122, engagement: 5.1 },
+  { sponsor: "Lumina", reach: 91, engagement: 3.6 },
+  { sponsor: "Meridian", reach: 42, engagement: 2.9 },
+  { sponsor: "Bravo", reach: 58, engagement: 3.1 },
 ];
 
 const FALLBACK_TOP_POSTS = [
   {
     platform: "Instagram",
-    caption: "Vinícius Jr. hat-trick celebration, new away kit",
-    sponsor: "Adidas",
+    caption: "Hat-trick celebration, new away kit",
+    sponsor: "Vertex",
     views: 28_400_000,
     likes: 3_120_000,
     comments: 48_200,
@@ -121,8 +121,8 @@ const FALLBACK_TOP_POSTS = [
   },
   {
     platform: "TikTok",
-    caption: "Locker room FIFA tournament ft. Jude Bellingham",
-    sponsor: "Santander",
+    caption: "Locker room gaming session with the squad",
+    sponsor: "Northwind",
     views: 22_800_000,
     likes: 2_740_000,
     comments: 36_100,
@@ -130,8 +130,8 @@ const FALLBACK_TOP_POSTS = [
   },
   {
     platform: "Instagram",
-    caption: "Pre-match arrival, suit by Hublot ambassadors",
-    sponsor: "Hublot",
+    caption: "Pre-match arrival, suit by Meridian ambassadors",
+    sponsor: "Meridian",
     views: 9_100_000,
     likes: 842_000,
     comments: 12_400,
@@ -139,8 +139,8 @@ const FALLBACK_TOP_POSTS = [
   },
   {
     platform: "YouTube",
-    caption: "Champions League inside edit, Emirates backdrop",
-    sponsor: "Emirates",
+    caption: "Champions League inside edit, Lumina backdrop",
+    sponsor: "Lumina",
     views: 6_400_000,
     likes: 512_000,
     comments: 24_800,
@@ -606,22 +606,22 @@ export default function DemoClient({ live }: { live?: LiveData | null }) {
               <ul className="mt-4 flex flex-col gap-3">
                 {[
                   {
-                    label: "Santander post virality",
+                    label: "Northwind post virality",
                     detail: "IG reel crossed 20M views in 18h, renewal window opens Jul 2026.",
                     tone: "emerald",
                   },
                   {
                     label: "LED rotation under-priced",
-                    detail: "Pro-tip: Adidas got 4.2× more screen time than contract cap.",
+                    detail: "Pro-tip: Vertex got 4.2× more screen time than contract cap.",
                     tone: "gold",
                   },
                   {
-                    label: "Emirates sentiment dip",
+                    label: "Lumina sentiment dip",
                     detail: "−0.4pt after away fixture, worth a narrative response.",
                     tone: "amber",
                   },
                   {
-                    label: "Visit Rwanda growth",
+                    label: "Bravo growth",
                     detail: "+38% reach MoM, candidate for tier upgrade.",
                     tone: "blue",
                   },

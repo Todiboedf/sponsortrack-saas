@@ -92,3 +92,21 @@ select distinct on (sponsor_id, platform)
   engagement_rate, emv
 from public.sponsor_kpis_daily
 order by sponsor_id, platform, date desc;
+
+-- 6. Contact form messages (leads) ───────────────────────────────
+create table if not exists public.contact_messages (
+  id uuid primary key default gen_random_uuid(),
+  reason text,
+  name text not null,
+  email text not null,
+  company text,
+  phone text,
+  message text not null,
+  created_at timestamptz not null default now()
+);
+
+create index if not exists contact_messages_created_idx on public.contact_messages(created_at desc);
+
+alter table public.contact_messages enable row level security;
+-- No anon/authenticated policy on purpose: only the service role (the
+-- /api/contact route, via SUPABASE_SERVICE_ROLE_KEY) can read/write leads.

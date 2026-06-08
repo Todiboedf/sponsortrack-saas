@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { createAdminClient } from "@/lib/supabase/admin";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -43,6 +44,24 @@ export async function POST(req: Request) {
   }
   if (!body.consent) {
     return NextResponse.json({ error: "Consent required" }, { status: 400 });
+  }
+
+  // Capture the lead in Supabase (best-effort; never block the user on this).
+  // Needs the `contact_messages` table (see supabase/schema.sql) + the
+  // SUPABASE_SERVICE_ROLE_KEY env. If either is missing, it just logs.
+  try {
+    const supabase = createAdminClient();
+    const { error } = await supabase.from("contact_messages").insert({
+      reason: body.reason ?? null,
+      name,
+      email,
+      company: body.company ?? null,
+      phone: body.phone ?? null,
+      message,
+    });
+    if (error) console.error("[contact] supabase insert failed:", error.message);
+  } catch (err) {
+    console.error("[contact] supabase capture skipped:", err);
   }
 
   const endpoint = process.env.CONTACT_FORWARD_URL;
