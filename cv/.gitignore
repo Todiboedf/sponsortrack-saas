@@ -9,3 +9,8 @@ __pycache__/
 report*.json
 runs/
 datasets/
+frames/
+demo-assets/
+*.jpg
+*.jpeg
+*.png

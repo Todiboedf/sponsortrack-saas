@@ -1,0 +1,10 @@
+{
+  "property": "CA Osasuna",
+  "classes": ["Kosner", "Eneryeti", "Nissan"],
+  "placements": {
+    "Kosner": "led",
+    "Eneryeti": "led",
+    "Nissan": "led"
+  },
+  "_notes": "Identifiés depuis le highlight Osasuna vs Alavés (LED / panneaux périmètre). Kosner = de loin le plus fréquent (sponsor principal, présent sur quasi chaque plan). Eneryeti + Nissan = LED rotatifs fréquents. Les noms de classes DOIVENT correspondre exactement aux labels annotés dans Roboflow. Sponsors secondaires possibles si tu veux plus de classes : Reale, Iberdrola, macron, San Miguel."
+}
