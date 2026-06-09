@@ -34,6 +34,7 @@ import { Container } from "@/components/ui/Container";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { cn, formatCompact, formatCurrency } from "@/lib/utils";
+import { CvExposurePanel } from "@/components/CvExposurePanel";
 
 /* -------------------------------------------------------------------------- */
 /* Data shapes                                                                */
@@ -649,6 +650,11 @@ export default function DemoClient({ live }: { live?: LiveData | null }) {
                 ))}
               </ul>
             </div>
+          </div>
+
+          {/* Match-day exposure — computer vision (in development) */}
+          <div className="mt-6">
+            <CvExposurePanel />
           </div>
 
           <div className="mt-10 rounded-2xl border border-white/[0.08] bg-gradient-to-br from-[#120822] via-[#0A0A12] to-[#081226] p-8 text-center lg:p-10">
