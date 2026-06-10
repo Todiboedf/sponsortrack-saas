@@ -1,39 +1,43 @@
-# Sponsorlens CV POC — point de reprise (2026-06-09)
+# Sponsorlens CV POC — point de reprise (2026-06-10 soir)
 
-Pour reprendre vite (meeting Group 1 **jeudi 11 juin matin**).
+**POC TERMINÉ de bout en bout (étapes 1-7)** la veille du meeting Group 1 (**jeudi 11 juin, 10h45**).
 
-## Où on en est
-- Site `sponsorlens.io` live (HTTP 200). `main` = dernier commit. Branche `feat/autonomous-2026-06-08-eve` == `main`.
-- POC CV : **étapes 1-4 faites**. **STOP à l'étape 5** → en attente de `cv/weights/best.pt` (Roboflow) + `cv/sponsors.json` confirmé.
+## Résultat
 
-## Env CV — déjà prêt sur disque, NE PAS réinstaller
-- venv `cv/.venv` (créé via `uv`) avec **ultralytics 8.4 + torch 2.12 (CPU) + opencv 4.13**.
-- `ffmpeg`/`ffprobe` statiques dans `~/.local/bin`. `yt-dlp` dispo.
-- Footage `cv/osasuna-highlight.mp4` (Osasuna vs Alavés, 720p **H.264**, 195s) + 70 frames dans `cv/frames/` (gitignorés).
-- Sponsors identifiés depuis la footage : **Kosner, Eneryeti, Nissan** (`cv/sponsors.json`).
+- **Modèle** : YOLOv11s entraîné **en local** (le download .pt Roboflow est verrouillé sur notre plan → dataset exporté puis `yolo detect train` local, 100 epochs / 34 min CPU). Best : **mAP@50 0.692 · P 0.714 · R 0.653** (val 8 images). Poids : `cv/weights/best.pt` (gitignoré) + run complet dans `runs/detect/cv/train_local/v2-yolo11s/`.
+- **Rapport** : `cv/report.json` — 390 frames @ 2 fps sur le highlight Osasuna-Alavés (195 s), 10 sponsors détectés. Top : **Kosner 120.5 s (61.9 % share of voice)**, Nissan 97.5 s, Macron 80 s, Halcon 62.5 s.
+- **Supabase** : rapport uploadé (`cv_matches` 3a32f0b7…, 10 lignes `cv_sponsor_exposure`). `schema.sql` exécuté le 10/06 ~15 h.
+- **/demo branché** : fetch server-side des dernières données CV, fallback sample si tables vides. Sur `main`, build green, déployé.
+- **Assets meeting** : `cv/demo-assets/` → 4 frames annotées (jusqu'à 11 détections, conf 0.66-0.91), `report-pretty.txt`, `results.png` (courbes training), `confusion_matrix_normalized.png`.
 
-## Étape 5 — dès que `best.pt` est déposé
+## Env (inchangé, NE PAS réinstaller)
+
+venv `cv/.venv` : ultralytics 8.4 + torch 2.12 CPU + opencv 4.13 + roboflow + supabase. Clés : `.env` (ROBOFLOW_API_KEY) + `.env.local` (Supabase, RapidAPI, CRON_SECRET).
+
+## Re-run complet (si besoin)
+
 ```bash
 cv/.venv/bin/python cv/pipeline.py --video cv/osasuna-highlight.mp4 \
   --model cv/weights/best.pt --sponsors cv/sponsors.json \
   --property "CA Osasuna" --opponent "Alavés" --out cv/report.json
-cv/.venv/bin/python cv/test_screen_time.py   # non-régression
+cv/.venv/bin/python cv/test_screen_time.py          # non-régression (3 tests)
+cv/.venv/bin/python cv/upload_supabase.py --report cv/report.json   # env Supabase requis dans le shell
+cv/.venv/bin/python cv/make_demo_assets.py --model cv/weights/best.pt
 ```
 
-## Étape 6 — si Supabase resumé + `supabase/schema.sql` lancé
+Ré-entraîner (dataset v2 déjà dans `cv/dataset/`) :
 ```bash
-cv/.venv/bin/python cv/upload_supabase.py --report cv/report.json
+cv/.venv/bin/yolo detect train data=cv/dataset/data.yaml model=yolo11s.pt \
+  epochs=100 imgsz=512 batch=8 device=cpu workers=8 cache=ram \
+  fliplr=0.0 flipud=0.0 patience=30 seed=0 project=cv/train_local name=v2-yolo11s exist_ok=True
 ```
-Puis brancher `CvExposurePanel` (déjà monté sur `/demo` avec données sample) sur la vraie data : fetch `cv_sponsor_exposure` côté server component, build, push `main`.
 
-## Étape 7 — captures pour le meeting → `cv/demo-assets/`
+## Avant le meeting (matin du 11/06)
 
-## À faire par Guillaume
-- Lancer `supabase/schema.sql` dans le SQL editor → tables `contact_messages` + `cv_matches` + `cv_sponsor_exposure`.
-- Roboflow : annoter Kosner/Eneryeti/Nissan sur `cv/frames/`, train YOLOv11n, déposer `best.pt` dans `cv/weights/`.
+1. Vérifier que `/demo` prod affiche bien « CA Osasuna vs Alavés » dans le panel Match-day exposure (ISR 5 min).
+2. Si le plan RapidAPI a été upgradé : re-trigger `/api/cron/collect-instagram` (Bearer CRON_SECRET) pour la data sociale fraîche du jour — le cron auto tourne à 06:00 UTC.
+3. Login démo dashboard : `guillaume@hl-conciergerie.com` → workspace **CA Osasuna** (`/dashboard`).
 
-## Meeting jeudi — cadrage
-Osasuna = **démo CV sur broadcast public, PAS un pilote signé**. 4 questions de prép dans le brain `Clients/group-1-agency.md`.
+## Contexte meeting
 
-## Pour orienter une nouvelle session Claude Code
-Lire : ce fichier + brain `Knowledge/projet-sponsorlens.md` + `Knowledge/repo-sponsorlens.md` + `git log --oneline -12`.
+Osasuna = démo sur broadcast public, **pas un pilote signé** (recadré par écrit dans la réponse à Omar du 10/06). Prép complète : brain `Clients/group-1-agency.md`.
