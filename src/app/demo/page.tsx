@@ -145,12 +145,34 @@ async function loadLive(): Promise<LiveData | null> {
   topPosts.sort((a, b) => b.likes - a.likes);
   const topPostsTrimmed = topPosts.slice(0, 4);
 
+  // Real per-sponsor totals from the latest row per platform (feeds KPI cards)
+  const totals = sponsors
+    .map((s) => {
+      const rows = Array.from(latestKey.values()).filter((r) => r.sponsor_id === s.id);
+      const followers = rows.reduce((sum, r) => sum + (r.followers ?? 0), 0);
+      const emvSum = rows.reduce((sum, r) => sum + (r.emv ?? 0), 0);
+      const weightedEr =
+        followers > 0
+          ? rows.reduce((sum, r) => sum + (r.engagement_rate ?? 0) * (r.followers ?? 0), 0) /
+            followers
+          : 0;
+      return {
+        slug: s.slug,
+        label: s.name,
+        followers,
+        engagementRate: +weightedEr.toFixed(2),
+        emv: +emvSum.toFixed(2),
+      };
+    })
+    .filter((t) => t.followers > 0);
+
   return {
     sponsors: liveSponsors,
     trend,
     emv,
     engagement,
     topPosts: topPostsTrimmed,
+    totals,
   };
 }
 

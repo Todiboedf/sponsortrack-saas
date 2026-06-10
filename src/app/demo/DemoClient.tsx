@@ -55,6 +55,13 @@ export type LiveData = {
     comments: number;
     emv: number;
   }>;
+  totals: Array<{
+    slug: string;
+    label: string;
+    followers: number;
+    engagementRate: number;
+    emv: number;
+  }>;
 };
 
 export type CvLiveData = {
@@ -244,39 +251,76 @@ export default function DemoClient({
   );
   const totalEmv = emvData.reduce((s, e) => s + e.value, 0);
 
-  const kpis = [
-    {
-      label: "Total reach",
-      value: `${formatCompact(totalReach * 1_000_000)}`,
-      delta: "+18.4%",
-      positive: true,
-      icon: <Users size={16} />,
-    },
-    {
-      label: "Engagement rate",
-      value: `${(3.8 * (sponsorMod * 2 + 0.3)).toFixed(1)}%`,
-      delta: "+0.6pt",
-      positive: true,
-      icon: <Heart size={16} />,
-    },
-    {
-      label: "Media value (EMV)",
-      value: formatCurrency(totalEmv * 1_000_000),
-      delta: "+22.1%",
-      positive: true,
-      icon: <TrendingUp size={16} />,
-    },
-    {
-      label: "Active sponsors",
-      value:
-        sponsor === "all"
-          ? "12"
-          : "1",
-      delta: sponsor === "all" ? "+2 vs prev" : "watching",
-      positive: true,
-      icon: <Sparkles size={16} />,
-    },
-  ];
+  // Live: KPI cards computed from real latest-day totals (no synthetic scaling)
+  const liveTotals = isLive && live!.totals?.length ? live!.totals : null;
+  const liveReach = liveTotals?.reduce((s, t) => s + t.followers, 0) ?? 0;
+  const liveEmv = liveTotals?.reduce((s, t) => s + t.emv, 0) ?? 0;
+  const liveEr =
+    liveTotals && liveReach > 0
+      ? liveTotals.reduce((s, t) => s + t.engagementRate * t.followers, 0) / liveReach
+      : 0;
+
+  const kpis = liveTotals
+    ? [
+        {
+          label: "Total reach",
+          value: formatCompact(liveReach),
+          delta: "followers, IG + TikTok",
+          positive: true,
+          icon: <Users size={16} />,
+        },
+        {
+          label: "Engagement rate",
+          value: `${liveEr.toFixed(2)}%`,
+          delta: "weighted by audience",
+          positive: true,
+          icon: <Heart size={16} />,
+        },
+        {
+          label: "Media value (EMV)",
+          value: formatCurrency(liveEmv),
+          delta: "latest day, all accounts",
+          positive: true,
+          icon: <TrendingUp size={16} />,
+        },
+        {
+          label: "Active sponsors",
+          value: sponsor === "all" ? String(liveTotals.length) : "1",
+          delta: "tracked daily",
+          positive: true,
+          icon: <Sparkles size={16} />,
+        },
+      ]
+    : [
+        {
+          label: "Total reach",
+          value: `${formatCompact(totalReach * 1_000_000)}`,
+          delta: "+18.4%",
+          positive: true,
+          icon: <Users size={16} />,
+        },
+        {
+          label: "Engagement rate",
+          value: `${(3.8 * (sponsorMod * 2 + 0.3)).toFixed(1)}%`,
+          delta: "+0.6pt",
+          positive: true,
+          icon: <Heart size={16} />,
+        },
+        {
+          label: "Media value (EMV)",
+          value: formatCurrency(totalEmv * 1_000_000),
+          delta: "+22.1%",
+          positive: true,
+          icon: <TrendingUp size={16} />,
+        },
+        {
+          label: "Active sponsors",
+          value: sponsor === "all" ? "12" : "1",
+          delta: sponsor === "all" ? "+2 vs prev" : "watching",
+          positive: true,
+          icon: <Sparkles size={16} />,
+        },
+      ];
 
   return (
     <>
