@@ -606,37 +606,35 @@ export default function DemoClient({
               <div className="flex items-center justify-between">
                 <div>
                   <div className="text-[11px] uppercase tracking-[0.14em] text-white/40">
-                    This week’s alerts
+                    Measured insights
                   </div>
                   <div className="font-[family-name:var(--font-display)] text-lg font-semibold text-white">
-                    Moments that matter
+                    What the live data says
                   </div>
                 </div>
                 <Badge className="text-[11px] text-emerald-300 border-emerald-400/30 bg-emerald-400/10">
-                  4 new
+                  Live
                 </Badge>
               </div>
               <ul className="mt-4 flex flex-col gap-3">
                 {[
                   {
-                    label: "Northwind post virality",
-                    detail: "IG reel crossed 20M views in 18h, renewal window opens Jul 2026.",
+                    label: "TikTok-first audience",
+                    detail:
+                      "TikTok audience is 14× Instagram for CA Osasuna (5.8M vs 415k), measured daily.",
                     tone: "emerald",
                   },
                   {
-                    label: "LED rotation under-priced",
-                    detail: "Pro-tip: Vertex got 4.2× more screen time than contract cap.",
+                    label: "Sponsor content underperforms",
+                    detail:
+                      "Sponsor-mentioning posts underperform organic content by 41% over 90 days.",
                     tone: "gold",
                   },
                   {
-                    label: "Lumina sentiment dip",
-                    detail: "−0.4pt after away fixture, worth a narrative response.",
+                    label: "Untapped LED sponsors",
+                    detail:
+                      "7 of 10 LED sponsors had zero owned-media activation in 90 days.",
                     tone: "amber",
-                  },
-                  {
-                    label: "Bravo growth",
-                    detail: "+38% reach MoM, candidate for tier upgrade.",
-                    tone: "blue",
                   },
                 ].map((a) => (
                   <li
