@@ -41,10 +41,12 @@ export function CvExposurePanel({
   rows = SAMPLE,
   title = "Match-day exposure",
   subtitle = "Computer-vision screen-time per sponsor",
+  footnote = "Illustrative figures. Computer vision is in active development.",
 }: {
   rows?: CvExposureRow[];
   title?: string;
   subtitle?: ReactNode;
+  footnote?: ReactNode;
 }) {
   const max = Math.max(1, ...rows.map((r) => r.visibleSeconds));
   return (
@@ -97,9 +99,7 @@ export function CvExposurePanel({
         ))}
       </ul>
 
-      <p className="mt-5 text-[11px] text-[#F4EFE6]/40">
-        Illustrative figures. Computer vision is in active development.
-      </p>
+      <p className="mt-5 text-[11px] text-[#F4EFE6]/40">{footnote}</p>
     </div>
   );
 }

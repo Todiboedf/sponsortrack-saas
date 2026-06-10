@@ -1,6 +1,7 @@
-import DemoClient, { type LiveData } from "./DemoClient";
+import DemoClient, { type CvLiveData, type LiveData } from "./DemoClient";
 import { createAdminClient } from "@/lib/supabase/admin";
 import type { SponsorKpiDaily } from "@/lib/supabase/types";
+import type { CvExposureRow } from "@/components/CvExposurePanel";
 
 export const revalidate = 300;
 
@@ -153,7 +154,57 @@ async function loadLive(): Promise<LiveData | null> {
   };
 }
 
+async function loadCvExposure(): Promise<CvLiveData | null> {
+  if (!process.env.SUPABASE_SERVICE_ROLE_KEY) return null;
+
+  let supabase;
+  try {
+    supabase = createAdminClient();
+  } catch {
+    return null;
+  }
+
+  // Both queries fail soft (error -> null data) while the cv_* tables
+  // are not created yet; the panel then falls back to its sample rows.
+  const { data: match } = await supabase
+    .from("cv_matches")
+    .select("id, property, opponent")
+    .order("processed_at", { ascending: false })
+    .limit(1)
+    .maybeSingle();
+  if (!match) return null;
+
+  type CvExposureDbRow = {
+    sponsor: string;
+    placement: string | null;
+    visible_seconds: number | null;
+    detections: number | null;
+    avg_area_pct: number | null;
+    est_media_value: number | null;
+  };
+
+  const { data: rows } = await supabase
+    .from("cv_sponsor_exposure")
+    .select("sponsor, placement, visible_seconds, detections, avg_area_pct, est_media_value")
+    .eq("match_id", match.id)
+    .order("visible_seconds", { ascending: false });
+  if (!rows || rows.length === 0) return null;
+
+  return {
+    matchLabel: match.opponent ? `${match.property} vs ${match.opponent}` : match.property,
+    rows: (rows as CvExposureDbRow[]).map((r) => ({
+      sponsor: r.sponsor,
+      placement: (r.placement ?? "other") as CvExposureRow["placement"],
+      visibleSeconds: Number(r.visible_seconds ?? 0),
+      detections: Number(r.detections ?? 0),
+      avgAreaPct: Math.round(Number(r.avg_area_pct ?? 0) * 100) / 100,
+      estMediaValue:
+        Number(r.est_media_value ?? 0) > 0 ? Number(r.est_media_value) : undefined,
+    })),
+  };
+}
+
 export default async function DemoPage() {
-  const live = await loadLive();
-  return <DemoClient live={live} />;
+  const [live, cv] = await Promise.all([loadLive(), loadCvExposure()]);
+  return <DemoClient live={live} cv={cv} />;
 }

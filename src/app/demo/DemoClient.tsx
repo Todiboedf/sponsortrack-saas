@@ -34,7 +34,7 @@ import { Container } from "@/components/ui/Container";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { cn, formatCompact, formatCurrency } from "@/lib/utils";
-import { CvExposurePanel } from "@/components/CvExposurePanel";
+import { CvExposurePanel, type CvExposureRow } from "@/components/CvExposurePanel";
 
 /* -------------------------------------------------------------------------- */
 /* Data shapes                                                                */
@@ -54,6 +54,11 @@ export type LiveData = {
     comments: number;
     emv: number;
   }>;
+};
+
+export type CvLiveData = {
+  rows: CvExposureRow[];
+  matchLabel: string;
 };
 
 const FALLBACK_SPONSORS = [
@@ -158,7 +163,13 @@ function platformIcon(name: string) {
 /* Page                                                                       */
 /* -------------------------------------------------------------------------- */
 
-export default function DemoClient({ live }: { live?: LiveData | null }) {
+export default function DemoClient({
+  live,
+  cv,
+}: {
+  live?: LiveData | null;
+  cv?: CvLiveData | null;
+}) {
   const isLive = !!(live && live.sponsors.length > 0);
   const sponsors = isLive ? live!.sponsors : FALLBACK_SPONSORS;
   const baseTrend = isLive && live!.trend.length > 0 ? live!.trend : FALLBACK_TREND;
@@ -654,7 +665,15 @@ export default function DemoClient({ live }: { live?: LiveData | null }) {
 
           {/* Match-day exposure — computer vision (in development) */}
           <div className="mt-6">
-            <CvExposurePanel />
+            <CvExposurePanel
+              rows={cv?.rows}
+              subtitle={cv ? `${cv.matchLabel} · recorded broadcast POC` : undefined}
+              footnote={
+                cv
+                  ? "Measured on recorded public broadcast footage. Computer vision is in active development."
+                  : undefined
+              }
+            />
           </div>
 
           <div className="mt-10 rounded-2xl border border-white/[0.08] bg-gradient-to-br from-[#120822] via-[#0A0A12] to-[#081226] p-8 text-center lg:p-10">

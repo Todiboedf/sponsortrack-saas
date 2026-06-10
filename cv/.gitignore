@@ -14,3 +14,5 @@ demo-assets/
 *.jpg
 *.jpeg
 *.png
+dataset/
+train_local/

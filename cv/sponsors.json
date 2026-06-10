@@ -1,10 +1,28 @@
 {
   "property": "CA Osasuna",
-  "classes": ["Kosner", "Eneryeti", "Nissan"],
+  "classes": [
+    "Kosner",
+    "Macron",
+    "DIGI",
+    "SanMiguel",
+    "Nissan",
+    "Halcon",
+    "Toyota",
+    "Lexus",
+    "DiarioNavarra",
+    "Tabar"
+  ],
   "placements": {
     "Kosner": "led",
-    "Eneryeti": "led",
-    "Nissan": "led"
+    "Macron": "jersey",
+    "DIGI": "led",
+    "SanMiguel": "led",
+    "Nissan": "led",
+    "Halcon": "led",
+    "Toyota": "led",
+    "Lexus": "led",
+    "DiarioNavarra": "led",
+    "Tabar": "led"
   },
-  "_notes": "Identifiés depuis le highlight Osasuna vs Alavés (LED / panneaux périmètre). Kosner = de loin le plus fréquent (sponsor principal, présent sur quasi chaque plan). Eneryeti + Nissan = LED rotatifs fréquents. Les noms de classes DOIVENT correspondre exactement aux labels annotés dans Roboflow. Sponsors secondaires possibles si tu veux plus de classes : Reale, Iberdrola, macron, San Miguel."
+  "_notes": "10 classes réelles du modèle Roboflow v2 (YOLOv11s, mAP@50 91.7%, 39 frames annotées du highlight Osasuna vs Alavés). La classe 'sponsorlens-osasuna' (artefact, 0 annotation) est exclue. Kosner = main sponsor (61 annotations, maillot + LED). Macron = équipementier (jersey). Les noms de classes DOIVENT correspondre exactement aux labels Roboflow."
 }
