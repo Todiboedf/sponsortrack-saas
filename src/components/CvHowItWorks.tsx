@@ -52,15 +52,27 @@ export function CvHowItWorks() {
           </figcaption>
         </figure>
         <figure>
-          <Image
-            src="/demo/cv-annotated.jpg"
-            alt="Same frame with sponsor logos detected by the model"
-            width={1280}
-            height={720}
+          <video
+            src="/demo/detection-loop.mp4"
+            poster="/demo/detection-poster.jpg"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            aria-label="Looped clip of the model detecting sponsor logos on broadcast footage"
             className="w-full rounded-xl border border-[#B8975A]/30"
+            ref={(el) => {
+              // React can omit the muted attribute in SSR markup; set it
+              // explicitly so mobile autoplay policies are satisfied.
+              if (el) {
+                el.muted = true;
+                el.play().catch(() => {});
+              }
+            }}
           />
           <figcaption className="mt-2 text-[11px] uppercase tracking-[0.14em] text-[#B8975A]">
-            Same frame, model output (11 detections)
+            Same footage, live model output (22s loop)
           </figcaption>
         </figure>
       </div>
