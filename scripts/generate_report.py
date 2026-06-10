@@ -5,7 +5,8 @@ Page 1 overview KPIs, page 2 social, page 3 broadcast CV POC.
 
 Usage:
     cv/.venv/bin/python scripts/generate_report.py \
-        [--out cv/demo-assets/rapport-osasuna-2026-06-10.pdf]
+        [--out cv/demo-assets/rapport-osasuna-2026-06-10.pdf] \
+        [--logo cv/assets/osasuna-crest.png] [--frame cv/assets/report-frame.jpg]
 
 Env: NEXT_PUBLIC_SUPABASE_URL / SUPABASE_SERVICE_ROLE_KEY (.env.local).
 """
@@ -26,6 +27,7 @@ GOLD = "#B8975A"
 RED = "#8B0028"
 
 FOOTER = "Sponsorlens — measured, not estimated · sponsorlens.io"
+EMV_RATE_EUR = 0.07  # € per engagement (likes + comments)
 
 
 def load_env() -> None:
@@ -40,6 +42,13 @@ def load_env() -> None:
                 os.environ.setdefault(k.strip(), v.strip().strip('"').strip("'"))
 
 
+def parse_ts(value: object) -> datetime | None:
+    try:
+        return datetime.fromisoformat(str(value).replace("Z", "+00:00"))
+    except (ValueError, TypeError):
+        return None
+
+
 def fetch_data() -> dict:
     from supabase import create_client
 
@@ -51,7 +60,7 @@ def fetch_data() -> dict:
     )
     kpi_rows = (
         sb.table("sponsor_kpis_daily")
-        .select("platform, date, followers, engagement_rate, emv")
+        .select("platform, date, followers, engagement_rate, emv, raw")
         .eq("sponsor_id", sponsor["id"])
         .order("date", desc=True)
         .limit(10)
@@ -120,7 +129,7 @@ def card(ax, x: float, y: float, w: float, h: float) -> None:
 def kpi_card(ax, fig, x: float, y: float, label: str, value: str, sub: str) -> None:
     card(ax, x, y, 0.19, 0.085)
     fig.text(x + 0.012, y + 0.066, label.upper(), color=GOLD, fontsize=6.5, fontweight="bold")
-    fig.text(x + 0.012, y + 0.030, value, color=CREAM, fontsize=17, fontweight="bold")
+    fig.text(x + 0.012, y + 0.030, value, color=CREAM, fontsize=16, fontweight="bold")
     fig.text(x + 0.012, y + 0.012, sub, color=CREAM, alpha=0.5, fontsize=6.5)
 
 
@@ -133,8 +142,9 @@ def style_axes(a) -> None:
     a.grid(axis="y", color=CREAM, alpha=0.08)
 
 
-def engagement_axes(fig, rect, posts, days: int, title: str) -> None:
+def engagement_axes(fig, rect, posts, days: int, title: str, cap_outliers: bool = False) -> None:
     import matplotlib.dates as mdates
+    import numpy as np
 
     a = fig.add_axes(rect)
     style_axes(a)
@@ -152,10 +162,28 @@ def engagement_axes(fig, rect, posts, days: int, title: str) -> None:
     a.xaxis.set_major_formatter(mdates.DateFormatter("%b %d"))
     a.set_ylim(bottom=0)
 
+    if cap_outliers and sel:
+        ys = [p["eng"] for p in sel]
+        p95 = float(np.percentile(ys, 95))
+        if max(ys) > 2 * p95:
+            lim = p95 * 1.5
+            a.set_ylim(0, lim)
+            top_post = max(sel, key=lambda p: p["eng"])
+            a.annotate(
+                f"viral reel — {top_post['eng'] / 1000:.0f}k (axis clipped)",
+                xy=(top_post["ts"], lim * 0.96),
+                xytext=(14, -10),
+                textcoords="offset points",
+                color=GOLD, fontsize=6.5,
+                arrowprops=dict(arrowstyle="->", color=GOLD, lw=0.8),
+            )
+
 
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", default="cv/demo-assets/rapport-osasuna-2026-06-10.pdf")
+    ap.add_argument("--logo", default="cv/assets/osasuna-crest.png", help="white-label club crest (PNG)")
+    ap.add_argument("--frame", default="cv/assets/report-frame.jpg", help="annotated broadcast frame")
     args = ap.parse_args()
 
     load_env()
@@ -180,8 +208,19 @@ def main() -> None:
          + (tt.get("engagement_rate") or 0) * (tt.get("followers") or 0)) / audience
         if audience else 0
     )
-    emv = (ig.get("emv") or 0) + (tt.get("emv") or 0)
-    week_posts = [p for p in posts if p["ts"] >= datetime.now(timezone.utc) - timedelta(days=7)]
+
+    # EMV: club accounts only, content PUBLISHED in the last 7 days, €0.07/engagement
+    week_ago = datetime.now(timezone.utc) - timedelta(days=7)
+    week_posts = [p for p in posts if p["ts"] >= week_ago]
+    ig_week_eng = sum(p["eng"] for p in week_posts)
+    tt_week = [
+        v for v in (tt.get("raw") or [])
+        if (t := parse_ts(v.get("timestamp"))) and t >= week_ago
+    ]
+    tt_week_eng = sum(
+        max(0, int(v.get("likes") or 0)) + max(0, int(v.get("comments") or 0)) for v in tt_week
+    )
+    emv_week = EMV_RATE_EUR * (ig_week_eng + tt_week_eng)
 
     tagged = [p for p in posts if p["sponsor_tags"]]
     plain = [p for p in posts if not p["sponsor_tags"]]
@@ -198,30 +237,46 @@ def main() -> None:
     with PdfPages(out) as pdf:
         # ── PAGE 1 — Overview ────────────────────────────────────────
         fig, ax = new_page(plt)
-        card(ax, 0.06, 0.905, 0.10, 0.052)
-        fig.text(0.11, 0.928, "[Club logo]", color=CREAM, alpha=0.45, fontsize=7, ha="center")
-        fig.text(0.06, 0.862, "CA Osasuna — Sponsor Exposure Report", color=CREAM, fontsize=20, fontweight="bold")
-        fig.text(0.06, 0.838, f"Week of {today}  ·  Instagram + TikTok + recorded broadcast", color=GOLD, fontsize=10)
+        logo_path = REPO_ROOT / args.logo
+        if logo_path.exists():
+            lax = fig.add_axes([0.06, 0.893, 0.055, 0.052])
+            lax.imshow(plt.imread(logo_path), aspect="auto")
+            lax.axis("off")
+        else:
+            card(ax, 0.06, 0.905, 0.10, 0.052)
+            fig.text(0.11, 0.928, "[Club logo]", color=CREAM, alpha=0.45, fontsize=7, ha="center")
+        fig.text(0.06, 0.858, "CA Osasuna — Sponsor Exposure Report", color=CREAM, fontsize=20, fontweight="bold")
+        fig.text(0.06, 0.836, f"Week of {today}  ·  Instagram + TikTok + recorded broadcast", color=GOLD, fontsize=10)
+        fig.text(0.06, 0.818, "Auto-generated weekly report · Mondays 07:00", color=CREAM, alpha=0.55, fontsize=8.5)
 
-        kpi_card(ax, fig, 0.06, 0.715, "Total audience", fmt_compact(audience), "IG 415k + TikTok 5.8M, latest day")
-        kpi_card(ax, fig, 0.2867, 0.715, "Avg engagement rate", f"{er:.2f}%", "weighted by audience")
-        kpi_card(ax, fig, 0.5133, 0.715, "Posts this week", str(len(week_posts)), "Instagram, last 7 days")
-        kpi_card(ax, fig, 0.74, 0.715, "Est. media value", f"${emv:,.0f}", "latest day, $0.07/engagement")
+        kpi_card(ax, fig, 0.06, 0.700, "Total audience", fmt_compact(audience), "IG 415k + TikTok 5.8M, latest day")
+        kpi_card(ax, fig, 0.2867, 0.700, "Avg engagement rate", f"{er:.2f}%", "weighted by audience")
+        kpi_card(ax, fig, 0.5133, 0.700, "Posts · last 7 days", f"{len(week_posts)} IG",
+                 f"+ {len(tt_week)} TikTok videos")
+        kpi_card(ax, fig, 0.74, 0.700, "Est. media value", f"€{emv_week:,.0f}", "club accounts · last 7 days")
 
-        card(ax, 0.06, 0.615, 0.87, 0.07)
-        fig.text(0.5, 0.6605, "TikTok audience is 14× Instagram", color=GOLD, fontsize=16, fontweight="bold", ha="center")
-        fig.text(0.5, 0.632, "5.8M vs 415k followers, measured daily, most clubs undervalue it in sponsor packages",
+        card(ax, 0.06, 0.600, 0.87, 0.07)
+        fig.text(0.5, 0.6455, "TikTok audience is 14× Instagram", color=GOLD, fontsize=16, fontweight="bold", ha="center")
+        fig.text(0.5, 0.617, "5.8M vs 415k followers, measured daily, most clubs undervalue it in sponsor packages",
                  color=CREAM, alpha=0.7, fontsize=8.5, ha="center")
 
-        engagement_axes(fig, [0.10, 0.30, 0.80, 0.26], posts, 30,
+        engagement_axes(fig, [0.10, 0.295, 0.80, 0.255], posts, 30,
                         "Instagram engagement per post, last 30 days  (gold = sponsor-mentioning posts)")
-        fig.text(0.06, 0.215, "Every number in this report is measured on public data: club social accounts and",
-                 color=CREAM, alpha=0.6, fontsize=8.5)
-        fig.text(0.06, 0.198, "recorded broadcast footage. No panels, no audience models, no extrapolation.",
-                 color=CREAM, alpha=0.6, fontsize=8.5)
+        fig.text(0.06, 0.225, "Every number in this report is measured on public data: club social accounts and "
+                              "recorded broadcast footage.",
+                 color=CREAM, alpha=0.6, fontsize=8)
+        fig.text(0.06, 0.208, "No panels, no audience models, no extrapolation.",
+                 color=CREAM, alpha=0.6, fontsize=8)
+        fig.text(0.06, 0.183,
+                 f"EMV = €{EMV_RATE_EUR:.2f} per engagement (likes + comments) on content published by club accounts "
+                 f"in the last 7 days:",
+                 color=CREAM, alpha=0.45, fontsize=7)
+        fig.text(0.06, 0.168,
+                 f"{ig_week_eng:,} Instagram + {tt_week_eng:,} TikTok engagements = €{emv_week:,.0f}.",
+                 color=CREAM, alpha=0.45, fontsize=7)
         footer(fig, 1, today)
         pdf.savefig(fig, facecolor=NAVY)
-        png = out.with_suffix("").parent / f"{out.stem}-p1.png"
+        png = out.parent / f"{out.stem}-p1.png"
         fig.savefig(png, facecolor=NAVY)
         pngs.append(png)
         plt.close(fig)
@@ -233,7 +288,8 @@ def main() -> None:
                  color=GOLD, fontsize=9)
 
         engagement_axes(fig, [0.10, 0.66, 0.80, 0.20], posts, 90,
-                        "Engagement per post, last 90 days  (283 posts, 22 posts/week average)")
+                        "Engagement per post, last 90 days  (283 posts, 22 posts/week average)",
+                        cap_outliers=True)
 
         fig.text(0.06, 0.622, "Top sponsor posts", color=CREAM, fontsize=11, fontweight="bold")
         y = 0.565
@@ -260,11 +316,11 @@ def main() -> None:
             fig.text(0.525, ym, name, color=CREAM, fontsize=9)
             fig.text(0.91, ym, str(n), color=CREAM, fontsize=9, fontweight="bold", ha="right")
             ym -= 0.022
-        fig.text(0.525, ym - 0.005, "7 of 10 LED sponsors: zero owned-media activation", color=GOLD, fontsize=7.5)
+        fig.text(0.525, ym - 0.005, "7 of 10 tracked sponsors: zero owned-media activation", color=GOLD, fontsize=7.5)
 
         footer(fig, 2, today)
         pdf.savefig(fig, facecolor=NAVY)
-        png = out.with_suffix("").parent / f"{out.stem}-p2.png"
+        png = out.parent / f"{out.stem}-p2.png"
         fig.savefig(png, facecolor=NAVY)
         pngs.append(png)
         plt.close(fig)
@@ -275,39 +331,59 @@ def main() -> None:
         fig.text(0.06, 0.908, "Osasuna vs Alavés highlight · recorded public broadcast · YOLOv11 logo detection",
                  color=GOLD, fontsize=9)
 
+        frame_path = REPO_ROOT / args.frame
+        if not frame_path.exists():
+            frame_path = REPO_ROOT / "cv" / "demo-assets" / "annotated-04-osasuna-highlight_0000556.jpg"
         img_ax = fig.add_axes([0.10, 0.585, 0.80, 0.29])
-        img_ax.imshow(plt.imread(REPO_ROOT / "cv" / "demo-assets" / "annotated-04-osasuna-highlight_0000556.jpg"))
+        img_ax.imshow(plt.imread(frame_path))
         img_ax.axis("off")
-        fig.text(0.10, 0.572, "One sampled frame, 11 sponsor logos detected and measured.", color=CREAM,
-                 alpha=0.6, fontsize=7.5)
+        fig.text(0.10, 0.572, "One sampled frame of the broadcast: sponsor boards detected and measured.",
+                 color=CREAM, alpha=0.6, fontsize=7.5)
 
         fig.text(0.06, 0.525, "Screen time per sponsor", color=CREAM, fontsize=11, fontweight="bold")
         duration = float(cvrep["video"]["duration_seconds"]) or 1.0
-        cols = [(0.075, "SPONSOR"), (0.32, "PLACEMENT"), (0.50, "VISIBLE"), (0.66, "SHARE OF VOICE"), (0.91, "DETECTIONS")]
-        for cx, label in cols:
-            fig.text(cx, 0.495, label, color=GOLD, fontsize=7, fontweight="bold",
-                     ha="right" if cx > 0.85 else "left")
+        total_visible = sum(s["visible_seconds"] for s in cvrep["sponsors"]) or 1.0
+        cols = [
+            (0.075, "left", "SPONSOR"),
+            (0.245, "left", "PLACEMENT"),
+            (0.36, "left", "VISIBLE"),
+            (0.455, "left", "% OF BROADCAST"),
+            (0.625, "left", "SHARE OF VOICE"),
+            (0.925, "right", "DETECTIONS"),
+        ]
+        for cx, align, label in cols:
+            fig.text(cx, 0.495, label, color=GOLD, fontsize=7, fontweight="bold", ha=align)
         yr = 0.470
         for s in cvrep["sponsors"]:
-            sov = 100 * s["visible_seconds"] / duration
+            pct_broadcast = 100 * s["visible_seconds"] / duration
+            sov = 100 * s["visible_seconds"] / total_visible
             fig.text(0.075, yr, s["sponsor"], color=CREAM, fontsize=8.5)
-            fig.text(0.32, yr, s.get("placement", "other").upper(), color=CREAM, alpha=0.6, fontsize=7.5)
-            fig.text(0.50, yr, f"{s['visible_seconds']:.1f}s", color=CREAM, fontsize=8.5)
-            bar_w = 0.18 * sov / 100
-            ax.add_patch(plt.Rectangle((0.66, yr - 0.002), bar_w, 0.010, facecolor=RED, edgecolor="none"))
-            fig.text(0.66 + bar_w + 0.008, yr, f"{sov:.1f}%", color=CREAM, fontsize=8)
-            fig.text(0.91, yr, str(s["detections"]), color=CREAM, alpha=0.7, fontsize=8, ha="right")
+            fig.text(0.245, yr, s.get("placement", "other").upper(), color=CREAM, alpha=0.6, fontsize=7.5)
+            fig.text(0.36, yr, f"{s['visible_seconds']:.1f}s", color=CREAM, fontsize=8.5)
+            fig.text(0.455, yr, f"{pct_broadcast:.1f}%", color=CREAM, fontsize=8.5)
+            bar_w = 0.16 * sov / 100
+            ax.add_patch(plt.Rectangle((0.625, yr - 0.002), bar_w, 0.010, facecolor=RED, edgecolor="none"))
+            fig.text(0.625 + bar_w + 0.008, yr, f"{sov:.1f}%", color=CREAM, fontsize=8)
+            fig.text(0.925, yr, str(s["detections"]), color=CREAM, alpha=0.7, fontsize=8, ha="right")
             yr -= 0.0245
 
-        fig.text(0.06, yr - 0.015,
-                 "Computer vision is in active development. Measured on a recorded public broadcast as a proof of concept;",
+        fig.text(0.06, yr - 0.012,
+                 "% of broadcast = visible time / 195s of footage; sponsors are co-visible, so the column can sum "
+                 "past 100%. Share of voice = share of",
+                 color=CREAM, alpha=0.55, fontsize=7)
+        fig.text(0.06, yr - 0.027,
+                 "total measured exposure (sums to 100%).",
+                 color=CREAM, alpha=0.55, fontsize=7)
+        fig.text(0.06, yr - 0.052,
+                 "Computer vision is in active development. Measured on a recorded public broadcast as a proof of "
+                 "concept; production deployments run",
                  color=CREAM, alpha=0.55, fontsize=7.5)
-        fig.text(0.06, yr - 0.030,
-                 "production deployments run on official feeds under rights-holder agreements.",
+        fig.text(0.06, yr - 0.067,
+                 "on official feeds under rights-holder agreements.",
                  color=CREAM, alpha=0.55, fontsize=7.5)
         footer(fig, 3, today)
         pdf.savefig(fig, facecolor=NAVY)
-        png = out.with_suffix("").parent / f"{out.stem}-p3.png"
+        png = out.parent / f"{out.stem}-p3.png"
         fig.savefig(png, facecolor=NAVY)
         pngs.append(png)
         plt.close(fig)
@@ -315,7 +391,11 @@ def main() -> None:
     print(f"✓ {out}  ({out.stat().st_size / 1e6:.1f} MB)")
     for p in pngs:
         print(f"  preview: {p.name}")
-    print(f"  KPIs: audience {fmt_compact(audience)} | ER {er:.2f}% | posts 7j {len(week_posts)} | EMV ${emv:,.0f} | gap {gap:.0f}%")
+    print(
+        f"  KPIs: audience {fmt_compact(audience)} | ER {er:.2f}% | "
+        f"posts 7j {len(week_posts)} IG + {len(tt_week)} TT | EMV €{emv_week:,.0f} "
+        f"({ig_week_eng:,} + {tt_week_eng:,} eng) | gap {gap:.0f}%"
+    )
 
 
 if __name__ == "__main__":
