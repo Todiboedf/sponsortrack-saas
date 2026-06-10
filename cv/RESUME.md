@@ -7,8 +7,8 @@
 - **Modèle** : YOLOv11s entraîné **en local** (le download .pt Roboflow est verrouillé sur notre plan → dataset exporté puis `yolo detect train` local, 100 epochs / 34 min CPU). Best : **mAP@50 0.692 · P 0.714 · R 0.653** (val 8 images). Poids : `cv/weights/best.pt` (gitignoré) + run complet dans `runs/detect/cv/train_local/v2-yolo11s/`.
 - **Rapport** : `cv/report.json` — 390 frames @ 2 fps sur le highlight Osasuna-Alavés (195 s), 10 sponsors détectés. Top : **Kosner 120.5 s (61.9 % share of voice)**, Nissan 97.5 s, Macron 80 s, Halcon 62.5 s.
 - **Supabase** : rapport uploadé (`cv_matches` 3a32f0b7…, 10 lignes `cv_sponsor_exposure`). `schema.sql` exécuté le 10/06 ~15 h.
-- **/demo branché** : fetch server-side des dernières données CV, fallback sample si tables vides. Sur `main`, build green, déployé.
-- **Assets meeting** : `cv/demo-assets/` → 4 frames annotées (jusqu'à 11 détections, conf 0.66-0.91), `report-pretty.txt`, `results.png` (courbes training), `confusion_matrix_normalized.png`.
+- **/demo branché** : fetch server-side des dernières données CV, fallback sample si tables vides. Sur `main`, build green, déployé. + Section **« How it works »** sous le panel (Record→Detect→Measure→Report, frame brute vs annotée, assets `public/demo/`) ajoutée le 10/06 soir.
+- **Assets meeting** : `cv/demo-assets/` → **`detection-clip.mp4`** (45 s annoté, fenêtre la plus dense t=5.5→50.5 s, 668 détections cumulées, bandeau Sponsorlens, H.264 lisible téléphone), `detection-full.mp4` (highlight 195 s complet annoté), 4 frames annotées (conf 0.57-0.97), `report-pretty.txt`, `results.png` + `confusion_matrix_normalized.png` (training), 2 charts sociaux + `insights-social.md`. Générateur : `cv/make_detection_clip.py`.
 
 ## Env (inchangé, NE PAS réinstaller)
 
