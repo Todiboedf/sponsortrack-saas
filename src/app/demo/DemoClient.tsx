@@ -191,6 +191,23 @@ export default function DemoClient({
   const [range, setRange] = useState("30d");
   const [platform, setPlatform] = useState("all");
 
+  // Only platforms with at least one datapoint get a line, a legend entry
+  // and a filter option (fallback data has all four).
+  const hasPlatform = {
+    ig: baseTrend.some((d) => d.ig > 0),
+    tt: baseTrend.some((d) => d.tt > 0),
+    x: baseTrend.some((d) => d.x > 0),
+    yt: baseTrend.some((d) => d.yt > 0),
+  };
+  const platformOptions = platforms.filter(
+    (p) =>
+      p.id === "all" ||
+      (p.id === "instagram" && hasPlatform.ig) ||
+      (p.id === "tiktok" && hasPlatform.tt) ||
+      (p.id === "x" && hasPlatform.x) ||
+      (p.id === "youtube" && hasPlatform.yt)
+  );
+
   const multiplier = ranges.find((r) => r.id === range)?.multiplier ?? 1;
   const sponsorMod =
     sponsor === "all" ? 1 : isLive ? 1 / Math.max(1, sponsors.length - 1) : 0.3;
@@ -366,7 +383,7 @@ export default function DemoClient({
             />
             <Select
               label="Platform"
-              options={platforms.map((p) => ({ value: p.id, label: p.label }))}
+              options={platformOptions.map((p) => ({ value: p.id, label: p.label }))}
               value={platform}
               onChange={setPlatform}
             />
@@ -467,7 +484,7 @@ export default function DemoClient({
                       iconType="circle"
                       wrapperStyle={{ paddingTop: 12, fontSize: 12, color: "rgba(255,255,255,0.6)" }}
                     />
-                    {platformVisible("ig") && (
+                    {hasPlatform.ig && platformVisible("ig") && (
                       <Area
                         type="monotone"
                         dataKey="Instagram"
@@ -476,7 +493,7 @@ export default function DemoClient({
                         fill="url(#g-ig)"
                       />
                     )}
-                    {platformVisible("tt") && (
+                    {hasPlatform.tt && platformVisible("tt") && (
                       <Area
                         type="monotone"
                         dataKey="TikTok"
@@ -485,7 +502,7 @@ export default function DemoClient({
                         fill="url(#g-tt)"
                       />
                     )}
-                    {platformVisible("x") && (
+                    {hasPlatform.x && platformVisible("x") && (
                       <Area
                         type="monotone"
                         dataKey="X/Twitter"
@@ -494,7 +511,7 @@ export default function DemoClient({
                         fill="url(#g-x)"
                       />
                     )}
-                    {platformVisible("yt") && (
+                    {hasPlatform.yt && platformVisible("yt") && (
                       <Area
                         type="monotone"
                         dataKey="YouTube"
