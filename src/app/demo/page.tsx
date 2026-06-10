@@ -117,7 +117,7 @@ async function loadLive(): Promise<LiveData | null> {
       if (!row) return null;
       return {
         sponsor: s.name,
-        reach: Math.round((row.followers ?? 0) / 1_000_000),
+        reach: +((row.followers ?? 0) / 1_000_000).toFixed(2),
         engagement: row.engagement_rate ?? 0,
       };
     })

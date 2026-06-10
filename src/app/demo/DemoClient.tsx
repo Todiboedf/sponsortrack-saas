@@ -251,10 +251,18 @@ export default function DemoClient({
         .filter((e) => sponsor === "all" || sponsors.find((s) => s.id === sponsor)?.label === e.sponsor)
         .map((e) => ({
           sponsor: e.sponsor,
-          reach: Math.round(e.reach * (isLive ? 1 : multiplier)),
-          engagement: +(e.engagement * (isLive ? 1 : sponsorMod * 2 + 0.3)).toFixed(1),
+          reach: Math.max(0.01, +(e.reach * (isLive ? 1 : multiplier)).toFixed(2)),
+          engagement: +(e.engagement * (isLive ? 1 : sponsorMod * 2 + 0.3)).toFixed(2),
         })),
     [multiplier, sponsor, sponsorMod, baseEngagement, sponsors, isLive]
+  );
+  const reachData = useMemo(
+    () => [...engagementData].sort((a, b) => b.reach - a.reach),
+    [engagementData]
+  );
+  const erData = useMemo(
+    () => [...engagementData].sort((a, b) => b.engagement - a.engagement),
+    [engagementData]
   );
 
   const totalReach = trendData.reduce(
@@ -574,36 +582,81 @@ export default function DemoClient({
               </div>
               <Badge className="text-[11px]">{isLive ? "Live data" : "Synthetic data"}</Badge>
             </div>
-            <div className="mt-4 h-[280px] w-full">
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart
-                  data={engagementData}
-                  margin={{ top: 5, right: 10, left: -10, bottom: 0 }}
-                  barSize={22}
-                >
-                  <defs>
-                    <linearGradient id="bar-reach" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stopColor="#8B0028" />
-                      <stop offset="100%" stopColor="#A00030" />
-                    </linearGradient>
-                  </defs>
-                  <CartesianGrid stroke="rgba(255,255,255,0.05)" vertical={false} />
-                  <XAxis
-                    dataKey="sponsor"
-                    tick={{ fill: "rgba(255,255,255,0.55)", fontSize: 12 }}
-                    axisLine={{ stroke: "rgba(255,255,255,0.08)" }}
-                    tickLine={false}
-                  />
-                  <YAxis
-                    tick={{ fill: "rgba(255,255,255,0.4)", fontSize: 11 }}
-                    axisLine={false}
-                    tickLine={false}
-                  />
-                  <Tooltip content={<ChartTooltip />} cursor={{ fill: "rgba(255,255,255,0.03)" }} />
-                  <Bar dataKey="reach" fill="url(#bar-reach)" radius={[6, 6, 0, 0]} />
-                  <Bar dataKey="engagement" fill="#F4EFE6" radius={[6, 6, 0, 0]} />
-                </BarChart>
-              </ResponsiveContainer>
+            <div className="mt-4 grid gap-6">
+              <div>
+                <div className="text-[11px] uppercase tracking-[0.14em] text-white/35">
+                  Reach · millions of followers (log scale)
+                </div>
+                <div className="mt-2 h-[190px] w-full">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <BarChart
+                      data={reachData}
+                      margin={{ top: 5, right: 10, left: -10, bottom: 0 }}
+                      barSize={22}
+                    >
+                      <defs>
+                        <linearGradient id="bar-reach" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="0%" stopColor="#8B0028" />
+                          <stop offset="100%" stopColor="#A00030" />
+                        </linearGradient>
+                      </defs>
+                      <CartesianGrid stroke="rgba(255,255,255,0.05)" vertical={false} />
+                      <XAxis
+                        dataKey="sponsor"
+                        tick={{ fill: "rgba(255,255,255,0.55)", fontSize: 12 }}
+                        axisLine={{ stroke: "rgba(255,255,255,0.08)" }}
+                        tickLine={false}
+                      />
+                      <YAxis
+                        scale="log"
+                        domain={[0.005, 1000]}
+                        allowDataOverflow
+                        ticks={[0.01, 0.1, 1, 10, 100]}
+                        tick={{ fill: "rgba(255,255,255,0.4)", fontSize: 11 }}
+                        axisLine={false}
+                        tickLine={false}
+                      />
+                      <Tooltip
+                        content={<ChartTooltip suffix="M" />}
+                        cursor={{ fill: "rgba(255,255,255,0.03)" }}
+                      />
+                      <Bar dataKey="reach" fill="url(#bar-reach)" radius={[6, 6, 0, 0]} />
+                    </BarChart>
+                  </ResponsiveContainer>
+                </div>
+              </div>
+              <div>
+                <div className="text-[11px] uppercase tracking-[0.14em] text-white/35">
+                  Engagement rate · %
+                </div>
+                <div className="mt-2 h-[190px] w-full">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <BarChart
+                      data={erData}
+                      margin={{ top: 5, right: 10, left: -10, bottom: 0 }}
+                      barSize={22}
+                    >
+                      <CartesianGrid stroke="rgba(255,255,255,0.05)" vertical={false} />
+                      <XAxis
+                        dataKey="sponsor"
+                        tick={{ fill: "rgba(255,255,255,0.55)", fontSize: 12 }}
+                        axisLine={{ stroke: "rgba(255,255,255,0.08)" }}
+                        tickLine={false}
+                      />
+                      <YAxis
+                        tick={{ fill: "rgba(255,255,255,0.4)", fontSize: 11 }}
+                        axisLine={false}
+                        tickLine={false}
+                      />
+                      <Tooltip
+                        content={<ChartTooltip suffix="%" />}
+                        cursor={{ fill: "rgba(255,255,255,0.03)" }}
+                      />
+                      <Bar dataKey="engagement" fill="#F4EFE6" radius={[6, 6, 0, 0]} />
+                    </BarChart>
+                  </ResponsiveContainer>
+                </div>
+              </div>
             </div>
           </div>
 
