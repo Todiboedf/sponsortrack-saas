@@ -32,11 +32,19 @@ cv/.venv/bin/yolo detect train data=cv/dataset/data.yaml model=yolo11s.pt \
   fliplr=0.0 flipud=0.0 patience=30 seed=0 project=cv/train_local name=v2-yolo11s exist_ok=True
 ```
 
+## Social via Apify (chantier 10/06 soir — RapidAPI abandonné)
+
+- `scripts/apify_collect.py` : 9 profils IG → `sponsor_kpis_daily` en 15 s (1 run d'actor). Collecte du 10/06 OK (9/9).
+- `scripts/apify_backfill_posts.py` : 136 posts / 30 j (caosasuna 108, kosner 13, eneryeti 9) → table `posts` (`supabase/posts-migration.sql`), mentions sponsors taggées (7 posts sponsors côté club).
+- `scripts/apify_tiktok.py` : caosasuna TikTok → **5,8 M followers** (ER 1.08 %), `platform='tiktok'` en base — s'affiche dans `/dashboard` (colonne platform) et la ligne TikTok du trend `/demo` sans modif UI.
+- PNG meeting : `cv/demo-assets/social-engagement-30d.png` (engagement 30 j, posts sponsors en or, pic Kosner 4 412 engagements).
+- Conso Apify : $0.38 / $29 (plan Starter, limite verrouillée). ⚠️ Le cron Vercel 06:00 UTC pointe encore sur le collecteur RapidAPI mort — migration cron → Apify + suppression du legacy prévues **vendredi**.
+
 ## Avant le meeting (matin du 11/06)
 
-1. Vérifier que `/demo` prod affiche bien « CA Osasuna vs Alavés » dans le panel Match-day exposure (ISR 5 min).
-2. Si le plan RapidAPI a été upgradé : re-trigger `/api/cron/collect-instagram` (Bearer CRON_SECRET) pour la data sociale fraîche du jour — le cron auto tourne à 06:00 UTC.
-3. Login démo dashboard : `guillaume@hl-conciergerie.com` → workspace **CA Osasuna** (`/dashboard`).
+1. Vérifier que `/demo` prod affiche « CA Osasuna vs Alavés » dans le panel Match-day exposure + la ligne TikTok dans le trend (ISR 5 min).
+2. Data sociale fraîche du jour : `cv/.venv/bin/python scripts/apify_collect.py` puis `scripts/apify_tiktok.py` (30 s au total, ~2 centimes).
+3. Login démo dashboard : `guillaume@hl-conciergerie.com` → workspace **CA Osasuna** (`/dashboard`, IG + TikTok du jour).
 
 ## Contexte meeting
 
