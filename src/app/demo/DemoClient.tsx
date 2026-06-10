@@ -77,6 +77,10 @@ const FALLBACK_SPONSORS = [
   { id: "meridian", label: "Meridian", color: "#2B2B2B" },
 ];
 
+// Sponsor groups for the live selector (slugs from the `sponsors` table)
+const ECOSYSTEM_SLUGS = ["ca-osasuna", "kosner", "eneryeti", "nissan", "macron"];
+const GLOBAL_SLUGS = ["nike", "adidas", "redbull", "emirates"];
+
 const ranges = [
   { id: "7d", label: "Last 7 days", multiplier: 0.22 },
   { id: "30d", label: "Last 30 days", multiplier: 1 },
@@ -187,9 +191,27 @@ export default function DemoClient({
   const topPostsRaw = isLive && live!.topPosts.length > 0 ? live!.topPosts : FALLBACK_TOP_POSTS;
   const topPosts = topPostsRaw.map((p) => ({ ...p, icon: platformIcon(p.platform) }));
 
-  const [sponsor, setSponsor] = useState("all");
+  const [sponsor, setSponsor] = useState(isLive ? "eco" : "all");
   const [range, setRange] = useState("30d");
   const [platform, setPlatform] = useState("all");
+
+  // null = no filter; otherwise the list of selected sponsor slugs
+  const allowedSlugs =
+    sponsor === "all"
+      ? null
+      : sponsor === "eco"
+        ? ECOSYSTEM_SLUGS
+        : sponsor === "global"
+          ? GLOBAL_SLUGS
+          : [sponsor];
+  const sponsorOptions = isLive
+    ? [
+        { value: "eco", label: "CA Osasuna ecosystem" },
+        { value: "global", label: "Global brands" },
+        { value: "all", label: "All sponsors" },
+        ...sponsors.filter((s) => s.id !== "all").map((s) => ({ value: s.id, label: s.label })),
+      ]
+    : sponsors.map((s) => ({ value: s.id, label: s.label }));
 
   // Only platforms with at least one datapoint get a line, a legend entry
   // and a filter option (fallback data has all four).
@@ -209,8 +231,7 @@ export default function DemoClient({
   );
 
   const multiplier = ranges.find((r) => r.id === range)?.multiplier ?? 1;
-  const sponsorMod =
-    sponsor === "all" ? 1 : isLive ? 1 / Math.max(1, sponsors.length - 1) : 0.3;
+  const sponsorMod = isLive ? 1 : sponsor === "all" ? 1 : 0.3;
   const platformVisible = (id: "ig" | "tt" | "x" | "yt") =>
     platform === "all" ||
     (platform === "instagram" && id === "ig") ||
@@ -248,7 +269,11 @@ export default function DemoClient({
   const engagementData = useMemo(
     () =>
       baseEngagement
-        .filter((e) => sponsor === "all" || sponsors.find((s) => s.id === sponsor)?.label === e.sponsor)
+        .filter((e) => {
+          if (!allowedSlugs) return true;
+          const slug = sponsors.find((s) => s.label === e.sponsor)?.id;
+          return slug ? allowedSlugs.includes(slug) : true;
+        })
         .map((e) => ({
           sponsor: e.sponsor,
           reach: Math.max(0.01, +(e.reach * (isLive ? 1 : multiplier)).toFixed(2)),
@@ -276,8 +301,12 @@ export default function DemoClient({
   );
   const totalEmv = emvData.reduce((s, e) => s + e.value, 0);
 
-  // Live: KPI cards computed from real latest-day totals (no synthetic scaling)
-  const liveTotals = isLive && live!.totals?.length ? live!.totals : null;
+  // Live: KPI cards computed from real latest-day totals (no synthetic
+  // scaling), narrowed to the selected sponsor group.
+  const allTotals = isLive && live!.totals?.length ? live!.totals : null;
+  const liveTotals = allTotals
+    ? allTotals.filter((t) => !allowedSlugs || allowedSlugs.includes(t.slug))
+    : null;
   const liveReach = liveTotals?.reduce((s, t) => s + t.followers, 0) ?? 0;
   const liveEmv = liveTotals?.reduce((s, t) => s + t.emv, 0) ?? 0;
   const liveEr =
@@ -310,7 +339,7 @@ export default function DemoClient({
         },
         {
           label: "Active sponsors",
-          value: sponsor === "all" ? String(liveTotals.length) : "1",
+          value: String(liveTotals.length),
           delta: "tracked daily",
           positive: true,
           icon: <Sparkles size={16} />,
@@ -361,7 +390,7 @@ export default function DemoClient({
                 </h1>
                 <p className="mt-4 max-w-xl text-[15px] text-white/60">
                   {isLive
-                    ? "Live Instagram data, refreshed daily. Filter by sponsor, platform or period, the whole dashboard re-computes in real time."
+                    ? "Live Instagram & TikTok data, refreshed daily. Filter by sponsor, platform or period, the whole dashboard re-computes in real time."
                     : "All figures below are synthetic data for illustration. Filter by sponsor, platform or period, the whole dashboard re-computes in real time."}
                 </p>
               </div>
@@ -379,7 +408,7 @@ export default function DemoClient({
             </div>
             <Select
               label="Sponsor"
-              options={sponsors.map((s) => ({ value: s.id, label: s.label }))}
+              options={sponsorOptions}
               value={sponsor}
               onChange={setSponsor}
             />
