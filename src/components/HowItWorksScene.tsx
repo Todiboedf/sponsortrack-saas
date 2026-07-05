@@ -40,25 +40,25 @@ const STEPS: {
   {
     n: "01",
     title: "Connect",
-    body: "Plug your social channels, broadcast feed and CRM. One-click via OAuth, dedicated SDK for everything else.",
+    body: "Point us at the club's accounts and recorded footage. No integration needed to start; OAuth self-serve is planned.",
     Icon: PlugZap,
   },
   {
     n: "02",
     title: "Detect",
-    body: "Our models watch every post and every broadcast frame, attribute exposures to the right sponsor, normalise the numbers.",
+    body: "The model reads recorded broadcast and owned footage frame by frame, and tags every sponsor mention in every post. No live feed, no sampling.",
     Icon: ScanSearch,
   },
   {
     n: "03",
     title: "Report",
-    body: "White-label dashboards refresh in real time. Branded PDF + email recap goes out every Monday at 07:00 local.",
+    body: "Data refreshes daily. The branded PDF goes out every Monday at 07:00, the same report our public study publishes.",
     Icon: ScrollText,
   },
   {
     n: "04",
     title: "Renew",
-    body: "Renewal alerts, benchmark scenarios and a contract calendar, so commercial conversations start with evidence.",
+    body: "The renewal case builds itself: screen time, share of voice, trend lines. Every claim in the deck has a source.",
     Icon: Workflow,
   },
 ];
@@ -120,9 +120,8 @@ export function HowItWorksScene() {
               id="how-it-works-heading"
               className="font-[family-name:var(--font-display)] text-balance text-4xl font-semibold tracking-[-0.01em] text-[#F4EFE6] sm:text-5xl lg:text-[58px]"
             >
-              Four steps from{" "}
-              <em className="italic text-gradient-brand">channel chaos</em>{" "}
-              to renewed contract.
+              From posts and footage to a{" "}
+              <em className="italic text-gradient-brand">renewal case.</em>
             </h2>
           </div>
 
