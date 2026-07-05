@@ -187,7 +187,7 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      {/* Case study highlight (Atlético Demo) */}
+      {/* Illustrative pilot scenario (targets, not client results) */}
       <section className="py-16 lg:py-24">
         <Container>
           <Reveal>
