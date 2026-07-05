@@ -7,7 +7,6 @@ import {
   FileSpreadsheet,
   Gauge,
   LineChart,
-  Mail,
   Sparkles,
   Target,
   TrendingUp,
@@ -257,31 +256,39 @@ function PerSponsorSection() {
               <em className="italic text-gradient-brand">One source of truth.</em>
             </h2>
             <p className="mt-5 text-pretty text-lg text-[#F4EFE6]/65">
-              The club watches the whole portfolio. Each sponsor sees only
-              what&apos;s theirs, branded, in their currency, in their language.
-              Same data, two narratives, zero spreadsheets.
+              The club sees the whole portfolio. Each sponsor sees only
+              what&apos;s theirs, in their own brand. Same data, zero
+              spreadsheets.
             </p>
             <ul className="mt-8 flex flex-col gap-4">
-              {[
-                {
-                  title: "Per-sponsor portals",
-                  body: "Invite sponsors directly. They see only their data, in their brand colors.",
-                },
-                {
-                  title: "Multi-platform, multi-language",
-                  body: "We normalise currencies, time zones and engagement rates automatically.",
-                },
-                {
-                  title: "Enterprise-grade security",
-                  body: "SSO-ready, EU data residency by default, GDPR compliant. SOC 2 Type II planned.",
-                },
-              ].map((it) => (
+              {(
+                [
+                  {
+                    title: "Per-sponsor portals",
+                    body: "Each sponsor gets a branded, read-only view of their own numbers.",
+                    status: "planned" as FeatureStatus,
+                  },
+                  {
+                    title: "Normalised engagement",
+                    body: "One comparable rate across Instagram and TikTok, weighted by audience.",
+                    status: "live" as FeatureStatus,
+                  },
+                  {
+                    title: "EU data residency by default",
+                    body: "GDPR-native hosting; your data never trains shared models.",
+                    status: "live" as FeatureStatus,
+                  },
+                ]
+              ).map((it) => (
                 <li key={it.title} className="flex items-start gap-3">
                   <span className="mt-0.5 inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-[#B8975A]/30 bg-[#B8975A]/[0.08] text-[#B8975A]">
                     <Check size={14} />
                   </span>
                   <div>
-                    <div className="font-medium text-[#F4EFE6]">{it.title}</div>
+                    <div className="font-medium text-[#F4EFE6]">
+                      {it.title}
+                      <FeatureBadge status={it.status} className="ml-2" />
+                    </div>
                     <div className="text-sm text-[#F4EFE6]/60">{it.body}</div>
                   </div>
                 </li>
@@ -407,29 +414,30 @@ function FinalCta() {
           <GradientOrb color="red" size={420} className="-left-10 -top-10" />
           <GradientOrb color="gold" size={420} className="-right-10 -bottom-10" intensity="soft" />
           <Reveal>
-            <Badge tone="gold" icon={<Mail size={12} />}>
-              14-day free trial · no credit card
+            <Badge tone="gold" icon={<Sparkles size={12} />}>
+              Live data · public study
             </Badge>
           </Reveal>
           <Reveal delay={0.08}>
             <h2 className="mx-auto mt-6 max-w-3xl font-[family-name:var(--font-display)] text-balance text-4xl font-semibold leading-[1.08] tracking-[-0.01em] text-[#F4EFE6] sm:text-5xl lg:text-6xl">
-              Ready to{" "}
-              <em className="italic text-gradient-brand">prove every euro</em> of your sponsorship?
+              See a real match,{" "}
+              <em className="italic text-gradient-brand">measured.</em>
             </h2>
           </Reveal>
           <Reveal delay={0.15}>
             <p className="mx-auto mt-5 max-w-xl text-pretty text-lg text-[#F4EFE6]/65">
-              Join the clubs, leagues and brands turning every match into
-              measurable value, from the first post to the final whistle.
+              The live demo runs on our CA Osasuna public study, nine accounts,
+              283 posts, one broadcast highlight, measured frame by frame. No
+              sample screenshots.
             </p>
           </Reveal>
           <Reveal delay={0.2}>
             <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <Button href="/contact" size="lg" rightIcon={<ArrowRight size={16} />}>
-                Start free trial
+              <Button href="/demo" size="lg" rightIcon={<ArrowRight size={16} />}>
+                Open the live demo
               </Button>
-              <Button href="/demo" size="lg" variant="outline">
-                Book a demo
+              <Button href="/contact" size="lg" variant="outline">
+                Start free trial
               </Button>
             </div>
           </Reveal>
