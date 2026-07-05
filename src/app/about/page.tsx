@@ -21,21 +21,21 @@ import { Reveal } from "@/components/ui/Reveal";
 import { GradientOrb } from "@/components/GradientOrb";
 
 export const metadata: Metadata = {
-  title: "About, Building the sponsor intelligence layer for sport",
+  title: "About: one founder, building measurement in public",
   description:
-    "Sponsorlens is a solo-founded, public-build sports sponsorship platform measuring every match, post and impression. Pre-launch, looking for its first design partners.",
+    "Sponsorlens is a solo-founded, public-build sponsorship measurement platform. One public study live (CA Osasuna), social analytics running daily, broadcast computer vision in development. Pre-launch.",
 };
 
 const values = [
   {
     icon: <Target size={18} />,
     title: "Transparent by default",
-    body: "Public pricing. Public roadmap. Publicly shared methodology. If we can’t explain a number, we shouldn’t be shipping it.",
+    body: "Public pricing. Public roadmap. A public study. If I can’t explain a number, I don’t ship it.",
   },
   {
     icon: <LineChart size={18} />,
     title: "Measurement is a craft",
-    body: "We build models we would bet on, not ones that happen to make customers feel good. Integrity over vanity.",
+    body: "I build models I would bet on, not ones that happen to make customers feel good. Integrity over vanity.",
   },
   {
     icon: <Users size={18} />,
@@ -45,7 +45,7 @@ const values = [
   {
     icon: <Shield size={18} />,
     title: "Data you’d trust with your kids",
-    body: "EU-hosted by default, never used to train shared models, and deletable with one click. Your sponsors deserve that.",
+    body: "EU-hosted by default, never used to train shared models, deleted on request. Your sponsors deserve that.",
   },
 ];
 
@@ -68,13 +68,13 @@ const milestones = [
   },
   {
     year: "2026",
-    title: "Looking for the first pilot",
-    body: "Product built end-to-end, with match-day computer vision in active development. Now looking for the first club to run a real pilot with.",
+    title: "The public study",
+    body: "CA Osasuna measured from public data: 283 posts in 90 days, one broadcast highlight read frame by frame, a weekly report every Monday.",
   },
   {
     year: "Next",
-    title: "More clubs, more leagues",
-    body: "We onboard one new design partner per month while we shape the V1 product around real sponsorship workflows.",
+    title: "The first design partners",
+    body: "Now looking for the first club to run a real pilot. One partner at a time, shaped around real sponsorship workflows.",
   },
 ];
 
@@ -95,19 +95,17 @@ export default function AboutPage() {
             </Reveal>
             <Reveal delay={0.05}>
               <h1 className="mt-6 font-[family-name:var(--font-display)] text-balance text-5xl font-medium leading-[1.04] tracking-[-0.01em] text-[#F4EFE6] sm:text-6xl lg:text-[76px]">
-                We build the{" "}
+                A $100B industry,{" "}
                 <em className="italic font-medium text-gradient-brand">
-                  data layer
-                </em>{" "}
-                sport has been missing.
+                  still counted by hand.
+                </em>
               </h1>
             </Reveal>
             <Reveal delay={0.1}>
               <p className="mt-6 max-w-2xl text-pretty text-lg text-[#F4EFE6]/65 sm:text-xl">
-                Sponsorship is a $100B industry running on gut feel and PDF
-                recaps. We think it deserves better, specifically, a modern
-                platform that turns every match, post and impression into
-                evidence.
+                Sponsorlens is one founder building the measurement layer for
+                sponsorship. Social analytics run today. Broadcast computer
+                vision is in development. Everything ships in public.
               </p>
             </Reveal>
           </div>
@@ -131,18 +129,17 @@ export default function AboutPage() {
                   <p>
                     Sport is the last giant industry where ten-figure budgets
                     move on the strength of a slide deck. Brands can&apos;t
-                    prove their ROI, clubs can&apos;t prove their value, and
-                    both sides leave money on the table every single season.
+                    prove their ROI. Clubs can&apos;t prove their value. Both
+                    sides leave money on the table, every season.
                   </p>
                   <p>
-                    We&apos;re changing that by building a measurement layer
-                    that understands sport the way the people inside it do -
-                    contracts, matchdays, jersey deals, LED rotations, viral
-                    posts, and turns them into numbers a CFO can sign off on.
+                    I&apos;m building the measurement layer: contracts,
+                    matchdays, jersey deals, LED rotations, viral posts, turned
+                    into numbers a CFO can sign off on.
                   </p>
                   <p>
-                    If you care about sport and you care about craft, you&apos;ll
-                    probably like what we&apos;re building.
+                    If you care about sport and you care about craft,
+                    you&apos;ll probably like what I&apos;m building.
                   </p>
                 </div>
                 <div className="mt-8 flex flex-wrap items-center gap-3">
@@ -263,7 +260,7 @@ export default function AboutPage() {
                 <em className="italic text-gradient-brand">non-negotiable.</em>
               </>
             }
-            description="We write them here because it’s easier to hold ourselves accountable in public."
+            description="Written here because it’s easier to stay accountable in public."
           />
           <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
             {values.map((v, i) => (
@@ -405,15 +402,18 @@ export default function AboutPage() {
             <GradientOrb color="red" size={380} className="-left-10 -top-10" intensity="soft" />
             <GradientOrb color="gold" size={380} className="-right-10 -bottom-10" intensity="soft" />
             <Badge tone="gold" icon={<Sparkles size={12} />}>
-              Want to help?
+              Design partners
             </Badge>
             <h2 className="mx-auto mt-5 max-w-2xl font-[family-name:var(--font-display)] text-balance text-4xl font-semibold tracking-[-0.01em] text-[#F4EFE6] sm:text-5xl">
-              Shape the future of{" "}
-              <em className="italic text-gradient-brand">sport sponsorship.</em>
+              Want your sponsorship{" "}
+              <em className="italic text-gradient-brand">
+                measured, not estimated?
+              </em>
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-[#F4EFE6]/65">
-              We&apos;re looking for engineers, sport analysts, ML researchers
-              and commercial operators who love sport and love craft.
+              I&apos;m looking for the first design partners: clubs, leagues
+              and brands who want their exposure measured. You get the founder,
+              the public roadmap, and a report every Monday.
             </p>
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <Button href="/contact" size="lg" rightIcon={<ArrowRight size={16} />}>
