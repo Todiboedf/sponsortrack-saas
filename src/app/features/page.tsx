@@ -24,9 +24,9 @@ import { Reveal } from "@/components/ui/Reveal";
 import { GradientOrb } from "@/components/GradientOrb";
 
 export const metadata: Metadata = {
-  title: "Features, The sponsor intelligence stack",
+  title: "Features: the sponsor stack, labelled honestly",
   description:
-    "Cross-platform analytics, match-day computer vision, branded sponsor portals, an AI-powered prospection engine, white-label reporting, and enterprise security, all in one platform.",
+    "Instagram + TikTok analytics live today. Broadcast computer vision in development. Portals, prospection and enterprise security on the roadmap. Every feature carries its label.",
 };
 
 /* -------------------------------------------------------------------------- */
@@ -47,26 +47,26 @@ function FeaturesHero() {
           </Reveal>
           <Reveal delay={0.05}>
             <h1 className="mt-6 font-[family-name:var(--font-display)] text-balance text-5xl font-medium leading-[1.04] tracking-[-0.01em] text-[#F4EFE6] sm:text-6xl lg:text-[76px]">
-              The entire sponsor stack.{" "}
+              The sponsor stack,{" "}
               <em className="italic font-medium text-gradient-brand">
-                One platform.
+                labelled honestly.
               </em>
             </h1>
           </Reveal>
           <Reveal delay={0.1}>
             <p className="mt-6 max-w-2xl text-pretty text-lg text-[#F4EFE6]/65 sm:text-xl">
-              From a viral TikTok to a 90-minute broadcast, every sponsor
-              exposure is captured, priced, and turned into actionable
-              intelligence.
+              Instagram and TikTok run today, 283 posts measured in our public
+              study. Broadcast computer vision reads recorded footage, in
+              development. Every bullet below says which is which.
             </p>
           </Reveal>
           <Reveal delay={0.15}>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-              <Button href="/contact" size="lg" rightIcon={<ArrowRight size={16} />}>
-                Start free trial
+              <Button href="/demo" size="lg" rightIcon={<ArrowRight size={16} />}>
+                Open the live demo
               </Button>
-              <Button href="/demo" size="lg" variant="outline">
-                Open live demo
+              <Button href="/contact" size="lg" variant="outline">
+                Start free trial
               </Button>
             </div>
           </Reveal>
@@ -362,19 +362,20 @@ function CtaSection() {
             Ready when you are
           </Badge>
           <h2 className="mx-auto mt-5 max-w-2xl font-[family-name:var(--font-display)] text-balance text-4xl font-semibold tracking-[-0.01em] text-[#F4EFE6] sm:text-5xl">
-            See every feature live in{" "}
-            <em className="italic text-gradient-brand">under 30 minutes.</em>
+            See the live data,{" "}
+            <em className="italic text-gradient-brand">then decide.</em>
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-pretty text-[#F4EFE6]/65">
-            Our team will walk you through the platform, map it to your current
-            workflow, and hand you a 14-day trial on the spot.
+            The demo is public and runs on the Osasuna study. Want a
+            walkthrough? You talk to the founder. The 14-day trial starts
+            whenever you&apos;re ready.
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Button href="/contact" size="lg" rightIcon={<ArrowRight size={16} />}>
-              Book a demo
+            <Button href="/demo" size="lg" rightIcon={<ArrowRight size={16} />}>
+              Open the live demo
             </Button>
-            <Button href="/pricing" size="lg" variant="outline">
-              View pricing
+            <Button href="/contact" size="lg" variant="outline">
+              Talk to the founder
             </Button>
           </div>
         </div>
