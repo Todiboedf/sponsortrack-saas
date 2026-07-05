@@ -31,11 +31,11 @@ const SITE_URL = "https://sponsorlens.io";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Sponsorlens: Sponsor intelligence, lived in real time.",
+    default: "Sponsorlens: Measured, not estimated.",
     template: "%s · Sponsorlens",
   },
   description:
-    "The sponsor intelligence platform built for clubs, leagues and brands. Cross-platform analytics, match-day computer vision, and the reports that renew contracts.",
+    "Sponsor exposure, measured daily. Social analytics for clubs, leagues and brands, with broadcast computer vision in development. Reported Mondays 07:00.",
   keywords: [
     "sponsor tracking",
     "sports sponsorship ROI",
@@ -51,9 +51,9 @@ export const metadata: Metadata = {
     type: "website",
     url: SITE_URL,
     siteName: "Sponsorlens",
-    title: "Sponsorlens: Sponsor intelligence, lived in real time.",
+    title: "Sponsorlens: Measured, not estimated.",
     description:
-      "Cross-platform analytics, match-day computer vision, and the reports that renew contracts. Built for clubs, leagues and brands.",
+      "Sponsor exposure, measured daily. Social analytics live today, broadcast computer vision in development. Built for clubs, leagues and brands.",
     locale: "en_US",
     images: [
       {
@@ -69,9 +69,9 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: "@sponsorlens",
     creator: "@sponsorlens",
-    title: "Sponsorlens: Sponsor intelligence for modern sports",
+    title: "Sponsorlens: Measured, not estimated.",
     description:
-      "Sponsor intelligence platform for clubs, leagues and brands. Cross-platform analytics, match-day computer vision, ROI that renews.",
+      "Sponsor exposure, measured daily. Social analytics live today, broadcast computer vision in development. Reported Mondays 07:00.",
     images: ["/og"],
   },
   robots: {
@@ -104,7 +104,7 @@ const jsonLd = {
   url: SITE_URL,
   logo: `${SITE_URL}/icon.svg`,
   description:
-    "Sponsor intelligence platform for clubs, leagues and brands, social analytics, match-day computer vision, ROI reporting.",
+    "Sponsor exposure measurement for clubs, leagues and brands: social analytics, weekly reporting, broadcast computer vision in development.",
   sameAs: [
     "https://x.com/sponsorlens",
     "https://www.linkedin.com/company/sponsorlens",

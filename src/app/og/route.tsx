@@ -135,7 +135,7 @@ export async function GET() {
               display: "flex",
             }}
           >
-            Sponsor intelligence, lived in real time.
+            Measured, not estimated.
           </span>
         </div>
 

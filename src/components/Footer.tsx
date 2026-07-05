@@ -36,8 +36,8 @@ export function Footer() {
           <div className="flex flex-col gap-5">
             <Logo />
             <p className="max-w-xs text-sm leading-relaxed text-[#F4EFE6]/60">
-              Sponsor intelligence, lived in real time. Built for the clubs,
-              leagues and brands who measure what matters.
+              Measured, not estimated. Sponsor exposure measured daily,
+              reported Mondays 07:00.
             </p>
             <div className="flex items-center gap-2">
               <SocialIcon label="X" href="https://x.com/sponsorlens" />

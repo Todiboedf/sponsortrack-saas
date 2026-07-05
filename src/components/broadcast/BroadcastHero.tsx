@@ -58,7 +58,7 @@ export function BroadcastHero() {
         </div>
 
         <p className="mt-6 max-w-2xl text-pretty text-[17px] text-slate-300 sm:text-lg">
-          Built for the clubs, leagues and brands who measure what matters.
+          Sponsor exposure, measured daily. Reported Mondays 07:00.
         </p>
 
         <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row">

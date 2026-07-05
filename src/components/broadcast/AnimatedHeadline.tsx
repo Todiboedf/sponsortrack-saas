@@ -5,8 +5,7 @@ import { motion, useReducedMotion } from "motion/react";
 
 /**
  * Hero headline with letter-by-letter reveal. Two lines: a plain white
- * "Sponsor intelligence," and an italic cyan "lived in real time." that
- * sets the broadcast-data tone.
+ * "Measured," and an italic gold "not estimated." — the brand claim.
  *
  * Words are wrapped in `inline-block whitespace-nowrap` shells so the
  * per-character `inline-block` motion spans inside can stagger without
@@ -18,8 +17,8 @@ import { motion, useReducedMotion } from "motion/react";
  */
 export function AnimatedHeadline() {
   const reduced = useReducedMotion();
-  const line1 = "Sponsor intelligence,";
-  const line2 = "lived in real time.";
+  const line1 = "Measured,";
+  const line2 = "not estimated.";
 
   return (
     <motion.h1
