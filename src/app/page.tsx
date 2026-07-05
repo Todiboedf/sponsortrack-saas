@@ -16,6 +16,7 @@ import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { Card } from "@/components/ui/Card";
+import { DetectionBox } from "@/components/ui/DetectionBox";
 import { FeatureBadge, type FeatureStatus } from "@/components/ui/FeatureBadge";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Reveal } from "@/components/ui/Reveal";
@@ -305,6 +306,7 @@ type StatKey = "media" | "leagues" | "renewal" | "posts";
 
 const stats: Array<{
   key: StatKey;
+  tag: string;
   label: string;
   to: number;
   prefix?: string;
@@ -313,22 +315,26 @@ const stats: Array<{
 }> = [
   {
     key: "media",
+    tag: "Founder",
     label: "Solo founder, in public",
     to: 1,
   },
   {
     key: "leagues",
+    tag: "Live demo",
     label: "Sponsors in the live demo",
     to: 8,
   },
   {
     key: "renewal",
+    tag: "EU data",
     label: "EU data residency · GDPR-native",
     to: 100,
     suffix: "%",
   },
   {
     key: "posts",
+    tag: "90-day study",
     label: "Posts analysed in a 90-day study",
     to: 283,
   },
@@ -338,23 +344,29 @@ function StatsSection() {
   return (
     <section className="py-16">
       <Container>
-        <div className="overflow-hidden rounded-3xl border border-[#B8975A]/25 bg-gradient-to-br from-[#0F1A2E] via-[#0A1628] to-[#0F1A2E] p-10 lg:p-14">
-          <div className="grid gap-10 md:grid-cols-4">
+        <div className="overflow-visible rounded-3xl border border-[#B8975A]/25 bg-gradient-to-br from-[#0F1A2E] via-[#0A1628] to-[#0F1A2E] p-10 lg:p-14">
+          <div className="grid gap-8 md:grid-cols-4 md:gap-6">
             {stats.map((s, i) => (
-              <Reveal key={s.key} delay={i * 0.05}>
-                <div>
-                  <div className="font-[family-name:var(--font-mono)] text-4xl font-semibold tracking-tight text-[#F4EFE6] tabular-nums sm:text-5xl">
+              <DetectionBox
+                key={s.key}
+                label={s.tag}
+                delay={i * 0.1}
+                className="bg-[#0A1628]/50"
+              >
+                <div className="p-5 pt-6">
+                  <div className="font-[family-name:var(--font-mono)] text-4xl font-semibold tracking-tight text-[#F4EFE6] tabular-nums sm:text-[40px]">
                     <CountUp
                       to={s.to}
                       prefix={s.prefix}
                       suffix={s.suffix}
                       decimals={s.decimals ?? 0}
                       duration={1.6}
+                      delay={0.3 + i * 0.1}
                     />
                   </div>
                   <div className="mt-2 text-sm text-[#F4EFE6]/60">{s.label}</div>
                 </div>
-              </Reveal>
+              </DetectionBox>
             ))}
           </div>
           <p className="mt-10 text-[11px] uppercase tracking-[0.22em] text-[#F4EFE6]/40">
