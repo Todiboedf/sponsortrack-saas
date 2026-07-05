@@ -86,8 +86,8 @@ export function Footer() {
         </div>
         <div className="flex flex-col gap-3 border-t border-[#F4EFE6]/[0.06] py-6 text-xs text-[#F4EFE6]/50 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            © {new Date().getFullYear()} Sponsorlens · Built by TFM Team · Real
-            Madrid Graduate School, Universidad Europea de Madrid
+            © {new Date().getFullYear()} Sponsorlens · Built solo by Guillaume
+            Haas, in public.
           </div>
           <div className="flex items-center gap-4">
             <span className="inline-flex items-center gap-1.5">
@@ -97,7 +97,7 @@ export function Footer() {
               </span>
               All systems operational
             </span>
-            <span className="hidden sm:inline">EU-first · Paris hub</span>
+            <span className="hidden sm:inline">Nice, France · EU data residency</span>
           </div>
         </div>
       </Container>

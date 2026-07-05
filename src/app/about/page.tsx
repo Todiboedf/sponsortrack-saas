@@ -52,7 +52,7 @@ const values = [
 const founder = {
   name: "Guillaume Haas",
   role: "Founder",
-  bio: "Entrepreneur with a product engineering background, building Sponsorlens solo, from the data model to the first board pitch. Based in Madrid, pre-launch and looking for the first design partners.",
+  bio: "Entrepreneur with a product engineering background, building Sponsorlens solo, from the data model to the first board pitch. Based in Nice, France, pre-launch and looking for the first design partners.",
 };
 
 const milestones = [

@@ -100,7 +100,6 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "Sponsorlens",
-  legalName: "Sponsorlens Labs S.A.S.",
   url: SITE_URL,
   logo: `${SITE_URL}/icon.svg`,
   description:

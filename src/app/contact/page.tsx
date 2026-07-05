@@ -340,8 +340,7 @@ export default function ContactPage() {
                   Remote-first, EU-based. On-site meetings on request.
                 </p>
                 <ul className="mt-5 flex flex-col gap-4">
-                  <Office city="Paris" address="Primary hub" tz="CET" />
-                  <Office city="Europe" address="Across France, Spain, Portugal" tz="CET · WET" />
+                  <Office city="Nice, France" address="Home base · EU data residency" tz="CET" />
                 </ul>
               </Card>
 
