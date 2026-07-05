@@ -19,6 +19,7 @@ import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { Card } from "@/components/ui/Card";
+import { FeatureBadge, type FeatureStatus } from "@/components/ui/FeatureBadge";
 import { Reveal } from "@/components/ui/Reveal";
 import { GradientOrb } from "@/components/GradientOrb";
 
@@ -82,7 +83,7 @@ type Pillar = {
   tag: string;
   title: string;
   body: string;
-  bullets: string[];
+  bullets: Array<{ text: string; status?: FeatureStatus }>;
   plan: string[];
   icon: React.ReactNode;
   Mockup: () => React.ReactNode;
@@ -94,10 +95,10 @@ const pillars: Pillar[] = [
     title: "Cross-platform analytics",
     body: "Every post, every story, every reel, Instagram, TikTok, X, YouTube, Facebook and LinkedIn. Automatically attributed to the sponsors who appear in it.",
     bullets: [
-      "Automatic sponsor detection from captions, hashtags and visuals",
-      "Deduplicated cross-platform reach with confidence scores",
-      "Organic vs paid vs owned vs earned, properly split",
-      "Time-zone aware daily, weekly and season aggregations",
+      { text: "Automatic sponsor detection from captions and hashtags", status: "live" },
+      { text: "Sponsored vs organic performance split", status: "live" },
+      { text: "Daily and weekly aggregations, time-zone aware", status: "live" },
+      { text: "Deduplicated cross-platform reach with confidence scores", status: "planned" },
     ],
     plan: ["Starter", "Pro", "Enterprise"],
     icon: <BarChart3 size={20} />,
@@ -108,10 +109,10 @@ const pillars: Pillar[] = [
     title: "Match-day computer vision",
     body: "An in-house model that measures the exact seconds of visibility for every jersey, LED rotation, interview backdrop and pitch-side board, on recorded footage first and broadcast next. In active development.",
     bullets: [
-      "Logo detection with broadcast-quality scoring",
-      "LED rotation optimisation and inventory pricing",
-      "Per-camera angle and per-broadcaster breakdown",
-      "GDPR-safe: no face identification, ever",
+      { text: "Logo detection with broadcast-quality scoring", status: "dev" },
+      { text: "LED rotation optimisation and inventory pricing", status: "dev" },
+      { text: "Per-camera angle and per-broadcaster breakdown", status: "dev" },
+      { text: "GDPR-safe: no face identification, ever", status: "dev" },
     ],
     plan: ["Enterprise"],
     icon: <Camera size={20} />,
@@ -122,10 +123,10 @@ const pillars: Pillar[] = [
     title: "Branded sponsor portals",
     body: "Give each sponsor a workspace that looks like their own product. White-labelled, real-time, and the only place they’ll ever need to ask for their numbers again.",
     bullets: [
-      "Per-sponsor logos, palette, typography and vocabulary",
-      "Invite limited external users with read-only permissions",
-      "In-app PDF export and scheduled email reports",
-      "Benchmark widgets vs comparable sponsors (anonymised)",
+      { text: "Per-sponsor logos, palette, typography and vocabulary", status: "planned" },
+      { text: "Invite limited external users with read-only permissions", status: "planned" },
+      { text: "In-app PDF export and scheduled email reports", status: "planned" },
+      { text: "Benchmark widgets vs comparable sponsors (anonymised)", status: "planned" },
     ],
     plan: ["Pro", "Enterprise"],
     icon: <Users size={20} />,
@@ -136,10 +137,10 @@ const pillars: Pillar[] = [
     title: "Prospection engine + AI outreach",
     body: "Find the brands most likely to sponsor you, based on what they already sponsor, who their audience is, and where your club fits their media mix.",
     bullets: [
-      "10M+ company database with sponsorship signals",
-      "Fit score per brand × property × region",
-      "AI-drafted outreach in your commercial team's voice",
-      "CRM-ready, HubSpot, Salesforce, Pipedrive, Notion",
+      { text: "Company database with sponsorship signals", status: "planned" },
+      { text: "Fit score per brand × property × region", status: "planned" },
+      { text: "AI-drafted outreach in your commercial team's voice", status: "planned" },
+      { text: "CRM-ready, HubSpot, Salesforce, Pipedrive, Notion", status: "planned" },
     ],
     plan: ["Pro", "Enterprise"],
     icon: <Radar size={20} />,
@@ -150,10 +151,10 @@ const pillars: Pillar[] = [
     title: "White-label reporting",
     body: "Beautiful, defensible PDFs in your sponsor’s brand, generated automatically every Monday. The same engine powers in-app reports, email digests and CSV exports.",
     bullets: [
-      "Branded templates with logo, palette and typography",
-      "Methodology appendix that satisfies finance teams",
-      "Auto-scheduled email + PDF + Slack delivery",
-      "Versioned exports, every monthly recap is auditable",
+      { text: "Branded templates with logo, palette and typography", status: "live" },
+      { text: "Methodology appendix that satisfies finance teams", status: "planned" },
+      { text: "Auto-scheduled email + PDF + Slack delivery", status: "planned" },
+      { text: "Versioned exports, every monthly recap is auditable", status: "planned" },
     ],
     plan: ["Pro", "Enterprise"],
     icon: <FileBadge size={20} />,
@@ -164,10 +165,10 @@ const pillars: Pillar[] = [
     title: "Security & compliance",
     body: "The boring parts done properly. SSO, SCIM, fine-grained RBAC, EU data residency by default, and a SOC 2 Type II audit planned, so procurement isn’t the slow lane.",
     bullets: [
-      "SAML / OIDC SSO and SCIM provisioning",
-      "Role-based access at workspace, sponsor and report level",
-      "EU-hosted by default · custom region on Enterprise",
-      "DPA, MSA and security questionnaire on request",
+      { text: "EU-hosted by default", status: "live" },
+      { text: "SAML / OIDC SSO and SCIM provisioning", status: "planned" },
+      { text: "Role-based access at workspace, sponsor and report level", status: "planned" },
+      { text: "DPA, MSA and security questionnaire on request" },
     ],
     plan: ["Pro", "Enterprise"],
     icon: <ShieldCheck size={20} />,
@@ -209,13 +210,18 @@ function PillarsSection() {
                     <ul className="grid gap-2.5">
                       {p.bullets.map((b) => (
                         <li
-                          key={b}
+                          key={b.text}
                           className="flex items-start gap-2.5 text-[14px] text-[#F4EFE6]/80"
                         >
                           <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#B8975A]/15 ring-1 ring-[#B8975A]/40">
                             <Check size={11} className="text-[#B8975A]" />
                           </span>
-                          <span>{b}</span>
+                          <span>
+                            {b.text}
+                            {b.status && (
+                              <FeatureBadge status={b.status} className="ml-2" />
+                            )}
+                          </span>
                         </li>
                       ))}
                     </ul>

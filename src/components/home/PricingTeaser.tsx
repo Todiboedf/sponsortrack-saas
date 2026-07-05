@@ -7,12 +7,15 @@ import { ArrowRight, Check, Sparkles } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
+import { FeatureBadge, type FeatureStatus } from "@/components/ui/FeatureBadge";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Reveal } from "@/components/ui/Reveal";
 import { GradientOrb } from "@/components/GradientOrb";
 import { cn } from "@/lib/utils";
 
 type Billing = "monthly" | "yearly";
+
+type TierFeature = { text: string; status?: FeatureStatus };
 
 type Tier = {
   name: string;
@@ -25,7 +28,7 @@ type Tier = {
   trialNote?: boolean;
   cta: string;
   href: string;
-  features: string[];
+  features: TierFeature[];
 };
 
 const tiers: Tier[] = [
@@ -39,14 +42,15 @@ const tiers: Tier[] = [
     cta: "Start free trial",
     href: "/contact",
     features: [
-      "Up to 10 active sponsors",
-      "Cross-platform social analytics (Instagram, TikTok, X, YouTube, Facebook)",
-      "Weekly auto-reports",
-      "1 admin · 5 viewer seats",
-      "On-demand PDF export",
-      "AI weekly digest",
-      "Slack / Teams alerts",
-      "League-average benchmarking",
+      { text: "Up to 10 active sponsors" },
+      { text: "Instagram + TikTok analytics", status: "live" },
+      { text: "X, YouTube, Facebook analytics", status: "dev" },
+      { text: "Weekly auto-reports (branded PDF)", status: "live" },
+      { text: "1 admin · 5 viewer seats" },
+      { text: "On-demand PDF export", status: "planned" },
+      { text: "AI weekly digest", status: "planned" },
+      { text: "Slack / Teams alerts", status: "planned" },
+      { text: "League-average benchmarking", status: "planned" },
     ],
   },
   {
@@ -60,13 +64,13 @@ const tiers: Tier[] = [
     cta: "Start free trial",
     href: "/contact",
     features: [
-      "Unlimited sponsors",
-      "Branded per-sponsor self-service portals",
-      "Prospection engine + AI outreach",
-      "AI sponsor brief generator",
-      "Multi-language sponsor portals (ES / FR / DE / IT / PT)",
-      "Real-time match alerts (social-based)",
-      "Read-only API access",
+      { text: "Unlimited sponsors" },
+      { text: "Branded per-sponsor self-service portals", status: "planned" },
+      { text: "Prospection engine + AI outreach", status: "planned" },
+      { text: "AI sponsor brief generator", status: "planned" },
+      { text: "Multi-language sponsor portals (ES / FR / DE / IT / PT)", status: "planned" },
+      { text: "Match-day social alerts", status: "planned" },
+      { text: "Read-only API access", status: "planned" },
     ],
   },
   {
@@ -80,11 +84,11 @@ const tiers: Tier[] = [
     cta: "Book a discovery call",
     href: "/contact",
     features: [
-      "Match-day computer vision (broadcast logo detection, LED rotation, interview backdrop)",
-      "Dedicated success manager",
-      "Custom data pipelines & API",
-      "On-prem / EU data residency",
-      "White-glove onboarding (90 days)",
+      { text: "Match-day computer vision (broadcast logo detection, LED rotation, interview backdrop)", status: "dev" },
+      { text: "Dedicated success manager" },
+      { text: "Custom data pipelines & API", status: "planned" },
+      { text: "EU data residency by default", status: "live" },
+      { text: "White-glove onboarding (90 days)" },
     ],
   },
 ];
@@ -214,11 +218,16 @@ export function PricingTeaser() {
                   <ul className="mt-7 flex flex-col gap-3 border-t border-[#F4EFE6]/[0.06] pt-6">
                     {t.features.map((f) => (
                       <li
-                        key={f}
+                        key={f.text}
                         className="inline-flex items-start gap-2.5 text-[14px] text-[#F4EFE6]/80"
                       >
                         <Check size={16} className="mt-0.5 shrink-0 text-[#B8975A]" />
-                        <span>{f}</span>
+                        <span>
+                          {f.text}
+                          {f.status && (
+                            <FeatureBadge status={f.status} className="ml-2" />
+                          )}
+                        </span>
                       </li>
                     ))}
                   </ul>

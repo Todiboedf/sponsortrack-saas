@@ -16,6 +16,7 @@ import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { Card } from "@/components/ui/Card";
+import { FeatureBadge, type FeatureStatus } from "@/components/ui/FeatureBadge";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Reveal } from "@/components/ui/Reveal";
 import { GradientOrb } from "@/components/GradientOrb";
@@ -118,24 +119,41 @@ function ProblemSection() {
 /* -------------------------------------------------------------------------- */
 /* The platform                                                               */
 /* -------------------------------------------------------------------------- */
-const features = [
+const features: Array<{
+  icon: React.ReactNode;
+  title: string;
+  body: string;
+  points: Array<{ text: string; status: FeatureStatus }>;
+}> = [
   {
     icon: <BarChart3 size={22} />,
     title: "Unified social analytics",
     body: "Instagram, TikTok, X, YouTube, Facebook, aggregated, deduplicated, normalised. One number per sponsor, per match, per week.",
-    points: ["Cross-platform reach", "Post-level attribution", "Organic vs paid"],
+    points: [
+      { text: "Instagram + TikTok analytics", status: "live" },
+      { text: "Sponsored vs organic post split", status: "live" },
+      { text: "X, YouTube, Facebook", status: "dev" },
+    ],
   },
   {
     icon: <Camera size={22} />,
     title: "Match-day computer vision",
     body: "Logo-level exposure on match footage, jersey, LED and on-screen time. In active development; starting on owned and in-venue content, broadcast next.",
-    points: ["Logo & screen-time detection", "Owned + in-venue sources first", "GDPR-safe processing"],
+    points: [
+      { text: "Logo & screen-time detection", status: "dev" },
+      { text: "Proven on a recorded match highlight", status: "dev" },
+      { text: "GDPR-safe processing", status: "dev" },
+    ],
   },
   {
     icon: <LineChart size={22} />,
     title: "ROI that renews contracts",
     body: "Auto-generated reports in the sponsor’s brand, sent every Monday. They see their investment compound. You close larger renewals faster.",
-    points: ["White-label PDFs", "Benchmarks vs market", "Contract alerts"],
+    points: [
+      { text: "Branded weekly PDF reports", status: "live" },
+      { text: "Benchmarks vs market", status: "planned" },
+      { text: "Contract alerts", status: "planned" },
+    ],
   },
 ];
 
@@ -178,11 +196,12 @@ function PlatformSection() {
                 <ul className="mt-5 flex flex-col gap-2">
                   {f.points.map((pt) => (
                     <li
-                      key={pt}
-                      className="inline-flex items-center gap-2 text-[13px] text-[#F4EFE6]/75"
+                      key={pt.text}
+                      className="inline-flex flex-wrap items-center gap-2 text-[13px] text-[#F4EFE6]/75"
                     >
-                      <Check size={14} className="text-[#B8975A]" />
-                      {pt}
+                      <Check size={14} className="shrink-0 text-[#B8975A]" />
+                      {pt.text}
+                      <FeatureBadge status={pt.status} />
                     </li>
                   ))}
                 </ul>

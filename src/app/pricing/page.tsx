@@ -8,10 +8,13 @@ import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { Card } from "@/components/ui/Card";
+import { FeatureBadge, type FeatureStatus } from "@/components/ui/FeatureBadge";
 import { GradientOrb } from "@/components/GradientOrb";
 import { cn } from "@/lib/utils";
 
 type Billing = "monthly" | "yearly";
+
+type TierFeature = { text: string; status?: FeatureStatus };
 
 type Tier = {
   name: string;
@@ -24,7 +27,7 @@ type Tier = {
   trialNote?: boolean;
   cta: string;
   href: string;
-  features: string[];
+  features: TierFeature[];
 };
 
 const tiers: Tier[] = [
@@ -37,14 +40,15 @@ const tiers: Tier[] = [
     cta: "Start free trial",
     href: "/contact",
     features: [
-      "Up to 10 active sponsors",
-      "Cross-platform social analytics (Instagram, TikTok, X, YouTube, Facebook)",
-      "Weekly auto-reports",
-      "1 admin · 5 viewer seats",
-      "On-demand PDF export",
-      "AI weekly digest",
-      "Slack / Teams alerts",
-      "League-average benchmarking",
+      { text: "Up to 10 active sponsors" },
+      { text: "Instagram + TikTok analytics", status: "live" },
+      { text: "X, YouTube, Facebook analytics", status: "dev" },
+      { text: "Weekly auto-reports (branded PDF)", status: "live" },
+      { text: "1 admin · 5 viewer seats" },
+      { text: "On-demand PDF export", status: "planned" },
+      { text: "AI weekly digest", status: "planned" },
+      { text: "Slack / Teams alerts", status: "planned" },
+      { text: "League-average benchmarking", status: "planned" },
     ],
   },
   {
@@ -57,13 +61,13 @@ const tiers: Tier[] = [
     cta: "Start free trial",
     href: "/contact",
     features: [
-      "Unlimited sponsors",
-      "Branded per-sponsor self-service portals",
-      "Prospection engine + AI outreach",
-      "AI sponsor brief generator",
-      "Multi-language sponsor portals (ES / FR / DE / IT / PT)",
-      "Real-time match alerts (social-based)",
-      "Read-only API access",
+      { text: "Unlimited sponsors" },
+      { text: "Branded per-sponsor self-service portals", status: "planned" },
+      { text: "Prospection engine + AI outreach", status: "planned" },
+      { text: "AI sponsor brief generator", status: "planned" },
+      { text: "Multi-language sponsor portals (ES / FR / DE / IT / PT)", status: "planned" },
+      { text: "Match-day social alerts", status: "planned" },
+      { text: "Read-only API access", status: "planned" },
     ],
   },
   {
@@ -76,19 +80,21 @@ const tiers: Tier[] = [
     cta: "Book a discovery call",
     href: "/contact",
     features: [
-      "Match-day computer vision (broadcast logo detection, LED rotation, interview backdrop)",
-      "Dedicated success manager",
-      "Custom data pipelines & API",
-      "On-prem / EU data residency",
-      "White-glove onboarding (90 days)",
+      { text: "Match-day computer vision (broadcast logo detection, LED rotation, interview backdrop)", status: "dev" },
+      { text: "Dedicated success manager" },
+      { text: "Custom data pipelines & API", status: "planned" },
+      { text: "EU data residency by default", status: "live" },
+      { text: "White-glove onboarding (90 days)" },
     ],
   },
 ];
 
 const matrix: {
   section: string;
+  status?: FeatureStatus;
   rows: {
     label: string;
+    status?: FeatureStatus;
     starter: string | boolean;
     pro: string | boolean;
     ent: string | boolean;
@@ -126,17 +132,19 @@ const matrix: {
   {
     section: "Analytics",
     rows: [
-      { label: "Social platforms", starter: "6 platforms", pro: "10 platforms", ent: "All + custom" },
-      { label: "EMV model", starter: "Standard", pro: "Configurable", ent: "Fully custom" },
-      { label: "Historical backfill", starter: "6 months", pro: "24 months", ent: "Unlimited" },
-      { label: "Live data refresh", starter: "Hourly", pro: "5 min", ent: "Streaming" },
-      { label: "Benchmarks", starter: false, pro: true, ent: true },
+      { label: "Instagram + TikTok analytics", status: "live", starter: true, pro: true, ent: true },
+      { label: "X, YouTube, Facebook analytics", status: "dev", starter: true, pro: true, ent: true },
+      { label: "EMV model", status: "live", starter: "Standard", pro: "Standard", ent: "Custom (planned)" },
+      { label: "Historical backfill", status: "planned", starter: "6 months", pro: "24 months", ent: "Unlimited" },
+      { label: "Data refresh", starter: "Daily · hourly in dev", pro: "Daily · hourly in dev", ent: "Daily · hourly in dev" },
+      { label: "Benchmarks", status: "planned", starter: false, pro: true, ent: true },
     ],
   },
   {
     section: "Match-day computer vision",
+    status: "dev",
     rows: [
-      { label: "Live logo detection", starter: false, pro: true, ent: true },
+      { label: "Logo detection (recorded footage first)", starter: false, pro: true, ent: true },
       { label: "LED rotation pricing", starter: false, pro: true, ent: true },
       { label: "Broadcast quality scoring", starter: false, pro: true, ent: true },
       { label: "Custom detection models", starter: false, pro: false, ent: true },
@@ -144,9 +152,10 @@ const matrix: {
   },
   {
     section: "Sponsor portal",
+    status: "planned",
     rows: [
       { label: "Branded dashboards", starter: false, pro: true, ent: true },
-      { label: "Scheduled reports", starter: "Weekly", pro: "Any cadence", ent: "Any cadence" },
+      { label: "Scheduled reports (email PDF)", status: "live", starter: "Weekly", pro: "Any cadence", ent: "Any cadence" },
       { label: "White-label PDFs", starter: false, pro: true, ent: true },
       { label: "External user access", starter: "3 / sponsor", pro: "Unlimited", ent: "Unlimited" },
     ],
@@ -154,11 +163,11 @@ const matrix: {
   {
     section: "Platform & security",
     rows: [
-      { label: "SSO (SAML / OIDC)", starter: false, pro: true, ent: true },
-      { label: "SCIM provisioning", starter: false, pro: true, ent: true },
-      { label: "Audit logs", starter: "90 days", pro: "2 years", ent: "Unlimited" },
-      { label: "Data residency", starter: "EU", pro: "EU / US", ent: "Custom region" },
-      { label: "Uptime SLA", starter: "-", pro: "99.9%", ent: "99.95%" },
+      { label: "SSO (SAML / OIDC)", status: "planned", starter: false, pro: true, ent: true },
+      { label: "SCIM provisioning", status: "planned", starter: false, pro: true, ent: true },
+      { label: "Audit logs", status: "planned", starter: "90 days", pro: "2 years", ent: "Unlimited" },
+      { label: "Data residency", status: "live", starter: "EU", pro: "EU", ent: "EU · custom planned" },
+      { label: "Uptime SLA", status: "planned", starter: "-", pro: "99.9%", ent: "99.95%" },
     ],
   },
 ];
@@ -339,11 +348,16 @@ export default function PricingPage() {
                   <ul className="mt-7 flex flex-col gap-3 border-t border-[#F4EFE6]/[0.06] pt-6">
                     {t.features.map((f) => (
                       <li
-                        key={f}
+                        key={f.text}
                         className="inline-flex items-start gap-2.5 text-[14px] text-[#F4EFE6]/80"
                       >
                         <Check size={16} className="mt-0.5 shrink-0 text-[#B8975A]" />
-                        <span>{f}</span>
+                        <span>
+                          {f.text}
+                          {f.status && (
+                            <FeatureBadge status={f.status} className="ml-2" />
+                          )}
+                        </span>
                       </li>
                     ))}
                   </ul>
@@ -402,6 +416,13 @@ export default function PricingPage() {
                           className="px-5 py-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-[#8B0028]"
                         >
                           {sec.section}
+                          {sec.status && (
+                            <FeatureBadge
+                              status={sec.status}
+                              tone="light"
+                              className="ml-2.5"
+                            />
+                          )}
                         </td>
                       </tr>
                       {sec.rows.map((row) => (
@@ -411,6 +432,13 @@ export default function PricingPage() {
                         >
                           <td className="sticky left-0 z-10 bg-[#FBF7EF] px-5 py-3.5 text-[14px] text-[#0F1A2E]/85">
                             {row.label}
+                            {row.status && (
+                              <FeatureBadge
+                                status={row.status}
+                                tone="light"
+                                className="ml-2"
+                              />
+                            )}
                           </td>
                           <CellLight value={row.starter} />
                           <CellLight value={row.pro} highlight />
