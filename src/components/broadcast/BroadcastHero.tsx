@@ -5,7 +5,6 @@ import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { ArrowRight, Check, Sparkles } from "lucide-react";
-import { LiveHUD } from "./LiveHUD";
 import { AnimatedHeadline } from "./AnimatedHeadline";
 import { BroadcastFX } from "./BroadcastFX";
 import { HeroDashboard } from "./HeroDashboard";
@@ -40,7 +39,7 @@ export function BroadcastHero() {
         }}
       />
 
-      {/* Atmospheric scan-line + bottom crawl ticker */}
+      {/* Atmospheric scan-line */}
       <BroadcastFX />
 
       {/* REC badge, top-right, broadcast camera cue */}
@@ -50,7 +49,7 @@ export function BroadcastHero() {
 
       <Container className="relative mx-auto flex w-full max-w-6xl flex-col items-center justify-center px-6 pt-32 pb-24 text-center">
         <Badge tone="red" icon={<Sparkles size={12} />}>
-          Live · Inside the Broadcast
+          Inside the broadcast
         </Badge>
 
         <div className="mt-6 max-w-4xl">
@@ -88,10 +87,6 @@ export function BroadcastHero() {
             <Check size={14} className="text-[#B8975A]" />
             EU data residency
           </span>
-        </div>
-
-        <div className="mt-10">
-          <LiveHUD />
         </div>
 
         {/* Dashboard, full-width landscape mockup tilted on a 3D perspective.
