@@ -19,7 +19,6 @@ import { Card } from "@/components/ui/Card";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Reveal } from "@/components/ui/Reveal";
 import { GradientOrb } from "@/components/GradientOrb";
-import { LogoMarquee } from "@/components/LogoMarquee";
 import { AnimatedMesh } from "@/components/AnimatedMesh";
 import { HowItWorksScene } from "@/components/HowItWorksScene";
 import { SectionDivider } from "@/components/SectionDivider";
@@ -35,7 +34,6 @@ export default function HomePage() {
   return (
     <>
       <BroadcastHero />
-      <TrustedBy />
       <ProblemSection />
       <PlatformSection />
       <HowItWorks />
@@ -53,23 +51,9 @@ export default function HomePage() {
 
 /* Hero lives in components/broadcast/BroadcastHero.tsx (3D pitch + overlays). */
 
-/* -------------------------------------------------------------------------- */
-/* Trusted by                                                                 */
-/* -------------------------------------------------------------------------- */
-function TrustedBy() {
-  return (
-    <section className="py-16">
-      <Container>
-        <Reveal>
-          <p className="mb-8 text-center text-[11px] font-semibold uppercase tracking-[0.28em] text-[#B8975A]">
-            Built for the teams behind leagues like these
-          </p>
-        </Reveal>
-        <LogoMarquee />
-      </Container>
-    </section>
-  );
-}
+/* League marquee removed: it implied clients that don't exist. A banner of
+ * real measured numbers (Osasuna public study) replaces it in the identity
+ * rework phase. */
 
 /* -------------------------------------------------------------------------- */
 /* The problem                                                                */

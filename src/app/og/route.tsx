@@ -139,7 +139,7 @@ export async function GET() {
           </span>
         </div>
 
-        {/* Bottom, leagues line */}
+        {/* Bottom line — the measurement promise, no implied clients */}
         <div
           style={{
             display: "flex",
@@ -151,7 +151,7 @@ export async function GET() {
           }}
         >
           <span style={{ display: "flex" }}>
-            Built for the teams behind LaLiga · Serie A · Ligue 1 · Bundesliga
+            Sponsor exposure, measured daily · Reported Mondays 07:00
           </span>
           <span
             style={{
@@ -170,7 +170,7 @@ export async function GET() {
                 background: "#B8975A",
               }}
             />
-            <span style={{ display: "flex" }}>Live · 2026</span>
+            <span style={{ display: "flex" }}>In public · 2026</span>
           </span>
         </div>
       </div>

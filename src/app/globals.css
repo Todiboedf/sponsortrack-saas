@@ -211,11 +211,6 @@ body {
   50% { opacity: 1; }
 }
 
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-
 @keyframes lens-sweep {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
@@ -264,18 +259,6 @@ body {
 
 @utility animate-pulse-glow {
   animation: pulse-glow 3s ease-in-out infinite;
-}
-
-@utility animate-marquee {
-  animation: marquee 30s linear infinite;
-}
-
-.marquee-track {
-  animation: marquee 30s linear infinite;
-}
-
-.marquee-track:hover {
-  animation-play-state: paused;
 }
 
 /* -------------------------------------------------------------------------- */
