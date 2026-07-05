@@ -3,56 +3,29 @@
 import { motion, useReducedMotion } from "motion/react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
-import { Badge } from "@/components/ui/Badge";
-import { ArrowRight, Check, Sparkles } from "lucide-react";
+import { DetectionBox } from "@/components/ui/DetectionBox";
+import { ArrowRight, Check } from "lucide-react";
 import { AnimatedHeadline } from "./AnimatedHeadline";
-import { BroadcastFX } from "./BroadcastFX";
-import { HeroDashboard } from "./HeroDashboard";
-import { AuroraBackground } from "./AuroraBackground";
 
+/**
+ * Hero built around the one thing nobody else can show: our model's real
+ * output on a recorded CA Osasuna – Alavés highlight. No mock dashboard,
+ * no fabricated numbers — the detection loop (public/demo/detection-loop.mp4)
+ * is the visual, framed by the DetectionBox identity motif with a discreet
+ * scan-line sweep (the motion signature for broadcast visuals).
+ */
 export function BroadcastHero() {
   const reduced = useReducedMotion();
 
   return (
-    <section className="relative min-h-[100svh] w-full overflow-hidden">
-      {/* Aurora, 4 drifting blurred orbs (cyan / violet / gold / red) on
-          pure CSS keyframes; replaces the flat navy background. */}
-      <AuroraBackground />
-
-      {/* CSS broadcast vignette + top blur cue, layered above aurora */}
+    <section className="relative overflow-hidden pt-36 pb-16 lg:pt-44 lg:pb-24">
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 -z-[5]"
-        style={{
-          background:
-            "radial-gradient(ellipse 90% 70% at 50% 40%, rgba(10,22,40,0) 0%, rgba(10,22,40,0.18) 50%, rgba(10,22,40,0.45) 75%, rgba(6,13,24,0.85) 100%)",
-        }}
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 -z-[4] h-32"
-        style={{
-          background:
-            "linear-gradient(180deg, rgba(6,13,24,0.7) 0%, rgba(6,13,24,0) 100%)",
-          backdropFilter: "blur(2px)",
-          WebkitBackdropFilter: "blur(2px)",
-        }}
+        className="pointer-events-none absolute inset-0 -z-10 bg-grid mask-fade-radial opacity-25"
       />
 
-      {/* Atmospheric scan-line */}
-      <BroadcastFX />
-
-      {/* REC badge, top-right, broadcast camera cue */}
-      <div className="pointer-events-none absolute right-5 top-5 z-10 hidden lg:block">
-        <RecBadge reduced={!!reduced} />
-      </div>
-
-      <Container className="relative mx-auto flex w-full max-w-6xl flex-col items-center justify-center px-6 pt-32 pb-24 text-center">
-        <Badge tone="red" icon={<Sparkles size={12} />}>
-          Inside the broadcast
-        </Badge>
-
-        <div className="mt-6 max-w-4xl">
+      <Container className="flex w-full flex-col items-center text-center">
+        <div className="max-w-4xl">
           <AnimatedHeadline />
         </div>
 
@@ -62,15 +35,15 @@ export function BroadcastHero() {
 
         <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row">
           <Button
-            href="/contact"
+            href="/demo"
             size="lg"
             variant="primary"
             rightIcon={<ArrowRight size={16} />}
           >
-            Start free trial
+            See it live
           </Button>
-          <Button href="/demo" size="lg" variant="ghost">
-            Watch live demo
+          <Button href="/contact" size="lg" variant="ghost">
+            Start free trial
           </Button>
         </div>
 
@@ -89,29 +62,44 @@ export function BroadcastHero() {
           </span>
         </div>
 
-        {/* Dashboard, full-width landscape mockup tilted on a 3D perspective.
-            Outer wrapper carries the perspective context; inner wrapper
-            does the rotateX so the dashboard reads as a screen posed on a
-            cockpit desk. Tilt amount is driven by the `--hero-tilt` CSS
-            variable defined in globals.css: 0deg mobile, -4deg tablet,
-            -8deg desktop. Drop-shadow projects a cyan + red ember haze
-            behind the transparent rounded corners. */}
-        <div
-          className="mt-12 w-full max-w-md sm:max-w-2xl lg:max-w-5xl"
-          style={{
-            perspective: "2400px",
-            perspectiveOrigin: "50% 30%",
-          }}
-        >
-          <div
-            className="origin-top transform-gpu transition-transform"
-            style={{
-              transform: "rotateX(var(--hero-tilt, 0deg))",
-              transformStyle: "preserve-3d",
-              filter: "drop-shadow(0 24px 48px rgba(139,0,40,0.22))",
-            }}
+        <div className="mt-14 w-full max-w-5xl">
+          <DetectionBox
+            label="Real detections · CA Osasuna – Alavés"
+            tone="red"
+            delay={0.2}
+            className="bg-[#060D18] shadow-[0_40px_90px_-40px_rgba(139,0,40,0.45)]"
           >
-            <HeroDashboard />
+            <div className="relative overflow-hidden">
+              <video
+                src="/demo/detection-loop.mp4"
+                poster="/demo/detection-poster.jpg"
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                aria-label="Looped clip of the model detecting sponsor logos on a recorded Osasuna match highlight"
+                className="block w-full"
+                ref={(el) => {
+                  // React can omit the muted attribute in SSR markup; set it
+                  // explicitly so mobile autoplay policies are satisfied.
+                  // Under prefers-reduced-motion the poster frame stands in.
+                  if (el) {
+                    el.muted = true;
+                    if (!reduced) el.play().catch(() => {});
+                  }
+                }}
+              />
+              {!reduced && <ScanSweep />}
+            </div>
+          </DetectionBox>
+          <div className="mt-4 flex flex-col items-center justify-between gap-1.5 text-[11px] uppercase tracking-[0.16em] text-[#F4EFE6]/45 sm:flex-row sm:text-left">
+            <span>
+              Real footage. Real detections. CA Osasuna, measured as a public
+              study.
+            </span>
+            <span className="font-[family-name:var(--font-mono)] text-[#B8975A]/80">
+              22s loop · recorded broadcast
+            </span>
           </div>
         </div>
       </Container>
@@ -119,20 +107,28 @@ export function BroadcastHero() {
   );
 }
 
-function RecBadge({ reduced }: { reduced: boolean }) {
+/* Discreet scan-line sweeping the broadcast visual — the only ambient
+ * motion in the hero. Removed entirely under prefers-reduced-motion. */
+function ScanSweep() {
   return (
-    <div className="inline-flex items-center gap-2 rounded-[3px] border border-white/[0.06] bg-[rgba(7,15,30,0.7)] px-2.5 py-1.5 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/85 backdrop-blur-md">
-      <motion.span
-        aria-hidden
-        className="inline-flex h-1.5 w-1.5 rounded-full bg-[#ef4444]"
-        animate={reduced ? { opacity: 1 } : { opacity: [1, 0.25, 1] }}
-        transition={
-          reduced
-            ? { duration: 0 }
-            : { duration: 1.2, repeat: Infinity, ease: "easeInOut" }
-        }
-      />
-      Rec · cam 04
-    </div>
+    <motion.div
+      aria-hidden
+      className="pointer-events-none absolute inset-x-0 z-10 h-px"
+      style={{
+        background:
+          "linear-gradient(90deg, transparent 0%, rgba(184,151,90,0.55) 35%, rgba(184,151,90,0.8) 50%, rgba(184,151,90,0.55) 65%, transparent 100%)",
+        boxShadow: "0 0 14px rgba(184,151,90,0.3)",
+        mixBlendMode: "screen",
+      }}
+      initial={{ top: "-2%", opacity: 0 }}
+      animate={{ top: ["-2%", "102%"], opacity: [0, 0.5, 0.5, 0] }}
+      transition={{
+        duration: 6,
+        repeat: Infinity,
+        ease: "linear",
+        repeatDelay: 5,
+        times: [0, 0.08, 0.92, 1],
+      }}
+    />
   );
 }
