@@ -96,12 +96,12 @@ function formatPrice(amount: number, billing: Billing) {
   const monthly = Math.round(amount / 12);
   return {
     big: `€${monthly.toLocaleString("en-US")}`,
-    sub: `€${amount.toLocaleString("en-US")} billed annually · save 20%`,
+    sub: `when billed annually (−20%) · €${amount.toLocaleString("en-US")}/yr`,
   };
 }
 
 export function PricingTeaser() {
-  const [billing, setBilling] = useState<Billing>("yearly");
+  const [billing, setBilling] = useState<Billing>("monthly");
   return (
     <section id="pricing" className="relative py-24 lg:py-32">
       <GradientOrb color="red" size={520} className="-left-32 top-0" intensity="soft" />

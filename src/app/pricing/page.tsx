@@ -210,12 +210,12 @@ function formatPrice(amount: number, billing: Billing) {
   return {
     big: `€${monthly.toLocaleString("en-US")}`,
     small: "/mo",
-    sub: `€${amount.toLocaleString("en-US")} billed annually · save 20%`,
+    sub: `when billed annually (−20%) · €${amount.toLocaleString("en-US")}/yr`,
   };
 }
 
 export default function PricingPage() {
-  const [billing, setBilling] = useState<Billing>("yearly");
+  const [billing, setBilling] = useState<Billing>("monthly");
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
   return (
