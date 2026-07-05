@@ -121,7 +121,7 @@ const pillars: Pillar[] = [
   {
     tag: "Sponsor Portal",
     title: "Branded sponsor portals",
-    body: "Give each sponsor a workspace that looks like their own product. White-labelled, real-time, and the only place they’ll ever need to ask for their numbers again.",
+    body: "Give each sponsor a workspace that looks like their own product. White-labelled, refreshed daily, and the only place they’ll ever need to ask for their numbers again.",
     bullets: [
       { text: "Per-sponsor logos, palette, typography and vocabulary", status: "planned" },
       { text: "Invite limited external users with read-only permissions", status: "planned" },
@@ -399,22 +399,21 @@ export default function FeaturesPage() {
 /* -------------------------------------------------------------------------- */
 
 function AnalyticsMockup() {
+  // Real numbers from the public CA Osasuna study (June 2026).
   const platforms = [
-    { name: "Instagram", value: "148.2M", color: "#B8975A", w: "92%" },
-    { name: "TikTok", value: "92.7M", color: "#8B0028", w: "78%" },
-    { name: "YouTube", value: "5.8M h", color: "#2F8F5A", w: "62%" },
-    { name: "X / Twitter", value: "41.3M", color: "#F4EFE6", w: "44%" },
-    { name: "Facebook", value: "12.9M", color: "#6B7480", w: "26%" },
+    { name: "TikTok", value: "5.8M", color: "#8B0028", w: "92%" },
+    { name: "Instagram", value: "415k", color: "#B8975A", w: "7%" },
   ];
+  const inDev = ["X / Twitter", "YouTube", "Facebook"];
   return (
     <div className="w-full max-w-md rounded-xl border border-[#F4EFE6]/[0.08] bg-[#0F1A2E] p-5">
       <div className="flex items-center justify-between">
         <div>
           <div className="text-[10px] uppercase tracking-[0.18em] text-[#B8975A]">
-            Sponsor · Northwind
+            Club · CA Osasuna (study)
           </div>
           <div className="font-[family-name:var(--font-display)] text-base font-semibold text-[#F4EFE6]">
-            Cross-platform reach
+            Followers by platform
           </div>
         </div>
         <span className="rounded-full border border-[#2F8F5A]/30 bg-[#2F8F5A]/15 px-2 py-0.5 text-[10px] uppercase tracking-[0.16em] text-[#86C9A4]">
@@ -442,10 +441,17 @@ function AnalyticsMockup() {
           </li>
         ))}
       </ul>
+      <ul className="mt-3 flex flex-wrap gap-x-4 gap-y-1">
+        {inDev.map((n) => (
+          <li key={n} className="text-[11px] text-[#F4EFE6]/40">
+            {n} · in development
+          </li>
+        ))}
+      </ul>
       <div className="mt-5 grid grid-cols-3 gap-3 border-t border-[#F4EFE6]/[0.06] pt-4">
-        <Mini label="EMV" value="€3.2M" delta="+18%" />
-        <Mini label="Engage." value="842k" delta="+26%" />
-        <Mini label="Followers" value="+128k" delta="+9%" />
+        <Mini label="EMV · 7d" value="€3,910" delta="club accounts" />
+        <Mini label="Posts · 90d" value="283" delta="22 / week" />
+        <Mini label="Audience" value="6.2M" delta="IG + TikTok" />
       </div>
     </div>
   );
@@ -481,43 +487,40 @@ function BroadcastMockup() {
             fontFamily="var(--font-display)"
             fontStyle="italic"
           >
-            Northwind · Vertex · Lumina
+            Kosner · Nissan · Macron
           </text>
         </svg>
         <div className="absolute left-[14%] top-[54%] h-[8%] w-[18%] border-2 border-[#8B0028] shadow-[0_0_0_1px_rgba(244,239,230,0.4)]">
           <span className="absolute -top-5 left-0 rounded bg-[#8B0028] px-1 py-0.5 text-[8px] font-semibold uppercase tracking-[0.16em] text-[#F4EFE6]">
-            Northwind · 0.96
+            Kosner · 0.61
           </span>
         </div>
         <div className="absolute left-[44%] top-[54%] h-[8%] w-[14%] border-2 border-[#8B0028]">
           <span className="absolute -top-5 left-0 rounded bg-[#8B0028] px-1 py-0.5 text-[8px] font-semibold uppercase tracking-[0.16em] text-[#F4EFE6]">
-            Vertex · 0.92
+            Nissan · 0.72
           </span>
         </div>
         <div className="absolute right-[14%] top-[54%] h-[8%] w-[12%] border-2 border-[#B8975A]">
           <span className="absolute -top-5 right-0 rounded bg-[#B8975A] px-1 py-0.5 text-[8px] font-semibold uppercase tracking-[0.16em] text-[#0A1628]">
-            Lumina · 0.74
+            DIGI · 0.77
           </span>
         </div>
         <div className="absolute right-2 top-2 inline-flex items-center gap-1.5 rounded-full bg-[#0A1628]/80 px-2 py-0.5 text-[10px] uppercase tracking-[0.16em] text-[#F4EFE6]">
-          <span className="relative flex h-1.5 w-1.5">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#8B0028] opacity-70" />
-            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#8B0028]" />
-          </span>
-          Live · Demo Arena
+          <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#B8975A]" />
+          Recorded · Osasuna–Alavés
         </div>
         <div className="absolute bottom-2 left-2 flex items-center gap-2 rounded-md bg-[#0A1628]/80 px-2 py-1 text-[10px] text-[#F4EFE6]">
           <ScanLine size={11} className="text-[#B8975A]" />
           <span className="font-[family-name:var(--font-mono)] tabular-nums">
-            32 fps · 18 logos / s
+            70 frames · 10 sponsors
           </span>
         </div>
       </div>
       <div className="mt-3 grid grid-cols-3 gap-2 text-[11px]">
         {[
-          ["Northwind", "26:14"],
-          ["Vertex", "18:42"],
-          ["Lumina", "11:08"],
+          ["Kosner", "120.5s"],
+          ["Nissan", "97.5s"],
+          ["Macron", "80.0s"],
         ].map(([n, t]) => (
           <div
             key={n}
@@ -542,13 +545,13 @@ function PortalMockup() {
           Club view
         </div>
         <div className="mt-2 font-[family-name:var(--font-display)] text-sm font-semibold text-[#F4EFE6]">
-          Atlético Demo · all sponsors
+          CA Osasuna (study) · % of broadcast
         </div>
         <ul className="mt-3 space-y-1.5 text-[11px]">
           {[
-            ["Northwind", "92%"],
-            ["Vertex", "78%"],
-            ["Lumina", "64%"],
+            ["Kosner", "62%"],
+            ["Nissan", "50%"],
+            ["Macron", "41%"],
           ].map(([n, v]) => (
             <li key={n} className="flex items-center justify-between">
               <span className="text-[#F4EFE6]/75">{n}</span>
@@ -564,23 +567,23 @@ function PortalMockup() {
           Sponsor view
         </div>
         <div className="mt-2 font-[family-name:var(--font-display)] text-sm font-semibold">
-          Northwind · Q2
+          Kosner · one highlight
         </div>
         <div className="mt-3 rounded-md border border-[#0F1A2E]/10 bg-white p-2.5 text-[11px]">
           <div className="text-[10px] uppercase tracking-[0.16em] text-[#0F1A2E]/55">
-            EMV · 30d
+            Screen time
           </div>
           <div className="font-[family-name:var(--font-mono)] text-base font-semibold tabular-nums">
-            €1.84M
+            120.5s
           </div>
-          <div className="text-[#1F7A52]">+24%</div>
+          <div className="text-[#0F1A2E]/45">measured frame by frame</div>
         </div>
         <div className="mt-2 rounded-md border border-[#0F1A2E]/10 bg-white p-2.5 text-[11px]">
           <div className="text-[10px] uppercase tracking-[0.16em] text-[#0F1A2E]/55">
-            Logo seconds
+            Share of voice
           </div>
           <div className="font-[family-name:var(--font-mono)] text-base font-semibold tabular-nums">
-            26:14
+            61.9%
           </div>
         </div>
       </div>
@@ -589,11 +592,13 @@ function PortalMockup() {
 }
 
 function ProspectionMockup() {
+  // Concept preview of a planned feature — categories, not real brands,
+  // so no invented score is attached to a real company.
   const rows = [
-    { brand: "Iberia", region: "ES", fit: 94 },
-    { brand: "Banco BPI", region: "PT", fit: 88 },
-    { brand: "BBVA", region: "ES", fit: 82 },
-    { brand: "Vueling", region: "ES / IT", fit: 76 },
+    { brand: "Airline", region: "ES", fit: 94 },
+    { brand: "Retail bank", region: "PT", fit: 88 },
+    { brand: "Energy drink", region: "EU", fit: 82 },
+    { brand: "Telecom", region: "ES / IT", fit: 76 },
   ];
   return (
     <div className="w-full max-w-md rounded-xl border border-[#F4EFE6]/[0.08] bg-[#0F1A2E] p-5">
@@ -603,7 +608,7 @@ function ProspectionMockup() {
             Prospects · top fit
           </div>
           <div className="font-[family-name:var(--font-display)] text-base font-semibold text-[#F4EFE6]">
-            For Atlético Demo · LaLiga
+            Concept preview · planned
           </div>
         </div>
         <Radar size={14} className="text-[#B8975A]" />
@@ -634,8 +639,8 @@ function ProspectionMockup() {
       </ul>
       <div className="mt-4 rounded-lg border border-[#B8975A]/30 bg-[#B8975A]/[0.08] p-3 text-[11px] leading-relaxed text-[#F4EFE6]/75">
         <span className="font-semibold text-[#F4EFE6]">AI draft -</span>{" "}
-        “Hola Iberia team, we noticed your Madrid–Iruña route lands 14 minutes
-        from Demo Arena; here’s the audience overlap…”
+        “Hola — your routes overlap with the club’s away fixtures; here’s the
+        audience fit, sourced line by line…”
       </div>
     </div>
   );
@@ -648,36 +653,36 @@ function ReportingMockup() {
         <div className="flex items-center justify-between">
           <div>
             <div className="text-[10px] uppercase tracking-[0.22em] text-[#8B0028]">
-              Northwind · Q2 2026
+              CA Osasuna · public study
             </div>
             <div className="font-[family-name:var(--font-display)] text-lg font-semibold">
-              Sponsorship report
+              Sponsor exposure report
             </div>
           </div>
           <div className="font-[family-name:var(--font-display)] italic text-[11px] text-[#0F1A2E]/55">
-            Atlético Demo
+            Week of June 10, 2026
           </div>
         </div>
         <div className="mt-4 grid grid-cols-3 gap-3">
-          <ReportCell label="EMV" value="€5.84M" />
-          <ReportCell label="Logo / match" value="94k" />
-          <ReportCell label="Reach" value="284M" />
+          <ReportCell label="EMV · 7d" value="€3,910" />
+          <ReportCell label="Audience" value="6.2M" />
+          <ReportCell label="Posts · 7d" value="17" />
         </div>
         <div className="mt-4 h-2 rounded-full bg-[#0F1A2E]/10">
-          <div className="h-full w-[72%] rounded-full bg-gradient-to-r from-[#8B0028] to-[#B8975A]" />
+          <div className="h-full w-[93%] rounded-full bg-gradient-to-r from-[#8B0028] to-[#B8975A]" />
         </div>
         <div className="mt-2 flex items-center justify-between text-[11px] text-[#0F1A2E]/55">
-          <span>Goal · €8M</span>
-          <span className="font-[family-name:var(--font-mono)] tabular-nums">72%</span>
+          <span>TikTok share of audience · 5.8M of 6.2M</span>
+          <span className="font-[family-name:var(--font-mono)] tabular-nums">93%</span>
         </div>
         <div className="mt-4 rounded-md border border-[#0F1A2E]/10 bg-white p-3 text-[11px] leading-relaxed text-[#0F1A2E]/65">
-          The Northwind jersey crest hit{" "}
-          <span className="font-semibold text-[#0F1A2E]">14 broadcasts</span>{" "}
-          this quarter, €0.62 CPM, 38% below market.
+          The Kosner crest was visible{" "}
+          <span className="font-semibold text-[#0F1A2E]">120.5 seconds</span>{" "}
+          of a 3-minute highlight, 61.9% share of voice across 10 sponsors.
         </div>
         <div className="mt-3 flex items-center justify-between text-[10px] uppercase tracking-[0.18em] text-[#0F1A2E]/45">
-          <span>Methodology · MVE 3.1</span>
-          <span>Page 1 / 12</span>
+          <span>Methodology · screen-time based</span>
+          <span>Page 1 / 3</span>
         </div>
       </div>
     </div>
@@ -741,7 +746,7 @@ function Mini({
       <div className="mt-1 font-[family-name:var(--font-mono)] text-sm font-semibold tabular-nums text-[#F4EFE6]">
         {value}
       </div>
-      <div className="text-[10px] text-[#86C9A4]">{delta}</div>
+      <div className="text-[10px] text-[#F4EFE6]/45">{delta}</div>
     </div>
   );
 }
