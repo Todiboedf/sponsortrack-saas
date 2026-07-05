@@ -164,7 +164,7 @@ export default function AboutPage() {
                     { stat: "$100B", label: "Global sponsorship market" },
                     { stat: "1", label: "Solo founder, in public" },
                     { stat: "8", label: "Sponsors in the live demo" },
-                    { stat: "11×", label: "Faster than a spreadsheet" },
+                    { stat: "283", label: "Posts analysed in a 90-day study" },
                     { stat: "EU-first", label: "Data residency policy" },
                     { stat: "2026", label: "Building in the open" },
                   ].map((s) => (

@@ -42,9 +42,10 @@ export function CountUp({
   const inView = useInView(ref, { once: true, margin: "-15%" });
   const reduced = useReducedMotion();
   const value = useMotionValue(from);
-  const [display, setDisplay] = useState(
-    format(reduced ? to : from, decimals, locale)
-  );
+  // Server HTML carries the final value (no "0" flash pre-hydration, and
+  // crawlers / no-JS readers see real numbers). The count-up is a purely
+  // client-side enhancement that starts once the stat scrolls into view.
+  const [display, setDisplay] = useState(format(to, decimals, locale));
 
   useEffect(() => {
     const unsub = value.on("change", (v) => setDisplay(format(v, decimals, locale)));
@@ -52,19 +53,15 @@ export function CountUp({
   }, [value, decimals, locale]);
 
   useEffect(() => {
-    if (!inView) return;
-    if (reduced) {
-      value.set(to);
-      setDisplay(format(to, decimals, locale));
-      return;
-    }
+    if (!inView || reduced) return;
+    value.set(from);
     const controls = animate(value, to, {
       duration,
       delay,
       ease: [0.22, 1, 0.36, 1],
     });
     return () => controls.stop();
-  }, [inView, to, value, duration, delay, reduced, decimals, locale]);
+  }, [inView, reduced, from, to, value, duration, delay]);
 
   return (
     <span ref={ref} className={className}>

@@ -282,7 +282,7 @@ function PerSponsorSection() {
 /* -------------------------------------------------------------------------- */
 /* Stats                                                                      */
 /* -------------------------------------------------------------------------- */
-type StatKey = "media" | "leagues" | "renewal" | "speed";
+type StatKey = "media" | "leagues" | "renewal" | "posts";
 
 const stats: Array<{
   key: StatKey;
@@ -309,10 +309,9 @@ const stats: Array<{
     suffix: "%",
   },
   {
-    key: "speed",
-    label: "Faster than spreadsheet reporting",
-    to: 11,
-    suffix: "×",
+    key: "posts",
+    label: "Posts analysed in a 90-day study",
+    to: 283,
   },
 ];
 
@@ -340,7 +339,7 @@ function StatsSection() {
             ))}
           </div>
           <p className="mt-10 text-[11px] uppercase tracking-[0.22em] text-[#F4EFE6]/40">
-            Pre-launch · illustrative figures.{" "}
+            Pre-launch · real numbers from a public-data study · no clients yet.{" "}
             <Link
               href="/about"
               className="text-[#B8975A] underline underline-offset-4 hover:text-[#D8BC85]"
