@@ -195,19 +195,20 @@ export default function AboutPage() {
               <div className="grid gap-0 lg:grid-cols-[1.05fr_0.95fr]">
                 <div className="p-8 lg:p-10">
                   <Badge tone="gold" icon={<Trophy size={12} />}>
-                    Sample scenario
+                    Illustrative scenario · not a client result
                   </Badge>
                   <h2 className="mt-5 font-[family-name:var(--font-display)] text-balance text-3xl font-semibold tracking-[-0.01em] text-[#F4EFE6] sm:text-4xl">
                     What a 20-week pilot{" "}
                     <em className="italic text-gradient-brand">
-                      looks like.
+                      could look like.
                     </em>
                   </h2>
                   <p className="mt-4 text-[15px] leading-relaxed text-[#F4EFE6]/65">
-                    An illustrative pilot: live social analytics and per-sponsor
-                    portals wired against a real season schedule, with match-day
-                    computer vision in active development. (Sample data, not a
-                    real client.)
+                    An illustrative pilot: social analytics and per-sponsor
+                    reporting wired against a real season schedule, with
+                    match-day computer vision in active development. Every
+                    number below is a target we would commit to, not a
+                    result, Sponsorlens has no clients yet.
                   </p>
                   <div className="mt-6 flex flex-wrap items-center gap-3">
                     <Button
@@ -228,7 +229,7 @@ export default function AboutPage() {
                       { label: "Pilot weeks", value: "20" },
                       { label: "Sponsors", value: "8" },
                       { label: "Platforms wired", value: "5" },
-                      { label: "EMV lift (target)", value: "+24%" },
+                      { label: "EMV lift · illustrative target", value: "+24%" },
                     ].map((m) => (
                       <div
                         key={m.label}
@@ -422,7 +423,7 @@ export default function AboutPage() {
                 href="/demo"
                 className="text-sm text-[#B8975A] underline underline-offset-4 hover:text-[#D8BC85]"
               >
-                See how Atlético Demo does it →
+                See the live demo →
               </Link>
             </div>
           </div>
