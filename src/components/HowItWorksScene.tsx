@@ -290,10 +290,12 @@ function ConnectScene({ reduced }: { reduced: boolean }) {
 }
 
 function DetectScene({ reduced }: { reduced: boolean }) {
+  // Real detections from the Osasuna–Alavés POC (labels + confidences
+  // as they appear in the model output shown in the hero clip).
   const boxes = [
-    { left: "14%", top: "55%", w: "22%", h: "10%", label: "Northwind · 0.96", color: "#8B0028" },
-    { left: "46%", top: "55%", w: "16%", h: "10%", label: "Vertex · 0.92", color: "#8B0028" },
-    { left: "68%", top: "55%", w: "14%", h: "10%", label: "Lumina · 0.74", color: "#B8975A" },
+    { left: "14%", top: "55%", w: "22%", h: "10%", label: "Kosner · 0.61", color: "#8B0028" },
+    { left: "46%", top: "55%", w: "16%", h: "10%", label: "Nissan · 0.72", color: "#8B0028" },
+    { left: "68%", top: "55%", w: "14%", h: "10%", label: "DIGI · 0.77", color: "#B8975A" },
   ];
   return (
     <motion.div
@@ -349,11 +351,8 @@ function DetectScene({ reduced }: { reduced: boolean }) {
           </motion.div>
         ))}
         <div className="absolute right-2 top-2 inline-flex items-center gap-1.5 rounded-full bg-[#0A1628]/80 px-2 py-0.5 text-[10px] uppercase tracking-[0.16em] text-[#F4EFE6]">
-          <span className="relative flex h-1.5 w-1.5">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#8B0028] opacity-70" />
-            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#8B0028]" />
-          </span>
-          Live
+          <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#B8975A]" />
+          Recorded
         </div>
       </div>
     </motion.div>
@@ -361,13 +360,12 @@ function DetectScene({ reduced }: { reduced: boolean }) {
 }
 
 function ReportScene({ reduced }: { reduced: boolean }) {
+  // Real screen-time lines from the study's weekly report (page 3).
   const lines = [
-    { w: "70%", label: "Methodology · MVE 3.1" },
-    { w: "92%", label: "Northwind · €1.84M" },
-    { w: "82%", label: "Vertex · €1.42M" },
-    { w: "64%", label: "Lumina · €1.06M" },
-    { w: "54%", label: "Bravo Lager · €0.74M" },
-    { w: "44%", label: "Meridian · €0.51M" },
+    { w: "70%", label: "Methodology · screen-time based" },
+    { w: "92%", label: "Kosner · 120.5s" },
+    { w: "76%", label: "Nissan · 97.5s" },
+    { w: "62%", label: "Macron · 80.0s" },
   ];
   return (
     <motion.div
@@ -381,10 +379,10 @@ function ReportScene({ reduced }: { reduced: boolean }) {
         <div className="flex items-center justify-between">
           <div>
             <div className="text-[10px] uppercase tracking-[0.22em] text-[#8B0028]">
-              Northwind · Q2 2026
+              CA Osasuna · public study
             </div>
             <div className="mt-1 font-[family-name:var(--font-display)] text-lg font-semibold">
-              Sponsorship report
+              Sponsor exposure report
             </div>
           </div>
           <FileText size={20} className="text-[#0F1A2E]/55" />
@@ -412,7 +410,7 @@ function ReportScene({ reduced }: { reduced: boolean }) {
         </div>
         <div className="mt-4 flex items-center justify-between text-[10px] uppercase tracking-[0.18em] text-[#0F1A2E]/45">
           <span>Auto-generated · Monday 07:00</span>
-          <span>Page 1 / 12</span>
+          <span>Page 1 / 3</span>
         </div>
       </div>
     </motion.div>
@@ -440,10 +438,10 @@ function RenewScene({ reduced }: { reduced: boolean }) {
             Renewal email
           </div>
           <div className="mt-1 text-[13px] text-[#F4EFE6]">
-            Sent · Northwind Q2 recap
+            Sent · weekly sponsor recap
           </div>
           <div className="mt-1 text-[11px] text-[#F4EFE6]/55">
-            Open rate 100% · 14:32
+            Monday 07:00, every week
           </div>
         </motion.div>
         <ArrowRight size={16} className="text-[#B8975A]" />
@@ -455,13 +453,13 @@ function RenewScene({ reduced }: { reduced: boolean }) {
         >
           <Signature size={20} className="text-[#D8BC85]" />
           <div className="mt-3 text-[11px] uppercase tracking-[0.18em] text-[#B8975A]">
-            Contract signed
+            Renewal case
           </div>
           <div className="mt-1 text-[13px] text-[#F4EFE6]">
-            +€680k · 2-year renewal
+            Built on measured screen time
           </div>
           <div className="mt-1 inline-flex items-center gap-1 text-[11px] text-[#2F8F5A]">
-            <CheckCircle2 size={11} /> Closed Wed 14:08
+            <CheckCircle2 size={11} /> Every claim sourced
           </div>
         </motion.div>
       </div>

@@ -3,12 +3,12 @@
 import { motion, useReducedMotion } from "motion/react";
 import { GradientOrb } from "@/components/GradientOrb";
 
+/* Real numbers from the public study: share of a recorded 3-minute
+ * Osasuna–Alavés highlight each sponsor was visible for (CV model). */
 const PORTFOLIO: [string, string][] = [
-  ["Northwind", "92%"],
-  ["Vertex", "78%"],
-  ["Lumina", "64%"],
-  ["Bravo Lager", "48%"],
-  ["Meridian", "32%"],
+  ["Kosner", "62%"],
+  ["Nissan", "50%"],
+  ["Macron", "41%"],
 ];
 
 /**
@@ -40,10 +40,10 @@ export function TwoViewsConvergence() {
           className="border-r border-[#F4EFE6]/[0.06] p-5"
         >
           <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#B8975A]">
-            Club view · Atlético Demo
+            Club view · CA Osasuna (study)
           </div>
           <div className="mt-2 font-[family-name:var(--font-display)] text-base font-semibold text-[#F4EFE6]">
-            Portfolio
+            % of broadcast · one highlight
           </div>
           <ul className="mt-4 flex flex-col gap-2.5 text-[12px]">
             {PORTFOLIO.map(([n, v]) => (
@@ -76,7 +76,7 @@ export function TwoViewsConvergence() {
           className="bg-[#FBF7EF] p-5 text-[#0F1A2E]"
         >
           <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#8B0028]">
-            Sponsor view · Northwind
+            Sponsor view · Kosner
           </div>
           <div className="mt-2 font-[family-name:var(--font-display)] text-base font-semibold">
             Brand exposure
@@ -84,27 +84,27 @@ export function TwoViewsConvergence() {
           <div className="mt-4 grid grid-cols-2 gap-3">
             <div className="rounded-lg border border-[#0F1A2E]/10 bg-white p-3">
               <div className="text-[10px] uppercase tracking-[0.18em] text-[#0F1A2E]/55">
-                EMV · 30d
+                Screen time
               </div>
               <div className="mt-1 font-[family-name:var(--font-mono)] text-base font-semibold tabular-nums">
-                €1.84M
+                120.5s
               </div>
-              <div className="text-[10px] text-[#1F7A52]">+24%</div>
+              <div className="text-[10px] text-[#0F1A2E]/45">one highlight</div>
             </div>
             <div className="rounded-lg border border-[#0F1A2E]/10 bg-white p-3">
               <div className="text-[10px] uppercase tracking-[0.18em] text-[#0F1A2E]/55">
-                Logo seconds
+                Share of voice
               </div>
               <div className="mt-1 font-[family-name:var(--font-mono)] text-base font-semibold tabular-nums">
-                26:14
+                61.9%
               </div>
-              <div className="text-[10px] text-[#1F7A52]">+18%</div>
+              <div className="text-[10px] text-[#0F1A2E]/45">of 10 sponsors</div>
             </div>
           </div>
           <div className="mt-3 rounded-lg border border-[#0F1A2E]/10 bg-white p-3 text-[11px] leading-relaxed text-[#0F1A2E]/65">
-            Your jersey crest appeared on{" "}
-            <span className="font-semibold text-[#0F1A2E]">14 broadcasts</span>{" "}
-            this month, €0.62 CPM, below market by 38%.
+            The Kosner crest was on screen for{" "}
+            <span className="font-semibold text-[#0F1A2E]">120.5 seconds</span>{" "}
+            of a 3-minute highlight, measured frame by frame.
           </div>
         </motion.div>
       </div>
