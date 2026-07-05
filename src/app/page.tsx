@@ -23,6 +23,7 @@ import { GradientOrb } from "@/components/GradientOrb";
 import { AnimatedMesh } from "@/components/AnimatedMesh";
 import { HowItWorksScene } from "@/components/HowItWorksScene";
 import { SectionDivider } from "@/components/SectionDivider";
+import { OsasunaProof } from "@/components/home/OsasunaProof";
 import { PricingTeaser } from "@/components/home/PricingTeaser";
 import { BroadcastHero } from "@/components/broadcast/BroadcastHero";
 import { ChaosBackground } from "@/components/scenes/ChaosBackground";
@@ -35,6 +36,7 @@ export default function HomePage() {
   return (
     <>
       <BroadcastHero />
+      <OsasunaProof />
       <ProblemSection />
       <PlatformSection />
       <HowItWorks />
@@ -50,11 +52,9 @@ export default function HomePage() {
   );
 }
 
-/* Hero lives in components/broadcast/BroadcastHero.tsx (3D pitch + overlays). */
-
-/* League marquee removed: it implied clients that don't exist. A banner of
- * real measured numbers (Osasuna public study) replaces it in the identity
- * rework phase. */
+/* Hero lives in components/broadcast/BroadcastHero.tsx (real detection
+ * footage). The proof section right under it (home/OsasunaProof.tsx) holds
+ * the three measured numbers from the public study. */
 
 /* -------------------------------------------------------------------------- */
 /* The problem                                                                */
