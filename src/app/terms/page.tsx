@@ -44,7 +44,7 @@ export default function TermsPage() {
             <p>
               You&apos;re responsible for keeping your credentials safe and for any
               activity on your workspace. Tell us immediately at{" "}
-              <a href="mailto:security@sponsorlens.io">security@sponsorlens.io</a>{" "}
+              <a href="mailto:guillaume.haas.nice@gmail.com">guillaume.haas.nice@gmail.com</a>{" "}
               if you suspect unauthorised access.
             </p>
 
@@ -103,7 +103,7 @@ export default function TermsPage() {
             <h2>9. Contact</h2>
             <p>
               Questions? Write to{" "}
-              <a href="mailto:legal@sponsorlens.io">legal@sponsorlens.io</a>.
+              <a href="mailto:guillaume.haas.nice@gmail.com">guillaume.haas.nice@gmail.com</a>.
             </p>
           </article>
         </Container>

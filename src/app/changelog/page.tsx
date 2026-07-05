@@ -134,7 +134,7 @@ export default function ChangelogPage() {
             <div className="mt-2 flex flex-wrap items-center gap-2 text-[12px] text-[#F4EFE6]/55">
               <span>RSS feed coming soon ·</span>
               <a
-                href="mailto:hello@sponsorlens.io?subject=Changelog%20RSS%20notify"
+                href="mailto:guillaume.haas.nice@gmail.com?subject=Changelog%20RSS%20notify"
                 className="text-[#B8975A] underline underline-offset-4 hover:text-[#D8BC85]"
               >
                 ping us to be notified

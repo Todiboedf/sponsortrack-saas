@@ -44,7 +44,7 @@ export default function PrivacyPage() {
             <p>
               Sponsorlens is operated by Sponsorlens Labs S.A.S., registered in
               France. For any privacy-related request you can reach us at{" "}
-              <a href="mailto:privacy@sponsorlens.io">privacy@sponsorlens.io</a>.
+              <a href="mailto:guillaume.haas.nice@gmail.com">guillaume.haas.nice@gmail.com</a>.
             </p>
 
             <h2>2. What we collect</h2>
@@ -107,7 +107,7 @@ export default function PrivacyPage() {
               Under the GDPR you have the right to access, rectify, port, delete, or
               restrict the processing of your personal data, and to object to it at
               any time. Email{" "}
-              <a href="mailto:privacy@sponsorlens.io">privacy@sponsorlens.io</a> and
+              <a href="mailto:guillaume.haas.nice@gmail.com">guillaume.haas.nice@gmail.com</a> and
               we&apos;ll respond within 30 days. You may also lodge a complaint with
               your local data-protection authority (in France, the CNIL).
             </p>

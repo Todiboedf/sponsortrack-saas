@@ -2,25 +2,25 @@ import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Logo } from "@/components/Logo";
 
+const FOUNDER_EMAIL = "guillaume.haas.nice@gmail.com";
+
 const nav = {
   Product: [
     { href: "/features", label: "Features" },
     { href: "/pricing", label: "Pricing" },
     { href: "/changelog", label: "Changelog" },
     { href: "/demo", label: "Live demo" },
-    { href: "https://status.sponsorlens.io", label: "Status", external: true },
   ],
   Company: [
     { href: "/about", label: "About" },
-    { href: "mailto:hello@sponsorlens.io?subject=Blog%20RSS", label: "Blog" },
-    { href: "mailto:careers@sponsorlens.io", label: "Careers" },
     { href: "/contact", label: "Contact" },
+    { href: `mailto:${FOUNDER_EMAIL}`, label: "Email the founder" },
   ],
   Legal: [
     { href: "/privacy", label: "Privacy" },
     { href: "/terms", label: "Terms" },
-    { href: "mailto:privacy@sponsorlens.io?subject=DPA%20request", label: "DPA" },
-    { href: "mailto:security@sponsorlens.io", label: "Security" },
+    { href: `mailto:${FOUNDER_EMAIL}?subject=DPA%20request`, label: "DPA" },
+    { href: `mailto:${FOUNDER_EMAIL}?subject=Security`, label: "Security" },
   ],
 };
 
@@ -40,9 +40,10 @@ export function Footer() {
               reported Mondays 07:00.
             </p>
             <div className="flex items-center gap-2">
-              <SocialIcon label="X" href="https://x.com/sponsorlens" />
-              <SocialIcon label="LinkedIn" href="https://www.linkedin.com/company/sponsorlens" />
-              <SocialIcon label="YouTube" href="https://youtube.com" />
+              <SocialIcon
+                label="LinkedIn"
+                href="https://www.linkedin.com/in/guillaumehaas"
+              />
             </div>
           </div>
           {Object.entries(nav).map(([title, items]) => (
@@ -90,14 +91,7 @@ export function Footer() {
             Haas, in public.
           </div>
           <div className="flex items-center gap-4">
-            <span className="inline-flex items-center gap-1.5">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#2F8F5A] opacity-70" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-[#2F8F5A]" />
-              </span>
-              All systems operational
-            </span>
-            <span className="hidden sm:inline">Nice, France · EU data residency</span>
+            <span>Nice, France · EU data residency</span>
           </div>
         </div>
       </Container>

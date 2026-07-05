@@ -104,15 +104,12 @@ const jsonLd = {
   logo: `${SITE_URL}/icon.svg`,
   description:
     "Sponsor exposure measurement for clubs, leagues and brands: social analytics, weekly reporting, broadcast computer vision in development.",
-  sameAs: [
-    "https://x.com/sponsorlens",
-    "https://www.linkedin.com/company/sponsorlens",
-  ],
+  sameAs: ["https://www.linkedin.com/in/guillaumehaas"],
   contactPoint: [
     {
       "@type": "ContactPoint",
       contactType: "sales",
-      email: "hello@sponsorlens.io",
+      email: "guillaume.haas.nice@gmail.com",
       availableLanguage: ["English", "French", "Spanish"],
     },
   ],

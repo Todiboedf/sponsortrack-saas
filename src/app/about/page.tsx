@@ -332,10 +332,10 @@ export default function AboutPage() {
                     <ArrowUpRight size={12} />
                   </a>
                   <a
-                    href="mailto:guillaume@sponsorlens.io"
+                    href="mailto:guillaume.haas.nice@gmail.com"
                     className="inline-flex items-center gap-1.5 text-[#B8975A] underline underline-offset-4 hover:text-[#D8BC85]"
                   >
-                    guillaume@sponsorlens.io
+                    guillaume.haas.nice@gmail.com
                   </a>
                 </div>
               </Card>

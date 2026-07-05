@@ -270,10 +270,10 @@ export default function ContactPage() {
                     >
                       Couldn&apos;t send, {error}. Email us directly at{" "}
                       <a
-                        href="mailto:hello@sponsorlens.io"
+                        href="mailto:guillaume.haas.nice@gmail.com"
                         className="underline underline-offset-4"
                       >
-                        hello@sponsorlens.io
+                        guillaume.haas.nice@gmail.com
                       </a>
                       .
                     </div>
@@ -313,21 +313,9 @@ export default function ContactPage() {
                 <ul className="mt-5 flex flex-col gap-4">
                   <Contact
                     icon={<Mail size={16} />}
-                    label="Sales & partnerships"
-                    value="hello@sponsorlens.io"
-                    href="mailto:hello@sponsorlens.io"
-                  />
-                  <Contact
-                    icon={<Mail size={16} />}
-                    label="Press"
-                    value="press@sponsorlens.io"
-                    href="mailto:press@sponsorlens.io"
-                  />
-                  <Contact
-                    icon={<Mail size={16} />}
-                    label="Support"
-                    value="support@sponsorlens.io"
-                    href="mailto:support@sponsorlens.io"
+                    label="Everything goes to the founder"
+                    value="guillaume.haas.nice@gmail.com"
+                    href="mailto:guillaume.haas.nice@gmail.com"
                   />
                 </ul>
               </Card>
