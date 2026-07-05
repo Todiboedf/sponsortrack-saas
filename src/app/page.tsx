@@ -64,17 +64,17 @@ const problems = [
   {
     icon: <FileSpreadsheet size={22} />,
     title: "Spreadsheets eat your week",
-    body: "Marketing teams waste 8–14 hours every week copy-pasting social stats, building pivot tables, and chasing screenshots for sponsors.",
+    body: "Social stats copy-pasted by hand. Pivot tables rebuilt every Monday. Screenshots chased before every sponsor call.",
   },
   {
     icon: <Target size={22} />,
     title: "No proof of ROI",
-    body: "Sponsors ask the same question every quarter: ‘what did I actually get?’. Without real-time data, renewals become a negotiation you lose.",
+    body: "Sponsors ask the same question every quarter: ‘what did we actually get?’. Without measured exposure, the renewal is negotiated on gut feel.",
   },
   {
     icon: <TrendingUp size={22} />,
     title: "Growth goes untracked",
-    body: "You miss the spikes that matter, a viral post, a breakout match, because tracking is manual, slow, and usually after the fact.",
+    body: "A viral post. A breakout match. If nobody measured it, it never happened, and it never gets invoiced.",
   },
 ];
 
@@ -93,7 +93,7 @@ function ProblemSection() {
               and twenty-tab spreadsheets.
             </>
           }
-          description="Modern sponsorship moves through dozens of platforms, thousands of posts, and partners who demand real-time answers. The tools didn’t catch up."
+          description="Sponsorship now lives across platforms, posts and broadcasts. Most clubs still count it by hand, after the fact."
         />
         <div className="mt-14 grid gap-5 md:grid-cols-3">
           {problems.map((p, i) => (
@@ -129,7 +129,7 @@ const features: Array<{
   {
     icon: <BarChart3 size={22} />,
     title: "Unified social analytics",
-    body: "Instagram, TikTok, X, YouTube, Facebook, aggregated, deduplicated, normalised. One number per sponsor, per match, per week.",
+    body: "Instagram and TikTok today, deduplicated and normalised. One number per sponsor, per week. X, YouTube and Facebook are in development.",
     points: [
       { text: "Instagram + TikTok analytics", status: "live" },
       { text: "Sponsored vs organic post split", status: "live" },
@@ -139,7 +139,7 @@ const features: Array<{
   {
     icon: <Camera size={22} />,
     title: "Match-day computer vision",
-    body: "Logo-level exposure on match footage, jersey, LED and on-screen time. In active development; starting on owned and in-venue content, broadcast next.",
+    body: "Logo-level screen time on recorded broadcast and owned footage. The model already read a real match: 10 sponsors, one highlight, frame by frame. In development.",
     points: [
       { text: "Logo & screen-time detection", status: "dev" },
       { text: "Proven on a recorded match highlight", status: "dev" },
@@ -149,7 +149,7 @@ const features: Array<{
   {
     icon: <LineChart size={22} />,
     title: "ROI that renews contracts",
-    body: "Auto-generated reports in the sponsor’s brand, sent every Monday. They see their investment compound. You close larger renewals faster.",
+    body: "A branded PDF generated from the data, every Monday at 07:00. The renewal conversation starts from numbers, not memories.",
     points: [
       { text: "Branded weekly PDF reports", status: "live" },
       { text: "Benchmarks vs market", status: "planned" },
@@ -170,11 +170,13 @@ function PlatformSection() {
           eyebrowIcon={<Sparkles size={13} />}
           title={
             <>
-              One platform.{" "}
-              <em className="italic text-gradient-brand">Complete visibility.</em>
+              What we measure,{" "}
+              <em className="italic text-gradient-brand">
+                and what we don&apos;t yet.
+              </em>
             </>
           }
-          description="Everything your commercial team needs to measure a sponsorship, prove the value, and sell the renewal, in a single source of truth."
+          description="Social analytics run live today, 283 posts and nine accounts in our public study. Broadcast computer vision works on recorded footage, in development. Every bullet below carries its label."
         />
         <PlatformConvergence />
         <div className="mt-16 grid gap-5 md:grid-cols-3">
