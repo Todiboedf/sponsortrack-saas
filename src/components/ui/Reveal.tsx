@@ -22,16 +22,20 @@ export function Reveal({
 }: Props) {
   const reduced = useReducedMotion();
   const MotionTag = motion[as];
+  // whileInView must stay active under prefers-reduced-motion: the server
+  // HTML carries the initial opacity-0 inline style (reduced is unknown at
+  // SSR time), so disabling the in-view target left sections permanently
+  // invisible for reduced-motion users. Instant transition instead.
   return (
     <MotionTag
-      initial={reduced ? false : { opacity: 0, y }}
-      whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
+      initial={{ opacity: 0, y }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once, margin: "-60px" }}
-      transition={{
-        duration: 0.7,
-        delay,
-        ease: [0.22, 1, 0.36, 1],
-      }}
+      transition={
+        reduced
+          ? { duration: 0 }
+          : { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] }
+      }
       className={className}
     >
       {children}
