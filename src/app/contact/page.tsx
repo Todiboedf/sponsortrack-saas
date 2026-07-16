@@ -11,15 +11,13 @@ import {
   MessageSquare,
   Phone,
   Send,
-  Sparkles,
   User,
 } from "lucide-react";
 import { motion } from "motion/react";
 import { Container } from "@/components/ui/Container";
-import { Badge } from "@/components/ui/Badge";
+import { Chyron } from "@/components/ui/Chyron";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
-import { GradientOrb } from "@/components/GradientOrb";
 import { cn } from "@/lib/utils";
 
 type FormState = "idle" | "submitting" | "success" | "error";
@@ -30,7 +28,7 @@ const reasonOptions: { value: Reason; label: string; description: string }[] = [
   {
     value: "demo",
     label: "Book a demo",
-    description: "30 minutes with a product expert, mapped to your workflow.",
+    description: "30 minutes with the founder, mapped to your workflow.",
   },
   {
     value: "trial",
@@ -93,26 +91,23 @@ export default function ContactPage() {
 
   return (
     <>
-      <section className="relative overflow-hidden pt-36 pb-12 lg:pt-44">
-        <GradientOrb color="red" size={560} className="-left-40 -top-10" />
-        <GradientOrb color="gold" size={520} className="-right-40 top-40" />
-        <div aria-hidden className="absolute inset-0 -z-20 bg-grid mask-fade-radial opacity-30" />
-        <Container>
-          <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
-            <Badge icon={<Sparkles size={13} />}>Contact</Badge>
-            <h1 className="mt-6 font-[family-name:var(--font-display)] text-balance text-5xl font-semibold leading-[1.05] tracking-[-0.02em] text-white sm:text-6xl lg:text-[64px]">
-              Let’s{" "}
-              <span className="text-gradient-brand">talk sponsorships.</span>
+      <section className="relative overflow-hidden border-b border-[#F4EFE6]/[0.06] bg-[#050B14] pt-28 pb-12 lg:pt-36 lg:pb-14">
+        <div aria-hidden className="pointer-events-none absolute inset-0 bg-grid mask-fade-b opacity-50" />
+        <Container className="relative">
+          <div className="max-w-3xl">
+            <Chyron>Contact · straight to the founder</Chyron>
+            <h1 className="mt-6 font-[family-name:var(--font-archivo)] text-balance text-[44px] font-bold leading-[1.02] tracking-[-0.025em] text-[#F4EFE6] sm:text-6xl">
+              Let&apos;s talk sponsorships.
             </h1>
-            <p className="mt-6 max-w-xl text-pretty text-lg text-white/60 sm:text-xl">
-              Whether you’re a top-tier club, an ambitious agency, a brand sponsor
-              or a journalist, we usually reply same-day.
+            <p className="mt-6 max-w-xl text-pretty text-lg text-[#F4EFE6]/60 sm:text-xl">
+              Whether you&apos;re a top-tier club, an ambitious agency, a brand
+              sponsor or a journalist, you usually get a same-day reply.
             </p>
           </div>
         </Container>
       </section>
 
-      <section className="pb-24 lg:pb-32">
+      <section className="py-14 lg:py-16">
         <Container>
           <div className="grid gap-8 lg:grid-cols-[1fr_0.95fr]">
             {/* Form */}
@@ -123,15 +118,15 @@ export default function ContactPage() {
                   animate={{ opacity: 1, y: 0 }}
                   className="flex flex-col items-center justify-center py-20 text-center"
                 >
-                  <div className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-emerald-400/15 text-emerald-300 ring-1 ring-emerald-400/40">
+                  <div className="inline-flex h-14 w-14 items-center justify-center border border-[#D8FF3E]/50 text-[#D8FF3E]">
                     <Check size={26} />
                   </div>
-                  <h3 className="mt-6 font-[family-name:var(--font-display)] text-2xl font-semibold tracking-tight text-white">
+                  <h3 className="mt-6 font-[family-name:var(--font-archivo)] text-2xl font-bold tracking-tight text-[#F4EFE6]">
                     We got it.
                   </h3>
-                  <p className="mt-3 max-w-sm text-[15px] text-white/60">
-                    A human from our team will get back to you within one business
-                    day, usually much sooner. Thanks for reaching out.
+                  <p className="mt-3 max-w-sm text-[15px] text-[#F4EFE6]/60">
+                    The founder will get back to you within one business day,
+                    usually much sooner. Thanks for reaching out.
                   </p>
                   <div className="mt-8">
                     <Button href="/" variant="outline">
@@ -142,7 +137,7 @@ export default function ContactPage() {
               ) : (
                 <form onSubmit={onSubmit} className="flex flex-col gap-6">
                   <div>
-                    <div className="mb-3 text-[11px] uppercase tracking-[0.18em] text-white/45">
+                    <div className="mb-3 font-[family-name:var(--font-mono)] text-[11px] uppercase tracking-[0.16em] text-[#F4EFE6]/45">
                       What brings you here?
                     </div>
                     <div className="grid gap-2 sm:grid-cols-2">
@@ -152,26 +147,24 @@ export default function ContactPage() {
                           type="button"
                           onClick={() => setReason(r.value)}
                           className={cn(
-                            "rounded-xl border p-3 text-left transition-colors",
+                            "rounded-[6px] border p-3 text-left transition-colors",
                             reason === r.value
-                              ? "border-[#B8975A]/60 bg-[#8B0028]/10 ring-1 ring-[#8B0028]/30"
-                              : "border-white/[0.08] bg-white/[0.02] hover:border-white/15 hover:bg-white/[0.04]"
+                              ? "border-[#D8FF3E]/60 bg-[#D8FF3E]/[0.06]"
+                              : "border-[#F4EFE6]/[0.08] bg-[#F4EFE6]/[0.02] hover:border-[#F4EFE6]/15 hover:bg-[#F4EFE6]/[0.04]"
                           )}
                         >
                           <div className="flex items-center gap-2">
                             <span
                               className={cn(
-                                "inline-block h-2 w-2 rounded-full",
-                                reason === r.value
-                                  ? "bg-[#B8975A]"
-                                  : "bg-white/30"
+                                "inline-block h-2 w-2",
+                                reason === r.value ? "bg-[#D8FF3E]" : "bg-[#F4EFE6]/30"
                               )}
                             />
-                            <span className="text-[14px] font-medium text-white">
+                            <span className="text-[14px] font-medium text-[#F4EFE6]">
                               {r.label}
                             </span>
                           </div>
-                          <div className="mt-1 text-[12px] text-white/50">
+                          <div className="mt-1 text-[12px] text-[#F4EFE6]/50">
                             {r.description}
                           </div>
                         </button>
@@ -203,7 +196,7 @@ export default function ContactPage() {
                         type="email"
                         required
                         autoComplete="email"
-                        placeholder="jamie@realmadrid.com"
+                        placeholder="jamie@yourclub.com"
                         className={inputCls}
                       />
                     </Field>
@@ -214,7 +207,7 @@ export default function ContactPage() {
                       <input
                         name="company"
                         autoComplete="organization"
-                        placeholder="Real Madrid CF"
+                        placeholder="Your club or brand"
                         className={inputCls}
                       />
                     </Field>
@@ -243,19 +236,19 @@ export default function ContactPage() {
                     />
                   </Field>
 
-                  <label className="flex items-start gap-3 text-[13px] text-white/55">
+                  <label className="flex items-start gap-3 text-[13px] text-[#F4EFE6]/55">
                     <input
                       type="checkbox"
                       name="consent"
                       required
-                      className="mt-0.5 h-4 w-4 cursor-pointer rounded border-white/20 bg-white/[0.05]"
+                      className="mt-0.5 h-4 w-4 cursor-pointer rounded border-[#F4EFE6]/20 bg-[#F4EFE6]/[0.05]"
                     />
                     <span>
                       I agree that Sponsorlens may contact me about my request and
                       store my information according to the{" "}
                       <a
                         href="/privacy"
-                        className="text-white/80 underline underline-offset-4 hover:text-white"
+                        className="text-[#F4EFE6]/80 underline underline-offset-4 hover:text-[#F4EFE6]"
                       >
                         privacy policy
                       </a>
@@ -266,7 +259,7 @@ export default function ContactPage() {
                   {state === "error" && error && (
                     <div
                       role="alert"
-                      className="rounded-xl border border-red-400/30 bg-red-500/10 px-4 py-3 text-[13px] text-red-200"
+                      className="rounded-[6px] border border-[#E8A33D]/40 bg-[#E8A33D]/10 px-4 py-3 text-[13px] text-[#F2C689]"
                     >
                       Couldn&apos;t send, {error}. Email us directly at{" "}
                       <a
@@ -279,8 +272,8 @@ export default function ContactPage() {
                     </div>
                   )}
 
-                  <div className="flex items-center justify-between gap-4 border-t border-white/[0.06] pt-6">
-                    <div className="text-[12px] text-white/45">
+                  <div className="flex items-center justify-between gap-4 border-t border-[#F4EFE6]/[0.06] pt-6">
+                    <div className="text-[12px] text-[#F4EFE6]/45">
                       We reply within one business day.
                     </div>
                     <Button
@@ -288,7 +281,7 @@ export default function ContactPage() {
                       disabled={state === "submitting"}
                       rightIcon={
                         state === "submitting" ? (
-                          <span className="inline-block h-3 w-3 animate-spin rounded-full border-2 border-white/60 border-t-transparent" />
+                          <span className="inline-block h-3 w-3 animate-spin rounded-full border-2 border-[#0A1628]/60 border-t-transparent" />
                         ) : (
                           <Send size={15} />
                         )
@@ -304,11 +297,11 @@ export default function ContactPage() {
             {/* Sidebar */}
             <div className="flex flex-col gap-6">
               <Card className="p-7">
-                <h3 className="font-[family-name:var(--font-display)] text-lg font-semibold text-white">
+                <h3 className="font-[family-name:var(--font-archivo)] text-lg font-semibold text-[#F4EFE6]">
                   Talk to a human
                 </h3>
-                <p className="mt-1 text-[14px] text-white/55">
-                  Skip the form and reach the right person directly.
+                <p className="mt-1 text-[14px] text-[#F4EFE6]/55">
+                  Skip the form and reach the founder directly.
                 </p>
                 <ul className="mt-5 flex flex-col gap-4">
                   <Contact
@@ -321,10 +314,10 @@ export default function ContactPage() {
               </Card>
 
               <Card className="p-7">
-                <h3 className="font-[family-name:var(--font-display)] text-lg font-semibold text-white">
+                <h3 className="font-[family-name:var(--font-archivo)] text-lg font-semibold text-[#F4EFE6]">
                   Where we are
                 </h3>
-                <p className="mt-1 text-[13px] text-white/55">
+                <p className="mt-1 text-[13px] text-[#F4EFE6]/55">
                   Remote-first, EU-based. On-site meetings on request.
                 </p>
                 <ul className="mt-5 flex flex-col gap-4">
@@ -334,22 +327,22 @@ export default function ContactPage() {
 
               <Card className="p-7">
                 <div className="flex items-center gap-3">
-                  <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-emerald-400/15 text-emerald-300 ring-1 ring-emerald-400/30">
+                  <span className="inline-flex h-9 w-9 items-center justify-center border border-[#D8FF3E]/40 text-[#D8FF3E]">
                     <Clock size={16} />
                   </span>
                   <div>
-                    <div className="font-medium text-white">
+                    <div className="font-medium text-[#F4EFE6]">
                       Same-day response
                     </div>
-                    <div className="text-[12px] text-white/55">
-                      9:00–19:00 CET, Monday to Friday.
+                    <div className="font-[family-name:var(--font-mono)] text-[11px] text-[#F4EFE6]/55">
+                      9:00–19:00 CET · Mon–Fri
                     </div>
                   </div>
                 </div>
-                <div className="mt-5 rounded-xl border border-white/[0.06] bg-white/[0.02] p-4 text-[13px] leading-relaxed text-white/60">
-                  <span className="text-white/80">Tip -</span> mentioning your club
-                  or brand name lets us route you directly to the right success
-                  manager.
+                <div className="mt-5 rounded-[6px] border border-[#F4EFE6]/[0.06] bg-[#F4EFE6]/[0.02] p-4 text-[13px] leading-relaxed text-[#F4EFE6]/60">
+                  <span className="text-[#F4EFE6]/80">Tip —</span> mention your
+                  club or brand name and the founder can prepare the walkthrough
+                  around your actual sponsors.
                 </div>
                 <div className="mt-5">
                   <Button
@@ -371,7 +364,7 @@ export default function ContactPage() {
 }
 
 const inputCls =
-  "w-full rounded-xl border border-white/[0.08] bg-white/[0.02] px-3.5 py-2.5 text-[14px] text-white placeholder:text-white/35 transition-colors outline-none focus:border-[#B8975A]/60 focus:bg-white/[0.04] focus:ring-2 focus:ring-[#8B0028]/30";
+  "w-full rounded-[6px] border border-[#F4EFE6]/[0.10] bg-[#F4EFE6]/[0.02] px-3.5 py-2.5 text-[14px] text-[#F4EFE6] placeholder:text-[#F4EFE6]/35 transition-colors outline-none focus:border-[#D8FF3E]/60 focus:bg-[#F4EFE6]/[0.04] focus:ring-2 focus:ring-[#D8FF3E]/25";
 
 function Field({
   label,
@@ -386,10 +379,10 @@ function Field({
 }) {
   return (
     <label className="flex flex-col gap-1.5">
-      <span className="inline-flex items-center gap-2 text-[12px] font-medium text-white/60">
-        {icon && <span className="text-white/45">{icon}</span>}
+      <span className="inline-flex items-center gap-2 text-[12px] font-medium text-[#F4EFE6]/60">
+        {icon && <span className="text-[#F4EFE6]/45">{icon}</span>}
         {label}
-        {required && <span className="text-[#B8975A]">*</span>}
+        {required && <span className="text-[#D8FF3E]">*</span>}
       </span>
       {children}
     </label>
@@ -409,16 +402,16 @@ function Contact({
 }) {
   return (
     <li className="flex items-center gap-3">
-      <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-white/[0.04] text-white/75 ring-1 ring-white/10">
+      <span className="inline-flex h-9 w-9 items-center justify-center border border-[#F4EFE6]/10 bg-[#F4EFE6]/[0.04] text-[#F4EFE6]/75">
         {icon}
       </span>
       <div className="min-w-0">
-        <div className="text-[11px] uppercase tracking-[0.14em] text-white/40">
+        <div className="font-[family-name:var(--font-mono)] text-[10px] uppercase tracking-[0.14em] text-[#F4EFE6]/40">
           {label}
         </div>
         <a
           href={href}
-          className="block truncate text-[14px] text-white/85 hover:text-white"
+          className="block truncate text-[14px] text-[#F4EFE6]/85 hover:text-[#F4EFE6]"
         >
           {value}
         </a>
@@ -438,17 +431,17 @@ function Office({
 }) {
   return (
     <li className="flex items-start gap-3">
-      <span className="mt-0.5 inline-flex h-9 w-9 items-center justify-center rounded-lg bg-white/[0.04] text-white/75 ring-1 ring-white/10">
+      <span className="mt-0.5 inline-flex h-9 w-9 items-center justify-center border border-[#F4EFE6]/10 bg-[#F4EFE6]/[0.04] text-[#F4EFE6]/75">
         <MapPin size={16} />
       </span>
       <div>
-        <div className="flex items-center gap-2 font-medium text-white">
+        <div className="flex items-center gap-2 font-medium text-[#F4EFE6]">
           {city}
-          <span className="rounded-full border border-white/10 px-1.5 py-0.5 text-[10px] uppercase tracking-wider text-white/55">
+          <span className="border border-[#F4EFE6]/15 px-1.5 py-0.5 font-[family-name:var(--font-mono)] text-[10px] uppercase tracking-wider text-[#F4EFE6]/55">
             {tz}
           </span>
         </div>
-        <div className="text-[12px] text-white/55">{address}</div>
+        <div className="text-[12px] text-[#F4EFE6]/55">{address}</div>
       </div>
     </li>
   );

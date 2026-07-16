@@ -5,8 +5,6 @@ import type { ReactNode } from "react";
 
 type Props = {
   eyebrow?: string;
-  /** Transitional no-op while pages migrate to the chyron kicker. */
-  eyebrowIcon?: ReactNode;
   title: ReactNode;
   description?: ReactNode;
   className?: string;

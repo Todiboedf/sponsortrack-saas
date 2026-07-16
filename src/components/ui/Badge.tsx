@@ -14,11 +14,8 @@ export function Badge({
   ...props
 }: HTMLAttributes<HTMLDivElement> & {
   icon?: ReactNode;
-  /** "gold"/"red" are transitional aliases while pages migrate to Chyron. */
-  tone?: "default" | "volt" | "cream" | "gold" | "red";
+  tone?: "default" | "volt" | "cream";
 }) {
-  if (tone === "gold") tone = "volt";
-  if (tone === "red") tone = "default";
   return (
     <div
       className={cn(

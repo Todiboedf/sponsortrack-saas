@@ -1,27 +1,12 @@
 import type { Metadata } from "next";
-import {
-  ArrowRight,
-  BarChart3,
-  Camera,
-  Check,
-  FileBadge,
-  Lock,
-  Mail,
-  Radar,
-  ScanLine,
-  ShieldCheck,
-  Sparkles,
-  Target,
-  Users,
-  Zap,
-} from "lucide-react";
+import Image from "next/image";
+import { ArrowRight, Check } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
-import { Badge } from "@/components/ui/Badge";
-import { Card } from "@/components/ui/Card";
+import { Chyron } from "@/components/ui/Chyron";
+import { HudFrame } from "@/components/ui/HudFrame";
 import { FeatureBadge, type FeatureStatus } from "@/components/ui/FeatureBadge";
 import { Reveal } from "@/components/ui/Reveal";
-import { GradientOrb } from "@/components/GradientOrb";
 
 export const metadata: Metadata = {
   title: "Features: the sponsor stack, labelled honestly",
@@ -34,42 +19,27 @@ export const metadata: Metadata = {
 /* -------------------------------------------------------------------------- */
 function FeaturesHero() {
   return (
-    <section className="relative overflow-hidden pt-36 pb-16 lg:pt-44 lg:pb-24">
-      <GradientOrb color="red" size={560} className="-left-40 -top-10" />
-      <GradientOrb color="gold" size={520} className="-right-32 top-40" intensity="soft" />
-      <div aria-hidden className="absolute inset-0 -z-20 bg-grid mask-fade-radial opacity-30" />
-      <Container>
-        <div className="mx-auto flex max-w-4xl flex-col items-center text-center">
-          <Reveal>
-            <Badge tone="gold" icon={<Sparkles size={12} />}>
-              Features
-            </Badge>
-          </Reveal>
-          <Reveal delay={0.05}>
-            <h1 className="mt-6 font-[family-name:var(--font-display)] text-balance text-5xl font-medium leading-[1.04] tracking-[-0.01em] text-[#F4EFE6] sm:text-6xl lg:text-[76px]">
-              The sponsor stack,{" "}
-              <em className="italic font-medium text-gradient-brand">
-                labelled honestly.
-              </em>
-            </h1>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <p className="mt-6 max-w-2xl text-pretty text-lg text-[#F4EFE6]/65 sm:text-xl">
-              Instagram and TikTok run today, 283 posts measured in our public
-              study. Broadcast computer vision reads recorded footage, in
-              development. Every bullet below says which is which.
-            </p>
-          </Reveal>
-          <Reveal delay={0.15}>
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-              <Button href="/demo" size="lg" rightIcon={<ArrowRight size={16} />}>
-                Open the live demo
-              </Button>
-              <Button href="/contact" size="lg" variant="outline">
-                Start free trial
-              </Button>
-            </div>
-          </Reveal>
+    <section className="relative overflow-hidden border-b border-[#F4EFE6]/[0.06] bg-[#050B14] pt-28 pb-14 lg:pt-36 lg:pb-16">
+      <div aria-hidden className="pointer-events-none absolute inset-0 bg-grid mask-fade-b opacity-50" />
+      <Container className="relative">
+        <div className="max-w-3xl">
+          <Chyron>Features · every bullet carries its label</Chyron>
+          <h1 className="mt-6 font-[family-name:var(--font-archivo)] text-balance text-[44px] font-bold leading-[1.02] tracking-[-0.025em] text-[#F4EFE6] sm:text-6xl lg:text-[64px]">
+            The sponsor stack, labelled honestly.
+          </h1>
+          <p className="mt-6 max-w-2xl text-pretty text-lg text-[#F4EFE6]/65 sm:text-xl">
+            Instagram and TikTok run today — 283 posts measured in our public
+            study. Broadcast computer vision reads recorded footage, in
+            development. Every bullet below says which is which.
+          </p>
+          <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+            <Button href="/demo" size="lg" rightIcon={<ArrowRight size={16} />}>
+              Open the live demo
+            </Button>
+            <Button href="/contact" size="lg" variant="outline">
+              Start free trial
+            </Button>
+          </div>
         </div>
       </Container>
     </section>
@@ -85,7 +55,6 @@ type Pillar = {
   body: string;
   bullets: Array<{ text: string; status?: FeatureStatus }>;
   plan: string[];
-  icon: React.ReactNode;
   Mockup: () => React.ReactNode;
 };
 
@@ -101,7 +70,6 @@ const pillars: Pillar[] = [
       { text: "Deduplicated cross-platform reach with confidence scores", status: "planned" },
     ],
     plan: ["Starter", "Pro", "Enterprise"],
-    icon: <BarChart3 size={20} />,
     Mockup: AnalyticsMockup,
   },
   {
@@ -115,13 +83,12 @@ const pillars: Pillar[] = [
       { text: "GDPR-safe: no face identification, ever", status: "dev" },
     ],
     plan: ["Enterprise"],
-    icon: <Camera size={20} />,
     Mockup: BroadcastMockup,
   },
   {
-    tag: "Sponsor Portal",
+    tag: "Sponsor portal",
     title: "Branded sponsor portals",
-    body: "Give each sponsor a workspace that looks like their own product. White-labelled, refreshed daily, and the only place they’ll ever need to ask for their numbers again.",
+    body: "Give each sponsor a workspace that looks like their own product. White-labelled, refreshed daily, and the only place they'll ever need to ask for their numbers again.",
     bullets: [
       { text: "Per-sponsor logos, palette, typography and vocabulary", status: "planned" },
       { text: "Invite limited external users with read-only permissions", status: "planned" },
@@ -129,7 +96,6 @@ const pillars: Pillar[] = [
       { text: "Benchmark widgets vs comparable sponsors (anonymised)", status: "planned" },
     ],
     plan: ["Pro", "Enterprise"],
-    icon: <Users size={20} />,
     Mockup: PortalMockup,
   },
   {
@@ -143,13 +109,12 @@ const pillars: Pillar[] = [
       { text: "CRM-ready, HubSpot, Salesforce, Pipedrive, Notion", status: "planned" },
     ],
     plan: ["Pro", "Enterprise"],
-    icon: <Radar size={20} />,
     Mockup: ProspectionMockup,
   },
   {
     tag: "Reporting",
     title: "White-label reporting",
-    body: "Beautiful, defensible PDFs in your sponsor’s brand, generated automatically every Monday. The same engine powers in-app reports, email digests and CSV exports.",
+    body: "Beautiful, defensible PDFs in your sponsor's brand, generated automatically every Monday. The same engine powers in-app reports, email digests and CSV exports.",
     bullets: [
       { text: "Branded templates with logo, palette and typography", status: "live" },
       { text: "Methodology appendix that satisfies finance teams", status: "planned" },
@@ -157,13 +122,12 @@ const pillars: Pillar[] = [
       { text: "Versioned exports, every monthly recap is auditable", status: "planned" },
     ],
     plan: ["Pro", "Enterprise"],
-    icon: <FileBadge size={20} />,
     Mockup: ReportingMockup,
   },
   {
     tag: "Security",
     title: "Security & compliance",
-    body: "The boring parts done properly. SSO, SCIM, fine-grained RBAC, EU data residency by default, and a SOC 2 Type II audit planned, so procurement isn’t the slow lane.",
+    body: "The boring parts done properly. SSO, SCIM, fine-grained RBAC, EU data residency by default, and a SOC 2 Type II audit planned, so procurement isn't the slow lane.",
     bullets: [
       { text: "EU-hosted by default", status: "live" },
       { text: "SAML / OIDC SSO and SCIM provisioning", status: "planned" },
@@ -171,38 +135,30 @@ const pillars: Pillar[] = [
       { text: "DPA, MSA and security questionnaire on request" },
     ],
     plan: ["Pro", "Enterprise"],
-    icon: <ShieldCheck size={20} />,
     Mockup: SecurityMockup,
   },
 ];
 
 function PillarsSection() {
   return (
-    <section className="py-16 lg:py-24">
+    <section className="py-14 lg:py-20">
       <Container>
-        <div className="flex flex-col gap-10">
+        <div className="flex flex-col gap-8">
           {pillars.map((p, i) => (
-            <Reveal key={p.title} delay={0.05}>
-              <Card className="p-0">
+            <Reveal key={p.title} delay={0.04}>
+              <div className="lock-on rounded-lg border border-[#F4EFE6]/[0.09] bg-[#0E1D33]/70">
                 <div
                   className={`grid gap-0 lg:grid-cols-[0.95fr_1.05fr] ${
                     i % 2 === 1 ? "lg:[&>*:first-child]:order-2" : ""
                   }`}
                 >
                   {/* Copy */}
-                  <div className="flex flex-col justify-between gap-8 p-8 lg:p-10 border-b border-[#F4EFE6]/[0.06] lg:border-b-0 lg:border-r">
+                  <div className="flex flex-col justify-between gap-8 border-b border-[#F4EFE6]/[0.06] p-8 lg:border-b-0 lg:border-r lg:p-10">
                     <div>
-                      <div className="flex items-center gap-2">
-                        <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-[#B8975A]/35 bg-[#B8975A]/[0.08] text-[#B8975A]">
-                          {p.icon}
-                        </span>
-                        <Badge tone="default" className="text-[11px]">
-                          {p.tag}
-                        </Badge>
-                      </div>
-                      <h3 className="mt-5 font-[family-name:var(--font-display)] text-2xl font-semibold tracking-tight text-[#F4EFE6] sm:text-3xl">
+                      <Chyron rule={false}>{p.tag}</Chyron>
+                      <h2 className="mt-5 font-[family-name:var(--font-archivo)] text-2xl font-bold tracking-tight text-[#F4EFE6] sm:text-3xl">
                         {p.title}
-                      </h3>
+                      </h2>
                       <p className="mt-3 text-[15px] leading-relaxed text-[#F4EFE6]/65">
                         {p.body}
                       </p>
@@ -213,9 +169,7 @@ function PillarsSection() {
                           key={b.text}
                           className="flex items-start gap-2.5 text-[14px] text-[#F4EFE6]/80"
                         >
-                          <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#B8975A]/15 ring-1 ring-[#B8975A]/40">
-                            <Check size={11} className="text-[#B8975A]" />
-                          </span>
+                          <Check size={14} className="mt-0.5 shrink-0 text-[#D8FF3E]" />
                           <span>
                             {b.text}
                             {b.status && (
@@ -225,14 +179,14 @@ function PillarsSection() {
                         </li>
                       ))}
                     </ul>
-                    <div className="flex flex-wrap items-center gap-2">
+                    <div className="flex flex-wrap items-center gap-2 font-[family-name:var(--font-mono)]">
                       <span className="text-[10px] uppercase tracking-[0.18em] text-[#F4EFE6]/40">
                         Available on
                       </span>
                       {p.plan.map((pl) => (
                         <span
                           key={pl}
-                          className="rounded-full border border-[#F4EFE6]/12 bg-[#F4EFE6]/[0.03] px-2.5 py-1 text-[11px] text-[#F4EFE6]/75"
+                          className="border border-[#F4EFE6]/15 px-2 py-0.5 text-[10px] uppercase tracking-[0.12em] text-[#F4EFE6]/70"
                         >
                           {pl}
                         </span>
@@ -240,16 +194,18 @@ function PillarsSection() {
                     </div>
                   </div>
 
-                  {/* Mockup */}
+                  {/* Artifact */}
                   <div className="relative flex items-center justify-center bg-[#0A1628]/85 p-6 lg:p-10">
                     <div
                       aria-hidden
-                      className="pointer-events-none absolute inset-0 bg-grid opacity-[0.04]"
+                      className="pointer-events-none absolute inset-0 bg-grid opacity-[0.5]"
                     />
-                    <p.Mockup />
+                    <div className="relative w-full max-w-md">
+                      <p.Mockup />
+                    </div>
                   </div>
                 </div>
-              </Card>
+              </div>
             </Reveal>
           ))}
         </div>
@@ -259,7 +215,7 @@ function PillarsSection() {
 }
 
 /* -------------------------------------------------------------------------- */
-/* Comparison vs legacy / spreadsheet (cream)                                 */
+/* Comparison vs legacy / spreadsheet (report paper)                          */
 /* -------------------------------------------------------------------------- */
 const comparison: [string, boolean, boolean, boolean, boolean][] = [
   ["Cross-platform social analytics", true, true, true, true],
@@ -273,40 +229,37 @@ const comparison: [string, boolean, boolean, boolean, boolean][] = [
 
 function ComparisonSection() {
   return (
-    <section className="bg-[#F4EFE6] py-20 text-[#0F1A2E] lg:py-28">
+    <section className="surface-paper py-16 lg:py-20">
       <Container>
-        <div className="mx-auto max-w-3xl text-center">
-          <Badge tone="cream" icon={<Target size={12} />}>
-            How we compare
-          </Badge>
-          <h2 className="mt-5 font-[family-name:var(--font-display)] text-balance text-4xl font-semibold tracking-[-0.01em] sm:text-5xl">
-            A product-led alternative to{" "}
-            <em className="italic text-[#8B0028]">legacy vendors.</em>
+        <div className="max-w-3xl">
+          <Chyron tone="ink">How we compare</Chyron>
+          <h2 className="mt-5 font-[family-name:var(--font-archivo)] text-balance text-[34px] font-bold leading-[1.06] tracking-[-0.02em] sm:text-[42px]">
+            A product-led alternative to legacy vendors.
           </h2>
-          <p className="mx-auto mt-4 max-w-xl text-[#0F1A2E]/65">
+          <p className="mt-4 max-w-xl text-[#0F1A2E]/65">
             Self-assessed and honestly opinionated, happy to revisit any line
             with anyone who knows the space.
           </p>
         </div>
         <Reveal delay={0.1}>
-          <div className="mt-12 overflow-hidden rounded-2xl border border-[#0F1A2E]/12 bg-[#FBF7EF]">
+          <div className="mt-12 overflow-hidden rounded-lg border border-[#0F1A2E]/12 bg-[#FBF7EF]">
             <div className="overflow-x-auto">
               <table className="w-full min-w-[720px] border-collapse text-left">
                 <thead className="bg-[#0F1A2E]/[0.04]">
                   <tr>
-                    <th className="px-5 py-4 text-[12px] font-semibold uppercase tracking-[0.18em] text-[#0F1A2E]/55">
+                    <th className="px-5 py-4 font-[family-name:var(--font-mono)] text-[11px] font-semibold uppercase tracking-[0.16em] text-[#0F1A2E]/55">
                       Capability
                     </th>
-                    <th className="px-4 py-4 text-center text-[12px] font-semibold uppercase tracking-[0.18em] text-[#0F1A2E]/55">
+                    <th className="px-4 py-4 text-center font-[family-name:var(--font-mono)] text-[11px] font-semibold uppercase tracking-[0.16em] text-[#0F1A2E]/55">
                       Spreadsheet
                     </th>
-                    <th className="px-4 py-4 text-center text-[12px] font-semibold uppercase tracking-[0.18em] text-[#0F1A2E]/55">
+                    <th className="px-4 py-4 text-center font-[family-name:var(--font-mono)] text-[11px] font-semibold uppercase tracking-[0.16em] text-[#0F1A2E]/55">
                       Legacy A
                     </th>
-                    <th className="px-4 py-4 text-center text-[12px] font-semibold uppercase tracking-[0.18em] text-[#0F1A2E]/55">
+                    <th className="px-4 py-4 text-center font-[family-name:var(--font-mono)] text-[11px] font-semibold uppercase tracking-[0.16em] text-[#0F1A2E]/55">
                       Legacy B
                     </th>
-                    <th className="bg-[#8B0028]/[0.06] px-4 py-4 text-center text-[12px] font-semibold uppercase tracking-[0.18em] text-[#0F1A2E]">
+                    <th className="bg-[#0F1A2E] px-4 py-4 text-center font-[family-name:var(--font-mono)] text-[11px] font-semibold uppercase tracking-[0.16em] text-[#F4EFE6]">
                       Sponsorlens
                     </th>
                   </tr>
@@ -326,11 +279,11 @@ function ComparisonSection() {
                         <td
                           key={i}
                           className={`px-4 py-4 text-center ${
-                            i === 3 ? "bg-[#8B0028]/[0.04]" : ""
+                            i === 3 ? "bg-[#0F1A2E]/[0.04]" : ""
                           }`}
                         >
                           {ok ? (
-                            <Check size={18} className="mx-auto text-[#8B0028]" />
+                            <Check size={18} className="mx-auto text-[#0F1A2E]" />
                           ) : (
                             <span className="text-[#0F1A2E]/30">-</span>
                           )}
@@ -353,32 +306,33 @@ function ComparisonSection() {
 /* -------------------------------------------------------------------------- */
 function CtaSection() {
   return (
-    <section className="py-20 lg:py-28">
+    <section className="bg-[#050B14] py-16 lg:py-20">
       <Container>
-        <div className="relative overflow-hidden rounded-3xl border border-[#B8975A]/30 bg-gradient-to-br from-[#0F1A2E] via-[#0A1628] to-[#0F1A2E] p-12 text-center lg:p-16">
-          <GradientOrb color="red" size={380} className="-left-10 -top-10" intensity="soft" />
-          <GradientOrb color="gold" size={380} className="-right-10 -bottom-10" intensity="soft" />
-          <Badge tone="gold" icon={<Mail size={12} />}>
-            Ready when you are
-          </Badge>
-          <h2 className="mx-auto mt-5 max-w-2xl font-[family-name:var(--font-display)] text-balance text-4xl font-semibold tracking-[-0.01em] text-[#F4EFE6] sm:text-5xl">
-            See the live data,{" "}
-            <em className="italic text-gradient-brand">then decide.</em>
-          </h2>
-          <p className="mx-auto mt-4 max-w-xl text-pretty text-[#F4EFE6]/65">
-            The demo is public and runs on the Osasuna study. Want a
-            walkthrough? You talk to the founder. The 14-day trial starts
-            whenever you&apos;re ready.
-          </p>
-          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Button href="/demo" size="lg" rightIcon={<ArrowRight size={16} />}>
-              Open the live demo
-            </Button>
-            <Button href="/contact" size="lg" variant="outline">
-              Talk to the founder
-            </Button>
-          </div>
-        </div>
+        <Reveal>
+          <HudFrame
+            label="Ready when you are"
+            className="mx-auto max-w-4xl bg-[#0A1628]"
+          >
+            <div className="px-8 py-12 text-center lg:px-16 lg:py-14">
+              <h2 className="mx-auto max-w-2xl font-[family-name:var(--font-archivo)] text-balance text-[34px] font-bold leading-[1.06] tracking-[-0.02em] text-[#F4EFE6] sm:text-[42px]">
+                See the live data, then decide.
+              </h2>
+              <p className="mx-auto mt-4 max-w-xl text-pretty text-[#F4EFE6]/65">
+                The demo is public and runs on the Osasuna study. Want a
+                walkthrough? You talk to the founder. The 14-day trial starts
+                whenever you&apos;re ready.
+              </p>
+              <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+                <Button href="/demo" size="lg" rightIcon={<ArrowRight size={16} />}>
+                  Open the live demo
+                </Button>
+                <Button href="/contact" size="lg" variant="outline">
+                  Talk to the founder
+                </Button>
+              </div>
+            </div>
+          </HudFrame>
+        </Reveal>
       </Container>
     </section>
   );
@@ -396,31 +350,38 @@ export default function FeaturesPage() {
 }
 
 /* -------------------------------------------------------------------------- */
-/* Mockups                                                                    */
+/* Artifacts — real study data wherever a number appears                      */
 /* -------------------------------------------------------------------------- */
+
+function MonoPanelHeader({ kicker, title, chip }: { kicker: string; title: string; chip?: React.ReactNode }) {
+  return (
+    <div className="flex items-start justify-between gap-3">
+      <div>
+        <div className="font-[family-name:var(--font-mono)] text-[10px] uppercase tracking-[0.18em] text-[#F4EFE6]/45">
+          {kicker}
+        </div>
+        <div className="mt-1 font-[family-name:var(--font-archivo)] text-base font-semibold text-[#F4EFE6]">
+          {title}
+        </div>
+      </div>
+      {chip}
+    </div>
+  );
+}
 
 function AnalyticsMockup() {
   // Real numbers from the public CA Osasuna study (June 2026).
   const platforms = [
-    { name: "TikTok", value: "5.8M", color: "#8B0028", w: "92%" },
-    { name: "Instagram", value: "415k", color: "#B8975A", w: "7%" },
+    { name: "TikTok", value: "5.8M", w: "93%", volt: true },
+    { name: "Instagram", value: "415k", w: "7%", volt: false },
   ];
   const inDev = ["X / Twitter", "YouTube", "Facebook"];
   return (
-    <div className="w-full max-w-md rounded-xl border border-[#F4EFE6]/[0.08] bg-[#0F1A2E] p-5">
-      <div className="flex items-center justify-between">
-        <div>
-          <div className="text-[10px] uppercase tracking-[0.18em] text-[#B8975A]">
-            Club · CA Osasuna (study)
-          </div>
-          <div className="font-[family-name:var(--font-display)] text-base font-semibold text-[#F4EFE6]">
-            Followers by platform
-          </div>
-        </div>
-        <span className="rounded-full border border-[#2F8F5A]/30 bg-[#2F8F5A]/15 px-2 py-0.5 text-[10px] uppercase tracking-[0.16em] text-[#86C9A4]">
-          Live
-        </span>
-      </div>
+    <HudFrame label="Live · club accounts" className="bg-[#0E1D33] p-5">
+      <MonoPanelHeader
+        kicker="CA Osasuna · study"
+        title="Followers by platform"
+      />
       <ul className="mt-5 flex flex-col gap-3">
         {platforms.map((p) => (
           <li key={p.name}>
@@ -430,13 +391,10 @@ function AnalyticsMockup() {
                 {p.value}
               </span>
             </div>
-            <div className="h-1.5 overflow-hidden rounded-full bg-[#F4EFE6]/[0.06]">
+            <div className="h-1.5 bg-[#F4EFE6]/[0.06]">
               <div
-                style={{
-                  width: p.w,
-                  background: `linear-gradient(90deg, ${p.color}, ${p.color}66)`,
-                }}
-                className="h-full rounded-full"
+                style={{ width: p.w }}
+                className={`h-full ${p.volt ? "bg-[#D8FF3E]" : "bg-[#F4EFE6]/60"}`}
               />
             </div>
           </li>
@@ -444,8 +402,8 @@ function AnalyticsMockup() {
       </ul>
       <ul className="mt-3 flex flex-wrap gap-x-4 gap-y-1">
         {inDev.map((n) => (
-          <li key={n} className="text-[11px] text-[#F4EFE6]/40">
-            {n} · in development
+          <li key={n} className="font-[family-name:var(--font-mono)] text-[10px] uppercase tracking-[0.1em] text-[#F4EFE6]/40">
+            {n} · in dev
           </li>
         ))}
       </ul>
@@ -454,69 +412,23 @@ function AnalyticsMockup() {
         <Mini label="Posts · 90d" value="283" delta="22 / week" />
         <Mini label="Audience" value="6.2M" delta="IG + TikTok" />
       </div>
-    </div>
+    </HudFrame>
   );
 }
 
 function BroadcastMockup() {
   return (
-    <div className="w-full max-w-md">
-      <div className="relative overflow-hidden rounded-xl border border-[#F4EFE6]/[0.08] bg-gradient-to-b from-[#0F1A2E] to-[#060D18] aspect-[16/9]">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_70%,rgba(31,122,82,0.45)_0%,transparent_60%)]" />
-        <svg
-          viewBox="0 0 320 180"
-          className="absolute inset-0 h-full w-full"
-          preserveAspectRatio="xMidYMid slice"
-          aria-hidden
-        >
-          <line x1="0" y1="120" x2="320" y2="120" stroke="rgba(244,239,230,0.15)" />
-          <ellipse cx="160" cy="120" rx="40" ry="14" stroke="rgba(244,239,230,0.18)" fill="none" />
-          <rect
-            x="40"
-            y="98"
-            width="240"
-            height="14"
-            fill="rgba(184,151,90,0.18)"
-            stroke="rgba(184,151,90,0.55)"
-          />
-          <text
-            x="160"
-            y="108"
-            fontSize="8"
-            fill="#F4EFE6"
-            textAnchor="middle"
-            fontFamily="var(--font-display)"
-            fontStyle="italic"
-          >
-            Kosner · Nissan · Macron
-          </text>
-        </svg>
-        <div className="absolute left-[14%] top-[54%] h-[8%] w-[18%] border-2 border-[#8B0028] shadow-[0_0_0_1px_rgba(244,239,230,0.4)]">
-          <span className="absolute -top-5 left-0 rounded bg-[#8B0028] px-1 py-0.5 text-[8px] font-semibold uppercase tracking-[0.16em] text-[#F4EFE6]">
-            Kosner · 0.61
-          </span>
-        </div>
-        <div className="absolute left-[44%] top-[54%] h-[8%] w-[14%] border-2 border-[#8B0028]">
-          <span className="absolute -top-5 left-0 rounded bg-[#8B0028] px-1 py-0.5 text-[8px] font-semibold uppercase tracking-[0.16em] text-[#F4EFE6]">
-            Nissan · 0.72
-          </span>
-        </div>
-        <div className="absolute right-[14%] top-[54%] h-[8%] w-[12%] border-2 border-[#B8975A]">
-          <span className="absolute -top-5 right-0 rounded bg-[#B8975A] px-1 py-0.5 text-[8px] font-semibold uppercase tracking-[0.16em] text-[#0A1628]">
-            DIGI · 0.77
-          </span>
-        </div>
-        <div className="absolute right-2 top-2 inline-flex items-center gap-1.5 rounded-full bg-[#0A1628]/80 px-2 py-0.5 text-[10px] uppercase tracking-[0.16em] text-[#F4EFE6]">
-          <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#B8975A]" />
-          Recorded · Osasuna–Alavés
-        </div>
-        <div className="absolute bottom-2 left-2 flex items-center gap-2 rounded-md bg-[#0A1628]/80 px-2 py-1 text-[10px] text-[#F4EFE6]">
-          <ScanLine size={11} className="text-[#B8975A]" />
-          <span className="font-[family-name:var(--font-mono)] tabular-nums">
-            70 frames · 10 sponsors
-          </span>
-        </div>
-      </div>
+    <div className="w-full">
+      <HudFrame label="Real model output" detail="recorded POC" className="bg-[#050B14]">
+        <Image
+          src="/demo/cv-annotated.jpg"
+          alt="A real frame from the Osasuna–Alavés highlight annotated by the detection model"
+          width={640}
+          height={360}
+          sizes="(min-width: 1024px) 40vw, 92vw"
+          className="block w-full"
+        />
+      </HudFrame>
       <div className="mt-3 grid grid-cols-3 gap-2 text-[11px]">
         {[
           ["Kosner", "120.5s"],
@@ -525,70 +437,75 @@ function BroadcastMockup() {
         ].map(([n, t]) => (
           <div
             key={n}
-            className="rounded-md border border-[#F4EFE6]/[0.08] bg-[#0F1A2E] px-2 py-2"
+            className="border border-[#F4EFE6]/[0.08] bg-[#0E1D33] px-2 py-2"
           >
             <div className="text-[#F4EFE6]/60">{n}</div>
-            <div className="font-[family-name:var(--font-mono)] tabular-nums text-[#B8975A]">
+            <div className="font-[family-name:var(--font-mono)] tabular-nums text-[#D8FF3E]">
               {t}
             </div>
           </div>
         ))}
       </div>
+      <p className="mt-2 font-[family-name:var(--font-mono)] text-[10px] uppercase tracking-[0.12em] text-[#F4EFE6]/40">
+        screen time · one 3-minute highlight · frame by frame
+      </p>
     </div>
   );
 }
 
 function PortalMockup() {
   return (
-    <div className="grid w-full max-w-md grid-cols-2 overflow-hidden rounded-xl border border-[#F4EFE6]/[0.08]">
-      <div className="bg-[#0F1A2E] p-4">
-        <div className="text-[10px] uppercase tracking-[0.18em] text-[#B8975A]">
-          Club view
+    <HudFrame label="Two views · same data" tone="dim" className="bg-[#0E1D33]">
+      <div className="grid grid-cols-2">
+        <div className="border-r border-[#F4EFE6]/[0.06] p-4">
+          <div className="font-[family-name:var(--font-mono)] text-[10px] uppercase tracking-[0.18em] text-[#D8FF3E]">
+            Club view
+          </div>
+          <div className="mt-2 font-[family-name:var(--font-archivo)] text-sm font-semibold text-[#F4EFE6]">
+            CA Osasuna (study) · % of broadcast
+          </div>
+          <ul className="mt-3 space-y-1.5 text-[11px]">
+            {[
+              ["Kosner", "62%"],
+              ["Nissan", "50%"],
+              ["Macron", "41%"],
+            ].map(([n, v]) => (
+              <li key={n} className="flex items-center justify-between">
+                <span className="text-[#F4EFE6]/75">{n}</span>
+                <span className="font-[family-name:var(--font-mono)] tabular-nums text-[#F4EFE6]/85">
+                  {v}
+                </span>
+              </li>
+            ))}
+          </ul>
         </div>
-        <div className="mt-2 font-[family-name:var(--font-display)] text-sm font-semibold text-[#F4EFE6]">
-          CA Osasuna (study) · % of broadcast
+        <div className="bg-[#F7F3EA] p-4 text-[#0F1A2E]">
+          <div className="font-[family-name:var(--font-mono)] text-[10px] uppercase tracking-[0.18em] text-[#0F1A2E]/60">
+            Sponsor view
+          </div>
+          <div className="mt-2 font-[family-name:var(--font-archivo)] text-sm font-semibold">
+            Kosner · one highlight
+          </div>
+          <div className="mt-3 border border-[#0F1A2E]/10 bg-white p-2.5 text-[11px]">
+            <div className="text-[10px] uppercase tracking-[0.16em] text-[#0F1A2E]/55">
+              Screen time
+            </div>
+            <div className="font-[family-name:var(--font-mono)] text-base font-semibold tabular-nums">
+              120.5s
+            </div>
+            <div className="text-[#0F1A2E]/45">measured frame by frame</div>
+          </div>
+          <div className="mt-2 border border-[#0F1A2E]/10 bg-white p-2.5 text-[11px]">
+            <div className="text-[10px] uppercase tracking-[0.16em] text-[#0F1A2E]/55">
+              Share of voice
+            </div>
+            <div className="font-[family-name:var(--font-mono)] text-base font-semibold tabular-nums">
+              61.9%
+            </div>
+          </div>
         </div>
-        <ul className="mt-3 space-y-1.5 text-[11px]">
-          {[
-            ["Kosner", "62%"],
-            ["Nissan", "50%"],
-            ["Macron", "41%"],
-          ].map(([n, v]) => (
-            <li key={n} className="flex items-center justify-between">
-              <span className="text-[#F4EFE6]/75">{n}</span>
-              <span className="font-[family-name:var(--font-mono)] tabular-nums text-[#F4EFE6]/85">
-                {v}
-              </span>
-            </li>
-          ))}
-        </ul>
       </div>
-      <div className="bg-[#FBF7EF] p-4 text-[#0F1A2E]">
-        <div className="text-[10px] uppercase tracking-[0.18em] text-[#8B0028]">
-          Sponsor view
-        </div>
-        <div className="mt-2 font-[family-name:var(--font-display)] text-sm font-semibold">
-          Kosner · one highlight
-        </div>
-        <div className="mt-3 rounded-md border border-[#0F1A2E]/10 bg-white p-2.5 text-[11px]">
-          <div className="text-[10px] uppercase tracking-[0.16em] text-[#0F1A2E]/55">
-            Screen time
-          </div>
-          <div className="font-[family-name:var(--font-mono)] text-base font-semibold tabular-nums">
-            120.5s
-          </div>
-          <div className="text-[#0F1A2E]/45">measured frame by frame</div>
-        </div>
-        <div className="mt-2 rounded-md border border-[#0F1A2E]/10 bg-white p-2.5 text-[11px]">
-          <div className="text-[10px] uppercase tracking-[0.16em] text-[#0F1A2E]/55">
-            Share of voice
-          </div>
-          <div className="font-[family-name:var(--font-mono)] text-base font-semibold tabular-nums">
-            61.9%
-          </div>
-        </div>
-      </div>
-    </div>
+    </HudFrame>
   );
 }
 
@@ -602,65 +519,55 @@ function ProspectionMockup() {
     { brand: "Telecom", region: "ES / IT", fit: 76 },
   ];
   return (
-    <div className="w-full max-w-md rounded-xl border border-[#F4EFE6]/[0.08] bg-[#0F1A2E] p-5">
-      <div className="flex items-center justify-between">
-        <div>
-          <div className="text-[10px] uppercase tracking-[0.18em] text-[#B8975A]">
-            Prospects · top fit
-          </div>
-          <div className="font-[family-name:var(--font-display)] text-base font-semibold text-[#F4EFE6]">
-            Concept preview · planned
-          </div>
-        </div>
-        <Radar size={14} className="text-[#B8975A]" />
-      </div>
+    <HudFrame label="Concept preview · planned" tone="dim" className="bg-[#0E1D33] p-5">
+      <MonoPanelHeader kicker="Prospects · top fit" title="Concept preview" />
       <ul className="mt-5 flex flex-col gap-2.5">
         {rows.map((r) => (
           <li
             key={r.brand}
-            className="grid grid-cols-[1fr_auto_auto] items-center gap-3 rounded-lg border border-[#F4EFE6]/[0.06] bg-[#0A1628]/60 p-2.5 text-[12px]"
+            className="grid grid-cols-[1fr_auto_auto] items-center gap-3 border border-[#F4EFE6]/[0.06] bg-[#0A1628]/60 p-2.5 text-[12px]"
           >
             <div>
               <div className="font-medium text-[#F4EFE6]">{r.brand}</div>
-              <div className="text-[10px] uppercase tracking-[0.18em] text-[#F4EFE6]/45">
+              <div className="font-[family-name:var(--font-mono)] text-[10px] uppercase tracking-[0.16em] text-[#F4EFE6]/45">
                 {r.region}
               </div>
             </div>
-            <div className="h-1.5 w-20 overflow-hidden rounded-full bg-[#F4EFE6]/[0.06]">
+            <div className="h-1.5 w-20 overflow-hidden bg-[#F4EFE6]/[0.06]">
               <div
                 style={{ width: `${r.fit}%` }}
-                className="h-full rounded-full bg-gradient-to-r from-[#8B0028] to-[#B8975A]"
+                className="h-full bg-[#D8FF3E]/80"
               />
             </div>
-            <div className="font-[family-name:var(--font-mono)] tabular-nums text-[#B8975A]">
+            <div className="font-[family-name:var(--font-mono)] tabular-nums text-[#D8FF3E]">
               {r.fit}
             </div>
           </li>
         ))}
       </ul>
-      <div className="mt-4 rounded-lg border border-[#B8975A]/30 bg-[#B8975A]/[0.08] p-3 text-[11px] leading-relaxed text-[#F4EFE6]/75">
-        <span className="font-semibold text-[#F4EFE6]">AI draft -</span>{" "}
-        “Hola — your routes overlap with the club’s away fixtures; here’s the
-        audience fit, sourced line by line…”
+      <div className="mt-4 border border-[#F4EFE6]/15 bg-[#0A1628] p-3 text-[11px] leading-relaxed text-[#F4EFE6]/75">
+        <span className="font-semibold text-[#F4EFE6]">AI draft —</span>{" "}
+        &ldquo;Hola — your routes overlap with the club&apos;s away fixtures;
+        here&apos;s the audience fit, sourced line by line…&rdquo;
       </div>
-    </div>
+    </HudFrame>
   );
 }
 
 function ReportingMockup() {
   return (
-    <div className="relative w-full max-w-md">
-      <div className="relative rounded-lg border border-[#0F1A2E]/15 bg-[#FBF7EF] p-5 text-[#0F1A2E] shadow-[0_30px_70px_-30px_rgba(184,151,90,0.45)]">
+    <HudFrame label="Live · Mondays 07:00" className="bg-[#F7F3EA] text-[#0F1A2E]">
+      <div className="p-5">
         <div className="flex items-center justify-between">
           <div>
-            <div className="text-[10px] uppercase tracking-[0.22em] text-[#8B0028]">
+            <div className="font-[family-name:var(--font-mono)] text-[10px] uppercase tracking-[0.2em] text-[#0F1A2E]/60">
               CA Osasuna · public study
             </div>
-            <div className="font-[family-name:var(--font-display)] text-lg font-semibold">
+            <div className="mt-1 font-[family-name:var(--font-archivo)] text-lg font-bold">
               Sponsor exposure report
             </div>
           </div>
-          <div className="font-[family-name:var(--font-display)] italic text-[11px] text-[#0F1A2E]/55">
+          <div className="font-[family-name:var(--font-mono)] text-[10px] text-[#0F1A2E]/55">
             Week of June 10, 2026
           </div>
         </div>
@@ -669,30 +576,30 @@ function ReportingMockup() {
           <ReportCell label="Audience" value="6.2M" />
           <ReportCell label="Posts · 7d" value="17" />
         </div>
-        <div className="mt-4 h-2 rounded-full bg-[#0F1A2E]/10">
-          <div className="h-full w-[93%] rounded-full bg-gradient-to-r from-[#8B0028] to-[#B8975A]" />
+        <div className="mt-4 h-2 bg-[#0F1A2E]/10">
+          <div className="h-full w-[93%] bg-[#0F1A2E]" />
         </div>
         <div className="mt-2 flex items-center justify-between text-[11px] text-[#0F1A2E]/55">
           <span>TikTok share of audience · 5.8M of 6.2M</span>
           <span className="font-[family-name:var(--font-mono)] tabular-nums">93%</span>
         </div>
-        <div className="mt-4 rounded-md border border-[#0F1A2E]/10 bg-white p-3 text-[11px] leading-relaxed text-[#0F1A2E]/65">
+        <div className="mt-4 border border-[#0F1A2E]/10 bg-white p-3 text-[11px] leading-relaxed text-[#0F1A2E]/65">
           The Kosner crest was visible{" "}
           <span className="font-semibold text-[#0F1A2E]">120.5 seconds</span>{" "}
           of a 3-minute highlight, 61.9% share of voice across 10 sponsors.
         </div>
-        <div className="mt-3 flex items-center justify-between text-[10px] uppercase tracking-[0.18em] text-[#0F1A2E]/45">
+        <div className="mt-3 flex items-center justify-between font-[family-name:var(--font-mono)] text-[9px] uppercase tracking-[0.16em] text-[#0F1A2E]/45">
           <span>Methodology · screen-time based</span>
           <span>Page 1 / 3</span>
         </div>
       </div>
-    </div>
+    </HudFrame>
   );
 }
 
 function ReportCell({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-md border border-[#0F1A2E]/10 bg-white p-3">
+    <div className="border border-[#0F1A2E]/10 bg-white p-3">
       <div className="text-[10px] uppercase tracking-[0.18em] text-[#0F1A2E]/55">
         {label}
       </div>
@@ -705,25 +612,25 @@ function ReportCell({ label, value }: { label: string; value: string }) {
 
 function SecurityMockup() {
   const certs = [
-    { label: "SOC 2 Type II", sub: "Planned", icon: <ShieldCheck size={16} /> },
-    { label: "GDPR + DPA", sub: "EU data residency", icon: <FileBadge size={16} /> },
-    { label: "SSO · SAML / OIDC", sub: "Workspace-wide", icon: <Lock size={16} /> },
-    { label: "RBAC + audit logs", sub: "Per-sponsor scope", icon: <Zap size={16} /> },
+    { label: "SOC 2 Type II", sub: "Planned", status: "planned" as FeatureStatus },
+    { label: "GDPR + DPA", sub: "EU data residency", status: "live" as FeatureStatus },
+    { label: "SSO · SAML / OIDC", sub: "Workspace-wide", status: "planned" as FeatureStatus },
+    { label: "RBAC + audit logs", sub: "Per-sponsor scope", status: "planned" as FeatureStatus },
   ];
   return (
-    <div className="grid w-full max-w-md grid-cols-2 gap-3">
+    <div className="grid w-full grid-cols-2 gap-3">
       {certs.map((c) => (
         <div
           key={c.label}
-          className="rounded-lg border border-[#F4EFE6]/[0.08] bg-[#0F1A2E] p-4"
+          className="border border-[#F4EFE6]/[0.08] bg-[#0E1D33] p-4"
         >
-          <span className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-[#B8975A]/30 bg-[#B8975A]/[0.08] text-[#B8975A]">
-            {c.icon}
-          </span>
-          <div className="mt-3 font-[family-name:var(--font-display)] text-sm font-semibold text-[#F4EFE6]">
+          <FeatureBadge status={c.status} />
+          <div className="mt-3 font-[family-name:var(--font-archivo)] text-sm font-semibold text-[#F4EFE6]">
             {c.label}
           </div>
-          <div className="mt-1 text-[11px] text-[#F4EFE6]/55">{c.sub}</div>
+          <div className="mt-1 font-[family-name:var(--font-mono)] text-[10px] uppercase tracking-[0.12em] text-[#F4EFE6]/55">
+            {c.sub}
+          </div>
         </div>
       ))}
     </div>
@@ -741,7 +648,7 @@ function Mini({
 }) {
   return (
     <div>
-      <div className="text-[10px] uppercase tracking-[0.18em] text-[#F4EFE6]/40">
+      <div className="font-[family-name:var(--font-mono)] text-[10px] uppercase tracking-[0.18em] text-[#F4EFE6]/40">
         {label}
       </div>
       <div className="mt-1 font-[family-name:var(--font-mono)] text-sm font-semibold tabular-nums text-[#F4EFE6]">

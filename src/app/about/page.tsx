@@ -1,24 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import {
-  ArrowRight,
-  ArrowUpRight,
-  Flag,
-  HeartHandshake,
-  LineChart,
-  Shield,
-  Sparkles,
-  Target,
-  Trophy,
-  Users,
-} from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { Container } from "@/components/ui/Container";
-import { Badge } from "@/components/ui/Badge";
+import { Chyron } from "@/components/ui/Chyron";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
+import { HudFrame } from "@/components/ui/HudFrame";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Reveal } from "@/components/ui/Reveal";
-import { GradientOrb } from "@/components/GradientOrb";
 
 export const metadata: Metadata = {
   title: "About: one founder, building measurement in public",
@@ -28,23 +17,23 @@ export const metadata: Metadata = {
 
 const values = [
   {
-    icon: <Target size={18} />,
+    n: "01",
     title: "Transparent by default",
-    body: "Public pricing. Public roadmap. A public study. If I can’t explain a number, I don’t ship it.",
+    body: "Public pricing. Public roadmap. A public study. If I can't explain a number, I don't ship it.",
   },
   {
-    icon: <LineChart size={18} />,
+    n: "02",
     title: "Measurement is a craft",
     body: "I build models I would bet on, not ones that happen to make customers feel good. Integrity over vanity.",
   },
   {
-    icon: <Users size={18} />,
+    n: "03",
     title: "Customer-first, truly",
-    body: "Support goes straight to the founder. You won’t hear ‘I’ll escalate it’, you’ll hear ‘I’m shipping it.’",
+    body: "Support goes straight to the founder. You won't hear 'I'll escalate it', you'll hear 'I'm shipping it.'",
   },
   {
-    icon: <Shield size={18} />,
-    title: "Data you’d trust with your kids",
+    n: "04",
+    title: "Data you'd trust with your kids",
     body: "EU-hosted by default, never used to train shared models, deleted on request. Your sponsors deserve that.",
   },
 ];
@@ -82,48 +71,32 @@ export default function AboutPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden pt-36 pb-16 lg:pt-44 lg:pb-24">
-        <GradientOrb color="red" size={560} className="-left-40 -top-10" />
-        <GradientOrb color="gold" size={520} className="-right-40 top-40" intensity="soft" />
-        <div aria-hidden className="absolute inset-0 -z-20 bg-grid mask-fade-radial opacity-30" />
-        <Container>
-          <div className="mx-auto flex max-w-4xl flex-col items-center text-center">
-            <Reveal>
-              <Badge tone="gold" icon={<Sparkles size={12} />}>
-                About
-              </Badge>
-            </Reveal>
-            <Reveal delay={0.05}>
-              <h1 className="mt-6 font-[family-name:var(--font-display)] text-balance text-5xl font-medium leading-[1.04] tracking-[-0.01em] text-[#F4EFE6] sm:text-6xl lg:text-[76px]">
-                A $100B industry,{" "}
-                <em className="italic font-medium text-gradient-brand">
-                  still counted by hand.
-                </em>
-              </h1>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <p className="mt-6 max-w-2xl text-pretty text-lg text-[#F4EFE6]/65 sm:text-xl">
-                Sponsorlens is one founder building the measurement layer for
-                sponsorship. Social analytics run today. Broadcast computer
-                vision is in development. Everything ships in public.
-              </p>
-            </Reveal>
+      <section className="relative overflow-hidden border-b border-[#F4EFE6]/[0.06] bg-[#050B14] pt-28 pb-14 lg:pt-36 lg:pb-16">
+        <div aria-hidden className="pointer-events-none absolute inset-0 bg-grid mask-fade-b opacity-50" />
+        <Container className="relative">
+          <div className="max-w-3xl">
+            <Chyron>About · solo build, in public</Chyron>
+            <h1 className="mt-6 font-[family-name:var(--font-archivo)] text-balance text-[44px] font-bold leading-[1.02] tracking-[-0.025em] text-[#F4EFE6] sm:text-6xl lg:text-[64px]">
+              A $100B industry, still counted by hand.
+            </h1>
+            <p className="mt-6 max-w-2xl text-pretty text-lg text-[#F4EFE6]/65 sm:text-xl">
+              Sponsorlens is one founder building the measurement layer for
+              sponsorship. Social analytics run today. Broadcast computer
+              vision is in development. Everything ships in public.
+            </p>
           </div>
         </Container>
       </section>
 
       {/* Mission */}
-      <section className="py-16 lg:py-24">
+      <section className="py-16 lg:py-20">
         <Container>
           <div className="grid gap-12 lg:grid-cols-[1fr_1.05fr] lg:items-center">
             <Reveal>
               <div>
-                <Badge tone="red" icon={<Flag size={12} />}>
-                  Our mission
-                </Badge>
-                <h2 className="mt-6 font-[family-name:var(--font-display)] text-balance text-4xl font-semibold tracking-[-0.01em] text-[#F4EFE6] sm:text-5xl">
-                  Make every euro of sponsorship measurable -{" "}
-                  <em className="italic text-gradient-brand">and defensible.</em>
+                <Chyron>Our mission</Chyron>
+                <h2 className="mt-6 font-[family-name:var(--font-archivo)] text-balance text-[34px] font-bold leading-[1.06] tracking-[-0.02em] text-[#F4EFE6] sm:text-[42px]">
+                  Make every euro of sponsorship measurable — and defensible.
                 </h2>
                 <div className="prose-dark mt-6 max-w-xl">
                   <p>
@@ -154,21 +127,17 @@ export default function AboutPage() {
             </Reveal>
 
             <Reveal delay={0.1}>
-              <div className="relative">
-                <GradientOrb color="red" size={380} className="-left-10 -top-10" intensity="soft" />
-                <div className="grid grid-cols-2 gap-4">
+              <HudFrame label="Pre-launch · real numbers" className="bg-[#0A1628]">
+                <div className="grid grid-cols-2 divide-x divide-y divide-[#F4EFE6]/[0.08] sm:grid-cols-3">
                   {[
                     { stat: "$100B", label: "Global sponsorship market" },
                     { stat: "1", label: "Solo founder, in public" },
                     { stat: "8", label: "Sponsors in the live demo" },
                     { stat: "283", label: "Posts analysed in a 90-day study" },
-                    { stat: "EU-first", label: "Data residency policy" },
+                    { stat: "EU", label: "Data residency, by default" },
                     { stat: "2026", label: "Building in the open" },
                   ].map((s) => (
-                    <div
-                      key={s.label}
-                      className="rounded-2xl border border-[#F4EFE6]/[0.08] bg-[#0F1A2E]/70 p-5"
-                    >
+                    <div key={s.label} className="p-5">
                       <div className="font-[family-name:var(--font-mono)] text-2xl font-semibold tracking-tight text-[#F4EFE6] tabular-nums sm:text-3xl">
                         {s.stat}
                       </div>
@@ -178,61 +147,55 @@ export default function AboutPage() {
                     </div>
                   ))}
                 </div>
-              </div>
+              </HudFrame>
             </Reveal>
           </div>
         </Container>
       </section>
 
       {/* Illustrative pilot scenario (targets, not client results) */}
-      <section className="py-16 lg:py-24">
+      <section className="border-t border-[#F4EFE6]/[0.06] py-16 lg:py-20">
         <Container>
           <Reveal>
-            <Card className="overflow-hidden p-0">
+            <div className="overflow-hidden rounded-lg border border-[#F4EFE6]/[0.09] bg-[#0E1D33]/70">
               <div className="grid gap-0 lg:grid-cols-[1.05fr_0.95fr]">
                 <div className="p-8 lg:p-10">
-                  <Badge tone="gold" icon={<Trophy size={12} />}>
+                  <Chyron rule={false}>
                     Illustrative scenario · not a client result
-                  </Badge>
-                  <h2 className="mt-5 font-[family-name:var(--font-display)] text-balance text-3xl font-semibold tracking-[-0.01em] text-[#F4EFE6] sm:text-4xl">
-                    What a 20-week pilot{" "}
-                    <em className="italic text-gradient-brand">
-                      could look like.
-                    </em>
+                  </Chyron>
+                  <h2 className="mt-5 font-[family-name:var(--font-archivo)] text-balance text-3xl font-bold tracking-[-0.02em] text-[#F4EFE6] sm:text-4xl">
+                    What a 20-week pilot could look like.
                   </h2>
                   <p className="mt-4 text-[15px] leading-relaxed text-[#F4EFE6]/65">
                     An illustrative pilot: social analytics and per-sponsor
                     reporting wired against a real season schedule, with
                     match-day computer vision in active development. Every
                     number below is a target we would commit to, not a
-                    result, Sponsorlens has no clients yet.
+                    result — Sponsorlens has no clients yet.
                   </p>
                   <div className="mt-6 flex flex-wrap items-center gap-3">
-                    <Button
-                      href="/demo"
-                      rightIcon={<ArrowRight size={15} />}
-                    >
+                    <Button href="/demo" rightIcon={<ArrowRight size={15} />}>
                       See the live demo
                     </Button>
                   </div>
                 </div>
-                <div className="relative flex items-center justify-center bg-gradient-to-br from-[#1A2B45] to-[#0A1628] p-8 lg:p-10">
+                <div className="relative flex items-center justify-center bg-[#0A1628]/85 p-8 lg:p-10">
                   <div
                     aria-hidden
-                    className="absolute inset-0 bg-grid opacity-[0.05]"
+                    className="absolute inset-0 bg-grid opacity-[0.5]"
                   />
                   <div className="relative grid w-full max-w-sm grid-cols-2 gap-3">
                     {[
                       { label: "Pilot weeks", value: "20" },
                       { label: "Sponsors", value: "8" },
                       { label: "Platforms wired", value: "5" },
-                      { label: "EMV lift · illustrative target", value: "+24%" },
+                      { label: "EMV lift · target", value: "+24%" },
                     ].map((m) => (
                       <div
                         key={m.label}
-                        className="rounded-xl border border-[#B8975A]/30 bg-[#0F1A2E]/85 p-4"
+                        className="border border-[#F4EFE6]/[0.12] bg-[#0E1D33]/85 p-4"
                       >
-                        <div className="text-[10px] uppercase tracking-[0.18em] text-[#B8975A]">
+                        <div className="font-[family-name:var(--font-mono)] text-[10px] uppercase tracking-[0.18em] text-[#F4EFE6]/50">
                           {m.label}
                         </div>
                         <div className="mt-2 font-[family-name:var(--font-mono)] text-2xl font-semibold tabular-nums text-[#F4EFE6]">
@@ -243,39 +206,35 @@ export default function AboutPage() {
                   </div>
                 </div>
               </div>
-            </Card>
+            </div>
           </Reveal>
         </Container>
       </section>
 
-      {/* Values */}
-      <section className="py-20 lg:py-28">
+      {/* Values — numbered editorial list, no icon cards */}
+      <section className="border-t border-[#F4EFE6]/[0.06] py-16 lg:py-20">
         <Container>
           <SectionHeader
             eyebrow="How we work"
-            eyebrowIcon={<HeartHandshake size={13} />}
-            title={
-              <>
-                Four values,{" "}
-                <em className="italic text-gradient-brand">non-negotiable.</em>
-              </>
-            }
-            description="Written here because it’s easier to stay accountable in public."
+            title="Four values, non-negotiable."
+            description="Written here because it's easier to stay accountable in public."
           />
-          <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-12 grid gap-x-14 gap-y-10 md:grid-cols-2">
             {values.map((v, i) => (
               <Reveal key={v.title} delay={i * 0.05}>
-                <Card className="h-full p-6">
-                  <div className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-[#B8975A]/30 bg-[#B8975A]/[0.08] text-[#B8975A]">
-                    {v.icon}
+                <div className="flex gap-6 border-t border-[#F4EFE6]/[0.10] pt-6">
+                  <span className="font-[family-name:var(--font-mono)] text-[13px] font-semibold text-[#D8FF3E] tabular-nums">
+                    {v.n}
+                  </span>
+                  <div>
+                    <h3 className="font-[family-name:var(--font-archivo)] text-lg font-semibold tracking-tight text-[#F4EFE6]">
+                      {v.title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-relaxed text-[#F4EFE6]/60">
+                      {v.body}
+                    </p>
                   </div>
-                  <h4 className="mt-4 font-[family-name:var(--font-display)] text-base font-semibold tracking-tight text-[#F4EFE6]">
-                    {v.title}
-                  </h4>
-                  <p className="mt-1.5 text-sm leading-relaxed text-[#F4EFE6]/60">
-                    {v.body}
-                  </p>
-                </Card>
+                </div>
               </Reveal>
             ))}
           </div>
@@ -283,24 +242,18 @@ export default function AboutPage() {
       </section>
 
       {/* Founder */}
-      <section className="py-20 lg:py-28">
+      <section className="border-t border-[#F4EFE6]/[0.06] py-16 lg:py-20">
         <Container>
-          <SectionHeader
-            eyebrow="Founded by"
-            eyebrowIcon={<Users size={13} />}
-            title={
-              <>
-                A solo founder,{" "}
-                <em className="italic text-gradient-brand">shipping in public.</em>
-              </>
-            }
-            description="Sponsorlens is an independent project, built from scratch, without a pre-existing team or external funding."
-          />
-          <div className="mt-14 flex justify-center">
-            <Reveal>
-              <Card className="w-full max-w-xl p-8">
+          <div className="grid items-start gap-12 lg:grid-cols-[0.9fr_1.1fr]">
+            <SectionHeader
+              eyebrow="Founded by"
+              title="A solo founder, shipping in public."
+              description="Sponsorlens is an independent project, built from scratch, without a pre-existing team or external funding."
+            />
+            <Reveal delay={0.08}>
+              <Card className="p-8">
                 <div className="flex items-center gap-5">
-                  <div className="grid h-16 w-16 place-items-center rounded-full bg-[#8B0028]/30 text-base font-semibold text-[#F4EFE6] ring-1 ring-[#B8975A]/40">
+                  <div className="grid h-16 w-16 place-items-center border border-[#D8FF3E]/40 bg-[#0A1628] font-[family-name:var(--font-mono)] text-base font-semibold text-[#D8FF3E]">
                     {founder.name
                       .split(" ")
                       .map((n) => n[0])
@@ -308,10 +261,10 @@ export default function AboutPage() {
                       .slice(0, 2)}
                   </div>
                   <div>
-                    <div className="font-[family-name:var(--font-display)] text-lg font-semibold tracking-tight text-[#F4EFE6]">
+                    <div className="font-[family-name:var(--font-archivo)] text-lg font-semibold tracking-tight text-[#F4EFE6]">
                       {founder.name}
                     </div>
-                    <div className="text-[12px] text-[#F4EFE6]/55">
+                    <div className="font-[family-name:var(--font-mono)] text-[11px] uppercase tracking-[0.14em] text-[#F4EFE6]/55">
                       {founder.role}
                     </div>
                   </div>
@@ -319,19 +272,19 @@ export default function AboutPage() {
                 <p className="mt-5 text-[15px] leading-relaxed text-[#F4EFE6]/70">
                   {founder.bio}
                 </p>
-                <div className="mt-5 flex flex-wrap gap-3 text-[13px]">
+                <div className="mt-5 flex flex-wrap gap-4 text-[13px]">
                   <a
                     href="https://www.linkedin.com/in/guillaumehaas"
                     target="_blank"
                     rel="noreferrer noopener"
-                    className="inline-flex items-center gap-1.5 text-[#B8975A] underline underline-offset-4 hover:text-[#D8BC85]"
+                    className="inline-flex items-center gap-1.5 text-[#D8FF3E] underline underline-offset-4 hover:text-[#E9FF80]"
                   >
                     LinkedIn
                     <ArrowUpRight size={12} />
                   </a>
                   <a
                     href="mailto:guillaume.haas.nice@gmail.com"
-                    className="inline-flex items-center gap-1.5 text-[#B8975A] underline underline-offset-4 hover:text-[#D8BC85]"
+                    className="inline-flex items-center gap-1.5 text-[#D8FF3E] underline underline-offset-4 hover:text-[#E9FF80]"
                   >
                     guillaume.haas.nice@gmail.com
                   </a>
@@ -343,51 +296,30 @@ export default function AboutPage() {
       </section>
 
       {/* Timeline */}
-      <section className="py-20 lg:py-28">
+      <section className="border-t border-[#F4EFE6]/[0.06] py-16 lg:py-20">
         <Container>
-          <SectionHeader
-            eyebrow="Our story"
-            eyebrowIcon={<Trophy size={13} />}
-            title={
-              <>
-                A roadmap built{" "}
-                <em className="italic text-gradient-brand">in the open.</em>
-              </>
-            }
-          />
-          <div className="relative mx-auto mt-14 max-w-3xl">
-            <div
-              aria-hidden
-              className="absolute left-4 top-1 bottom-1 w-px bg-gradient-to-b from-[#B8975A]/55 via-[#F4EFE6]/10 to-transparent lg:left-1/2"
-            />
-            <ul className="flex flex-col gap-10">
+          <SectionHeader eyebrow="Our story" title="A roadmap built in the open." />
+          <div className="mx-auto mt-12 max-w-3xl">
+            <ul className="flex flex-col">
               {milestones.map((m, i) => (
-                <Reveal key={`${m.year}-${m.title}`} delay={i * 0.05}>
-                  <li
-                    className={`relative grid gap-4 lg:grid-cols-2 lg:gap-10 ${
-                      i % 2 === 0 ? "" : "lg:[&>*:first-child]:order-2"
-                    }`}
-                  >
+                <Reveal key={`${m.year}-${m.title}`} delay={i * 0.05} as="li">
+                  <div className="relative grid gap-2 border-l-2 border-[#F4EFE6]/[0.10] pb-10 pl-8 last:pb-0 sm:grid-cols-[140px_1fr] sm:gap-8">
                     <span
                       aria-hidden
-                      className="absolute left-4 top-3 block h-3 w-3 -translate-x-1/2 rounded-full border-2 border-[#0A1628] bg-gradient-to-br from-[#8B0028] to-[#B8975A] shadow-[0_0_0_4px_rgba(184,151,90,0.18)] lg:left-1/2"
+                      className="absolute -left-[5px] top-1.5 block h-2 w-2 bg-[#D8FF3E]"
                     />
-                    <div
-                      className={`pl-12 lg:pl-0 ${i % 2 === 0 ? "lg:text-right" : ""}`}
-                    >
-                      <div className="font-[family-name:var(--font-mono)] text-[11px] uppercase tracking-[0.22em] text-[#B8975A]">
-                        {m.year}
-                      </div>
-                      <h4 className="mt-1 font-[family-name:var(--font-display)] text-xl font-semibold text-[#F4EFE6]">
-                        {m.title}
-                      </h4>
+                    <div className="font-[family-name:var(--font-mono)] text-[12px] font-semibold uppercase tracking-[0.2em] text-[#D8FF3E]">
+                      {m.year}
                     </div>
-                    <div className="pl-12 lg:pl-0">
-                      <p className="text-[15px] leading-relaxed text-[#F4EFE6]/65">
+                    <div>
+                      <h3 className="font-[family-name:var(--font-archivo)] text-xl font-semibold text-[#F4EFE6]">
+                        {m.title}
+                      </h3>
+                      <p className="mt-2 text-[15px] leading-relaxed text-[#F4EFE6]/65">
                         {m.body}
                       </p>
                     </div>
-                  </li>
+                  </div>
                 </Reveal>
               ))}
             </ul>
@@ -396,37 +328,33 @@ export default function AboutPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 lg:py-28">
+      <section className="bg-[#050B14] py-16 lg:py-20">
         <Container>
-          <div className="relative overflow-hidden rounded-3xl border border-[#B8975A]/30 bg-gradient-to-br from-[#0F1A2E] via-[#0A1628] to-[#0F1A2E] p-12 text-center lg:p-16">
-            <GradientOrb color="red" size={380} className="-left-10 -top-10" intensity="soft" />
-            <GradientOrb color="gold" size={380} className="-right-10 -bottom-10" intensity="soft" />
-            <Badge tone="gold" icon={<Sparkles size={12} />}>
-              Design partners
-            </Badge>
-            <h2 className="mx-auto mt-5 max-w-2xl font-[family-name:var(--font-display)] text-balance text-4xl font-semibold tracking-[-0.01em] text-[#F4EFE6] sm:text-5xl">
-              Want your sponsorship{" "}
-              <em className="italic text-gradient-brand">
-                measured, not estimated?
-              </em>
-            </h2>
-            <p className="mx-auto mt-4 max-w-xl text-[#F4EFE6]/65">
-              I&apos;m looking for the first design partners: clubs, leagues
-              and brands who want their exposure measured. You get the founder,
-              the public roadmap, and a report every Monday.
-            </p>
-            <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <Button href="/contact" size="lg" rightIcon={<ArrowRight size={16} />}>
-                Get in touch
-              </Button>
-              <Link
-                href="/demo"
-                className="text-sm text-[#B8975A] underline underline-offset-4 hover:text-[#D8BC85]"
-              >
-                See the live demo →
-              </Link>
-            </div>
-          </div>
+          <Reveal>
+            <HudFrame label="Design partners" className="mx-auto max-w-4xl bg-[#0A1628]">
+              <div className="px-8 py-12 text-center lg:px-16 lg:py-14">
+                <h2 className="mx-auto max-w-2xl font-[family-name:var(--font-archivo)] text-balance text-[34px] font-bold leading-[1.06] tracking-[-0.02em] text-[#F4EFE6] sm:text-[42px]">
+                  Want your sponsorship measured, not estimated?
+                </h2>
+                <p className="mx-auto mt-4 max-w-xl text-[#F4EFE6]/65">
+                  I&apos;m looking for the first design partners: clubs, leagues
+                  and brands who want their exposure measured. You get the
+                  founder, the public roadmap, and a report every Monday.
+                </p>
+                <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+                  <Button href="/contact" size="lg" rightIcon={<ArrowRight size={16} />}>
+                    Get in touch
+                  </Button>
+                  <Link
+                    href="/demo"
+                    className="text-sm text-[#D8FF3E] underline underline-offset-4 hover:text-[#E9FF80]"
+                  >
+                    See the live demo →
+                  </Link>
+                </div>
+              </div>
+            </HudFrame>
+          </Reveal>
         </Container>
       </section>
     </>
