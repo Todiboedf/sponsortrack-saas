@@ -373,6 +373,11 @@ function HowItWorks() {
               </Reveal>
             ))}
           </ol>
+
+          <p className="mt-10 border-t border-[#F4EFE6]/[0.08] pt-5 font-[family-name:var(--font-mono)] text-[11px] uppercase tracking-[0.14em] text-[#F4EFE6]/45 tabular-nums">
+            This pipeline produced the study above · 283 posts attributed · 1
+            highlight read frame by frame · 1 report every Monday 07:00
+          </p>
         </div>
       </Container>
     </section>
