@@ -83,7 +83,7 @@ export default async function DashboardPage() {
             <Badge>Live workspace</Badge>
             <h1 className="mt-4 font-[family-name:var(--font-display)] text-balance text-3xl font-semibold leading-[1.05] tracking-[-0.02em] text-white sm:text-4xl">
               {sponsor.name}{" "}
-              <span className="text-gradient-brand">live metrics</span>
+              <span className="text-[#D8FF3E]">live metrics</span>
             </h1>
             <p className="mt-3 text-white/60">
               Logged in as {user.email}
