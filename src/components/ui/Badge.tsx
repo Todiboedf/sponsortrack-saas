@@ -1,6 +1,11 @@
 import { cn } from "@/lib/utils";
 import type { HTMLAttributes, ReactNode } from "react";
 
+/**
+ * Quiet mono chip for inline metadata (plan names, small counts). Section
+ * kickers use Chyron instead — this stays for the few inline spots where
+ * a bordered chip is genuinely the right shape.
+ */
 export function Badge({
   className,
   children,
@@ -9,30 +14,25 @@ export function Badge({
   ...props
 }: HTMLAttributes<HTMLDivElement> & {
   icon?: ReactNode;
-  tone?: "default" | "gold" | "red" | "cream";
+  /** "gold"/"red" are transitional aliases while pages migrate to Chyron. */
+  tone?: "default" | "volt" | "cream" | "gold" | "red";
 }) {
+  if (tone === "gold") tone = "volt";
+  if (tone === "red") tone = "default";
   return (
     <div
       className={cn(
-        "inline-flex items-center gap-2 rounded-full px-3 py-1 text-[11px] font-medium uppercase tracking-[0.18em] backdrop-blur",
+        "inline-flex items-center gap-2 rounded-[4px] border px-2.5 py-1 font-[family-name:var(--font-mono)] text-[11px] font-medium uppercase tracking-[0.14em]",
         tone === "default" &&
-          "border border-[#F4EFE6]/12 bg-[#F4EFE6]/[0.04] text-[#F4EFE6]/85",
-        tone === "gold" &&
-          "border border-[#B8975A]/40 bg-[#B8975A]/[0.10] text-[#D8BC85]",
-        tone === "red" &&
-          "border border-[#8B0028]/45 bg-[#8B0028]/[0.12] text-[#F4EFE6]",
-        tone === "cream" &&
-          "border border-[#0F1A2E]/12 bg-[#0F1A2E]/[0.04] text-[#0F1A2E]",
+          "border-[#F4EFE6]/15 bg-[#F4EFE6]/[0.04] text-[#F4EFE6]/80",
+        tone === "volt" && "border-[#D8FF3E]/40 bg-[#D8FF3E]/[0.08] text-[#D8FF3E]",
+        tone === "cream" && "border-[#0F1A2E]/15 bg-[#0F1A2E]/[0.04] text-[#0F1A2E]/80",
         className
       )}
       {...props}
     >
       {icon && (
-        <span
-          className={cn(
-            tone === "cream" ? "text-[#8B0028]" : "text-[#B8975A]"
-          )}
-        >
+        <span className={cn(tone === "cream" ? "text-[#0F1A2E]/60" : "text-[#D8FF3E]")}>
           {icon}
         </span>
       )}

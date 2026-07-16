@@ -5,37 +5,33 @@ import Link from "next/link";
 import { forwardRef } from "react";
 import type { ButtonHTMLAttributes, ReactNode } from "react";
 
-type Variant = "primary" | "secondary" | "ghost" | "outline" | "gold";
+type Variant = "primary" | "secondary" | "ghost" | "outline";
 type Size = "sm" | "md" | "lg";
 
+/* Rectangular, chyron-like CTAs. Primary is the one volt moment per
+ * viewport; everything else stays quiet cream-on-navy. */
 const base =
   "relative inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium " +
-  "transition-all duration-200 ease-out active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none " +
-  "motion-safe:hover:scale-[1.02] " +
-  "rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#B8975A]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A1628]";
+  "transition-colors duration-150 ease-out active:translate-y-px disabled:opacity-50 disabled:pointer-events-none " +
+  "rounded-[6px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D8FF3E]/80 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A1628]";
 
 const variants: Record<Variant, string> = {
   primary:
-    "text-[#F4EFE6] bg-[#8B0028] " +
-    "shadow-[0_10px_36px_-12px_rgba(139,0,40,0.65),inset_0_1px_0_rgba(244,239,230,0.18)] " +
-    "hover:bg-[#A00030] hover:shadow-[0_14px_46px_-10px_rgba(139,0,40,0.85),0_0_38px_-6px_rgba(184, 151, 90,0.45),inset_0_1px_0_rgba(244,239,230,0.22)]",
+    "bg-[#D8FF3E] text-[#0A1628] font-semibold hover:bg-[#E9FF80] " +
+    "shadow-[0_0_0_1px_rgba(216,255,62,0.35),0_8px_28px_-12px_rgba(216,255,62,0.45)]",
   secondary:
-    "text-[#F4EFE6] bg-[#F4EFE6]/[0.06] border border-[#F4EFE6]/12 backdrop-blur " +
-    "hover:bg-[#F4EFE6]/[0.10] hover:border-[#F4EFE6]/22 hover:shadow-[0_0_30px_-6px_rgba(184, 151, 90,0.35)]",
-  ghost:
-    "text-[#F4EFE6]/85 hover:text-[#F4EFE6] hover:bg-[#F4EFE6]/[0.06]",
+    "text-[#F4EFE6] bg-[#F4EFE6]/[0.06] border border-[#F4EFE6]/15 " +
+    "hover:bg-[#F4EFE6]/[0.10] hover:border-[#F4EFE6]/25",
+  ghost: "text-[#F4EFE6]/85 hover:text-[#F4EFE6] hover:bg-[#F4EFE6]/[0.06]",
   outline:
-    "text-[#F4EFE6] border border-[#B8975A]/40 bg-transparent hover:bg-[#B8975A]/[0.08] hover:border-[#B8975A]/55 hover:shadow-[0_0_32px_-6px_rgba(184, 151, 90,0.45)]",
-  gold:
-    "text-[#0A1628] bg-[#B8975A] hover:bg-[#D8BC85] " +
-    "shadow-[0_10px_30px_-12px_rgba(184,151,90,0.55),inset_0_1px_0_rgba(255,255,255,0.25)] " +
-    "hover:shadow-[0_14px_40px_-8px_rgba(184,151,90,0.7),0_0_32px_-6px_rgba(184, 151, 90,0.35),inset_0_1px_0_rgba(255,255,255,0.32)]",
+    "text-[#F4EFE6] border border-[#F4EFE6]/25 bg-transparent " +
+    "hover:border-[#D8FF3E]/60 hover:text-[#F4EFE6] hover:bg-[#D8FF3E]/[0.06]",
 };
 
 const sizes: Record<Size, string> = {
   sm: "h-9 px-4 text-[13px]",
   md: "h-11 px-5 text-sm",
-  lg: "h-13 px-6 text-[15px]",
+  lg: "h-12 px-6 text-[15px]",
 };
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {

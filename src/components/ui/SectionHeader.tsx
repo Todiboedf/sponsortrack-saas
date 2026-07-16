@@ -1,10 +1,11 @@
 import { cn } from "@/lib/utils";
-import { Badge } from "./Badge";
+import { Chyron } from "./Chyron";
 import { Reveal } from "./Reveal";
 import type { ReactNode } from "react";
 
 type Props = {
   eyebrow?: string;
+  /** Transitional no-op while pages migrate to the chyron kicker. */
   eyebrowIcon?: ReactNode;
   title: ReactNode;
   description?: ReactNode;
@@ -12,13 +13,17 @@ type Props = {
   align?: "left" | "center";
 };
 
+/**
+ * Section heading: chyron kicker + Archivo headline + one supporting
+ * paragraph. Left-aligned by default — the broadcast grid reads as an
+ * editorial column, not centered slides.
+ */
 export function SectionHeader({
   eyebrow,
-  eyebrowIcon,
   title,
   description,
   className,
-  align = "center",
+  align = "left",
 }: Props) {
   return (
     <div
@@ -30,13 +35,13 @@ export function SectionHeader({
     >
       {eyebrow && (
         <Reveal>
-          <Badge icon={eyebrowIcon}>{eyebrow}</Badge>
+          <Chyron rule={align === "left"}>{eyebrow}</Chyron>
         </Reveal>
       )}
       <Reveal delay={0.05}>
         <h2
           className={cn(
-            "font-[family-name:var(--font-display)] text-balance text-4xl font-semibold tracking-[-0.02em] text-white sm:text-5xl lg:text-[54px] lg:leading-[1.05]",
+            "font-[family-name:var(--font-archivo)] text-balance text-[34px] font-bold leading-[1.06] tracking-[-0.02em] text-[#F4EFE6] sm:text-[42px]",
             align === "center" ? "max-w-3xl mx-auto" : "max-w-3xl"
           )}
         >
@@ -47,7 +52,7 @@ export function SectionHeader({
         <Reveal delay={0.1}>
           <p
             className={cn(
-              "text-pretty text-base text-white/60 sm:text-lg",
+              "text-pretty text-base text-[#F4EFE6]/65 sm:text-lg",
               align === "center" ? "max-w-2xl mx-auto" : "max-w-2xl"
             )}
           >
