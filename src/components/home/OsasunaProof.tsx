@@ -1,9 +1,9 @@
 import Image from "next/image";
-import { ArrowRight, ScanSearch } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Container } from "@/components/ui/Container";
-import { Badge } from "@/components/ui/Badge";
+import { Chyron } from "@/components/ui/Chyron";
 import { Button } from "@/components/ui/Button";
-import { DetectionBox } from "@/components/ui/DetectionBox";
+import { HudFrame } from "@/components/ui/HudFrame";
 import { CountUp } from "@/components/CountUp";
 import { Reveal } from "@/components/ui/Reveal";
 
@@ -36,21 +36,16 @@ const measures: Array<{
 
 export function OsasunaProof() {
   return (
-    <section className="relative py-20 lg:py-28">
+    <section className="relative py-16 lg:py-20">
       <Container>
         <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
           <div>
             <Reveal>
-              <Badge tone="gold" icon={<ScanSearch size={12} />}>
-                Public study
-              </Badge>
+              <Chyron>Public study · not a client</Chyron>
             </Reveal>
             <Reveal delay={0.05}>
-              <h2 className="mt-6 font-[family-name:var(--font-display)] text-balance text-4xl font-semibold tracking-[-0.01em] text-[#F4EFE6] sm:text-5xl">
-                Osasuna,{" "}
-                <em className="italic text-gradient-brand">
-                  our study ground.
-                </em>
+              <h2 className="mt-6 font-[family-name:var(--font-archivo)] text-balance text-[34px] font-bold leading-[1.06] tracking-[-0.02em] text-[#F4EFE6] sm:text-[42px]">
+                Osasuna, our study ground.
               </h2>
             </Reveal>
             <Reveal delay={0.1}>
@@ -78,10 +73,10 @@ export function OsasunaProof() {
 
           <Reveal delay={0.1}>
             <figure>
-              <DetectionBox
+              <HudFrame
                 label="Weekly report · Mondays 07:00"
-                tone="gold"
-                className="bg-[#0F1A2E] p-2.5"
+                tone="dim"
+                className="bg-[#0E1D33] p-2.5"
               >
                 <div className="relative aspect-[7/6] overflow-hidden">
                   <Image
@@ -93,11 +88,11 @@ export function OsasunaProof() {
                   />
                   <div
                     aria-hidden
-                    className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#0F1A2E] to-transparent"
+                    className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#0E1D33] to-transparent"
                   />
                 </div>
-              </DetectionBox>
-              <figcaption className="mt-3 text-[11px] uppercase tracking-[0.16em] text-[#F4EFE6]/45">
+              </HudFrame>
+              <figcaption className="mt-3 font-[family-name:var(--font-mono)] text-[11px] uppercase tracking-[0.14em] text-[#F4EFE6]/45">
                 Page 1 of the real weekly report, generated from this study.
               </figcaption>
             </figure>
@@ -106,28 +101,24 @@ export function OsasunaProof() {
 
         <div className="mt-14 grid gap-6 md:grid-cols-3">
           {measures.map((m, i) => (
-            <DetectionBox
-              key={m.tag}
-              label={m.tag}
-              tone={i === 2 ? "red" : "gold"}
-              delay={i * 0.12}
-              className="bg-[#0F1A2E]/60"
-            >
-              <div className="p-6 pt-7">
-                <div className="font-[family-name:var(--font-mono)] text-[42px] font-semibold leading-none tracking-tight text-[#F4EFE6] tabular-nums">
-                  <CountUp
-                    to={m.value.to}
-                    prefix={m.value.prefix}
-                    suffix={m.value.suffix}
-                    duration={1.2}
-                    delay={0.35 + i * 0.12}
-                  />
+            <Reveal key={m.tag} delay={i * 0.08}>
+              <HudFrame label={m.tag} className="h-full bg-[#0E1D33]/60">
+                <div className="p-6 pt-7">
+                  <div className="font-[family-name:var(--font-mono)] text-[42px] font-semibold leading-none tracking-tight text-[#F4EFE6] tabular-nums">
+                    <CountUp
+                      to={m.value.to}
+                      prefix={m.value.prefix}
+                      suffix={m.value.suffix}
+                      duration={0.8}
+                      delay={0.15 + i * 0.08}
+                    />
+                  </div>
+                  <p className="mt-3.5 text-[14px] leading-relaxed text-[#F4EFE6]/65">
+                    {m.body}
+                  </p>
                 </div>
-                <p className="mt-3.5 text-[14px] leading-relaxed text-[#F4EFE6]/65">
-                  {m.body}
-                </p>
-              </div>
-            </DetectionBox>
+              </HudFrame>
+            </Reveal>
           ))}
         </div>
       </Container>

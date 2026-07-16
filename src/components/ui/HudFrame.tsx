@@ -67,7 +67,7 @@ export function HudFrame({
         </span>
       )}
       {detail && (
-        <span className="absolute -top-[10px] right-4 z-10 inline-flex items-center bg-[#0A1628] px-1.5 py-[2px] font-[family-name:var(--font-mono)] text-[10px] uppercase tracking-[0.14em] text-[#F4EFE6]/60 ring-1 ring-[#F4EFE6]/15">
+        <span className="absolute -top-[10px] right-4 z-10 hidden items-center bg-[#0A1628] px-1.5 py-[2px] font-[family-name:var(--font-mono)] text-[10px] uppercase tracking-[0.14em] text-[#F4EFE6]/60 ring-1 ring-[#F4EFE6]/15 sm:inline-flex">
           {detail}
         </span>
       )}

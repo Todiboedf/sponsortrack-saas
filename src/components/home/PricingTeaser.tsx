@@ -3,14 +3,13 @@
 import { useState } from "react";
 import Link from "next/link";
 import { motion } from "motion/react";
-import { ArrowRight, Check, Sparkles } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { FeatureBadge, type FeatureStatus } from "@/components/ui/FeatureBadge";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Reveal } from "@/components/ui/Reveal";
-import { GradientOrb } from "@/components/GradientOrb";
 import { cn } from "@/lib/utils";
 
 type Billing = "monthly" | "yearly";
@@ -107,43 +106,37 @@ function formatPrice(amount: number, billing: Billing) {
 export function PricingTeaser() {
   const [billing, setBilling] = useState<Billing>("monthly");
   return (
-    <section id="pricing" className="relative py-24 lg:py-32">
-      <GradientOrb color="red" size={520} className="-left-32 top-0" intensity="soft" />
+    <section id="pricing" className="relative py-16 lg:py-20">
       <Container>
         <SectionHeader
           eyebrow="Pricing"
-          eyebrowIcon={<Sparkles size={13} />}
-          title={
-            <>
-              Transparent pricing.{" "}
-              <em className="italic text-gradient-brand">No surprises.</em>
-            </>
-          }
-          description="Most of our competitors hide pricing behind a demo. We don’t. Pick a plan, start a 14-day trial, switch at any time."
+          align="center"
+          title="Transparent pricing. No surprises."
+          description="Most of our competitors hide pricing behind a demo. We don't. Pick a plan, start a 14-day trial, switch at any time."
         />
 
         <div className="mt-10 flex justify-center">
-          <div className="inline-flex items-center gap-1 rounded-full border border-[#F4EFE6]/12 bg-[#F4EFE6]/[0.04] p-1 backdrop-blur">
+          <div className="inline-flex items-center gap-1 rounded-[8px] border border-[#F4EFE6]/12 bg-[#F4EFE6]/[0.04] p-1">
             {(["monthly", "yearly"] as Billing[]).map((b) => (
               <button
                 key={b}
                 onClick={() => setBilling(b)}
                 className={cn(
-                  "relative rounded-full px-5 py-2 text-sm font-medium transition-colors",
-                  billing === b ? "text-[#F4EFE6]" : "text-[#F4EFE6]/55 hover:text-[#F4EFE6]"
+                  "relative rounded-[6px] px-5 py-2 text-sm font-medium transition-colors",
+                  billing === b ? "text-[#0A1628]" : "text-[#F4EFE6]/55 hover:text-[#F4EFE6]"
                 )}
               >
                 {billing === b && (
                   <motion.span
                     layoutId="home-price-pill"
-                    className="absolute inset-0 rounded-full bg-[#8B0028] ring-1 ring-[#B8975A]/35"
+                    className="absolute inset-0 rounded-[6px] bg-[#D8FF3E]"
                     transition={{ type: "spring", stiffness: 400, damping: 32 }}
                   />
                 )}
                 <span className="relative">
                   {b === "monthly" ? "Monthly" : "Yearly"}
                   {b === "yearly" && (
-                    <span className="ml-2 rounded-full bg-[#B8975A]/25 px-1.5 py-0.5 text-[10px] font-semibold text-[#D8BC85]">
+                    <span className="ml-2 font-[family-name:var(--font-mono)] text-[10px] font-semibold">
                       −20%
                     </span>
                   )}
@@ -163,17 +156,16 @@ export function PricingTeaser() {
               <Reveal key={t.name} delay={i * 0.07}>
                 <Card
                   className={cn(
-                    "flex h-full flex-col p-8",
-                    t.featured &&
-                      "border-[#B8975A]/40 bg-gradient-to-b from-[#1A2B45] to-[#0A1628] glow-brand"
+                    "lock-on flex h-full flex-col p-8",
+                    t.featured && "border-[#D8FF3E]/40 bg-[#0E1D33]"
                   )}
                 >
                   <div className="flex items-center justify-between">
-                    <h3 className="font-[family-name:var(--font-display)] text-xl font-semibold tracking-tight text-[#F4EFE6]">
+                    <h3 className="font-[family-name:var(--font-archivo)] text-xl font-semibold tracking-tight text-[#F4EFE6]">
                       {t.name}
                     </h3>
                     {t.featured && (
-                      <span className="rounded-full bg-[#B8975A] px-3 py-0.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-[#0A1628]">
+                      <span className="bg-[#D8FF3E] px-2 py-0.5 font-[family-name:var(--font-mono)] text-[10px] font-semibold uppercase tracking-[0.14em] text-[#0A1628]">
                         Most popular
                       </span>
                     )}
@@ -181,7 +173,7 @@ export function PricingTeaser() {
                   <div className="mt-5 min-h-[90px]">
                     <div className="flex items-baseline gap-1">
                       {t.priceFrom && (
-                        <span className="mr-1 text-sm font-medium uppercase tracking-[0.18em] text-[#B8975A]">
+                        <span className="mr-1 font-[family-name:var(--font-mono)] text-[11px] font-medium uppercase tracking-[0.14em] text-[#F4EFE6]/55">
                           from
                         </span>
                       )}
@@ -192,7 +184,7 @@ export function PricingTeaser() {
                     </div>
                     <div className="mt-1 text-[12px] text-[#F4EFE6]/50">{price.sub}</div>
                     {t.setupNote && (
-                      <div className="mt-1 text-[12px] font-medium text-[#B8975A]">
+                      <div className="mt-1 font-[family-name:var(--font-mono)] text-[12px] font-medium text-[#E8A33D]">
                         {t.setupNote}
                       </div>
                     )}
@@ -215,13 +207,13 @@ export function PricingTeaser() {
                       14-day free trial · no credit card · EU data residency
                     </p>
                   )}
-                  <ul className="mt-7 flex flex-col gap-3 border-t border-[#F4EFE6]/[0.06] pt-6">
+                  <ul className="mt-7 flex flex-col gap-3 border-t border-[#F4EFE6]/[0.08] pt-6">
                     {t.features.map((f) => (
                       <li
                         key={f.text}
                         className="inline-flex items-start gap-2.5 text-[14px] text-[#F4EFE6]/80"
                       >
-                        <Check size={16} className="mt-0.5 shrink-0 text-[#B8975A]" />
+                        <Check size={16} className="mt-0.5 shrink-0 text-[#D8FF3E]" />
                         <span>
                           {f.text}
                           {f.status && (
@@ -242,7 +234,7 @@ export function PricingTeaser() {
             Looking for a side-by-side comparison?{" "}
             <Link
               href="/pricing"
-              className="text-[#B8975A] underline underline-offset-4 hover:text-[#D8BC85]"
+              className="text-[#D8FF3E] underline underline-offset-4 hover:text-[#E9FF80]"
             >
               See the full pricing page →
             </Link>
