@@ -70,7 +70,7 @@ export type CvLiveData = {
 };
 
 const FALLBACK_SPONSORS = [
-  { id: "all", label: "All sponsors", color: "#B8975A" },
+  { id: "all", label: "All sponsors", color: "#D8FF3E" },
   { id: "northwind", label: "Northwind", color: "#EC1C23" },
   { id: "vertex", label: "Vertex", color: "#6B7280" },
   { id: "lumina", label: "Lumina", color: "#D71920" },
@@ -112,7 +112,7 @@ const FALLBACK_TREND = [
 ];
 
 const FALLBACK_EMV = [
-  { name: "Instagram", value: 3.2, color: "#B8975A" },
+  { name: "Instagram", value: 3.2, color: "#D8FF3E" },
   { name: "TikTok", value: 2.1, color: "#A00030" },
   { name: "X/Twitter", value: 1.3, color: "#F4EFE6" },
   { name: "YouTube", value: 0.9, color: "#10B981" },
@@ -386,7 +386,7 @@ export default function DemoClient({
               <div>
                 <h1 className="font-[family-name:var(--font-display)] text-balance text-4xl font-semibold leading-[1.05] tracking-[-0.02em] text-white sm:text-5xl lg:text-[56px]">
                   The Sponsorlens dashboard.{" "}
-                  <span className="text-gradient-brand">Live, in your browser.</span>
+                  <span className="text-[#D8FF3E]">Live, in your browser.</span>
                 </h1>
                 <p className="mt-4 max-w-xl text-[15px] text-white/60">
                   {isLive
@@ -487,8 +487,8 @@ export default function DemoClient({
                   <AreaChart data={trendData} margin={{ top: 5, right: 10, left: -20, bottom: 0 }}>
                     <defs>
                       <linearGradient id="g-ig" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="#B8975A" stopOpacity={0.5} />
-                        <stop offset="100%" stopColor="#B8975A" stopOpacity={0} />
+                        <stop offset="0%" stopColor="#D8FF3E" stopOpacity={0.5} />
+                        <stop offset="100%" stopColor="#D8FF3E" stopOpacity={0} />
                       </linearGradient>
                       <linearGradient id="g-tt" x1="0" y1="0" x2="0" y2="1">
                         <stop offset="0%" stopColor="#A00030" stopOpacity={0.5} />
@@ -525,7 +525,7 @@ export default function DemoClient({
                       <Area
                         type="monotone"
                         dataKey="Instagram"
-                        stroke="#B8975A"
+                        stroke="#D8FF3E"
                         strokeWidth={2}
                         fill="url(#g-ig)"
                       />
@@ -705,7 +705,7 @@ export default function DemoClient({
               <ul className="mt-4 divide-y divide-white/[0.05]">
                 {topPosts.map((p, i) => (
                   <li key={p.caption} className="grid grid-cols-[auto_1fr_auto] gap-4 py-4">
-                    <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-xl bg-gradient-to-br from-[#8B0028] to-[#B8975A] ring-1 ring-white/10">
+                    <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-xl bg-gradient-to-br from-[#8B0028] to-[#D8FF3E] ring-1 ring-white/10">
                       <div className="absolute inset-0 grid place-items-center text-white/80">
                         {p.icon}
                       </div>
@@ -789,9 +789,9 @@ export default function DemoClient({
                         className={cn(
                           "mt-1 inline-block h-2 w-2 rounded-full",
                           a.tone === "emerald" && "bg-emerald-400",
-                          a.tone === "gold" && "bg-[#B8975A]",
+                          a.tone === "gold" && "bg-[#D8FF3E]",
                           a.tone === "amber" && "bg-amber-400",
-                          a.tone === "blue" && "bg-[#B8975A]"
+                          a.tone === "blue" && "bg-[#D8FF3E]"
                         )}
                       />
                       <div>

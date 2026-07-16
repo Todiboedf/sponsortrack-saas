@@ -53,12 +53,12 @@ export function CvExposurePanel({
     <div className="rounded-2xl border border-[#F4EFE6]/[0.08] bg-[#0F1A2E]/70 p-6">
       <div className="flex items-baseline justify-between gap-4">
         <div>
-          <div className="text-[11px] uppercase tracking-[0.18em] text-[#B8975A]">
+          <div className="text-[11px] uppercase tracking-[0.18em] text-[#D8FF3E]">
             {title}
           </div>
           <div className="mt-1 text-sm text-[#F4EFE6]/55">{subtitle}</div>
         </div>
-        <span className="shrink-0 rounded-full border border-[#B8975A]/30 bg-[#B8975A]/[0.08] px-2.5 py-1 text-[10px] uppercase tracking-[0.18em] text-[#B8975A]">
+        <span className="shrink-0 rounded-full border border-[#D8FF3E]/30 bg-[#D8FF3E]/[0.08] px-2.5 py-1 text-[10px] uppercase tracking-[0.18em] text-[#D8FF3E]">
           In development
         </span>
       </div>
@@ -81,7 +81,7 @@ export function CvExposurePanel({
             </div>
             <div className="mt-1.5 h-2 overflow-hidden rounded-full bg-[#F4EFE6]/[0.06]">
               <div
-                className="h-full rounded-full bg-gradient-to-r from-[#8B0028] via-[#A00030] to-[#B8975A]"
+                className="h-full rounded-full bg-gradient-to-r from-[#8B0028] via-[#A00030] to-[#D8FF3E]"
                 style={{ width: `${(r.visibleSeconds / max) * 100}%` }}
               />
             </div>
@@ -90,7 +90,7 @@ export function CvExposurePanel({
                 {r.detections.toLocaleString("en-US")} detections · {r.avgAreaPct}% avg area
               </span>
               {r.estMediaValue != null && (
-                <span className="text-[#B8975A]">
+                <span className="text-[#D8FF3E]">
                   €{r.estMediaValue.toLocaleString("en-US", { maximumFractionDigits: 0 })}
                 </span>
               )}

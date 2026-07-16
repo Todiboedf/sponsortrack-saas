@@ -16,7 +16,7 @@ const STEPS = [
 export function CvHowItWorks() {
   return (
     <div className="rounded-2xl border border-[#F4EFE6]/[0.08] bg-[#0F1A2E]/70 p-6">
-      <div className="text-[11px] uppercase tracking-[0.18em] text-[#B8975A]">
+      <div className="text-[11px] uppercase tracking-[0.18em] text-[#D8FF3E]">
         How it works
       </div>
       <div className="mt-1 text-sm text-[#F4EFE6]/55">
@@ -29,7 +29,7 @@ export function CvHowItWorks() {
             key={s.n}
             className="rounded-xl border border-[#F4EFE6]/[0.06] bg-[#F4EFE6]/[0.02] p-4"
           >
-            <div className="font-[family-name:var(--font-mono)] text-[11px] text-[#B8975A]">
+            <div className="font-[family-name:var(--font-mono)] text-[11px] text-[#D8FF3E]">
               {s.n}
             </div>
             <div className="mt-1 text-sm font-medium text-[#F4EFE6]">{s.title}</div>
@@ -61,7 +61,7 @@ export function CvHowItWorks() {
             playsInline
             preload="metadata"
             aria-label="Looped clip of the model detecting sponsor logos on broadcast footage"
-            className="w-full rounded-xl border border-[#B8975A]/30"
+            className="w-full rounded-xl border border-[#D8FF3E]/30"
             ref={(el) => {
               // React can omit the muted attribute in SSR markup; set it
               // explicitly so mobile autoplay policies are satisfied.
@@ -71,7 +71,7 @@ export function CvHowItWorks() {
               }
             }}
           />
-          <figcaption className="mt-2 text-[11px] uppercase tracking-[0.14em] text-[#B8975A]">
+          <figcaption className="mt-2 text-[11px] uppercase tracking-[0.14em] text-[#D8FF3E]">
             Same footage, live model output (22s loop)
           </figcaption>
         </figure>
