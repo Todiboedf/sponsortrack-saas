@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
-import { Shield } from "lucide-react";
 import { Container } from "@/components/ui/Container";
-import { Badge } from "@/components/ui/Badge";
-import { GradientOrb } from "@/components/GradientOrb";
+import { Chyron } from "@/components/ui/Chyron";
 
 export const metadata: Metadata = {
   title: "Privacy policy",
@@ -16,16 +14,16 @@ const LAST_UPDATED = "April 24, 2026";
 export default function PrivacyPage() {
   return (
     <>
-      <section className="relative overflow-hidden pt-36 pb-10 lg:pt-44">
-        <GradientOrb color="red" size={480} className="-left-40 -top-10" />
-        <GradientOrb color="gold" size={420} className="-right-40 top-20" />
+      <section className="relative overflow-hidden pt-32 pb-10 lg:pt-40">
         <Container>
           <div className="mx-auto flex max-w-3xl flex-col items-start gap-4">
-            <Badge icon={<Shield size={13} />}>Legal</Badge>
-            <h1 className="font-[family-name:var(--font-display)] text-balance text-4xl font-semibold leading-[1.1] tracking-[-0.02em] text-white sm:text-5xl lg:text-[56px]">
+            <Chyron>Legal</Chyron>
+            <h1 className="font-[family-name:var(--font-archivo)] text-balance text-4xl font-bold leading-[1.06] tracking-[-0.02em] text-[#F4EFE6] sm:text-5xl">
               Privacy policy
             </h1>
-            <p className="text-white/55">Last updated · {LAST_UPDATED}</p>
+            <p className="font-[family-name:var(--font-mono)] text-[12px] uppercase tracking-[0.14em] text-[#F4EFE6]/50">
+              Last updated · {LAST_UPDATED}
+            </p>
           </div>
         </Container>
       </section>

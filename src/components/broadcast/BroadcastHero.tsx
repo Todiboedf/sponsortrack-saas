@@ -1,75 +1,81 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
+import { useReducedMotion } from "motion/react";
+import { ArrowRight } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
-import { DetectionBox } from "@/components/ui/DetectionBox";
-import { ArrowRight, Check } from "lucide-react";
-import { AnimatedHeadline } from "./AnimatedHeadline";
+import { HudFrame } from "@/components/ui/HudFrame";
 
 /**
- * Hero built around the one thing nobody else can show: our model's real
- * output on a recorded CA Osasuna – Alavés highlight. No mock dashboard,
- * no fabricated numbers — the detection loop (public/demo/detection-loop.mp4)
- * is the visual, framed by the DetectionBox identity motif with a discreet
- * scan-line sweep (the motion signature for broadcast visuals).
+ * Hero built around the one thing nobody else can show: the model's real
+ * output on a recorded CA Osasuna – Alavés highlight. The headline renders
+ * instantly (no animation gates text); the only motion is the signature
+ * HUD bracket drawing around "Measured," ~300ms after paint, pure CSS.
+ * The detection video sits beside the headline, on the fold.
  */
 export function BroadcastHero() {
   const reduced = useReducedMotion();
 
   return (
-    <section className="relative overflow-hidden pt-36 pb-16 lg:pt-44 lg:pb-24">
+    <section className="relative overflow-hidden bg-[#050B14] pt-28 pb-14 lg:pt-36 lg:pb-16">
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10 bg-grid mask-fade-radial opacity-25"
+        className="pointer-events-none absolute inset-0 bg-grid mask-fade-b opacity-60"
       />
 
-      <Container className="flex w-full flex-col items-center text-center">
-        <div className="max-w-4xl">
-          <AnimatedHeadline />
-        </div>
+      <Container size="wide" className="relative">
+        <div className="grid items-center gap-10 lg:grid-cols-[1fr_1.05fr] lg:gap-12">
+          {/* Copy column — renders instantly */}
+          <div>
+            <p className="font-expanded text-[11px] font-semibold text-[#F4EFE6]/55">
+              Sponsor intelligence · social live · broadcast CV in development
+            </p>
+            <h1 className="mt-5 font-[family-name:var(--font-archivo)] text-[52px] font-bold leading-[1.0] tracking-[-0.025em] text-[#F4EFE6] sm:text-[68px] lg:text-[72px] xl:text-[80px]">
+              <span className="relative inline-block px-3 py-1 -mx-3">
+                {/* HUD brackets lock onto the brand word ~300ms after paint
+                    (CSS-only; reduced-motion renders them static). */}
+                <span aria-hidden className="hud-lock absolute inset-0 block">
+                  <span className="absolute left-0 top-0 h-5 w-5 border-l-2 border-t-2 border-[#D8FF3E]" />
+                  <span className="absolute right-0 top-0 h-5 w-5 border-r-2 border-t-2 border-[#D8FF3E]" />
+                  <span className="absolute bottom-0 left-0 h-5 w-5 border-b-2 border-l-2 border-[#D8FF3E]" />
+                  <span className="absolute bottom-0 right-0 h-5 w-5 border-b-2 border-r-2 border-[#D8FF3E]" />
+                </span>
+                <span
+                  aria-hidden
+                  className="hud-tag absolute -top-[13px] left-3 z-10 inline-flex items-center bg-[#D8FF3E] px-1.5 py-[2px] font-[family-name:var(--font-mono)] text-[10px] font-semibold uppercase tracking-[0.12em] text-[#0A1628]"
+                >
+                  measured · 0.98
+                </span>
+                Measured,
+              </span>
+              <span className="block text-[#F4EFE6]/60">not estimated.</span>
+            </h1>
+            <p className="mt-6 max-w-md text-pretty text-[17px] text-[#F4EFE6]/70 sm:text-lg">
+              Sponsor exposure for clubs, leagues and brands — measured daily,
+              reported every Monday at 07:00.
+            </p>
 
-        <p className="mt-6 max-w-2xl text-pretty text-[17px] text-slate-300 sm:text-lg">
-          Sponsor exposure, measured daily. Reported Mondays 07:00.
-        </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+              <Button href="/demo" size="lg" rightIcon={<ArrowRight size={16} />}>
+                Open the live demo
+              </Button>
+              <Button href="/contact" size="lg" variant="outline">
+                Start free trial
+              </Button>
+            </div>
 
-        <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row">
-          <Button
-            href="/demo"
-            size="lg"
-            variant="primary"
-            rightIcon={<ArrowRight size={16} />}
-          >
-            See it live
-          </Button>
-          <Button href="/contact" size="lg" variant="ghost">
-            Start free trial
-          </Button>
-        </div>
+            <p className="mt-6 font-[family-name:var(--font-mono)] text-[11px] uppercase tracking-[0.14em] text-[#F4EFE6]/45">
+              14-day trial · no credit card · EU data residency
+            </p>
+          </div>
 
-        <div className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[13px] text-[#F4EFE6]/55">
-          <span className="inline-flex items-center gap-2">
-            <Check size={14} className="text-[#B8975A]" />
-            14-day free trial
-          </span>
-          <span className="inline-flex items-center gap-2">
-            <Check size={14} className="text-[#B8975A]" />
-            No credit card required
-          </span>
-          <span className="inline-flex items-center gap-2">
-            <Check size={14} className="text-[#B8975A]" />
-            EU data residency
-          </span>
-        </div>
-
-        <div className="mt-14 w-full max-w-5xl">
-          <DetectionBox
-            label="Real detections · CA Osasuna – Alavés"
-            tone="red"
-            delay={0.2}
-            className="bg-[#060D18] shadow-[0_40px_90px_-40px_rgba(139,0,40,0.45)]"
-          >
-            <div className="relative overflow-hidden">
+          {/* The real thing: model output on recorded broadcast */}
+          <div>
+            <HudFrame
+              label="Real detections · Osasuna – Alavés"
+              detail="22s loop · recorded"
+              className="bg-[#050B14]"
+            >
               <video
                 src="/demo/detection-loop.mp4"
                 poster="/demo/detection-poster.jpg"
@@ -89,46 +95,17 @@ export function BroadcastHero() {
                   }
                 }}
               />
-              {!reduced && <ScanSweep />}
+            </HudFrame>
+            <div className="mt-3 flex items-center justify-between gap-3 font-[family-name:var(--font-mono)] text-[11px] uppercase tracking-[0.14em] text-[#F4EFE6]/45">
+              <span>Real footage · real detections · public study</span>
+              <span className="hidden items-center gap-1.5 sm:inline-flex">
+                <span aria-hidden className="h-1.5 w-1.5 bg-[#D8FF3E]" />
+                logo detection POC
+              </span>
             </div>
-          </DetectionBox>
-          <div className="mt-4 flex flex-col items-center justify-between gap-1.5 text-[11px] uppercase tracking-[0.16em] text-[#F4EFE6]/45 sm:flex-row sm:text-left">
-            <span>
-              Real footage. Real detections. CA Osasuna, measured as a public
-              study.
-            </span>
-            <span className="font-[family-name:var(--font-mono)] text-[#B8975A]/80">
-              22s loop · recorded broadcast
-            </span>
           </div>
         </div>
       </Container>
     </section>
-  );
-}
-
-/* Discreet scan-line sweeping the broadcast visual — the only ambient
- * motion in the hero. Removed entirely under prefers-reduced-motion. */
-function ScanSweep() {
-  return (
-    <motion.div
-      aria-hidden
-      className="pointer-events-none absolute inset-x-0 z-10 h-px"
-      style={{
-        background:
-          "linear-gradient(90deg, transparent 0%, rgba(184,151,90,0.55) 35%, rgba(184,151,90,0.8) 50%, rgba(184,151,90,0.55) 65%, transparent 100%)",
-        boxShadow: "0 0 14px rgba(184,151,90,0.3)",
-        mixBlendMode: "screen",
-      }}
-      initial={{ top: "-2%", opacity: 0 }}
-      animate={{ top: ["-2%", "102%"], opacity: [0, 0.5, 0.5, 0] }}
-      transition={{
-        duration: 6,
-        repeat: Infinity,
-        ease: "linear",
-        repeatDelay: 5,
-        times: [0, 0.08, 0.92, 1],
-      }}
-    />
   );
 }

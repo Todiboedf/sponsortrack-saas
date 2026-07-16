@@ -1,77 +1,52 @@
 import Link from "next/link";
-import {
-  ArrowRight,
-  BarChart3,
-  Camera,
-  Check,
-  FileSpreadsheet,
-  Gauge,
-  LineChart,
-  Sparkles,
-  Target,
-  TrendingUp,
-} from "lucide-react";
+import Image from "next/image";
+import { ArrowRight, Check } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
-import { Badge } from "@/components/ui/Badge";
-import { Card } from "@/components/ui/Card";
-import { DetectionBox } from "@/components/ui/DetectionBox";
+import { Chyron } from "@/components/ui/Chyron";
+import { HudFrame } from "@/components/ui/HudFrame";
+import { ConfidenceTag } from "@/components/ui/ConfidenceTag";
 import { FeatureBadge, type FeatureStatus } from "@/components/ui/FeatureBadge";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Reveal } from "@/components/ui/Reveal";
-import { GradientOrb } from "@/components/GradientOrb";
-import { AnimatedMesh } from "@/components/AnimatedMesh";
-import { HowItWorksScene } from "@/components/HowItWorksScene";
-import { SectionDivider } from "@/components/SectionDivider";
 import { OsasunaProof } from "@/components/home/OsasunaProof";
 import { PricingTeaser } from "@/components/home/PricingTeaser";
+import { StudyTicker } from "@/components/home/StudyTicker";
 import { BroadcastHero } from "@/components/broadcast/BroadcastHero";
-import { ChaosBackground } from "@/components/scenes/ChaosBackground";
-import { PlatformConvergence } from "@/components/scenes/PlatformConvergence";
-import { TwoViewsConvergence } from "@/components/scenes/TwoViewsConvergence";
-import { GoldenHourBackdrop } from "@/components/scenes/GoldenHourBackdrop";
-import { CountUp } from "@/components/CountUp";
 
 export default function HomePage() {
   return (
     <>
       <BroadcastHero />
+      <StudyTicker />
       <OsasunaProof />
       <ProblemSection />
       <PlatformSection />
       <HowItWorks />
-      <SectionDivider className="my-2" />
       <PerSponsorSection />
-      <StatsSection />
-      <GoldenHourBackdrop>
-        <PricingTeaser />
-        <SectionDivider className="my-2" />
-        <FinalCta />
-      </GoldenHourBackdrop>
+      <PrelaunchStrip />
+      <PricingTeaser />
+      <FinalCta />
     </>
   );
 }
 
-/* Hero lives in components/broadcast/BroadcastHero.tsx (real detection
- * footage). The proof section right under it (home/OsasunaProof.tsx) holds
- * the three measured numbers from the public study. */
-
 /* -------------------------------------------------------------------------- */
-/* The problem                                                                */
+/* The problem — numbered editorial rows + the manual-Monday artifact         */
 /* -------------------------------------------------------------------------- */
 const problems = [
   {
-    icon: <FileSpreadsheet size={22} />,
+    n: "01",
     title: "Spreadsheets eat your week",
     body: "Social stats copy-pasted by hand. Pivot tables rebuilt every Monday. Screenshots chased before every sponsor call.",
   },
   {
-    icon: <Target size={22} />,
+    n: "02",
     title: "No proof of ROI",
-    body: "Sponsors ask the same question every quarter: ‘what did we actually get?’. Without measured exposure, the renewal is negotiated on gut feel.",
+    body: "Sponsors ask the same question every quarter: 'what did we actually get?'. Without measured exposure, the renewal is negotiated on gut feel.",
   },
   {
-    icon: <TrendingUp size={22} />,
+    n: "03",
     title: "Growth goes untracked",
     body: "A viral post. A breakout match. If nobody measured it, it never happened, and it never gets invoiced.",
   },
@@ -79,37 +54,63 @@ const problems = [
 
 function ProblemSection() {
   return (
-    <section className="relative overflow-hidden py-24 lg:py-32">
-      <ChaosBackground />
+    <section className="relative border-t border-[#F4EFE6]/[0.06] py-16 lg:py-20">
       <Container>
         <SectionHeader
           eyebrow="The problem"
-          eyebrowIcon={<Gauge size={13} />}
-          title={
-            <>
-              Sport runs on{" "}
-              <em className="italic text-gradient-brand">ten-figure budgets</em>{" "}
-              and twenty-tab spreadsheets.
-            </>
-          }
+          title="Sport runs on ten-figure budgets and twenty-tab spreadsheets."
           description="Sponsorship now lives across platforms, posts and broadcasts. Most clubs still count it by hand, after the fact."
         />
-        <div className="mt-14 grid gap-5 md:grid-cols-3">
-          {problems.map((p, i) => (
-            <Reveal key={p.title} delay={i * 0.06}>
-              <Card className="h-full p-7">
-                <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-[#B8975A]/30 bg-[#B8975A]/[0.08] text-[#B8975A]">
-                  {p.icon}
+        <div className="mt-12 grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14">
+          <ol className="flex flex-col divide-y divide-[#F4EFE6]/[0.08]">
+            {problems.map((p, i) => (
+              <Reveal key={p.n} delay={i * 0.06} as="li">
+                <div className="flex gap-6 py-7 first:pt-0 last:pb-0">
+                  <span className="font-[family-name:var(--font-mono)] text-[13px] font-semibold text-[#D8FF3E] tabular-nums">
+                    {p.n}
+                  </span>
+                  <div>
+                    <h3 className="font-[family-name:var(--font-archivo)] text-xl font-semibold tracking-tight text-[#F4EFE6]">
+                      {p.title}
+                    </h3>
+                    <p className="mt-2 max-w-lg text-[15px] leading-relaxed text-[#F4EFE6]/65">
+                      {p.body}
+                    </p>
+                  </div>
                 </div>
-                <h3 className="mt-5 font-[family-name:var(--font-display)] text-xl font-semibold tracking-tight text-[#F4EFE6]">
-                  {p.title}
-                </h3>
-                <p className="mt-3 text-[15px] leading-relaxed text-[#F4EFE6]/65">
-                  {p.body}
-                </p>
-              </Card>
-            </Reveal>
-          ))}
+              </Reveal>
+            ))}
+          </ol>
+
+          {/* Artifact: how the study replaced the manual Monday */}
+          <Reveal delay={0.1}>
+            <HudFrame label="Monday, before / after" className="bg-[#0E1D33]/70">
+              <div className="divide-y divide-[#F4EFE6]/[0.08] font-[family-name:var(--font-mono)] text-[12px] leading-relaxed">
+                <div className="p-5">
+                  <div className="text-[10px] uppercase tracking-[0.18em] text-[#8B98A9]">
+                    Counted by hand
+                  </div>
+                  <ul className="mt-3 flex flex-col gap-1.5 text-[#F4EFE6]/55">
+                    <li>9 accounts opened one by one</li>
+                    <li>screenshots pasted into a deck</li>
+                    <li>numbers stitched across 20 tabs</li>
+                    <li>broadcast exposure: nobody counts it</li>
+                  </ul>
+                </div>
+                <div className="p-5">
+                  <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.18em] text-[#D8FF3E]">
+                    Measured, in our public study
+                  </div>
+                  <ul className="mt-3 flex flex-col gap-1.5 text-[#F4EFE6]/80 tabular-nums">
+                    <li>283 posts attributed automatically</li>
+                    <li>9 accounts refreshed daily</li>
+                    <li>1 highlight read frame by frame (CV, in dev)</li>
+                    <li>1 branded PDF, Mondays 07:00</li>
+                  </ul>
+                </div>
+              </div>
+            </HudFrame>
+          </Reveal>
         </div>
       </Container>
     </section>
@@ -117,143 +118,293 @@ function ProblemSection() {
 }
 
 /* -------------------------------------------------------------------------- */
-/* The platform                                                               */
+/* The platform — asymmetric bento, one real artifact per panel               */
 /* -------------------------------------------------------------------------- */
-const features: Array<{
-  icon: React.ReactNode;
-  title: string;
-  body: string;
-  points: Array<{ text: string; status: FeatureStatus }>;
-}> = [
-  {
-    icon: <BarChart3 size={22} />,
-    title: "Unified social analytics",
-    body: "Instagram and TikTok today, deduplicated and normalised. One number per sponsor, per week. X, YouTube and Facebook are in development.",
-    points: [
-      { text: "Instagram + TikTok analytics", status: "live" },
-      { text: "Sponsored vs organic post split", status: "live" },
-      { text: "X, YouTube, Facebook", status: "dev" },
-    ],
-  },
-  {
-    icon: <Camera size={22} />,
-    title: "Match-day computer vision",
-    body: "Logo-level screen time on recorded broadcast and owned footage. The model already read a real match: 10 sponsors, one highlight, frame by frame. In development.",
-    points: [
-      { text: "Logo & screen-time detection", status: "dev" },
-      { text: "Proven on a recorded match highlight", status: "dev" },
-      { text: "GDPR-safe processing", status: "dev" },
-    ],
-  },
-  {
-    icon: <LineChart size={22} />,
-    title: "ROI that renews contracts",
-    body: "A branded PDF generated from the data, every Monday at 07:00. The renewal conversation starts from numbers, not memories.",
-    points: [
-      { text: "Branded weekly PDF reports", status: "live" },
-      { text: "Benchmarks vs market", status: "planned" },
-      { text: "Contract alerts", status: "planned" },
-    ],
-  },
+
+const socialPoints: Array<{ text: string; status: FeatureStatus }> = [
+  { text: "Instagram + TikTok analytics", status: "live" },
+  { text: "Sponsored vs organic post split", status: "live" },
+  { text: "X, YouTube, Facebook", status: "dev" },
 ];
+
+const cvPoints: Array<{ text: string; status: FeatureStatus }> = [
+  { text: "Logo & screen-time detection", status: "dev" },
+  { text: "Proven on a recorded match highlight", status: "dev" },
+  { text: "GDPR-safe processing", status: "dev" },
+];
+
+const reportPoints: Array<{ text: string; status: FeatureStatus }> = [
+  { text: "Branded weekly PDF reports", status: "live" },
+  { text: "Benchmarks vs market", status: "planned" },
+  { text: "Contract alerts", status: "planned" },
+];
+
+function PointList({ points }: { points: Array<{ text: string; status: FeatureStatus }> }) {
+  return (
+    <ul className="mt-5 flex flex-col gap-2">
+      {points.map((pt) => (
+        <li
+          key={pt.text}
+          className="inline-flex flex-wrap items-center gap-2 text-[13px] text-[#F4EFE6]/75"
+        >
+          <Check size={14} className="shrink-0 text-[#D8FF3E]" />
+          {pt.text}
+          <FeatureBadge status={pt.status} />
+        </li>
+      ))}
+    </ul>
+  );
+}
 
 function PlatformSection() {
   return (
-    <section className="relative py-24 lg:py-32">
-      <div aria-hidden className="absolute inset-0 -z-10">
-        <div className="absolute left-1/2 top-0 h-px w-2/3 -translate-x-1/2 bg-gradient-to-r from-transparent via-[#B8975A]/45 to-transparent" />
-      </div>
+    <section className="relative border-t border-[#F4EFE6]/[0.06] bg-[#050B14] py-16 lg:py-20">
       <Container>
         <SectionHeader
           eyebrow="The platform"
-          eyebrowIcon={<Sparkles size={13} />}
-          title={
-            <>
-              What we measure,{" "}
-              <em className="italic text-gradient-brand">
-                and what we don&apos;t yet.
-              </em>
-            </>
-          }
-          description="Social analytics run live today, 283 posts and nine accounts in our public study. Broadcast computer vision works on recorded footage, in development. Every bullet below carries its label."
+          title="What we measure, and what we don't yet."
+          description="Social analytics run live today — 283 posts and nine accounts in our public study. Broadcast computer vision works on recorded footage, in development. Every bullet below carries its label."
         />
-        <PlatformConvergence />
-        <div className="mt-16 grid gap-5 md:grid-cols-3">
-          {features.map((f, i) => (
-            <Reveal key={f.title} delay={i * 0.07}>
-              <Card className="group relative h-full p-8">
-                <div
-                  aria-hidden
-                  className="pointer-events-none absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-[#B8975A]/55 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-                />
-                <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-[#8B0028]/15 text-[#F4EFE6] ring-1 ring-[#8B0028]/45">
-                  {f.icon}
-                </div>
-                <h3 className="mt-5 font-[family-name:var(--font-display)] text-xl font-semibold tracking-tight text-[#F4EFE6]">
-                  {f.title}
-                </h3>
-                <p className="mt-3 text-[15px] leading-relaxed text-[#F4EFE6]/65">
-                  {f.body}
-                </p>
-                <ul className="mt-5 flex flex-col gap-2">
-                  {f.points.map((pt) => (
-                    <li
-                      key={pt.text}
-                      className="inline-flex flex-wrap items-center gap-2 text-[13px] text-[#F4EFE6]/75"
-                    >
-                      <Check size={14} className="shrink-0 text-[#B8975A]" />
-                      {pt.text}
-                      <FeatureBadge status={pt.status} />
-                    </li>
-                  ))}
-                </ul>
-              </Card>
-            </Reveal>
-          ))}
-        </div>
 
-        <Reveal delay={0.2}>
-          <div className="mt-10 flex justify-center">
-            <Button href="/features" variant="outline" rightIcon={<ArrowRight size={16} />}>
-              See all features
-            </Button>
-          </div>
-        </Reveal>
+        <div className="mt-12 grid gap-5 lg:grid-cols-5">
+          {/* Social analytics — live, the widest panel */}
+          <Reveal className="lg:col-span-3">
+            <div className="lock-on h-full rounded-lg border border-[#F4EFE6]/[0.09] bg-[#0E1D33]/80 p-7">
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <h3 className="font-[family-name:var(--font-archivo)] text-xl font-semibold tracking-tight text-[#F4EFE6]">
+                  Unified social analytics
+                </h3>
+                <ConfidenceTag label="Live" value="IG + TT" />
+              </div>
+              <p className="mt-3 max-w-lg text-[15px] leading-relaxed text-[#F4EFE6]/65">
+                Instagram and TikTok today, deduplicated and normalised. One
+                number per sponsor, per week. X, YouTube and Facebook are in
+                development.
+              </p>
+              {/* Real artifact: the study's audience split */}
+              <div className="mt-6 border border-[#F4EFE6]/[0.08] bg-[#0A1628] p-5 font-[family-name:var(--font-mono)]">
+                <div className="text-[10px] uppercase tracking-[0.18em] text-[#F4EFE6]/45">
+                  CA Osasuna study · followers by platform
+                </div>
+                <div className="mt-4 flex flex-col gap-3 text-[12px] tabular-nums">
+                  <div>
+                    <div className="mb-1 flex items-center justify-between">
+                      <span className="text-[#F4EFE6]/75">TikTok</span>
+                      <span className="text-[#F4EFE6]">5.8M</span>
+                    </div>
+                    <div className="h-1.5 bg-[#F4EFE6]/[0.06]">
+                      <div className="h-full w-[93%] bg-[#D8FF3E]" />
+                    </div>
+                  </div>
+                  <div>
+                    <div className="mb-1 flex items-center justify-between">
+                      <span className="text-[#F4EFE6]/75">Instagram</span>
+                      <span className="text-[#F4EFE6]">415k</span>
+                    </div>
+                    <div className="h-1.5 bg-[#F4EFE6]/[0.06]">
+                      <div className="h-full w-[7%] bg-[#F4EFE6]/60" />
+                    </div>
+                  </div>
+                </div>
+                <div className="mt-4 text-[11px] text-[#F4EFE6]/45">
+                  283 posts · 90 days · sponsored vs organic split included
+                </div>
+              </div>
+              <PointList points={socialPoints} />
+            </div>
+          </Reveal>
+
+          {/* CV — in development, honest framing over a real annotated frame */}
+          <Reveal delay={0.08} className="lg:col-span-2">
+            <div className="lock-on flex h-full flex-col rounded-lg border border-[#F4EFE6]/[0.09] bg-[#0E1D33]/80 p-7">
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <h3 className="font-[family-name:var(--font-archivo)] text-xl font-semibold tracking-tight text-[#F4EFE6]">
+                  Match-day computer vision
+                </h3>
+                <FeatureBadge status="dev" />
+              </div>
+              <p className="mt-3 text-[15px] leading-relaxed text-[#F4EFE6]/65">
+                Logo-level screen time on recorded broadcast and owned footage.
+                The model already read a real match: 10 sponsors, one
+                highlight, frame by frame.
+              </p>
+              <div className="relative mt-6 overflow-hidden border border-[#F4EFE6]/[0.08]">
+                <Image
+                  src="/demo/cv-annotated.jpg"
+                  alt="A real frame from the Osasuna highlight annotated by the detection model"
+                  width={640}
+                  height={360}
+                  sizes="(min-width: 1024px) 36vw, 92vw"
+                  className="block w-full"
+                />
+                <span className="absolute bottom-2 left-2 bg-[#050B14]/85 px-2 py-1 font-[family-name:var(--font-mono)] text-[10px] uppercase tracking-[0.14em] text-[#F4EFE6]/80">
+                  real model output · recorded POC
+                </span>
+              </div>
+              <PointList points={cvPoints} />
+            </div>
+          </Reveal>
+
+          {/* Reporting — live artifact */}
+          <Reveal delay={0.12} className="lg:col-span-2">
+            <div className="lock-on flex h-full flex-col rounded-lg border border-[#F4EFE6]/[0.09] bg-[#0E1D33]/80 p-7">
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <h3 className="font-[family-name:var(--font-archivo)] text-xl font-semibold tracking-tight text-[#F4EFE6]">
+                  ROI that renews contracts
+                </h3>
+                <ConfidenceTag label="Live" value="Mon 07:00" />
+              </div>
+              <p className="mt-3 text-[15px] leading-relaxed text-[#F4EFE6]/65">
+                A branded PDF generated from the data, every Monday at 07:00.
+                The renewal conversation starts from numbers, not memories.
+              </p>
+              <div className="mt-6 border border-[#F4EFE6]/[0.08] bg-[#0A1628] p-5 font-[family-name:var(--font-mono)] text-[12px]">
+                <div className="text-[10px] uppercase tracking-[0.18em] text-[#F4EFE6]/45">
+                  From the study's weekly report
+                </div>
+                <ul className="mt-3 flex flex-col gap-2 tabular-nums text-[#F4EFE6]/80">
+                  <li className="flex items-center justify-between">
+                    <span>Kosner</span><span>120.5s screen time</span>
+                  </li>
+                  <li className="flex items-center justify-between">
+                    <span>Nissan</span><span>97.5s</span>
+                  </li>
+                  <li className="flex items-center justify-between">
+                    <span>Macron</span><span>80.0s</span>
+                  </li>
+                </ul>
+              </div>
+              <PointList points={reportPoints} />
+            </div>
+          </Reveal>
+
+          {/* Honesty note panel completes the bento row */}
+          <Reveal delay={0.16} className="lg:col-span-3">
+            <div className="flex h-full flex-col justify-between rounded-lg border border-[#D8FF3E]/25 bg-[#0A1628] p-7">
+              <div>
+                <Chyron>Why the labels</Chyron>
+                <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-[#F4EFE6]/70">
+                  Every capability on this site is tagged{" "}
+                  <FeatureBadge status="live" className="mx-1" />
+                  <FeatureBadge status="dev" className="mx-1" /> or{" "}
+                  <FeatureBadge status="planned" className="mx-1" /> — because
+                  the audience for a measurement product can tell the
+                  difference. What runs today is measured; what doesn&apos;t
+                  is labelled.
+                </p>
+              </div>
+              <div className="mt-6">
+                <Button href="/features" variant="outline" rightIcon={<ArrowRight size={16} />}>
+                  See all features
+                </Button>
+              </div>
+            </div>
+          </Reveal>
+        </div>
       </Container>
     </section>
   );
 }
 
 /* -------------------------------------------------------------------------- */
-/* How it works, scroll-pinned scene lives in HowItWorksScene.tsx            */
+/* How it works — a broadcast timecode bar, no scroll-jacking                 */
 /* -------------------------------------------------------------------------- */
+const STEPS = [
+  {
+    tc: "T+00",
+    title: "Connect",
+    body: "Point us at the club's accounts and recorded footage. No integration needed to start; OAuth self-serve is planned.",
+  },
+  {
+    tc: "T+01",
+    title: "Detect",
+    body: "The model reads recorded broadcast and owned footage frame by frame, and tags every sponsor mention in every post. No live feed, no sampling.",
+  },
+  {
+    tc: "T+02",
+    title: "Report",
+    body: "Data refreshes daily. The branded PDF goes out every Monday at 07:00, the same report our public study publishes.",
+  },
+  {
+    tc: "T+03",
+    title: "Renew",
+    body: "The renewal case builds itself: screen time, share of voice, trend lines. Every claim in the deck has a source.",
+  },
+];
 
 function HowItWorks() {
   return (
-    <section className="relative overflow-hidden">
-      <div aria-hidden className="absolute inset-0 -z-10">
-        <AnimatedMesh variant="soft" />
-      </div>
-      <HowItWorksScene />
+    <section className="relative border-t border-[#F4EFE6]/[0.06] py-16 lg:py-20">
+      <Container>
+        <SectionHeader
+          eyebrow="How it works"
+          title="From posts and footage to a renewal case."
+        />
+
+        <div className="mt-12">
+          {/* Timecode rail */}
+          <div aria-hidden className="relative mb-8 hidden h-6 lg:block">
+            <div className="absolute inset-x-0 top-1/2 h-px bg-[#F4EFE6]/15" />
+            <div className="absolute inset-0 grid grid-cols-4">
+              {STEPS.map((s) => (
+                <div key={s.tc} className="relative">
+                  <span className="absolute left-0 top-1/2 h-3 w-[2px] -translate-y-1/2 bg-[#D8FF3E]" />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <ol className="grid gap-8 md:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+            {STEPS.map((s, i) => (
+              <Reveal key={s.tc} delay={i * 0.06} as="li">
+                <div className="h-full">
+                  <div className="flex items-baseline gap-3">
+                    <span className="font-[family-name:var(--font-mono)] text-[12px] font-semibold text-[#D8FF3E] tabular-nums">
+                      {s.tc}
+                    </span>
+                    <h3 className="font-[family-name:var(--font-archivo)] text-lg font-semibold tracking-tight text-[#F4EFE6]">
+                      {s.title}
+                    </h3>
+                  </div>
+                  <p className="mt-3 text-[14px] leading-relaxed text-[#F4EFE6]/65 lg:pr-4">
+                    {s.body}
+                  </p>
+                </div>
+              </Reveal>
+            ))}
+          </ol>
+
+          <p className="mt-10 border-t border-[#F4EFE6]/[0.08] pt-5 font-[family-name:var(--font-mono)] text-[11px] uppercase tracking-[0.14em] text-[#F4EFE6]/45 tabular-nums">
+            This pipeline produced the study above · 283 posts attributed · 1
+            highlight read frame by frame · 1 report every Monday 07:00
+          </p>
+        </div>
+      </Container>
     </section>
   );
 }
 
 /* -------------------------------------------------------------------------- */
-/* Per-sponsor workspaces (split-screen)                                      */
+/* Two views, one source of truth — real study numbers on both sides         */
 /* -------------------------------------------------------------------------- */
+
+/* Real numbers from the public study: share of a recorded 3-minute
+ * Osasuna–Alavés highlight each sponsor was visible for (CV model). */
+const PORTFOLIO: [string, string][] = [
+  ["Kosner", "62%"],
+  ["Nissan", "50%"],
+  ["Macron", "41%"],
+];
+
 function PerSponsorSection() {
   return (
-    <section className="relative py-24 lg:py-32">
+    <section className="relative border-t border-[#F4EFE6]/[0.06] py-16 lg:py-20">
       <Container>
-        <div className="grid items-center gap-14 lg:grid-cols-[0.95fr_1.05fr]">
+        <div className="grid items-center gap-12 lg:grid-cols-[0.95fr_1.05fr]">
           <div>
-            <Badge tone="gold" icon={<Sparkles size={12} />}>
-              Workspaces
-            </Badge>
-            <h2 className="mt-6 font-[family-name:var(--font-display)] text-balance text-4xl font-semibold tracking-[-0.01em] text-[#F4EFE6] sm:text-5xl">
-              Two views.{" "}
-              <em className="italic text-gradient-brand">One source of truth.</em>
+            <Chyron>Workspaces</Chyron>
+            <h2 className="mt-6 font-[family-name:var(--font-archivo)] text-balance text-[34px] font-bold leading-[1.06] tracking-[-0.02em] text-[#F4EFE6] sm:text-[42px]">
+              Two views. One source of truth.
             </h2>
             <p className="mt-5 text-pretty text-lg text-[#F4EFE6]/65">
               The club sees the whole portfolio. Each sponsor sees only
@@ -281,8 +432,8 @@ function PerSponsorSection() {
                 ]
               ).map((it) => (
                 <li key={it.title} className="flex items-start gap-3">
-                  <span className="mt-0.5 inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-[#B8975A]/30 bg-[#B8975A]/[0.08] text-[#B8975A]">
-                    <Check size={14} />
+                  <span className="mt-1 inline-flex h-5 w-5 shrink-0 items-center justify-center border border-[#D8FF3E]/40 text-[#D8FF3E]">
+                    <Check size={12} />
                   </span>
                   <div>
                     <div className="font-medium text-[#F4EFE6]">
@@ -301,147 +452,142 @@ function PerSponsorSection() {
             </div>
           </div>
 
-          <TwoViewsConvergence />
-        </div>
-      </Container>
-    </section>
-  );
-}
-
-/* -------------------------------------------------------------------------- */
-/* Stats                                                                      */
-/* -------------------------------------------------------------------------- */
-type StatKey = "media" | "leagues" | "renewal" | "posts";
-
-const stats: Array<{
-  key: StatKey;
-  tag: string;
-  label: string;
-  to: number;
-  prefix?: string;
-  suffix?: string;
-  decimals?: number;
-}> = [
-  {
-    key: "media",
-    tag: "Founder",
-    label: "Solo founder, in public",
-    to: 1,
-  },
-  {
-    key: "leagues",
-    tag: "Live demo",
-    label: "Sponsors in the live demo",
-    to: 8,
-  },
-  {
-    key: "renewal",
-    tag: "EU data",
-    label: "EU data residency · GDPR-native",
-    to: 100,
-    suffix: "%",
-  },
-  {
-    key: "posts",
-    tag: "90-day study",
-    label: "Posts analysed in a 90-day study",
-    to: 283,
-  },
-];
-
-function StatsSection() {
-  return (
-    <section className="py-16">
-      <Container>
-        <div className="overflow-visible rounded-3xl border border-[#B8975A]/25 bg-gradient-to-br from-[#0F1A2E] via-[#0A1628] to-[#0F1A2E] p-10 lg:p-14">
-          <div className="grid gap-8 md:grid-cols-4 md:gap-6">
-            {stats.map((s, i) => (
-              <DetectionBox
-                key={s.key}
-                label={s.tag}
-                delay={i * 0.1}
-                className="bg-[#0A1628]/50"
-              >
-                <div className="p-5 pt-6">
-                  <div className="font-[family-name:var(--font-mono)] text-4xl font-semibold tracking-tight text-[#F4EFE6] tabular-nums sm:text-[40px]">
-                    <CountUp
-                      to={s.to}
-                      prefix={s.prefix}
-                      suffix={s.suffix}
-                      decimals={s.decimals ?? 0}
-                      duration={1.6}
-                      delay={0.3 + i * 0.1}
-                    />
+          <Reveal delay={0.08}>
+            <HudFrame label="Same data · two views" tone="dim" className="bg-[#0E1D33]">
+              <div className="grid sm:grid-cols-2">
+                {/* Club view */}
+                <div className="border-b border-[#F4EFE6]/[0.08] p-5 sm:border-b-0 sm:border-r">
+                  <div className="font-[family-name:var(--font-mono)] text-[10px] font-semibold uppercase tracking-[0.18em] text-[#D8FF3E]">
+                    Club view · CA Osasuna (study)
                   </div>
-                  <div className="mt-2 text-sm text-[#F4EFE6]/60">{s.label}</div>
+                  <div className="mt-2 font-[family-name:var(--font-archivo)] text-base font-semibold text-[#F4EFE6]">
+                    % of broadcast · one highlight
+                  </div>
+                  <ul className="mt-4 flex flex-col gap-2.5 text-[12px]">
+                    {PORTFOLIO.map(([n, v]) => (
+                      <li key={n} className="flex items-center gap-3">
+                        <span className="flex-1 truncate text-[#F4EFE6]/80">{n}</span>
+                        <div className="h-1 w-16 overflow-hidden bg-[#F4EFE6]/[0.08]">
+                          <div
+                            style={{ width: v }}
+                            className="h-full bg-[#D8FF3E]"
+                          />
+                        </div>
+                        <span className="w-9 text-right font-[family-name:var(--font-mono)] tabular-nums text-[#F4EFE6]/85">
+                          {v}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-              </DetectionBox>
-            ))}
-          </div>
-          <p className="mt-10 text-[11px] uppercase tracking-[0.22em] text-[#F4EFE6]/40">
-            Pre-launch · real numbers from a public-data study · no clients yet.{" "}
-            <Link
-              href="/about"
-              className="text-[#B8975A] underline underline-offset-4 hover:text-[#D8BC85]"
-            >
-              Read the story
-            </Link>
-          </p>
+
+                {/* Sponsor view (report paper) */}
+                <div className="bg-[#F7F3EA] p-5 text-[#0F1A2E]">
+                  <div className="font-[family-name:var(--font-mono)] text-[10px] font-semibold uppercase tracking-[0.18em] text-[#0F1A2E]/60">
+                    Sponsor view · Kosner
+                  </div>
+                  <div className="mt-2 font-[family-name:var(--font-archivo)] text-base font-semibold">
+                    Brand exposure
+                  </div>
+                  <div className="mt-4 grid grid-cols-2 gap-3">
+                    <div className="border border-[#0F1A2E]/10 bg-white p-3">
+                      <div className="text-[10px] uppercase tracking-[0.16em] text-[#0F1A2E]/55">
+                        Screen time
+                      </div>
+                      <div className="mt-1 font-[family-name:var(--font-mono)] text-base font-semibold tabular-nums">
+                        120.5s
+                      </div>
+                      <div className="text-[10px] text-[#0F1A2E]/45">one highlight</div>
+                    </div>
+                    <div className="border border-[#0F1A2E]/10 bg-white p-3">
+                      <div className="text-[10px] uppercase tracking-[0.16em] text-[#0F1A2E]/55">
+                        Share of voice
+                      </div>
+                      <div className="mt-1 font-[family-name:var(--font-mono)] text-base font-semibold tabular-nums">
+                        61.9%
+                      </div>
+                      <div className="text-[10px] text-[#0F1A2E]/45">of 10 sponsors</div>
+                    </div>
+                  </div>
+                  <div className="mt-3 border border-[#0F1A2E]/10 bg-white p-3 text-[11px] leading-relaxed text-[#0F1A2E]/65">
+                    The Kosner crest was on screen for{" "}
+                    <span className="font-semibold text-[#0F1A2E]">120.5 seconds</span>{" "}
+                    of a 3-minute highlight, measured frame by frame.
+                  </div>
+                </div>
+              </div>
+            </HudFrame>
+          </Reveal>
         </div>
       </Container>
     </section>
   );
 }
 
-/* Pricing teaser lives in components/home/PricingTeaser.tsx (client component
- * with billing toggle + full canonical feature lists). */
-
 /* -------------------------------------------------------------------------- */
+/* Pre-launch strip — the honest numbers, one quiet mono band                 */
 /* -------------------------------------------------------------------------- */
+function PrelaunchStrip() {
+  return (
+    <section className="border-y border-[#F4EFE6]/[0.08] bg-[#050B14] py-6">
+      <Container>
+        <div className="flex flex-col items-start justify-between gap-3 font-[family-name:var(--font-mono)] text-[12px] uppercase tracking-[0.14em] text-[#F4EFE6]/60 sm:flex-row sm:items-center">
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 tabular-nums">
+            <span className="text-[#D8FF3E]">Pre-launch</span>
+            <span>1 founder, in public</span>
+            <span>8 sponsors in the live demo</span>
+            <span>283 posts analysed · 90 days</span>
+            <span>100% EU data residency</span>
+          </div>
+          <Link
+            href="/about"
+            className="shrink-0 text-[#F4EFE6]/80 underline underline-offset-4 hover:text-[#D8FF3E]"
+          >
+            Read the story
+          </Link>
+        </div>
+      </Container>
+    </section>
+  );
+}
 
 /* -------------------------------------------------------------------------- */
 /* Final CTA                                                                  */
 /* -------------------------------------------------------------------------- */
 function FinalCta() {
   return (
-    <section className="relative py-24 lg:py-32">
+    <section className="relative bg-[#050B14] py-16 lg:py-24">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 bg-grid mask-fade-radial opacity-50"
+      />
       <Container>
-        <div className="relative overflow-hidden rounded-3xl border border-[#B8975A]/30 bg-gradient-to-br from-[#0F1A2E] via-[#0A1628] to-[#0F1A2E] p-12 text-center lg:p-20">
-          <div
-            aria-hidden
-            className="pointer-events-none absolute inset-0 -z-10 bg-dot mask-fade-radial opacity-40"
-          />
-          <GradientOrb color="red" size={420} className="-left-10 -top-10" />
-          <GradientOrb color="gold" size={420} className="-right-10 -bottom-10" intensity="soft" />
-          <Reveal>
-            <Badge tone="gold" icon={<Sparkles size={12} />}>
-              Live data · public study
-            </Badge>
-          </Reveal>
-          <Reveal delay={0.08}>
-            <h2 className="mx-auto mt-6 max-w-3xl font-[family-name:var(--font-display)] text-balance text-4xl font-semibold leading-[1.08] tracking-[-0.01em] text-[#F4EFE6] sm:text-5xl lg:text-6xl">
-              See a real match,{" "}
-              <em className="italic text-gradient-brand">measured.</em>
-            </h2>
-          </Reveal>
-          <Reveal delay={0.15}>
-            <p className="mx-auto mt-5 max-w-xl text-pretty text-lg text-[#F4EFE6]/65">
-              The live demo runs on our CA Osasuna public study, nine accounts,
-              283 posts, one broadcast highlight, measured frame by frame. No
-              sample screenshots.
-            </p>
-          </Reveal>
-          <Reveal delay={0.2}>
-            <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <Button href="/demo" size="lg" rightIcon={<ArrowRight size={16} />}>
-                Open the live demo
-              </Button>
-              <Button href="/contact" size="lg" variant="outline">
-                Start free trial
-              </Button>
+        <Reveal>
+          <HudFrame
+            label="Live demo · public study"
+            detail="No sample screenshots"
+            className="mx-auto max-w-4xl bg-[#0A1628]"
+          >
+            <div className="px-8 py-14 text-center lg:px-16 lg:py-20">
+              <h2 className="mx-auto max-w-3xl font-[family-name:var(--font-archivo)] text-balance text-[38px] font-bold leading-[1.05] tracking-[-0.02em] text-[#F4EFE6] sm:text-5xl">
+                See a real match, measured.
+              </h2>
+              <p className="mx-auto mt-5 max-w-xl text-pretty text-lg text-[#F4EFE6]/65">
+                The live demo runs on our CA Osasuna public study — nine
+                accounts, 283 posts, one broadcast highlight, measured frame
+                by frame.
+              </p>
+              <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
+                <Button href="/demo" size="lg" rightIcon={<ArrowRight size={16} />}>
+                  Open the live demo
+                </Button>
+                <Button href="/contact" size="lg" variant="outline">
+                  Start free trial
+                </Button>
+              </div>
             </div>
-          </Reveal>
-        </div>
+          </HudFrame>
+        </Reveal>
       </Container>
     </section>
   );

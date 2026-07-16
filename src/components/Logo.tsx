@@ -2,12 +2,12 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 
 /**
- * Sponsorlens wordmark + lens mark.
+ * Sponsorlens wordmark + reticle mark.
  *
- * Mark: outer dashed ring, inner solid ring, center dot, all stroked in
- * `currentColor` so the mark tints with whatever text color surrounds it.
- * On hover the outer ring sweeps 360° via CSS keyframes (no JS / motion
- * dependency) and `prefers-reduced-motion: reduce` halts the animation.
+ * Mark: four corner brackets locking onto a center dot — the detection
+ * bounding box that is the site's signature motif. Brackets stroke in
+ * `currentColor` so the mark tints with surrounding text; the dot is
+ * always detection volt.
  */
 export function Logo({
   className,
@@ -27,15 +27,17 @@ export function Logo({
   const text = variant === "cream" ? "text-[#0F1A2E]" : "text-[#F4EFE6]";
   const inner = (
     <>
-      <LensMark size={size} />
+      <ReticleMark size={size} />
       {withText && (
-        <span className="text-[18px] leading-none">Sponsorlens</span>
+        <span className="font-[family-name:var(--font-archivo)] text-[18px] font-semibold leading-none tracking-[-0.02em]">
+          Sponsorlens
+        </span>
       )}
     </>
   );
 
   const sharedClass = cn(
-    "group inline-flex items-center gap-2.5 font-[family-name:var(--font-inter)] font-semibold tracking-[-0.02em]",
+    "group inline-flex items-center gap-2.5",
     text,
     className
   );
@@ -55,7 +57,7 @@ export function Logo({
   );
 }
 
-export function LensMark({
+export function ReticleMark({
   size = 22,
   className,
 }: {
@@ -70,28 +72,15 @@ export function LensMark({
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden
-      className={cn("lens-mark shrink-0", className)}
+      className={cn("shrink-0", className)}
     >
-      <circle
-        cx="12"
-        cy="12"
-        r="10"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeDasharray="2 1.5"
-        opacity="0.6"
-        className="lens-mark-outer origin-center"
-      />
-      <circle
-        cx="12"
-        cy="12"
-        r="6"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-      />
-      <circle cx="12" cy="12" r="2" fill="currentColor" />
+      {/* corner brackets */}
+      <path d="M3 8V3H8" stroke="currentColor" strokeWidth="2.4" />
+      <path d="M16 3H21V8" stroke="currentColor" strokeWidth="2.4" />
+      <path d="M21 16V21H16" stroke="currentColor" strokeWidth="2.4" />
+      <path d="M8 21H3V16" stroke="currentColor" strokeWidth="2.4" />
+      {/* detection dot */}
+      <circle cx="12" cy="12" r="3" fill="#D8FF3E" />
     </svg>
   );
 }

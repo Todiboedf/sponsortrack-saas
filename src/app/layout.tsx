@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Playfair_Display, JetBrains_Mono } from "next/font/google";
+import { Inter, Archivo, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
@@ -11,12 +11,14 @@ const inter = Inter({
   display: "swap",
 });
 
-const display = Playfair_Display({
-  variable: "--font-display",
+// Display face: Archivo variable with the width axis — condensed-to-expanded
+// range gives the scoreboard/broadcast register (expanded caps for kickers
+// and stat labels, tight regular width for headlines).
+const archivo = Archivo({
+  variable: "--font-archivo",
   subsets: ["latin"],
   display: "swap",
-  weight: ["500", "600", "700", "800"],
-  style: ["normal", "italic"],
+  axes: ["wdth"],
 });
 
 const mono = JetBrains_Mono({
@@ -121,7 +123,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${display.variable} ${mono.variable} h-full antialiased`}
+      className={`${inter.variable} ${archivo.variable} ${mono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-[#0A1628] text-[#F4EFE6]">
         <script
@@ -130,7 +132,7 @@ export default function RootLayout({
         />
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-[#8B0028] focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-[#F4EFE6]"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-sm focus:bg-[#D8FF3E] focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-[#0A1628]"
         >
           Skip to content
         </a>

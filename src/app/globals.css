@@ -1,53 +1,51 @@
 @import "tailwindcss";
 
 /* -------------------------------------------------------------------------- */
-/* Sport-branded design tokens (V2)                                           */
-/* navy / red / cream / gold, dialogues with the Atlético Demo pitch identity. */
+/* Sponsorlens design tokens (V3 — "broadcast-grade")                          */
+/* The site speaks the language of the product's own CV output: navy field,   */
+/* volt detection accent, mono data, corner-bracket HUD frames.               */
 /* -------------------------------------------------------------------------- */
 
 @theme inline {
-  /* Brand palette */
+  /* Field (navy value range) */
+  --color-navy-black: #050B14;
   --color-navy: #0A1628;
-  --color-navy-elev: #0F1A2E;
-  --color-navy-deep: #060D18;
-  --color-red: #8B0028;
-  --color-red-hover: #A00030;
-  --color-cream: #F4EFE6;
-  --color-cream-elev: #FBF7EF;
-  --color-gold: #B8975A;
-  --color-gold-soft: #D8BC85;
-  --color-ink: #0F1A2E;
-  --color-mute: #6B7480;
+  --color-navy-elev: #0E1D33;
+  --color-navy-panel: #101F38;
 
-  /* Surfaces (dark / navy mode default) */
+  /* The one accent: detection volt (color of the real model's boxes) */
+  --color-volt: #D8FF3E;
+  --color-volt-deep: #A8CC1F;
+
+  /* Warm paper (report surface + primary text on navy) */
+  --color-cream: #F4EFE6;
+  --color-paper: #F7F3EA;
+  --color-ink: #0F1A2E;
+
+  /* Status system (mono, quiet) */
+  --color-amber: #E8A33D;
+  --color-slate: #8B98A9;
+
+  /* Surfaces */
   --color-bg: #0A1628;
-  --color-bg-elev: #0F1A2E;
-  --color-surface: #142238;
-  --color-surface-2: #1A2B45;
-  --color-border: rgba(244, 239, 230, 0.10);
-  --color-border-strong: rgba(244, 239, 230, 0.18);
+  --color-border: rgba(230, 237, 243, 0.10);
+  --color-border-strong: rgba(230, 237, 243, 0.18);
 
   /* Text on dark */
   --color-text: #F4EFE6;
-  --color-text-dim: rgba(244, 239, 230, 0.66);
-  --color-text-faint: rgba(244, 239, 230, 0.42);
-
-  /* Support (semantic) */
-  --color-success: #2F8F5A;
-  --color-warning: #C8973F;
-  --color-danger: #8B0028;
+  --color-text-dim: rgba(244, 239, 230, 0.68);
+  --color-text-faint: rgba(244, 239, 230, 0.45);
 
   /* Fonts */
   --font-sans: var(--font-inter);
-  --font-display: var(--font-display);
+  --font-display: var(--font-archivo);
   --font-mono: var(--font-mono);
 
-  /* Radii */
-  --radius-xs: 4px;
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 18px;
-  --radius-xl: 26px;
+  /* Radii — HUD elements are square; soft chrome stays modest */
+  --radius-xs: 2px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
 
   --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -64,6 +62,10 @@
   box-sizing: border-box;
 }
 
+html {
+  overflow-x: clip;
+}
+
 html,
 body {
   background: var(--background);
@@ -75,17 +77,13 @@ body {
 }
 
 body {
-  background:
-    radial-gradient(900px 500px at 92% -10%, rgba(139, 0, 40, 0.16), transparent 60%),
-    radial-gradient(700px 400px at 6% 0%, rgba(184, 151, 90, 0.06), transparent 70%),
-    #0A1628;
   min-height: 100dvh;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 ::selection {
-  background: rgba(139, 0, 40, 0.42);
-  color: #F4EFE6;
+  background: rgba(216, 255, 62, 0.85);
+  color: #0A1628;
 }
 
 ::-webkit-scrollbar {
@@ -108,64 +106,30 @@ body {
 /* Custom utilities                                                           */
 /* -------------------------------------------------------------------------- */
 
-@utility text-gradient {
-  background: linear-gradient(135deg, #F4EFE6 0%, #F4EFE6 40%, #B8975A 75%, #D8BC85 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
+/* Expanded-caps display setting: the "scoreboard" register for kickers,
+ * stat labels and chyrons. Requires the Archivo wdth axis. */
+@utility font-expanded {
+  font-family: var(--font-archivo);
+  font-variation-settings: "wdth" 125;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
 
-@utility text-gradient-brand {
-  background: linear-gradient(135deg, #B8975A 0%, #D8BC85 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
-}
-
-@utility text-gradient-red {
-  background: linear-gradient(135deg, #F4EFE6 0%, #B8975A 60%, #8B0028 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
-}
-
-@utility bg-gradient-brand {
-  background-image: linear-gradient(135deg, #8B0028 0%, #A00030 60%, #B8975A 100%);
-}
-
-@utility bg-gradient-deep {
-  background-image: linear-gradient(180deg, #0A1628 0%, #060D18 100%);
-}
-
-@utility glow-brand {
-  box-shadow:
-    0 0 0 1px rgba(184, 151, 90, 0.20),
-    0 14px 40px -16px rgba(139, 0, 40, 0.55),
-    0 24px 70px -28px rgba(184, 151, 90, 0.35);
-}
-
-@utility glow-ring {
-  box-shadow: 0 0 0 1px rgba(244, 239, 230, 0.10);
+@utility surface-paper {
+  background: #F4EFE6;
+  color: #0F1A2E;
 }
 
 @utility bg-grid {
   background-image:
-    linear-gradient(rgba(244, 239, 230, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(244, 239, 230, 0.04) 1px, transparent 1px);
-  background-size: 56px 56px;
-}
-
-@utility bg-dot {
-  background-image: radial-gradient(rgba(244, 239, 230, 0.08) 1px, transparent 1px);
-  background-size: 22px 22px;
+    linear-gradient(rgba(230, 237, 243, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(230, 237, 243, 0.035) 1px, transparent 1px);
+  background-size: 64px 64px;
 }
 
 @utility mask-fade-b {
-  mask-image: linear-gradient(to bottom, black 0%, black 60%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to bottom, black 0%, black 60%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 0%, black 55%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 0%, black 55%, transparent 100%);
 }
 
 @utility mask-fade-radial {
@@ -174,55 +138,83 @@ body {
 }
 
 /* -------------------------------------------------------------------------- */
-/* Cream surface, used for dense pages (pricing comparison, features grid)   */
+/* Detection HUD primitives (CSS side of the signature motif)                 */
 /* -------------------------------------------------------------------------- */
 
-@utility surface-cream {
-  background: #F4EFE6;
-  color: #0F1A2E;
+/* Corner brackets on hover — the "lock-on" gesture for interactive cards.
+ * Pure CSS: two pseudo-elements draw opposite corner pairs; opacity +
+ * scale only, so it stays on the compositor. */
+@utility lock-on {
+  position: relative;
+}
+.lock-on::before,
+.lock-on::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(1.02);
+  transition: opacity 0.22s var(--ease-out-quint), transform 0.22s var(--ease-out-quint);
+}
+.lock-on::before {
+  background:
+    linear-gradient(#D8FF3E, #D8FF3E) top left / 14px 2px,
+    linear-gradient(#D8FF3E, #D8FF3E) top left / 2px 14px,
+    linear-gradient(#D8FF3E, #D8FF3E) bottom right / 14px 2px,
+    linear-gradient(#D8FF3E, #D8FF3E) bottom right / 2px 14px;
+  background-repeat: no-repeat;
+}
+.lock-on::after {
+  background:
+    linear-gradient(#D8FF3E, #D8FF3E) top right / 14px 2px,
+    linear-gradient(#D8FF3E, #D8FF3E) top right / 2px 14px,
+    linear-gradient(#D8FF3E, #D8FF3E) bottom left / 14px 2px,
+    linear-gradient(#D8FF3E, #D8FF3E) bottom left / 2px 14px;
+  background-repeat: no-repeat;
+}
+.lock-on:hover::before,
+.lock-on:hover::after,
+.lock-on:focus-within::before,
+.lock-on:focus-within::after {
+  opacity: 1;
+  transform: scale(1);
 }
 
-/* -------------------------------------------------------------------------- */
-/* Animations                                                                 */
-/* -------------------------------------------------------------------------- */
-
-@keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
+/* One-time bracket draw for the hero HUD box (runs ~300ms after paint;
+ * never gates text rendering). */
+@keyframes hud-lock {
+  0% { opacity: 0; transform: scale(1.12); }
+  60% { opacity: 1; transform: scale(0.985); }
+  100% { opacity: 1; transform: scale(1); }
+}
+@keyframes hud-tag {
+  0% { opacity: 0; transform: translateY(4px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.hud-lock {
+  opacity: 0;
+  animation: hud-lock 0.5s var(--ease-out-quint) 0.3s forwards;
+}
+.hud-tag {
+  opacity: 0;
+  animation: hud-tag 0.35s var(--ease-out-quint) 0.75s forwards;
 }
 
-@keyframes float-y {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-8px); }
+/* Broadcast ticker — CSS transform marquee, compositor-only. Content is
+ * duplicated once in markup; the track scrolls exactly half its width. */
+@keyframes ticker-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
-
-@keyframes pulse-glow {
-  0%, 100% { opacity: 0.5; }
-  50% { opacity: 1; }
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: ticker-scroll 46s linear infinite;
+  will-change: transform;
 }
-
-@keyframes lens-sweep {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-.group:hover .lens-mark-outer {
-  animation: lens-sweep 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  transform-origin: 12px 12px;
-  transform-box: fill-box;
-}
-
-@utility animate-shimmer {
-  animation: shimmer 2.6s linear infinite;
-  background-size: 200% 100%;
-}
-
-@utility animate-float-y {
-  animation: float-y 6s ease-in-out infinite;
-}
-
-@utility animate-pulse-glow {
-  animation: pulse-glow 3s ease-in-out infinite;
+.ticker:hover .ticker-track {
+  animation-play-state: paused;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -230,9 +222,9 @@ body {
 /* -------------------------------------------------------------------------- */
 
 *:focus-visible {
-  outline: 2px solid rgba(184, 151, 90, 0.85);
+  outline: 2px solid rgba(216, 255, 62, 0.9);
   outline-offset: 2px;
-  border-radius: 4px;
+  border-radius: 2px;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -247,15 +239,15 @@ body {
 .prose-dark h2,
 .prose-dark h3 {
   color: var(--color-text);
-  font-family: var(--font-display);
+  font-family: var(--font-archivo);
   letter-spacing: -0.01em;
   font-weight: 600;
 }
 .prose-dark h2 { font-size: 1.6rem; margin-top: 2.25rem; margin-bottom: 1rem; }
 .prose-dark h3 { font-size: 1.2rem; margin-top: 1.75rem; margin-bottom: 0.5rem; }
 .prose-dark p { margin-bottom: 1.1rem; }
-.prose-dark a { color: #B8975A; text-decoration: underline; text-underline-offset: 3px; }
-.prose-dark a:hover { color: #D8BC85; }
+.prose-dark a { color: #D8FF3E; text-decoration: underline; text-underline-offset: 3px; }
+.prose-dark a:hover { color: #E9FF80; }
 .prose-dark ul { list-style: disc; padding-left: 1.4rem; margin-bottom: 1.1rem; }
 .prose-dark li { margin-bottom: 0.35rem; }
 .prose-dark strong { color: var(--color-text); font-weight: 600; }
@@ -268,12 +260,12 @@ body {
 .prose-cream h2,
 .prose-cream h3 {
   color: #0F1A2E;
-  font-family: var(--font-display);
+  font-family: var(--font-archivo);
   letter-spacing: -0.01em;
   font-weight: 600;
 }
-.prose-cream a { color: #8B0028; text-decoration: underline; text-underline-offset: 3px; }
-.prose-cream a:hover { color: #A00030; }
+.prose-cream a { color: #0F1A2E; text-decoration: underline; text-underline-offset: 3px; }
+.prose-cream a:hover { color: #3B4A63; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
@@ -281,5 +273,15 @@ body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
+  }
+  .ticker-track {
+    animation: none !important;
+    transform: none !important;
+  }
+  .hud-lock,
+  .hud-tag {
+    opacity: 1 !important;
+    animation: none !important;
+    transform: none !important;
   }
 }

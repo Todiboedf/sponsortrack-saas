@@ -2,14 +2,13 @@
 
 import { Fragment, useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Check, HelpCircle, Minus, Sparkles } from "lucide-react";
+import { ArrowRight, Check, Minus } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
-import { Badge } from "@/components/ui/Badge";
+import { Chyron } from "@/components/ui/Chyron";
 import { Card } from "@/components/ui/Card";
 import { FeatureBadge, type FeatureStatus } from "@/components/ui/FeatureBadge";
-import { GradientOrb } from "@/components/GradientOrb";
 import { cn } from "@/lib/utils";
 
 type Billing = "monthly" | "yearly";
@@ -186,7 +185,7 @@ const faqs = [
     a: "Enterprise rollouts mean custom data pipelines, security reviews, and a 90-day white-glove onboarding. The €8,000 one-shot setup fee covers the dedicated team for that 90-day window, and is adjustable on multi-club groups and federation engagements.",
   },
   {
-    q: "What does ‘per property’ mean?",
+    q: "What does 'per property' mean?",
     a: "A property is a club, team, league, athlete or venue that you analyse inside your workspace. You can mix and match, 1 club + 3 academy teams counts as 4 properties.",
   },
   {
@@ -203,7 +202,7 @@ const faqs = [
   },
   {
     q: "Can I see the contract before I sign?",
-    a: "Of course. We share the full MSA and DPA up-front. Annual plans get a standard order form, we won’t send you 30 pages of legalese for a €1,500 monthly contract.",
+    a: "Of course. We share the full MSA and DPA up-front. Annual plans get a standard order form, we won't send you 30 pages of legalese for a €1,500 monthly contract.",
   },
 ];
 
@@ -230,47 +229,42 @@ export default function PricingPage() {
   return (
     <>
       {/* ---------- Hero ---------- */}
-      <section className="relative overflow-hidden pt-36 pb-12 lg:pt-44 lg:pb-16">
-        <GradientOrb color="red" size={560} className="-left-40 -top-10" />
-        <GradientOrb color="gold" size={520} className="-right-40 top-40" intensity="soft" />
-        <div aria-hidden className="absolute inset-0 -z-20 bg-grid mask-fade-radial opacity-30" />
-        <Container>
-          <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
-            <Badge tone="gold" icon={<Sparkles size={12} />}>
-              Pricing
-            </Badge>
-            <h1 className="mt-6 font-[family-name:var(--font-display)] text-balance text-5xl font-medium leading-[1.05] tracking-[-0.01em] text-[#F4EFE6] sm:text-6xl lg:text-[68px]">
-              Simple pricing.{" "}
-              <em className="italic font-medium text-gradient-brand">Seriously.</em>
+      <section className="relative overflow-hidden border-b border-[#F4EFE6]/[0.06] bg-[#050B14] pt-28 pb-10 lg:pt-36 lg:pb-12">
+        <div aria-hidden className="pointer-events-none absolute inset-0 bg-grid mask-fade-b opacity-50" />
+        <Container className="relative">
+          <div className="max-w-3xl">
+            <Chyron>Pricing · public, like everything else</Chyron>
+            <h1 className="mt-6 font-[family-name:var(--font-archivo)] text-balance text-[44px] font-bold leading-[1.02] tracking-[-0.025em] text-[#F4EFE6] sm:text-6xl">
+              Simple pricing. Seriously.
             </h1>
             <p className="mt-6 max-w-xl text-pretty text-lg text-[#F4EFE6]/65 sm:text-xl">
               Most vendors hide their prices behind a demo. We show them. Pick a
               plan, start in minutes, switch whenever.
             </p>
 
-            <div className="mt-10 inline-flex items-center gap-1 rounded-full border border-[#F4EFE6]/12 bg-[#F4EFE6]/[0.04] p-1 backdrop-blur">
+            <div className="mt-9 inline-flex items-center gap-1 rounded-[8px] border border-[#F4EFE6]/12 bg-[#F4EFE6]/[0.04] p-1">
               {(["monthly", "yearly"] as Billing[]).map((b) => (
                 <button
                   key={b}
                   onClick={() => setBilling(b)}
                   className={cn(
-                    "relative rounded-full px-5 py-2 text-sm font-medium transition-colors",
+                    "relative rounded-[6px] px-5 py-2 text-sm font-medium transition-colors",
                     billing === b
-                      ? "text-[#F4EFE6]"
+                      ? "text-[#0A1628]"
                       : "text-[#F4EFE6]/55 hover:text-[#F4EFE6]"
                   )}
                 >
                   {billing === b && (
                     <motion.span
                       layoutId="price-pill"
-                      className="absolute inset-0 rounded-full bg-[#8B0028] ring-1 ring-[#B8975A]/35"
+                      className="absolute inset-0 rounded-[6px] bg-[#D8FF3E]"
                       transition={{ type: "spring", stiffness: 400, damping: 32 }}
                     />
                   )}
                   <span className="relative">
                     {b === "monthly" ? "Monthly" : "Yearly"}
                     {b === "yearly" && (
-                      <span className="ml-2 rounded-full bg-[#B8975A]/25 px-1.5 py-0.5 text-[10px] font-semibold text-[#D8BC85]">
+                      <span className="ml-2 font-[family-name:var(--font-mono)] text-[10px] font-semibold">
                         −20%
                       </span>
                     )}
@@ -283,7 +277,7 @@ export default function PricingPage() {
       </section>
 
       {/* ---------- Tier cards ---------- */}
-      <section className="pb-16 lg:pb-24">
+      <section className="py-14 lg:py-16">
         <Container>
           <div className="grid gap-6 lg:grid-cols-3">
             {tiers.map((t) => {
@@ -295,17 +289,16 @@ export default function PricingPage() {
                 <Card
                   key={t.name}
                   className={cn(
-                    "flex h-full flex-col p-8",
-                    t.featured &&
-                      "border-[#B8975A]/45 bg-gradient-to-b from-[#1A2B45] to-[#0A1628] glow-brand"
+                    "lock-on flex h-full flex-col p-8",
+                    t.featured && "border-[#D8FF3E]/40 bg-[#0E1D33]"
                   )}
                 >
                   <div className="flex items-center justify-between">
-                    <h3 className="font-[family-name:var(--font-display)] text-xl font-semibold tracking-tight text-[#F4EFE6]">
+                    <h2 className="font-[family-name:var(--font-archivo)] text-xl font-semibold tracking-tight text-[#F4EFE6]">
                       {t.name}
-                    </h3>
+                    </h2>
                     {t.featured && (
-                      <span className="rounded-full bg-[#B8975A] px-3 py-0.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-[#0A1628]">
+                      <span className="bg-[#D8FF3E] px-2 py-0.5 font-[family-name:var(--font-mono)] text-[10px] font-semibold uppercase tracking-[0.14em] text-[#0A1628]">
                         Most popular
                       </span>
                     )}
@@ -314,7 +307,7 @@ export default function PricingPage() {
                   <div className="mt-6 min-h-[88px]">
                     <div className="flex items-baseline gap-1">
                       {t.priceFrom && (
-                        <span className="mr-1 text-sm font-medium uppercase tracking-[0.18em] text-[#B8975A]">
+                        <span className="mr-1 font-[family-name:var(--font-mono)] text-[11px] font-medium uppercase tracking-[0.14em] text-[#F4EFE6]/55">
                           from
                         </span>
                       )}
@@ -325,7 +318,7 @@ export default function PricingPage() {
                     </div>
                     <div className="mt-1 text-[12px] text-[#F4EFE6]/50">{price.sub}</div>
                     {t.setupNote && (
-                      <div className="mt-1 text-[12px] font-medium text-[#B8975A]">
+                      <div className="mt-1 font-[family-name:var(--font-mono)] text-[12px] font-medium text-[#E8A33D]">
                         {t.setupNote}
                       </div>
                     )}
@@ -345,13 +338,13 @@ export default function PricingPage() {
                       14-day free trial · no credit card · EU data residency
                     </p>
                   )}
-                  <ul className="mt-7 flex flex-col gap-3 border-t border-[#F4EFE6]/[0.06] pt-6">
+                  <ul className="mt-7 flex flex-col gap-3 border-t border-[#F4EFE6]/[0.08] pt-6">
                     {t.features.map((f) => (
                       <li
                         key={f.text}
                         className="inline-flex items-start gap-2.5 text-[14px] text-[#F4EFE6]/80"
                       >
-                        <Check size={16} className="mt-0.5 shrink-0 text-[#B8975A]" />
+                        <Check size={16} className="mt-0.5 shrink-0 text-[#D8FF3E]" />
                         <span>
                           {f.text}
                           {f.status && (
@@ -372,34 +365,32 @@ export default function PricingPage() {
         </Container>
       </section>
 
-      {/* ---------- Comparison matrix (cream surface) ---------- */}
-      <section className="bg-[#F4EFE6] py-20 text-[#0F1A2E] lg:py-28">
+      {/* ---------- Comparison matrix (report paper) ---------- */}
+      <section className="surface-paper py-16 lg:py-20">
         <Container>
-          <div className="mx-auto max-w-3xl text-center">
-            <Badge tone="cream" icon={<Sparkles size={12} />}>
-              Compare every feature
-            </Badge>
-            <h2 className="mt-5 font-[family-name:var(--font-display)] text-balance text-4xl font-semibold tracking-[-0.01em] sm:text-5xl">
+          <div className="max-w-3xl">
+            <Chyron tone="ink">Compare every feature</Chyron>
+            <h2 className="mt-5 font-[family-name:var(--font-archivo)] text-balance text-[34px] font-bold leading-[1.06] tracking-[-0.02em] sm:text-[42px]">
               The full plan comparison.
             </h2>
-            <p className="mx-auto mt-4 max-w-xl text-[#0F1A2E]/65">
+            <p className="mt-4 max-w-xl text-[#0F1A2E]/65">
               Everything is on the table, including the boring bits like setup
               fees and onboarding hours.
             </p>
           </div>
 
-          <div className="mt-12 overflow-hidden rounded-2xl border border-[#0F1A2E]/12 bg-[#FBF7EF]">
+          <div className="mt-12 overflow-hidden rounded-lg border border-[#0F1A2E]/12 bg-[#FBF7EF]">
             <div className="overflow-x-auto">
               <table className="w-full min-w-[760px] border-collapse text-left">
                 <thead className="bg-[#0F1A2E]/[0.04]">
                   <tr>
-                    <th className="sticky left-0 z-10 bg-[#FBF7EF] px-5 py-4 text-[12px] font-semibold uppercase tracking-[0.18em] text-[#0F1A2E]/55">
+                    <th className="sticky left-0 z-10 bg-[#FBF7EF] px-5 py-4 font-[family-name:var(--font-mono)] text-[11px] font-semibold uppercase tracking-[0.16em] text-[#0F1A2E]/55">
                       Feature
                     </th>
                     <th className="px-4 py-4 text-center text-[13px] font-semibold text-[#0F1A2E]">
                       Starter
                     </th>
-                    <th className="bg-[#8B0028]/[0.06] px-4 py-4 text-center text-[13px] font-semibold text-[#0F1A2E]">
+                    <th className="bg-[#0F1A2E]/[0.06] px-4 py-4 text-center text-[13px] font-semibold text-[#0F1A2E]">
                       Pro
                     </th>
                     <th className="px-4 py-4 text-center text-[13px] font-semibold text-[#0F1A2E]">
@@ -413,7 +404,7 @@ export default function PricingPage() {
                       <tr className="bg-[#0F1A2E]/[0.03]">
                         <td
                           colSpan={4}
-                          className="px-5 py-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-[#8B0028]"
+                          className="px-5 py-3 font-[family-name:var(--font-mono)] text-[11px] font-semibold uppercase tracking-[0.18em] text-[#0F1A2E]"
                         >
                           {sec.section}
                           {sec.status && (
@@ -452,7 +443,7 @@ export default function PricingPage() {
             </div>
           </div>
 
-          <div className="mx-auto mt-10 max-w-3xl rounded-2xl border border-[#0F1A2E]/12 bg-[#FBF7EF] p-5 text-[13px] leading-relaxed text-[#0F1A2E]/75">
+          <div className="mx-auto mt-10 max-w-3xl rounded-lg border border-[#0F1A2E]/12 bg-[#FBF7EF] p-5 text-[13px] leading-relaxed text-[#0F1A2E]/75">
             <span className="font-semibold text-[#0F1A2E]">A note on the setup fee.</span>{" "}
             Enterprise is the only plan with a one-shot setup component
             (€8,000). It funds the 90-day white-glove onboarding, security
@@ -463,25 +454,23 @@ export default function PricingPage() {
       </section>
 
       {/* ---------- FAQ ---------- */}
-      <section className="bg-[#F4EFE6] pb-24 text-[#0F1A2E] lg:pb-32">
+      <section className="surface-paper pb-20 lg:pb-24">
         <Container>
           <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
             <div>
-              <Badge tone="cream" icon={<HelpCircle size={12} />}>
-                FAQ
-              </Badge>
-              <h2 className="mt-5 font-[family-name:var(--font-display)] text-balance text-4xl font-semibold tracking-[-0.01em] sm:text-5xl">
+              <Chyron tone="ink">FAQ</Chyron>
+              <h2 className="mt-5 font-[family-name:var(--font-archivo)] text-balance text-[34px] font-bold leading-[1.06] tracking-[-0.02em] sm:text-[42px]">
                 Answers before you ask.
               </h2>
               <p className="mt-4 text-[#0F1A2E]/70">
                 Still curious?{" "}
                 <Link
                   href="/contact"
-                  className="font-medium text-[#8B0028] underline underline-offset-4 hover:text-[#A00030]"
+                  className="font-medium text-[#0F1A2E] underline underline-offset-4"
                 >
                   Talk to a human
-                </Link>{" "}
-               , usually same-day.
+                </Link>
+                , usually same-day.
               </p>
             </div>
             <div className="flex flex-col gap-3">
@@ -493,8 +482,8 @@ export default function PricingPage() {
                     type="button"
                     onClick={() => setOpenFaq(open ? null : i)}
                     className={cn(
-                      "group rounded-2xl border border-[#0F1A2E]/10 bg-[#FBF7EF] p-5 text-left transition-colors hover:border-[#0F1A2E]/30 hover:bg-white",
-                      open && "border-[#8B0028]/45 bg-white"
+                      "group rounded-lg border border-[#0F1A2E]/10 bg-[#FBF7EF] p-5 text-left transition-colors hover:border-[#0F1A2E]/30 hover:bg-white",
+                      open && "border-[#0F1A2E]/40 bg-white"
                     )}
                   >
                     <div className="flex items-start justify-between gap-4">
@@ -503,8 +492,8 @@ export default function PricingPage() {
                       </span>
                       <span
                         className={cn(
-                          "mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-[#0F1A2E]/20 text-[#0F1A2E]/65 transition-transform",
-                          open && "rotate-45 border-[#8B0028]/55 text-[#8B0028]"
+                          "mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center border border-[#0F1A2E]/20 text-[#0F1A2E]/65 transition-transform",
+                          open && "rotate-45 border-[#0F1A2E]/55 text-[#0F1A2E]"
                         )}
                         aria-hidden
                       >
@@ -561,12 +550,12 @@ function CellLight({
     <td
       className={cn(
         "px-4 py-3.5 text-center text-[14px] text-[#0F1A2E]/85",
-        highlight && "bg-[#8B0028]/[0.04]"
+        highlight && "bg-[#0F1A2E]/[0.04]"
       )}
     >
       {typeof value === "boolean" ? (
         value ? (
-          <Check size={17} className="mx-auto text-[#8B0028]" />
+          <Check size={17} className="mx-auto text-[#0F1A2E]" />
         ) : (
           <Minus size={15} className="mx-auto text-[#0F1A2E]/30" />
         )

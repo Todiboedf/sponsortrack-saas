@@ -6,7 +6,7 @@ import type { CvExposureRow } from "@/components/CvExposurePanel";
 export const revalidate = 300;
 
 const SPONSOR_PALETTE = [
-  "#B8975A",
+  "#D8FF3E",
   "#A00030",
   "#F4EFE6",
   "#10B981",
@@ -16,7 +16,7 @@ const SPONSOR_PALETTE = [
 ];
 
 const PLATFORM_COLOR: Record<string, string> = {
-  instagram: "#B8975A",
+  instagram: "#D8FF3E",
   tiktok: "#A00030",
   twitter: "#F4EFE6",
   youtube: "#10B981",
@@ -68,7 +68,7 @@ async function loadLive(): Promise<LiveData | null> {
 
   // Sponsors list (with stable colors)
   const liveSponsors = [
-    { id: "all", label: "All sponsors", color: "#B8975A" },
+    { id: "all", label: "All sponsors", color: "#D8FF3E" },
     ...sponsors.map((s, i) => ({
       id: s.slug,
       label: s.name,
@@ -106,7 +106,7 @@ async function loadLive(): Promise<LiveData | null> {
   const emv = Array.from(emvByPlatform.entries()).map(([k, v]) => ({
     name: PLATFORM_LABEL[k] ?? k,
     value: +(v / 1_000_000).toFixed(3),
-    color: PLATFORM_COLOR[k] ?? "#B8975A",
+    color: PLATFORM_COLOR[k] ?? "#D8FF3E",
   }));
 
   // Engagement per sponsor: latest IG row, reach=followers (M), engagement=engagement_rate
