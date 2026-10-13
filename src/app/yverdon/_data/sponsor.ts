@@ -3,7 +3,7 @@
 
 import { dateCh } from "./format";
 import { ETIQUETTE_CHRONOLOGIE, ETIQUETTE_HORS_CHAMP, libelle } from "./marques";
-import { VIDEOS, type Video } from "./media";
+import { origineClipEgoKiefer, VIDEOS, type Video } from "./media";
 import { LEVIER_FACTEUR_LISIBILITE, LEVIER_PASSAGES_CIBLE, PAGE_PARTENAIRES_VERIFIEE_LE } from "./regles";
 import {
   chronologie,
@@ -194,6 +194,18 @@ function segmentsMiTemps(etiquette: string, debutDiffusion: number, finDiffusion
   return out;
 }
 
+// ---------------------------------------------------------------- video
+
+function videoDe(cle: CleSponsor, ps: PassageVue[]): Video {
+  const video = VIDEOS[cle];
+  if (cle !== "egokiefer") return video;
+  const passage = ps.find((p) => p.chronoDebut === video.moments[0].passageDebut);
+  if (!passage?.plan || passage.plan.hauteurPx === null) {
+    throw new Error("[yverdon] clip EgoKiefer : plan du passage non mesure");
+  }
+  return { ...video, origineCadres: origineClipEgoKiefer(passage.plan.libelle, passage.plan.hauteurPx) };
+}
+
 // ---------------------------------------------------------------- vue
 
 export function construireVue(cle: CleSponsor): VueSponsor {
@@ -366,7 +378,7 @@ export function construireVue(cle: CleSponsor): VueSponsor {
       passageMaxS: Math.max(...visibles),
     },
     borneBasse,
-    video: VIDEOS[cle],
+    video: videoDe(cle, vuesPassages),
     miTemps,
     passages: vuesPassages,
     exposition,

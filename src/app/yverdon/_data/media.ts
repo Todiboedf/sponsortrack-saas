@@ -52,6 +52,16 @@ export const VIDEOS: Record<"roseyres" | "egokiefer", Video> = {
     moments: [{ miTemps: 2, passageDebut: "70:06" }],
     panneauFixe: null,
     incrustation: { debut: "70:20", fin: "70:24" },
-    origineCadres: `Il est tiré d'un extrait de ${CLIP_EGOKIEFER_EXTRAIT_S.valeur}\u00a0s, choisi là où le détecteur Sponsorlens (version ${DETECTEUR_VERSION.valeur}, ${DETECTEUR_MARQUES.valeur} marques) reconnaît la création, en plan moyen. Il prouve la reconnaissance, il ne sert pas aux durées\u00a0: pendant le jeu, elles viennent de la lecture seconde par seconde.`,
+    // Complete dans sponsor.ts avec le plan du passage mesure (origineClipEgoKiefer).
+    origineCadres: "",
   },
 };
+
+/**
+ * Legende du clip EgoKiefer. Le plan et la hauteur sont ceux du passage qui contient le clip,
+ * lus dans hauteurs_egokiefer.json : le clip montre les secondes les plus lisibles, pas le plan du passage.
+ */
+export function origineClipEgoKiefer(planPassage: string, hauteurPx: number): string {
+  if (VIDEOS.egokiefer.dureeS !== 5) throw new Error("[yverdon] legende du clip EgoKiefer : « cinq secondes » a revoir");
+  return `Il est tiré d'un extrait de ${CLIP_EGOKIEFER_EXTRAIT_S.valeur}\u00a0s, choisi là où le détecteur Sponsorlens (version ${DETECTEUR_VERSION.valeur}, ${DETECTEUR_MARQUES.valeur} marques) reconnaît la création, sur les cinq secondes les plus lisibles du passage, qui est classé ${planPassage} sur sa hauteur médiane (${hauteurPx}\u00a0px). Il prouve la reconnaissance, il ne sert pas aux durées\u00a0: pendant le jeu, elles viennent de la lecture seconde par seconde.`;
+}

@@ -239,7 +239,7 @@ export function Reseaux({ vue }: { vue: VueSponsor }) {
         <div className="mt-2">
           <Ligne
             libelle="Exposition organique estimée"
-            detail={`${entier(h.instagram_abonnes)} abonnés Instagram (relevé du ${h.instagram_verifie_le}, celui des hypothèses) × ${taux(h.part_bandeau_contenus, 1)} de contenus avec le bandeau × ${taux(h.vues_resume_video)} de vues du résumé`}
+            detail={`${entier(h.instagram_abonnes)} abonnés Instagram (relevé du ${h.instagram_verifie_le}) × ${taux(h.part_bandeau_contenus, 1)} de contenus avec le bandeau × ${taux(h.vues_resume_video)} de vues du résumé`}
             valeur={`${entier(vb.impressionsSocialOrg)} impressions, ${chf(vb.socialOrganique)}`}
             statut={<Statut s="hypothese" />}
           />

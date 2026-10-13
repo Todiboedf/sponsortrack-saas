@@ -42,17 +42,25 @@ export const reseaux: ReseauxSociaux = reseauxJson;
 
 /**
  * Hypotheses du match : celles de la fiche, sauf l'affluence, remplacee dans les deux scenarios par
- * l'affluence verifiee du match (SFL match center). Les tarifs stade restent par scenario.
+ * l'affluence verifiee du match (SFL match center), et les abonnes Instagram par ceux du releve du 13.10.2026. Les tarifs stade restent par scenario.
  * La projection saison reprend cette affluence a chaque match, en hypothese.
  */
 export const hypotheses: Hypotheses = {
   ...hypothesesFiche,
+  instagram_abonnes: reseaux.comptes_club.instagram.abonnes ?? erreur("abonnes Instagram absents du releve"),
+  instagram_verifie_le: dateReleve(reseaux.releve_le),
   affluence: {
     bas: reseaux.affluence_j09.valeur,
     base: reseaux.affluence_j09.valeur,
     haut: reseaux.affluence_j09.valeur,
   },
 };
+
+/** "2026-10-13" -> "13.10.2026" */
+function dateReleve(iso: string): string {
+  const [a, m, j] = iso.split("-");
+  return `${j}.${m}.${a}`;
+}
 
 function erreur(message: string): never {
   throw new Error(`[yverdon] ${message}`);
