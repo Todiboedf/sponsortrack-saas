@@ -288,3 +288,39 @@ export interface ReseauxSociaux {
   acces_impossibles: string[];
   non_trouve: string[];
 }
+
+/** Un prix ou une reference de references-package-partenariat.json. */
+export interface PrixReference {
+  valeur: number;
+  statut: string;
+  source: string;
+  detail: string;
+}
+
+export interface ReferenceTexte {
+  statut: string;
+  source: string;
+  detail: string;
+}
+
+/** references-package-partenariat.json : prix publics du club pour les contreparties hors ecran. */
+export interface ReferencesPartenariat {
+  releve_le: string;
+  objet: string;
+  hospitalite: {
+    ys_lounge_saison_par_personne_chf: PrixReference;
+    ys_lounge_match_par_personne_chf: PrixReference;
+    matchs_domicile_saison: PrixReference;
+  };
+  reseau: {
+    club_des_1000_cotisation_annuelle_chf: PrixReference;
+    club_des_1000_soirees_par_an: PrixReference;
+    valeur_reference_soiree_reseau_par_personne_chf: PrixReference;
+    avantages_partenaires: ReferenceTexte;
+  };
+  digital: {
+    publication_dediee_valeur_par_post_chf: PrixReference;
+  };
+  inventaire_club_sans_prix_public: ReferenceTexte;
+  non_chiffre: string[];
+}

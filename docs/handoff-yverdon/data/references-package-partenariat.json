@@ -1,0 +1,66 @@
+{
+ "releve_le": "2026-10-13",
+ "objet": "Prix publics du club et references pour valoriser les contreparties d'un partenariat hors ecran (hospitalite, reseau, digital), en reponse a l'argument « un contrat de sponsoring, ce n'est pas que du temps d'ecran ». Chaque prix porte sa source. Les quantites recues par chaque sponsor ne sont pas connues : le sponsor les renseigne lui-meme sur la page.",
+ "hospitalite": {
+  "ys_lounge_saison_par_personne_chf": {
+   "valeur": 2950,
+   "statut": "verifie",
+   "source": "https://www.yverdonsport.ch/hospitalite/",
+   "detail": "YS Lounge, equipe masculine : place en tribune principale + cocktail dinatoire, dessert, boissons a discretion jusqu'a la fin du match, reseautage avec les membres du reseau du club, joueurs au Lounge apres le match. CHF 2'950 TTC par personne et par saison."
+  },
+  "ys_lounge_match_par_personne_chf": {
+   "valeur": 199,
+   "statut": "verifie",
+   "source": "https://www.yverdonsport.ch/hospitalite/",
+   "detail": "Meme prestation pour un match : CHF 199 TTC par personne."
+  },
+  "matchs_domicile_saison": {
+   "valeur": 18,
+   "statut": "hypothese",
+   "source": "Roseyres-J09-donnees-et-hypotheses.json",
+   "detail": "Nombre de matchs a domicile retenu dans la projection saison."
+  }
+ },
+ "reseau": {
+  "club_des_1000_cotisation_annuelle_chf": {
+   "valeur": 1000,
+   "statut": "verifie",
+   "source": "https://www.1000ys.ch/copie-de-membres-1",
+   "detail": "Association independante de soutien ; 80 % reverses au club. Cotisation annuelle CHF 1'000, saison du 01.07 au 30.06."
+  },
+  "club_des_1000_soirees_par_an": {
+   "valeur": 9,
+   "statut": "verifie",
+   "source": "https://www.1000ys.ch/",
+   "detail": "Neuf rencontres par an, le premier jeudi du mois, avec aperitif et repas en commun et un invite ; les entreprises membres appartiennent a un meme reseau de business."
+  },
+  "valeur_reference_soiree_reseau_par_personne_chf": {
+   "valeur": 111,
+   "statut": "hypothese",
+   "source": "1'000 / 9, derive des deux lignes precedentes",
+   "detail": "Prix public d'une soiree de reseau du club, repas compris, par personne : cotisation annuelle divisee par le nombre de soirees. Sert de reference pour valoriser une soiree partenaires offerte par le club."
+  },
+  "avantages_partenaires": {
+   "statut": "verifie",
+   "source": "https://www.yverdonsport.ch/avantages-partenaires/",
+   "detail": "Remises entre partenaires du club : Kiki Pneus 8 %, Sprint votre imprimeur 10 %, Chris Medical Services 7,5 %, Lynk 10 %, sur l'ensemble des prestations. Valeur = remise x achats effectivement faits chez ces partenaires (a renseigner par le sponsor)."
+  }
+ },
+ "digital": {
+  "publication_dediee_valeur_par_post_chf": {
+   "valeur": 76,
+   "statut": "hypothese",
+   "source": "formule social de la fiche : abonnes Instagram x portee 20 % / 1000 x CPM 12",
+   "detail": "Valeur d'une publication dediee sur le compte Instagram du club en scenario base (31'755 abonnes : 6'351 impressions, CHF 76). Optimiste : portee 30 %, CPM 18, CHF 171."
+  }
+ },
+ "inventaire_club_sans_prix_public": {
+  "statut": "verifie",
+  "source": "https://www.yverdonsport.ch/sponsoring/",
+  "detail": "Supports vendus par le club : maillot, panneaux LED, ecran geant, Toblerone derriere le but, panneaux fixes. Aucun prix public. Les paliers Platine/Gold/Argent/Bronze avec prix concernent uniquement le tournoi juniors YS Cup."
+ },
+ "non_chiffre": [
+  "Image et association a la marque du club : pas de valeur en francs, qualitative.",
+  "Retombees commerciales du reseau (affaires signees) : seules le sponsor les connait ; champ optionnel ou il peut saisir son propre chiffre, jamais estime par Sponsorlens."
+ ]
+}

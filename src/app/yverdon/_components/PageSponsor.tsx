@@ -34,7 +34,7 @@ import type { VueSponsor } from "../_data/sponsor";
 import { Ligne, Note } from "./Blocs";
 import { Frise } from "./Frise";
 import { BarrePlans, BarresValeur, BrutEquivalent, Classement } from "./Graphiques";
-import { PartExposition } from "./PartExposition";
+import { EnsemblePartenariat } from "./Partenariat";
 import { Reseaux } from "./Reseaux";
 import { LegendeStatuts, Statut } from "./Statut";
 
@@ -743,22 +743,23 @@ export function PageSponsor({ vue }: { vue: VueSponsor }) {
           <Reseaux vue={vue} />
         </Section>
 
-        {/* 8. Part exposition */}
+        {/* 8. Ensemble du partenariat */}
         <Section
-          id="part"
+          id="partenariat"
           numero={7}
-          titre="La part de l'écran dans votre partenariat"
+          titre="Ce que vaut l'ensemble du partenariat"
           intro={
             <p>
-              {`Un partenariat, c'est aussi le réseau, l'hospitalité et l'image du club\u00a0: rien de cela ne se mesure ici. Cette page donne la valeur média de l'écran, calculée sur le temps d'écran mesuré pendant ce match, puis projetée sur la saison. Renseignez votre investissement pour voir la part qu'elle en couvre.`}
+              {`Un partenariat, c'est l'écran, l'hospitalité, le réseau, le digital et l'image. Ici, chaque part est comptée\u00a0: l'écran est mesuré par Sponsorlens, le reste est compté au prix public du club, c'est-à-dire ce que vous paieriez pour l'acheter séparément. Renseignez ce que vous recevez pour voir la valeur de l'ensemble.`}
             </p>
           }
         >
-          <PartExposition
+          <EnsemblePartenariat
             saisonBase={v.base.saison.totalMesure}
             saisonOptimiste={v.optimiste.saison.totalMesure}
             matchs={vue.saison.matchs}
             borneBasse={bb}
+            refs={vue.partenariat}
           />
         </Section>
 
