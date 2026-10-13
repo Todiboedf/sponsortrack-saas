@@ -1,0 +1,294 @@
+{
+ "match": {
+  "nom": "Yverdon Sport FC - FC Stade-Lausanne-Ouchy",
+  "journee": 9,
+  "date": "20.09.2026",
+  "heure": "14:00",
+  "score": "0 - 0",
+  "competition": "dieci Challenge League 2026-27",
+  "stade": "Stade Municipal, Yverdon-les-Bains",
+  "arbitre": "Julian Muller",
+  "jeu_s": 5708,
+  "bandeau_visible_s": 4960,
+  "total_sponsor_jeu_s": 2699
+ },
+ "exposition": {
+  "brut_s": 206,
+  "equiv_s": 81.0,
+  "par_plan": {
+   "moyen": 50,
+   "large": 150,
+   "gros": 6
+  },
+  "passages": [
+   {
+    "debut": "06:19",
+    "fin": "06:50",
+    "mi_temps": 1,
+    "secondes": 32,
+    "hauteur_px": 36,
+    "plan": "plan moyen",
+    "diffusion_s": 1080
+   },
+   {
+    "debut": "29:19",
+    "fin": "29:48",
+    "mi_temps": 1,
+    "secondes": 30,
+    "hauteur_px": 25,
+    "plan": "plan moyen",
+    "diffusion_s": 2460
+   },
+   {
+    "debut": "31:19",
+    "fin": "31:32",
+    "mi_temps": 1,
+    "secondes": 14,
+    "hauteur_px": 13,
+    "plan": "plan large",
+    "diffusion_s": 2580
+   },
+   {
+    "debut": "40:19",
+    "fin": "40:48",
+    "mi_temps": 1,
+    "secondes": 30,
+    "hauteur_px": 13,
+    "plan": "plan large",
+    "diffusion_s": 3120
+   },
+   {
+    "debut": "51:06",
+    "fin": "51:36",
+    "mi_temps": 2,
+    "secondes": 31,
+    "hauteur_px": 13,
+    "plan": "plan large",
+    "diffusion_s": 4890
+   },
+   {
+    "debut": "75:24",
+    "fin": "75:44",
+    "mi_temps": 2,
+    "secondes": 21,
+    "hauteur_px": 14,
+    "plan": "plan large",
+    "diffusion_s": 6348
+   },
+   {
+    "debut": "77:16",
+    "fin": "77:45",
+    "mi_temps": 2,
+    "secondes": 30,
+    "hauteur_px": 27,
+    "plan": "plan moyen",
+    "diffusion_s": 6460
+   },
+   {
+    "debut": "86:55",
+    "fin": "87:05",
+    "mi_temps": 2,
+    "secondes": 11,
+    "hauteur_px": 18,
+    "plan": "plan large",
+    "diffusion_s": 7039
+   }
+  ],
+  "n_passages": 8,
+  "rang": 7,
+  "marques_visibles": 12,
+  "part_sponsor": 7.6,
+  "hors_jeu_s": 0,
+  "panneaux_fixes": "non mesures (visibles en gros plan derriere le but)"
+ },
+ "classement": [
+  [
+   "egokiefer",
+   463
+  ],
+  [
+   "multitel",
+   345
+  ],
+  [
+   "piller",
+   336
+  ],
+  [
+   "rouge",
+   279
+  ],
+  [
+   "garage_plaine",
+   271
+  ],
+  [
+   "sante_champagne",
+   224
+  ],
+  [
+   "roseyres",
+   206
+  ],
+  [
+   "ab_serrurerie",
+   199
+  ],
+  [
+   "jubin",
+   191
+  ],
+  [
+   "asa",
+   114
+  ],
+  [
+   "aon",
+   57
+  ],
+  [
+   "jolly_voyages",
+   14
+  ],
+  [
+   "kiki_pneus",
+   0
+  ]
+ ],
+ "hypotheses": {
+  "audience_tv": {
+   "bas": 3000,
+   "base": 6000,
+   "haut": 12000
+  },
+  "cpm_tv_30s": {
+   "bas": 35,
+   "base": 45,
+   "haut": 70
+  },
+  "qi": {
+   "large": 0.3,
+   "moyen": 0.6,
+   "gros": 1.0
+  },
+  "affluence": {
+   "bas": 1500,
+   "base": 2000,
+   "haut": 3000
+  },
+  "cpm_stade": {
+   "bas": 8,
+   "base": 10,
+   "haut": 15
+  },
+  "qi_stade": 0.8,
+  "duree_passage_s": 30,
+  "instagram_abonnes": 31700,
+  "instagram_verifie_le": "10.10.2026",
+  "portee_post": {
+   "bas": 0.15,
+   "base": 0.2,
+   "haut": 0.3
+  },
+  "cpm_social": {
+   "bas": 8,
+   "base": 12,
+   "haut": 18
+  },
+  "posts_partenaire_par_match": 2,
+  "part_bandeau_contenus": 0.036,
+  "vues_resume_video": 0.25,
+  "matchs_domicile": 18,
+  "variation_saison": 0.25
+ },
+ "valeur_match": {
+  "bas": {
+   "tv": 284,
+   "tv_brut": 721,
+   "stade": 77,
+   "social_organique": 2,
+   "social_package": 76,
+   "total_mesure": 363,
+   "total_avec_package": 439,
+   "contacts_tv": 24000,
+   "contacts_stade": 12000,
+   "impressions_social_org": 285,
+   "impressions_social_pack": 9510
+  },
+  "base": {
+   "tv": 729,
+   "tv_brut": 1854,
+   "stade": 128,
+   "social_organique": 3,
+   "social_package": 152,
+   "total_mesure": 860,
+   "total_avec_package": 1013,
+   "contacts_tv": 48000,
+   "contacts_stade": 16000,
+   "impressions_social_org": 285,
+   "impressions_social_pack": 12680
+  },
+  "haut": {
+   "tv": 2268,
+   "tv_brut": 5768,
+   "stade": 288,
+   "social_organique": 5,
+   "social_package": 342,
+   "total_mesure": 2561,
+   "total_avec_package": 2903,
+   "contacts_tv": 96000,
+   "contacts_stade": 24000,
+   "impressions_social_org": 285,
+   "impressions_social_pack": 19020
+  }
+ },
+ "valeur_saison": {
+  "bas": {
+   "tv": 5112,
+   "tv_brut": 12978,
+   "stade": 1386,
+   "social_organique": 36,
+   "social_package": 1368,
+   "total_mesure": 6534,
+   "total_avec_package": 7902,
+   "contacts_tv": 432000,
+   "contacts_stade": 216000,
+   "impressions_social_org": 5130,
+   "impressions_social_pack": 171180
+  },
+  "base": {
+   "tv": 13122,
+   "tv_brut": 33372,
+   "stade": 2304,
+   "social_organique": 54,
+   "social_package": 2736,
+   "total_mesure": 15480,
+   "total_avec_package": 18234,
+   "contacts_tv": 864000,
+   "contacts_stade": 288000,
+   "impressions_social_org": 5130,
+   "impressions_social_pack": 228240
+  },
+  "haut": {
+   "tv": 40824,
+   "tv_brut": 103824,
+   "stade": 5184,
+   "social_organique": 90,
+   "social_package": 6156,
+   "total_mesure": 46098,
+   "total_avec_package": 52254,
+   "contacts_tv": 1728000,
+   "contacts_stade": 432000,
+   "impressions_social_org": 5130,
+   "impressions_social_pack": 342360
+  },
+  "exposition_s": 3708,
+  "passages": 144,
+  "equiv_s": 1458
+ },
+ "leviers": {
+  "passages_12": 1288,
+  "creation_lisible": 1297,
+  "package_social": 1013
+ }
+}

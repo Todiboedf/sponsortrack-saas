@@ -1,9 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Archivo, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import { Navbar } from "@/components/Navbar";
-import { Footer } from "@/components/Footer";
-import { MotionProvider } from "@/components/MotionProvider";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -98,25 +95,6 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  name: "Sponsorlens",
-  url: SITE_URL,
-  logo: `${SITE_URL}/icon.svg`,
-  description:
-    "Sponsor exposure measurement for clubs, leagues and brands: social analytics, weekly reporting, broadcast computer vision in development.",
-  sameAs: ["https://www.linkedin.com/in/guillaumehaas"],
-  contactPoint: [
-    {
-      "@type": "ContactPoint",
-      contactType: "sales",
-      email: "guillaume.haas.nice@gmail.com",
-      availableLanguage: ["English", "French", "Spanish"],
-    },
-  ],
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
@@ -126,23 +104,7 @@ export default function RootLayout({
       className={`${inter.variable} ${archivo.variable} ${mono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-[#0A1628] text-[#F4EFE6]">
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-        <a
-          href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-sm focus:bg-[#D8FF3E] focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-[#0A1628]"
-        >
-          Skip to content
-        </a>
-        <MotionProvider>
-          <Navbar />
-          <main id="main" className="flex-1">
-            {children}
-          </main>
-          <Footer />
-        </MotionProvider>
+        {children}
       </body>
     </html>
   );

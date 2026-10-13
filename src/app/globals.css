@@ -48,6 +48,24 @@
   --radius-lg: 14px;
 
   --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Pages sponsor /yverdon : style maison des documents Sponsorlens
+     (docs/handoff-yverdon/refs/style-maison-sponsorlens.css) */
+  --color-yv-ink: #0A1628;
+  --color-yv-ink-2: #2B3A55;
+  --color-yv-body: #1F2937;
+  --color-yv-muted: #6B7280;
+  --color-yv-faint: #9AA3AF;
+  --color-yv-rule: #E3E6EA;
+  --color-yv-rule-2: #CFD5DC;
+  --color-yv-surface: #F6F7F9;
+  --color-yv-accent: #008300;
+  --color-yv-data: #256abf;
+  --color-yv-data-2: #5598e7;
+  --color-yv-data-3: #86b6ef;
+  --color-yv-data-deep: #104281;
+  --color-yv-amber: #B45309;
+  --color-yv-amber-bg: #FDF6EC;
 }
 
 :root {
@@ -225,6 +243,16 @@ body {
   outline: 2px solid rgba(216, 255, 62, 0.9);
   outline-offset: 2px;
   border-radius: 2px;
+}
+
+/* Pages sponsor /yverdon : repere de focus dans la palette maison. Les controles qui dessinent
+   leur propre anneau (classe outline-none) n'en ajoutent pas un second. */
+[data-yv] *:focus-visible {
+  outline-color: #256abf;
+}
+
+[data-yv] .outline-none:focus-visible {
+  outline: none;
 }
 
 /* -------------------------------------------------------------------------- */

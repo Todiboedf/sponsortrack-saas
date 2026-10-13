@@ -1,0 +1,50 @@
+{
+ "_source": "Yverdon-3-Rapport-de-mesure.pdf et rapports-4-matchs (septembre 2026). Mesure sur les RESUMES blue Sport (pas les matchs entiers), modele yolo11n de septembre (14 classes, Roseyres pas encore connue du modele). Ne pas additionner avec la mesure du match complet J09.",
+ "unite": "secondes de presence a l'image sur le resume, part de voix en % du total sponsor mesure sur le resume",
+ "matchs": [
+  {
+   "journee": 2,
+   "adversaire": "Etoile Carouge",
+   "egokiefer_s": 28.4,
+   "egokiefer_part_voix_pct": 13.5,
+   "premiere_marque": "abc stores sa (20.0 %)"
+  },
+  {
+   "journee": 4,
+   "adversaire": "FC Aarau",
+   "egokiefer_s": 41.0,
+   "egokiefer_part_voix_pct": 35.8,
+   "premiere_marque": "Desinfection Piller (35.9 %)"
+  },
+  {
+   "journee": 5,
+   "adversaire": "FC Wil",
+   "egokiefer_s": 38.4,
+   "egokiefer_part_voix_pct": 38.7,
+   "premiere_marque": "EgoKiefer"
+  },
+  {
+   "journee": 7,
+   "adversaire": "Stade Nyonnais",
+   "egokiefer_s": 36.2,
+   "egokiefer_part_voix_pct": 68.7,
+   "premiere_marque": "EgoKiefer"
+  }
+ ],
+ "total_4_resumes": {
+  "egokiefer_s": 144.0,
+  "egokiefer_part_voix_pct": 30.0,
+  "images_egokiefer": 720,
+  "aon_s": 48.6,
+  "sequence_moyenne_egokiefer_s": 18.2,
+  "total_sponsor_s": 480.6,
+  "marques_detectees": 11
+ },
+ "match_complet_J09": {
+  "egokiefer_s_jeu": 463,
+  "passages": 17,
+  "rang": 1,
+  "source": "J09-SLO-mesure-complete-donnees.json (v4.1)"
+ },
+ "statut_egokiefer": "Non liste sur la page partenaires officielle du club (verifie le 09.10.2026). Le palier 'Bronze' des rapports de septembre vient de la page sponsoring de la YS Cup (tournoi juniors), pas de la visibilite stade. Sur les pages web : ecrire 'statut a confirmer par le club', jamais 'Bronze'."
+}

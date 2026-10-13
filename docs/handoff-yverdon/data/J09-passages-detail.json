@@ -1,0 +1,1797 @@
+{
+ "match": "Yverdon Sport - FC Stade-Lausanne-Ouchy, 20.09.2026",
+ "bornes_diffusion_s": {
+  "coup_envoi": 701,
+  "fin_1re_mi_temps": 3471,
+  "reprise": 4524,
+  "fin_match": 7462
+ },
+ "regle": "passage = suite de secondes avec la meme etiquette pendant le jeu ; une sortie de champ (hors_champ) de 8 s ou moins ne coupe pas le passage ; un passage compte s'il cumule au moins 8 s visibles ; la mi-temps coupe. chrono = temps de jeu MM:SS (2e mi-temps a partir de 45:00). Reproduit exactement les comptes de J09-SLO-mesure-complete-donnees.json (v4.1).",
+ "marques": {
+  "dieci": {
+   "secondes_jeu": 1021,
+   "passages": 23,
+   "detail": [
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 701,
+     "diffusion_fin_s": 763,
+     "secondes_visibles": 63,
+     "chrono_debut": "00:00",
+     "chrono_fin": "01:02",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 990,
+     "diffusion_fin_s": 1049,
+     "secondes_visibles": 60,
+     "chrono_debut": "04:49",
+     "chrono_fin": "05:48",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 1260,
+     "diffusion_fin_s": 1290,
+     "secondes_visibles": 31,
+     "chrono_debut": "09:19",
+     "chrono_fin": "09:49",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 1560,
+     "diffusion_fin_s": 1589,
+     "secondes_visibles": 29,
+     "chrono_debut": "14:19",
+     "chrono_fin": "14:48",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 1800,
+     "diffusion_fin_s": 1859,
+     "secondes_visibles": 55,
+     "chrono_debut": "18:19",
+     "chrono_fin": "19:18",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 2070,
+     "diffusion_fin_s": 2129,
+     "secondes_visibles": 60,
+     "chrono_debut": "22:49",
+     "chrono_fin": "23:48",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 2395,
+     "diffusion_fin_s": 2399,
+     "secondes_visibles": 5,
+     "chrono_debut": "28:14",
+     "chrono_fin": "28:18",
+     "compte": false
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 2610,
+     "diffusion_fin_s": 2626,
+     "secondes_visibles": 17,
+     "chrono_debut": "31:49",
+     "chrono_fin": "32:05",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 2637,
+     "diffusion_fin_s": 2669,
+     "secondes_visibles": 32,
+     "chrono_debut": "32:16",
+     "chrono_fin": "32:48",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 2899,
+     "diffusion_fin_s": 2939,
+     "secondes_visibles": 41,
+     "chrono_debut": "36:38",
+     "chrono_fin": "37:18",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 3150,
+     "diffusion_fin_s": 3208,
+     "secondes_visibles": 59,
+     "chrono_debut": "40:49",
+     "chrono_fin": "41:47",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 3450,
+     "diffusion_fin_s": 3470,
+     "secondes_visibles": 21,
+     "chrono_debut": "45:49",
+     "chrono_fin": "46:09",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 4524,
+     "diffusion_fin_s": 4560,
+     "secondes_visibles": 37,
+     "chrono_debut": "45:00",
+     "chrono_fin": "45:36",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 4810,
+     "diffusion_fin_s": 4859,
+     "secondes_visibles": 49,
+     "chrono_debut": "49:46",
+     "chrono_fin": "50:35",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 5072,
+     "diffusion_fin_s": 5138,
+     "secondes_visibles": 67,
+     "chrono_debut": "54:08",
+     "chrono_fin": "55:14",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 5363,
+     "diffusion_fin_s": 5422,
+     "secondes_visibles": 57,
+     "chrono_debut": "58:59",
+     "chrono_fin": "59:58",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 5640,
+     "diffusion_fin_s": 5656,
+     "secondes_visibles": 17,
+     "chrono_debut": "63:36",
+     "chrono_fin": "63:52",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 5928,
+     "diffusion_fin_s": 5989,
+     "secondes_visibles": 62,
+     "chrono_debut": "68:24",
+     "chrono_fin": "69:25",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 6234,
+     "diffusion_fin_s": 6279,
+     "secondes_visibles": 46,
+     "chrono_debut": "73:30",
+     "chrono_fin": "74:15",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 6490,
+     "diffusion_fin_s": 6498,
+     "secondes_visibles": 9,
+     "chrono_debut": "77:46",
+     "chrono_fin": "77:54",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 6525,
+     "diffusion_fin_s": 6568,
+     "secondes_visibles": 44,
+     "chrono_debut": "78:21",
+     "chrono_fin": "79:04",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 6780,
+     "diffusion_fin_s": 6822,
+     "secondes_visibles": 40,
+     "chrono_debut": "82:36",
+     "chrono_fin": "83:18",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 7050,
+     "diffusion_fin_s": 7109,
+     "secondes_visibles": 60,
+     "chrono_debut": "87:06",
+     "chrono_fin": "88:05",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 7320,
+     "diffusion_fin_s": 7379,
+     "secondes_visibles": 60,
+     "chrono_debut": "91:36",
+     "chrono_fin": "92:35",
+     "compte": true
+    }
+   ]
+  },
+  "asa": {
+   "secondes_jeu": 114,
+   "passages": 5,
+   "detail": [
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 764,
+     "diffusion_fin_s": 779,
+     "secondes_visibles": 16,
+     "chrono_debut": "01:03",
+     "chrono_fin": "01:18",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 2130,
+     "diffusion_fin_s": 2159,
+     "secondes_visibles": 30,
+     "chrono_debut": "23:49",
+     "chrono_fin": "24:18",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 4579,
+     "diffusion_fin_s": 4602,
+     "secondes_visibles": 24,
+     "chrono_debut": "45:55",
+     "chrono_fin": "46:18",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 5243,
+     "diffusion_fin_s": 5268,
+     "secondes_visibles": 26,
+     "chrono_debut": "56:59",
+     "chrono_fin": "57:24",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 6012,
+     "diffusion_fin_s": 6029,
+     "secondes_visibles": 18,
+     "chrono_debut": "69:48",
+     "chrono_fin": "70:05",
+     "compte": true
+    }
+   ]
+  },
+  "ys": {
+   "secondes_jeu": 513,
+   "passages": 23,
+   "detail": [
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 780,
+     "diffusion_fin_s": 791,
+     "secondes_visibles": 12,
+     "chrono_debut": "01:19",
+     "chrono_fin": "01:30",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 962,
+     "diffusion_fin_s": 989,
+     "secondes_visibles": 28,
+     "chrono_debut": "04:21",
+     "chrono_fin": "04:48",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 1395,
+     "diffusion_fin_s": 1409,
+     "secondes_visibles": 15,
+     "chrono_debut": "11:34",
+     "chrono_fin": "11:48",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 1439,
+     "diffusion_fin_s": 1469,
+     "secondes_visibles": 31,
+     "chrono_debut": "12:18",
+     "chrono_fin": "12:48",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 1663,
+     "diffusion_fin_s": 1675,
+     "secondes_visibles": 12,
+     "chrono_debut": "16:02",
+     "chrono_fin": "16:14",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 1787,
+     "diffusion_fin_s": 1793,
+     "secondes_visibles": 7,
+     "chrono_debut": "18:06",
+     "chrono_fin": "18:12",
+     "compte": false
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 2028,
+     "diffusion_fin_s": 2039,
+     "secondes_visibles": 12,
+     "chrono_debut": "22:07",
+     "chrono_fin": "22:18",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 2310,
+     "diffusion_fin_s": 2339,
+     "secondes_visibles": 30,
+     "chrono_debut": "26:49",
+     "chrono_fin": "27:18",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 2490,
+     "diffusion_fin_s": 2519,
+     "secondes_visibles": 30,
+     "chrono_debut": "29:49",
+     "chrono_fin": "30:18",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 2550,
+     "diffusion_fin_s": 2579,
+     "secondes_visibles": 30,
+     "chrono_debut": "30:49",
+     "chrono_fin": "31:18",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 2760,
+     "diffusion_fin_s": 2789,
+     "secondes_visibles": 30,
+     "chrono_debut": "34:19",
+     "chrono_fin": "34:48",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 2820,
+     "diffusion_fin_s": 2849,
+     "secondes_visibles": 29,
+     "chrono_debut": "35:19",
+     "chrono_fin": "35:48",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 3030,
+     "diffusion_fin_s": 3045,
+     "secondes_visibles": 16,
+     "chrono_debut": "38:49",
+     "chrono_fin": "39:04",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 4770,
+     "diffusion_fin_s": 4808,
+     "secondes_visibles": 39,
+     "chrono_debut": "49:06",
+     "chrono_fin": "49:44",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 5190,
+     "diffusion_fin_s": 5209,
+     "secondes_visibles": 20,
+     "chrono_debut": "56:06",
+     "chrono_fin": "56:25",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 5497,
+     "diffusion_fin_s": 5500,
+     "secondes_visibles": 4,
+     "chrono_debut": "61:13",
+     "chrono_fin": "61:16",
+     "compte": false
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 5990,
+     "diffusion_fin_s": 6011,
+     "secondes_visibles": 22,
+     "chrono_debut": "69:26",
+     "chrono_fin": "69:47",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 6189,
+     "diffusion_fin_s": 6196,
+     "secondes_visibles": 8,
+     "chrono_debut": "72:45",
+     "chrono_fin": "72:52",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 6210,
+     "diffusion_fin_s": 6216,
+     "secondes_visibles": 7,
+     "chrono_debut": "73:06",
+     "chrono_fin": "73:12",
+     "compte": false
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 6390,
+     "diffusion_fin_s": 6398,
+     "secondes_visibles": 9,
+     "chrono_debut": "76:06",
+     "chrono_fin": "76:14",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 6431,
+     "diffusion_fin_s": 6459,
+     "secondes_visibles": 29,
+     "chrono_debut": "76:47",
+     "chrono_fin": "77:15",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 6652,
+     "diffusion_fin_s": 6670,
+     "secondes_visibles": 19,
+     "chrono_debut": "80:28",
+     "chrono_fin": "80:46",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 6682,
+     "diffusion_fin_s": 6689,
+     "secondes_visibles": 8,
+     "chrono_debut": "80:58",
+     "chrono_fin": "81:05",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 6713,
+     "diffusion_fin_s": 6749,
+     "secondes_visibles": 37,
+     "chrono_debut": "81:29",
+     "chrono_fin": "82:05",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 6973,
+     "diffusion_fin_s": 6989,
+     "secondes_visibles": 17,
+     "chrono_debut": "85:49",
+     "chrono_fin": "86:05",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 7260,
+     "diffusion_fin_s": 7271,
+     "secondes_visibles": 12,
+     "chrono_debut": "90:36",
+     "chrono_fin": "90:47",
+     "compte": true
+    }
+   ]
+  },
+  "egokiefer": {
+   "secondes_jeu": 463,
+   "passages": 17,
+   "detail": [
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 792,
+     "diffusion_fin_s": 839,
+     "secondes_visibles": 48,
+     "chrono_debut": "01:31",
+     "chrono_fin": "02:18",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 1050,
+     "diffusion_fin_s": 1079,
+     "secondes_visibles": 30,
+     "chrono_debut": "05:49",
+     "chrono_fin": "06:18",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 1320,
+     "diffusion_fin_s": 1349,
+     "secondes_visibles": 30,
+     "chrono_debut": "10:19",
+     "chrono_fin": "10:48",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 1470,
+     "diffusion_fin_s": 1497,
+     "secondes_visibles": 25,
+     "chrono_debut": "12:49",
+     "chrono_fin": "13:16",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 2160,
+     "diffusion_fin_s": 2189,
+     "secondes_visibles": 30,
+     "chrono_debut": "24:19",
+     "chrono_fin": "24:48",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 2670,
+     "diffusion_fin_s": 2699,
+     "secondes_visibles": 30,
+     "chrono_debut": "32:49",
+     "chrono_fin": "33:18",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 2850,
+     "diffusion_fin_s": 2877,
+     "secondes_visibles": 28,
+     "chrono_debut": "35:49",
+     "chrono_fin": "36:16",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 3414,
+     "diffusion_fin_s": 3449,
+     "secondes_visibles": 30,
+     "chrono_debut": "45:13",
+     "chrono_fin": "45:48",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 4620,
+     "diffusion_fin_s": 4650,
+     "secondes_visibles": 24,
+     "chrono_debut": "46:36",
+     "chrono_fin": "47:06",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 4860,
+     "diffusion_fin_s": 4889,
+     "secondes_visibles": 23,
+     "chrono_debut": "50:36",
+     "chrono_fin": "51:05",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 5139,
+     "diffusion_fin_s": 5150,
+     "secondes_visibles": 12,
+     "chrono_debut": "55:15",
+     "chrono_fin": "55:26",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 5269,
+     "diffusion_fin_s": 5297,
+     "secondes_visibles": 29,
+     "chrono_debut": "57:25",
+     "chrono_fin": "57:53",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 6030,
+     "diffusion_fin_s": 6051,
+     "secondes_visibles": 22,
+     "chrono_debut": "70:06",
+     "chrono_fin": "70:27",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 6569,
+     "diffusion_fin_s": 6599,
+     "secondes_visibles": 31,
+     "chrono_debut": "79:05",
+     "chrono_fin": "79:35",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 6750,
+     "diffusion_fin_s": 6779,
+     "secondes_visibles": 30,
+     "chrono_debut": "82:06",
+     "chrono_fin": "82:35",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 7299,
+     "diffusion_fin_s": 7319,
+     "secondes_visibles": 21,
+     "chrono_debut": "91:15",
+     "chrono_fin": "91:35",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 7380,
+     "diffusion_fin_s": 7385,
+     "secondes_visibles": 6,
+     "chrono_debut": "92:36",
+     "chrono_fin": "92:41",
+     "compte": false
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 7396,
+     "diffusion_fin_s": 7409,
+     "secondes_visibles": 14,
+     "chrono_debut": "92:52",
+     "chrono_fin": "93:05",
+     "compte": true
+    }
+   ]
+  },
+  "garage_plaine": {
+   "secondes_jeu": 271,
+   "passages": 7,
+   "detail": [
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 840,
+     "diffusion_fin_s": 869,
+     "secondes_visibles": 30,
+     "chrono_debut": "02:19",
+     "chrono_fin": "02:48",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 2190,
+     "diffusion_fin_s": 2219,
+     "secondes_visibles": 30,
+     "chrono_debut": "24:49",
+     "chrono_fin": "25:18",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 2940,
+     "diffusion_fin_s": 2969,
+     "secondes_visibles": 30,
+     "chrono_debut": "37:19",
+     "chrono_fin": "37:48",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 4651,
+     "diffusion_fin_s": 4679,
+     "secondes_visibles": 26,
+     "chrono_debut": "47:07",
+     "chrono_fin": "47:35",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 5298,
+     "diffusion_fin_s": 5362,
+     "secondes_visibles": 65,
+     "chrono_debut": "57:54",
+     "chrono_fin": "58:58",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 6052,
+     "diffusion_fin_s": 6101,
+     "secondes_visibles": 50,
+     "chrono_debut": "70:28",
+     "chrono_fin": "71:17",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 6830,
+     "diffusion_fin_s": 6869,
+     "secondes_visibles": 40,
+     "chrono_debut": "83:26",
+     "chrono_fin": "84:05",
+     "compte": true
+    }
+   ]
+  },
+  "jubin": {
+   "secondes_jeu": 191,
+   "passages": 8,
+   "detail": [
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 870,
+     "diffusion_fin_s": 899,
+     "secondes_visibles": 30,
+     "chrono_debut": "02:49",
+     "chrono_fin": "03:18",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 1590,
+     "diffusion_fin_s": 1619,
+     "secondes_visibles": 30,
+     "chrono_debut": "14:49",
+     "chrono_fin": "15:18",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 2236,
+     "diffusion_fin_s": 2249,
+     "secondes_visibles": 14,
+     "chrono_debut": "25:35",
+     "chrono_fin": "25:48",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 2970,
+     "diffusion_fin_s": 2999,
+     "secondes_visibles": 30,
+     "chrono_debut": "37:49",
+     "chrono_fin": "38:18",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 4680,
+     "diffusion_fin_s": 4709,
+     "secondes_visibles": 30,
+     "chrono_debut": "47:36",
+     "chrono_fin": "48:05",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 5423,
+     "diffusion_fin_s": 5444,
+     "secondes_visibles": 21,
+     "chrono_debut": "59:59",
+     "chrono_fin": "60:20",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 6102,
+     "diffusion_fin_s": 6120,
+     "secondes_visibles": 19,
+     "chrono_debut": "71:18",
+     "chrono_fin": "71:36",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 6872,
+     "diffusion_fin_s": 6889,
+     "secondes_visibles": 17,
+     "chrono_debut": "84:08",
+     "chrono_fin": "84:25",
+     "compte": true
+    }
+   ]
+  },
+  "macron": {
+   "secondes_jeu": 428,
+   "passages": 16,
+   "detail": [
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 900,
+     "diffusion_fin_s": 929,
+     "secondes_visibles": 29,
+     "chrono_debut": "03:19",
+     "chrono_fin": "03:48",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 1140,
+     "diffusion_fin_s": 1151,
+     "secondes_visibles": 12,
+     "chrono_debut": "07:19",
+     "chrono_fin": "07:30",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 1620,
+     "diffusion_fin_s": 1649,
+     "secondes_visibles": 27,
+     "chrono_debut": "15:19",
+     "chrono_fin": "15:48",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 1964,
+     "diffusion_fin_s": 1979,
+     "secondes_visibles": 16,
+     "chrono_debut": "21:03",
+     "chrono_fin": "21:18",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 2250,
+     "diffusion_fin_s": 2279,
+     "secondes_visibles": 26,
+     "chrono_debut": "25:49",
+     "chrono_fin": "26:18",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 2730,
+     "diffusion_fin_s": 2759,
+     "secondes_visibles": 30,
+     "chrono_debut": "33:49",
+     "chrono_fin": "34:18",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 3000,
+     "diffusion_fin_s": 3029,
+     "secondes_visibles": 23,
+     "chrono_debut": "38:19",
+     "chrono_fin": "38:48",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 3317,
+     "diffusion_fin_s": 3341,
+     "secondes_visibles": 25,
+     "chrono_debut": "43:36",
+     "chrono_fin": "44:00",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 4719,
+     "diffusion_fin_s": 4750,
+     "secondes_visibles": 32,
+     "chrono_debut": "48:15",
+     "chrono_fin": "48:46",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 4959,
+     "diffusion_fin_s": 4973,
+     "secondes_visibles": 14,
+     "chrono_debut": "52:15",
+     "chrono_fin": "52:29",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 5450,
+     "diffusion_fin_s": 5485,
+     "secondes_visibles": 36,
+     "chrono_debut": "60:26",
+     "chrono_fin": "61:01",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 5807,
+     "diffusion_fin_s": 5834,
+     "secondes_visibles": 28,
+     "chrono_debut": "66:23",
+     "chrono_fin": "66:50",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 6130,
+     "diffusion_fin_s": 6158,
+     "secondes_visibles": 27,
+     "chrono_debut": "71:46",
+     "chrono_fin": "72:14",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 6620,
+     "diffusion_fin_s": 6651,
+     "secondes_visibles": 32,
+     "chrono_debut": "79:56",
+     "chrono_fin": "80:27",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 6890,
+     "diffusion_fin_s": 6930,
+     "secondes_visibles": 41,
+     "chrono_debut": "84:26",
+     "chrono_fin": "85:06",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 7199,
+     "diffusion_fin_s": 7229,
+     "secondes_visibles": 30,
+     "chrono_debut": "89:35",
+     "chrono_fin": "90:05",
+     "compte": true
+    }
+   ]
+  },
+  "rouge": {
+   "secondes_jeu": 279,
+   "passages": 16,
+   "detail": [
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 930,
+     "diffusion_fin_s": 943,
+     "secondes_visibles": 14,
+     "chrono_debut": "03:49",
+     "chrono_fin": "04:02",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 1201,
+     "diffusion_fin_s": 1229,
+     "secondes_visibles": 23,
+     "chrono_debut": "08:20",
+     "chrono_fin": "08:48",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 1650,
+     "diffusion_fin_s": 1662,
+     "secondes_visibles": 13,
+     "chrono_debut": "15:49",
+     "chrono_fin": "16:01",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 1770,
+     "diffusion_fin_s": 1786,
+     "secondes_visibles": 17,
+     "chrono_debut": "17:49",
+     "chrono_fin": "18:05",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 2010,
+     "diffusion_fin_s": 2027,
+     "secondes_visibles": 18,
+     "chrono_debut": "21:49",
+     "chrono_fin": "22:06",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 2280,
+     "diffusion_fin_s": 2309,
+     "secondes_visibles": 30,
+     "chrono_debut": "26:19",
+     "chrono_fin": "26:48",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 3046,
+     "diffusion_fin_s": 3053,
+     "secondes_visibles": 8,
+     "chrono_debut": "39:05",
+     "chrono_fin": "39:12",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 3374,
+     "diffusion_fin_s": 3389,
+     "secondes_visibles": 16,
+     "chrono_debut": "44:33",
+     "chrono_fin": "44:48",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 4751,
+     "diffusion_fin_s": 4769,
+     "secondes_visibles": 19,
+     "chrono_debut": "48:47",
+     "chrono_fin": "49:05",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 5016,
+     "diffusion_fin_s": 5036,
+     "secondes_visibles": 15,
+     "chrono_debut": "53:12",
+     "chrono_fin": "53:32",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 5610,
+     "diffusion_fin_s": 5622,
+     "secondes_visibles": 13,
+     "chrono_debut": "63:06",
+     "chrono_fin": "63:18",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 5627,
+     "diffusion_fin_s": 5639,
+     "secondes_visibles": 13,
+     "chrono_debut": "63:23",
+     "chrono_fin": "63:35",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 5864,
+     "diffusion_fin_s": 5880,
+     "secondes_visibles": 17,
+     "chrono_debut": "67:20",
+     "chrono_fin": "67:36",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 6159,
+     "diffusion_fin_s": 6188,
+     "secondes_visibles": 30,
+     "chrono_debut": "72:15",
+     "chrono_fin": "72:44",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 6943,
+     "diffusion_fin_s": 6959,
+     "secondes_visibles": 17,
+     "chrono_debut": "85:19",
+     "chrono_fin": "85:35",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 7272,
+     "diffusion_fin_s": 7287,
+     "secondes_visibles": 16,
+     "chrono_debut": "90:48",
+     "chrono_fin": "91:03",
+     "compte": true
+    }
+   ]
+  },
+  "league": {
+   "secondes_jeu": 71,
+   "passages": 3,
+   "detail": [
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 944,
+     "diffusion_fin_s": 954,
+     "secondes_visibles": 11,
+     "chrono_debut": "04:03",
+     "chrono_fin": "04:13",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 1291,
+     "diffusion_fin_s": 1319,
+     "secondes_visibles": 29,
+     "chrono_debut": "09:50",
+     "chrono_fin": "10:18",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 2594,
+     "diffusion_fin_s": 2609,
+     "secondes_visibles": 16,
+     "chrono_debut": "31:33",
+     "chrono_fin": "31:48",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 3067,
+     "diffusion_fin_s": 3070,
+     "secondes_visibles": 4,
+     "chrono_debut": "39:26",
+     "chrono_fin": "39:29",
+     "compte": false
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 5623,
+     "diffusion_fin_s": 5626,
+     "secondes_visibles": 4,
+     "chrono_debut": "63:19",
+     "chrono_fin": "63:22",
+     "compte": false
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 6341,
+     "diffusion_fin_s": 6347,
+     "secondes_visibles": 7,
+     "chrono_debut": "75:17",
+     "chrono_fin": "75:23",
+     "compte": false
+    }
+   ]
+  },
+  "roseyres": {
+   "secondes_jeu": 206,
+   "passages": 8,
+   "detail": [
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 1080,
+     "diffusion_fin_s": 1111,
+     "secondes_visibles": 30,
+     "chrono_debut": "06:19",
+     "chrono_fin": "06:50",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 2460,
+     "diffusion_fin_s": 2489,
+     "secondes_visibles": 30,
+     "chrono_debut": "29:19",
+     "chrono_fin": "29:48",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 2580,
+     "diffusion_fin_s": 2593,
+     "secondes_visibles": 14,
+     "chrono_debut": "31:19",
+     "chrono_fin": "31:32",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 3120,
+     "diffusion_fin_s": 3149,
+     "secondes_visibles": 30,
+     "chrono_debut": "40:19",
+     "chrono_fin": "40:48",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 4890,
+     "diffusion_fin_s": 4920,
+     "secondes_visibles": 31,
+     "chrono_debut": "51:06",
+     "chrono_fin": "51:36",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 6348,
+     "diffusion_fin_s": 6368,
+     "secondes_visibles": 21,
+     "chrono_debut": "75:24",
+     "chrono_fin": "75:44",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 6460,
+     "diffusion_fin_s": 6489,
+     "secondes_visibles": 30,
+     "chrono_debut": "77:16",
+     "chrono_fin": "77:45",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 6499,
+     "diffusion_fin_s": 6500,
+     "secondes_visibles": 2,
+     "chrono_debut": "77:55",
+     "chrono_fin": "77:56",
+     "compte": false
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 7020,
+     "diffusion_fin_s": 7026,
+     "secondes_visibles": 7,
+     "chrono_debut": "86:36",
+     "chrono_fin": "86:42",
+     "compte": false
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 7039,
+     "diffusion_fin_s": 7049,
+     "secondes_visibles": 11,
+     "chrono_debut": "86:55",
+     "chrono_fin": "87:05",
+     "compte": true
+    }
+   ]
+  },
+  "piller": {
+   "secondes_jeu": 336,
+   "passages": 12,
+   "detail": [
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 1126,
+     "diffusion_fin_s": 1139,
+     "secondes_visibles": 14,
+     "chrono_debut": "07:05",
+     "chrono_fin": "07:18",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 1410,
+     "diffusion_fin_s": 1438,
+     "secondes_visibles": 20,
+     "chrono_debut": "11:49",
+     "chrono_fin": "12:17",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 1710,
+     "diffusion_fin_s": 1739,
+     "secondes_visibles": 29,
+     "chrono_debut": "16:49",
+     "chrono_fin": "17:18",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 1920,
+     "diffusion_fin_s": 1949,
+     "secondes_visibles": 27,
+     "chrono_debut": "20:19",
+     "chrono_fin": "20:48",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 3093,
+     "diffusion_fin_s": 3119,
+     "secondes_visibles": 27,
+     "chrono_debut": "39:52",
+     "chrono_fin": "40:18",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 3270,
+     "diffusion_fin_s": 3316,
+     "secondes_visibles": 47,
+     "chrono_debut": "42:49",
+     "chrono_fin": "43:35",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 4933,
+     "diffusion_fin_s": 4958,
+     "secondes_visibles": 26,
+     "chrono_debut": "51:49",
+     "chrono_fin": "52:14",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 5210,
+     "diffusion_fin_s": 5238,
+     "secondes_visibles": 29,
+     "chrono_debut": "56:26",
+     "chrono_fin": "56:54",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 5775,
+     "diffusion_fin_s": 5806,
+     "secondes_visibles": 32,
+     "chrono_debut": "65:51",
+     "chrono_fin": "66:22",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 6990,
+     "diffusion_fin_s": 7019,
+     "secondes_visibles": 30,
+     "chrono_debut": "86:06",
+     "chrono_fin": "86:35",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 7163,
+     "diffusion_fin_s": 7198,
+     "secondes_visibles": 32,
+     "chrono_debut": "88:59",
+     "chrono_fin": "89:34",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 7439,
+     "diffusion_fin_s": 7461,
+     "secondes_visibles": 23,
+     "chrono_debut": "93:35",
+     "chrono_fin": "93:57",
+     "compte": true
+    }
+   ]
+  },
+  "ab_serrurerie": {
+   "secondes_jeu": 199,
+   "passages": 7,
+   "detail": [
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 1175,
+     "diffusion_fin_s": 1200,
+     "secondes_visibles": 23,
+     "chrono_debut": "07:54",
+     "chrono_fin": "08:19",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 1740,
+     "diffusion_fin_s": 1769,
+     "secondes_visibles": 30,
+     "chrono_debut": "17:19",
+     "chrono_fin": "17:48",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 1980,
+     "diffusion_fin_s": 2009,
+     "secondes_visibles": 30,
+     "chrono_debut": "21:19",
+     "chrono_fin": "21:48",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 3342,
+     "diffusion_fin_s": 3373,
+     "secondes_visibles": 32,
+     "chrono_debut": "44:01",
+     "chrono_fin": "44:32",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 4997,
+     "diffusion_fin_s": 4997,
+     "secondes_visibles": 1,
+     "chrono_debut": "52:53",
+     "chrono_fin": "52:53",
+     "compte": false
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 5550,
+     "diffusion_fin_s": 5550,
+     "secondes_visibles": 1,
+     "chrono_debut": "62:06",
+     "chrono_fin": "62:06",
+     "compte": false
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 5578,
+     "diffusion_fin_s": 5609,
+     "secondes_visibles": 32,
+     "chrono_debut": "62:34",
+     "chrono_fin": "63:05",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 5835,
+     "diffusion_fin_s": 5863,
+     "secondes_visibles": 29,
+     "chrono_debut": "66:51",
+     "chrono_fin": "67:19",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 7230,
+     "diffusion_fin_s": 7250,
+     "secondes_visibles": 21,
+     "chrono_debut": "90:06",
+     "chrono_fin": "90:26",
+     "compte": true
+    }
+   ]
+  },
+  "multitel": {
+   "secondes_jeu": 345,
+   "passages": 12,
+   "detail": [
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 1230,
+     "diffusion_fin_s": 1259,
+     "secondes_visibles": 30,
+     "chrono_debut": "08:49",
+     "chrono_fin": "09:18",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 1860,
+     "diffusion_fin_s": 1889,
+     "secondes_visibles": 30,
+     "chrono_debut": "19:19",
+     "chrono_fin": "19:48",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 2400,
+     "diffusion_fin_s": 2429,
+     "secondes_visibles": 30,
+     "chrono_debut": "28:19",
+     "chrono_fin": "28:48",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 2520,
+     "diffusion_fin_s": 2549,
+     "secondes_visibles": 30,
+     "chrono_debut": "30:19",
+     "chrono_fin": "30:48",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 2790,
+     "diffusion_fin_s": 2819,
+     "secondes_visibles": 30,
+     "chrono_debut": "34:49",
+     "chrono_fin": "35:18",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 3240,
+     "diffusion_fin_s": 3256,
+     "secondes_visibles": 17,
+     "chrono_debut": "42:19",
+     "chrono_fin": "42:35",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 5048,
+     "diffusion_fin_s": 5071,
+     "secondes_visibles": 24,
+     "chrono_debut": "53:44",
+     "chrono_fin": "54:07",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 5690,
+     "diffusion_fin_s": 5748,
+     "secondes_visibles": 59,
+     "chrono_debut": "64:26",
+     "chrono_fin": "65:24",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 6280,
+     "diffusion_fin_s": 6300,
+     "secondes_visibles": 16,
+     "chrono_debut": "74:16",
+     "chrono_fin": "74:36",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 6402,
+     "diffusion_fin_s": 6430,
+     "secondes_visibles": 29,
+     "chrono_debut": "76:18",
+     "chrono_fin": "76:46",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 6690,
+     "diffusion_fin_s": 6712,
+     "secondes_visibles": 23,
+     "chrono_debut": "81:06",
+     "chrono_fin": "81:28",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 7113,
+     "diffusion_fin_s": 7139,
+     "secondes_visibles": 27,
+     "chrono_debut": "88:09",
+     "chrono_fin": "88:35",
+     "compte": true
+    }
+   ]
+  },
+  "sante_champagne": {
+   "secondes_jeu": 224,
+   "passages": 10,
+   "detail": [
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 1367,
+     "diffusion_fin_s": 1379,
+     "secondes_visibles": 13,
+     "chrono_debut": "11:06",
+     "chrono_fin": "11:18",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 1890,
+     "diffusion_fin_s": 1919,
+     "secondes_visibles": 27,
+     "chrono_debut": "19:49",
+     "chrono_fin": "20:18",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 2430,
+     "diffusion_fin_s": 2435,
+     "secondes_visibles": 6,
+     "chrono_debut": "28:49",
+     "chrono_fin": "28:54",
+     "compte": false
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 2455,
+     "diffusion_fin_s": 2459,
+     "secondes_visibles": 5,
+     "chrono_debut": "29:14",
+     "chrono_fin": "29:18",
+     "compte": false
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 2700,
+     "diffusion_fin_s": 2729,
+     "secondes_visibles": 22,
+     "chrono_debut": "33:19",
+     "chrono_fin": "33:48",
+     "compte": true
+    },
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 3258,
+     "diffusion_fin_s": 3269,
+     "secondes_visibles": 12,
+     "chrono_debut": "42:37",
+     "chrono_fin": "42:48",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 5151,
+     "diffusion_fin_s": 5177,
+     "secondes_visibles": 27,
+     "chrono_debut": "55:27",
+     "chrono_fin": "55:53",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 5749,
+     "diffusion_fin_s": 5768,
+     "secondes_visibles": 20,
+     "chrono_debut": "65:25",
+     "chrono_fin": "65:44",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 6311,
+     "diffusion_fin_s": 6340,
+     "secondes_visibles": 30,
+     "chrono_debut": "74:47",
+     "chrono_fin": "75:16",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 6600,
+     "diffusion_fin_s": 6619,
+     "secondes_visibles": 20,
+     "chrono_debut": "79:36",
+     "chrono_fin": "79:55",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 7140,
+     "diffusion_fin_s": 7162,
+     "secondes_visibles": 23,
+     "chrono_debut": "88:36",
+     "chrono_fin": "88:58",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 7410,
+     "diffusion_fin_s": 7427,
+     "secondes_visibles": 18,
+     "chrono_debut": "93:06",
+     "chrono_fin": "93:23",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 7438,
+     "diffusion_fin_s": 7438,
+     "secondes_visibles": 1,
+     "chrono_debut": "93:34",
+     "chrono_fin": "93:34",
+     "compte": false
+    }
+   ]
+  },
+  "jolly_voyages": {
+   "secondes_jeu": 14,
+   "passages": 1,
+   "detail": [
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 1695,
+     "diffusion_fin_s": 1700,
+     "secondes_visibles": 6,
+     "chrono_debut": "16:34",
+     "chrono_fin": "16:39",
+     "compte": false
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 6197,
+     "diffusion_fin_s": 6209,
+     "secondes_visibles": 8,
+     "chrono_debut": "72:53",
+     "chrono_fin": "73:05",
+     "compte": true
+    }
+   ]
+  },
+  "aon": {
+   "secondes_jeu": 57,
+   "passages": 2,
+   "detail": [
+    {
+     "mi_temps": 1,
+     "diffusion_debut_s": 2040,
+     "diffusion_fin_s": 2069,
+     "secondes_visibles": 30,
+     "chrono_debut": "22:19",
+     "chrono_fin": "22:48",
+     "compte": true
+    },
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 5901,
+     "diffusion_fin_s": 5927,
+     "secondes_visibles": 27,
+     "chrono_debut": "67:57",
+     "chrono_fin": "68:23",
+     "compte": true
+    }
+   ]
+  },
+  "bluesport": {
+   "secondes_jeu": 6,
+   "passages": 0,
+   "detail": [
+    {
+     "mi_temps": 2,
+     "diffusion_debut_s": 4563,
+     "diffusion_fin_s": 4568,
+     "secondes_visibles": 6,
+     "chrono_debut": "45:39",
+     "chrono_fin": "45:44",
+     "compte": false
+    }
+   ]
+  }
+ }
+}

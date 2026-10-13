@@ -44,3 +44,6 @@ supabase/.temp/
 # local YOLO training artifacts
 runs/
 yolo11s.pt
+
+# Python
+__pycache__/

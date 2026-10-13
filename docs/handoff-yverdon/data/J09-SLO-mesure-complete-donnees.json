@@ -1,0 +1,77 @@
+{
+ "match": "Yverdon Sport - FC Stade-Lausanne-Ouchy",
+ "date": "20.09.2026",
+ "jeu_s": 5708,
+ "bandeau_visible_s": 4960,
+ "sponsors_jeu_s": {
+  "sante_champagne": 224,
+  "kiki_pneus": 0,
+  "asa": 114,
+  "egokiefer": 463,
+  "garage_plaine": 271,
+  "jubin": 191,
+  "rouge": 279,
+  "roseyres": 206,
+  "piller": 336,
+  "ab_serrurerie": 199,
+  "multitel": 345,
+  "jolly_voyages": 14,
+  "aon": 57
+ },
+ "sponsors_hors_jeu_s": {
+  "pause_recharge": 55,
+  "vin_bonne_humeur": 180,
+  "swisstems": 60,
+  "swica": 60,
+  "hotel_source": 139,
+  "nordvent": 48,
+  "carrosserie_maisto": 180,
+  "sante_champagne": 102,
+  "kiki_pneus": 34,
+  "ab_serrurerie": 127,
+  "chris_medical": 120,
+  "piller": 74
+ },
+ "ligue_jeu_s": {
+  "dieci": 1021,
+  "ys": 513,
+  "macron": 428,
+  "league": 71,
+  "none": 222,
+  "bluesport": 6
+ },
+ "total_sponsor_jeu_s": 2699,
+ "total_sponsor_hors_jeu_s": 1179,
+ "passages_jeu": {
+  "sante_champagne": 11,
+  "egokiefer": 17,
+  "garage_plaine": 7,
+  "ab_serrurerie": 7,
+  "jolly_voyages": 1,
+  "piller": 12,
+  "multitel": 12,
+  "aon": 2,
+  "roseyres": 8,
+  "rouge": 16,
+  "jubin": 8,
+  "asa": 5,
+  "dieci": 23,
+  "ys": 23,
+  "macron": 16
+ },
+ "bornes_diffusion_s": {
+  "coup_envoi": 701,
+  "fin_1re_mi_temps": 3471,
+  "reprise": 4524,
+  "fin_match": 7462
+ },
+ "version": 4.1,
+ "panneaux_fixes_s": {
+  "clean_co": {
+   "jeu": 838,
+   "hors_jeu": 20,
+   "sequences_8s": 47,
+   "largeur_mediane_px": 78
+  }
+ }
+}
