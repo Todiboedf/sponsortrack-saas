@@ -1,9 +1,8 @@
-import { Info } from "lucide-react";
-
 import { CONTENU } from "../_data/contenu";
 import {
   chf,
   chrono,
+  dateCh,
   decimal,
   duree,
   entier,
@@ -18,9 +17,9 @@ import {
   CONTROLE_ACCORD_PCT,
   CONTROLE_SECONDES,
   CRENEAU_LECTURE_S,
-  DEBUT_RELEVE_SOCIAL,
   DIFFUSEUR,
   DUREE_FICHIER_DIFFUSION_S,
+  FICHE_HYPOTHESES_DATE,
   IMAGES_LUES_A_L_OEIL,
   IMAGE_REFERENCE,
   LECTURE_HORS_JEU_AVANT_COUP_ENVOI_S,
@@ -32,9 +31,11 @@ import {
   TOLERANCE_HORS_CHAMP_S,
 } from "../_data/regles";
 import type { VueSponsor } from "../_data/sponsor";
+import { Ligne, Note } from "./Blocs";
 import { Frise } from "./Frise";
 import { BarrePlans, BarresValeur, BrutEquivalent, Classement } from "./Graphiques";
 import { PartExposition } from "./PartExposition";
+import { Reseaux } from "./Reseaux";
 import { LegendeStatuts, Statut } from "./Statut";
 
 const NBSP = " ";
@@ -80,42 +81,6 @@ function Tuile({
       <p className="text-2xl font-bold tracking-tight text-yv-ink tabular-nums sm:text-[1.75rem]">{chiffre}</p>
       <p className="mt-1 flex-1 text-sm leading-snug text-yv-body">{libelle}</p>
       <div className="mt-3">{statut}</div>
-    </div>
-  );
-}
-
-function Ligne({
-  libelle,
-  detail,
-  valeur,
-  statut,
-}: {
-  libelle: React.ReactNode;
-  detail?: React.ReactNode;
-  valeur: React.ReactNode;
-  statut: React.ReactNode;
-}) {
-  return (
-    <div className="grid gap-1 border-b border-yv-rule py-3 sm:grid-cols-[minmax(0,1fr)_auto_8.5rem] sm:items-baseline sm:gap-4">
-      <div className="min-w-0">
-        <p className="text-sm font-medium text-yv-ink">{libelle}</p>
-        {detail && <p className="mt-0.5 text-sm text-yv-muted">{detail}</p>}
-      </div>
-      <p className="text-sm font-semibold tabular-nums text-yv-ink sm:text-right">{valeur}</p>
-      <div className="sm:text-right">{statut}</div>
-    </div>
-  );
-}
-
-function Note({ children, ton = "neutre" }: { children: React.ReactNode; ton?: "neutre" | "alerte" }) {
-  return (
-    <div
-      className={`flex gap-3 rounded-sm border-l-2 px-4 py-3 text-sm leading-relaxed ${
-        ton === "alerte" ? "border-yv-amber bg-yv-amber-bg text-yv-body" : "border-yv-data bg-yv-surface text-yv-body"
-      }`}
-    >
-      <Info aria-hidden className={`mt-0.5 size-4 shrink-0 ${ton === "alerte" ? "text-yv-amber" : "text-yv-data"}`} />
-      <div>{children}</div>
     </div>
   );
 }
@@ -332,7 +297,7 @@ export function PageSponsor({ vue }: { vue: VueSponsor }) {
                   {ex.parPlanSource === "fiche"
                     ? "Par plan, seconde par seconde"
                     : ex.parPlanSource === "mesure_hauteurs"
-                      ? "Par plan, passage par passage"
+                      ? "Par plan, apparition par apparition"
                       : "Par plan"}
                 </h3>
                 {ex.parPlanSource === "fiche" && (
@@ -342,7 +307,7 @@ export function PageSponsor({ vue }: { vue: VueSponsor }) {
                 )}
                 {ex.parPlanSource === "mesure_hauteurs" && (
                   <p className="mt-1 text-sm text-yv-muted">
-                    {`Chaque passage est classé selon la hauteur médiane du bandeau sur son extrait\u00a0; toutes ses secondes visibles prennent ce plan. C'est ce classement qui sert à la valeur.`}
+                    {`Chaque apparition est classée selon la hauteur médiane des détections du bandeau sur son extrait\u00a0; toutes ses secondes visibles prennent ce plan. Classement par apparition, pas seconde par seconde\u00a0: c'est lui qui sert à la valeur.`}
                   </p>
                 )}
                 <p className="mt-2 text-sm text-yv-muted">
@@ -534,7 +499,7 @@ export function PageSponsor({ vue }: { vue: VueSponsor }) {
                       <th scope="row" className="py-2 pr-2 text-left font-normal">
                         <span className="font-medium text-yv-ink">Stade</span>
                         <span className="block text-xs text-yv-muted">
-                          {`${v.passages} passages vus par le public présent`}
+                          {`${v.passages} passages vus par ${entier(h.affluence.base)} spectateurs`}
                         </span>
                       </th>
                       <td className="py-2 pr-2 text-right font-semibold tabular-nums text-yv-ink">{chf(vb.stade)}</td>
@@ -596,8 +561,12 @@ export function PageSponsor({ vue }: { vue: VueSponsor }) {
                   <Statut s="hypothese" />
                 </li>
                 <li>
-                  {`Contacts en base\u00a0: ${entier(vb.contactsTv)} à la TV (${entier(h.audience_tv.base)} téléspectateurs × ${v.passages} passages), ${entier(vb.contactsStade)} au stade `}
+                  {`Contacts en base\u00a0: ${entier(vb.contactsTv)} à la TV (${entier(h.audience_tv.base)} téléspectateurs × ${v.passages} passages) `}
                   <Statut s="hypothese" />
+                </li>
+                <li>
+                  {`Contacts au stade\u00a0: ${entier(vb.contactsStade)} (${entier(h.affluence.base)} spectateurs × ${v.passages} passages) `}
+                  <Statut s="verifie" />
                 </li>
               </ul>
             </Note>
@@ -617,7 +586,7 @@ export function PageSponsor({ vue }: { vue: VueSponsor }) {
                 ex.parPlanSource === "fiche"
                   ? "plan large, plan moyen, gros plan, seconde par seconde"
                   : ex.parPlanSource === "mesure_hauteurs"
-                    ? "plan large, plan moyen, gros plan, passage par passage"
+                    ? "plan large, plan moyen, gros plan, par apparition (hauteur médiane des détections), pas seconde par seconde"
                     : "pas encore mesurée\u00a0: tout compte en plan large"
               }
               valeur={
@@ -647,9 +616,21 @@ export function PageSponsor({ vue }: { vue: VueSponsor }) {
             />
             <Ligne
               libelle="Affluence au stade"
-              detail={"à confirmer par le club\u00a0; base, puis optimiste"}
-              valeur={`${entier(h.affluence.base)} · ${entier(h.affluence.haut)}`}
-              statut={<Statut s="hypothese" />}
+              detail={
+                <>
+                  <a
+                    href={vue.reseaux.affluence_j09.source}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="rounded-sm text-yv-data underline underline-offset-2 outline-none hover:text-yv-ink focus-visible:ring-2 focus-visible:ring-yv-data"
+                  >
+                    SFL match center
+                  </a>
+                  {`, lue le ${dateCh(vue.reseaux.releve_le)}\u00a0; la même dans les deux scénarios`}
+                </>
+              }
+              valeur={`${entier(h.affluence.base)} spectateurs`}
+              statut={<Statut s="verifie" />}
             />
             <Ligne
               libelle="Visibilité au stade"
@@ -739,7 +720,7 @@ export function PageSponsor({ vue }: { vue: VueSponsor }) {
           <div className="mt-2 space-y-1 text-xs text-yv-muted">
             <p className="flex flex-wrap items-center gap-2">
               <Statut s="hypothese" />
-              <span>temps, passages et contacts&nbsp;: même rythme à chaque match, audience et affluence supposées</span>
+              <span>{`temps, passages et contacts\u00a0: même rythme à chaque match, audience TV supposée, ${entier(h.affluence.base)} spectateurs à chaque match`}</span>
             </p>
             <p className="flex flex-wrap items-center gap-2">
               <Statut s="hypothese" borneBasse={bb} />
@@ -755,43 +736,11 @@ export function PageSponsor({ vue }: { vue: VueSponsor }) {
           titre="Les réseaux sociaux"
           intro={
             <p>
-              {`Ce qui compte ici\u00a0: les publications du club qui citent ou montrent ${vue.nom}, avec leurs vues, likes et commentaires lus sur chaque plateforme. Tant que ce relevé n'est pas fait, rien ne s'affiche à sa place.`}
+              {`Relevé du ${dateCh(vue.reseaux.releve_le)}\u00a0: les publications du club et de la marque depuis le ${dateCh(vue.reseaux.periode.debut)}, avec leurs likes et commentaires lus sur chaque publication. Chaque chiffre porte sa date.`}
             </p>
           }
         >
-          <Ligne
-            libelle={`Publications du club citant ou montrant la marque, depuis ${DEBUT_RELEVE_SOCIAL.valeur}`}
-            detail="Instagram, Facebook, LinkedIn, X, TikTok, YouTube du club, et les comptes de la marque"
-            valeur="relevé à faire"
-            statut={null}
-          />
-          <Ligne
-            libelle={`Résumé vidéo du match du ${vue.match.date}`}
-            detail="publication, vues et présence du bandeau à l'image"
-            valeur="relevé à faire"
-            statut={null}
-          />
-          <Ligne
-            libelle="Audience Instagram du club"
-            detail={`@yverdonsport, relevé le ${h.instagram_verifie_le}`}
-            valeur={`${entier(h.instagram_abonnes)} abonnés`}
-            statut={<Statut s="verifie" />}
-          />
-          <Ligne
-            libelle="Exposition organique estimée"
-            detail={`abonnés × ${taux(h.part_bandeau_contenus, 1)} de contenus avec le bandeau × ${taux(h.vues_resume_video)} de vues du résumé`}
-            valeur={`${entier(vb.impressionsSocialOrg)} impressions, ${chf(vb.socialOrganique)}`}
-            statut={<Statut s="hypothese" />}
-          />
-          <Ligne
-            libelle={`Package social\u00a0: ${h.posts_partenaire_par_match} publications dédiées par match`}
-            detail={`portée de ${taux(h.portee_post.base)} des abonnés par publication en base, ${taux(h.portee_post.haut)} en optimiste`}
-            valeur={`${entier(vb.impressionsSocialPackage)} impressions, ${chf(vb.socialPackage)}\u00a0; optimiste ${chf(vo.socialPackage)}`}
-            statut={<Statut s="hypothese" levier />}
-          />
-          <p className="mt-3 text-xs text-yv-muted">
-            {`Le package social n'est pas une mesure\u00a0: c'est ce que donneraient ${h.posts_partenaire_par_match} publications «${NBSP}partenaire du match${NBSP}» si le club les publiait. Il n'entre pas dans la valeur du match.`}
-          </p>
+          <Reseaux vue={vue} />
         </Section>
 
         {/* 8. Part exposition */}
@@ -884,18 +833,30 @@ export function PageSponsor({ vue }: { vue: VueSponsor }) {
               {`Hors jeu (échauffement, mi-temps, fin), les durées viennent du détecteur Sponsorlens, en développement, réentraîné sur ce match, et d'une lecture à l'œil des ${LECTURE_HORS_JEU_AVANT_COUP_ENVOI_S.valeur}${NBSP}secondes qui précèdent le coup d'envoi. Une création que ce détecteur ne connaît pas n'est pas mesurée hors jeu.`}
             </li>
             <li>
-              Le plan se lit sur la hauteur du bandeau à l&apos;image&nbsp;; l&apos;indice de visibilité pondère chaque
-              seconde avant le calcul de la valeur TV.
+              {`Le plan se lit sur la hauteur du bandeau à l'image${
+                ex.parPlanSource === "fiche"
+                  ? ", seconde par seconde"
+                  : ex.parPlanSource === "mesure_hauteurs"
+                    ? `. Pour ${vue.nom}, classement par apparition\u00a0: hauteur médiane des détections du détecteur Sponsorlens sur l'extrait de chaque apparition, appliquée à toutes ses secondes visibles, pas seconde par seconde`
+                    : ""
+              }. L'indice de visibilité pondère chaque seconde avant le calcul de la valeur TV.`}
             </li>
             <li>
-              {`Mesuré\u00a0: temps à l'écran, passages${vue.plansMesures ? ", plans" : ""}.${vue.plansMesures ? "" : " Pas encore mesurés\u00a0: les plans, d'où la borne basse."} Vérifié\u00a0: abonnés Instagram${c.statutVerifie ? ", statut sur la page partenaires du club" : ""}. Hypothèses\u00a0: audience TV, affluence, tarifs, portée sociale, indices de visibilité.`}
+              {`Mesuré\u00a0: temps à l'écran, passages${vue.plansMesures ? ", plans" : ""}.${vue.plansMesures ? "" : " Pas encore mesurés\u00a0: les plans, d'où la borne basse."} Vérifié\u00a0: affluence du match, abonnés des comptes${c.statutVerifie ? ", statut sur la page partenaires du club" : ""}. Hypothèses\u00a0: audience TV, tarifs, portée sociale, indices de visibilité, et l'affluence de chaque match dans la projection saison.`}
             </li>
             <li>
               {`Les panneaux fixes se mesurent à part\u00a0: le panneau Clean&Co est à l'image ${duree(vue.jeu.cleanCoJeuS)} pendant le jeu, sur une ligne séparée. Les autres panneaux fixes ne sont pas encore mesurés à part.`}
             </li>
             <li>
-              Valeur&nbsp;: équivalent média, pas prix de marché du contrat. Les audiences et l&apos;affluence restent des
-              hypothèses tant que le club ou le diffuseur ne les a pas communiquées.
+              {`L'affluence est celle du SFL match center, ${entier(h.affluence.base)} spectateurs, lue le ${dateCh(vue.reseaux.releve_le)}. Les hypothèses de valeur viennent de la fiche du ${FICHE_HYPOTHESES_DATE.valeur}, qui utilisait une affluence supposée de ${entier(vue.affluenceFiche.base)} en base et ${entier(vue.affluenceFiche.haut)} en optimiste${
+                vue.valeurFiche
+                  ? `\u00a0: elle donnait ${chf(vue.valeurFiche.base)} et ${chf(vue.valeurFiche.optimiste)}, contre ${chf(vb.totalMesure)} et ${chf(vo.totalMesure)} ici. La formule est la même, contrôlée sur ces deux chiffres à chaque mise à jour`
+                  : ""
+              }.`}
+            </li>
+            <li>
+              Valeur&nbsp;: équivalent média, pas prix de marché du contrat. L&apos;audience TV reste une hypothèse tant
+              que le diffuseur ne l&apos;a pas communiquée.
             </li>
           </ol>
         </Section>

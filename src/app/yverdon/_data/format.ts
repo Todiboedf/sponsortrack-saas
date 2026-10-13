@@ -72,3 +72,9 @@ export function chronoEnSecondes(c: string): number {
 export function rang(n: number): string {
   return n === 1 ? "1re" : `${n}e`;
 }
+
+/** "2026-10-13" -> "13.10.2026" */
+export function dateCh(iso: string): string {
+  const [a, m, j] = iso.split("-");
+  return `${j}.${m}.${a}`;
+}

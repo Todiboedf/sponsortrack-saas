@@ -1,6 +1,7 @@
 // Assemble, pour une marque, tout ce que la page affiche. Chaque chiffre sort des JSON
 // (sources.ts) ou de la formule de valeur.py (valeur.ts) ; les composants ne font que le mettre en forme.
 
+import { dateCh } from "./format";
 import { ETIQUETTE_CHRONOLOGIE, ETIQUETTE_HORS_CHAMP, libelle } from "./marques";
 import { VIDEOS, type Video } from "./media";
 import { LEVIER_FACTEUR_LISIBILITE, LEVIER_PASSAGES_CIBLE, PAGE_PARTENAIRES_VERIFIEE_LE } from "./regles";
@@ -10,12 +11,22 @@ import {
   entreeReferentiel,
   hauteurs,
   hypotheses,
+  hypothesesFiche,
   mesure,
   passages,
+  reseaux,
   resumesEgoKiefer,
   roseyres,
 } from "./sources";
-import type { Bornes, EgoKieferResumes, FichierHauteurs, Hypotheses, ParPlan, PassageDetailBrut } from "./types";
+import type {
+  Bornes,
+  EgoKieferResumes,
+  FichierHauteurs,
+  Hypotheses,
+  ParPlan,
+  PassageDetailBrut,
+  ReseauxSociaux,
+} from "./types";
 import { gainPct, valeur, valeurLevier, type ResultatValeur } from "./valeur";
 
 export type CleSponsor = "roseyres" | "egokiefer";
@@ -126,6 +137,11 @@ export interface VueSponsor {
   classement: LigneClassement[];
   valeur: ResultatValeur;
   hypotheses: Hypotheses;
+  /** Affluence supposee par la fiche Roseyres du 10.10.2026, remplacee par l'affluence verifiee. */
+  affluenceFiche: Hypotheses["affluence"];
+  /** Valeur du match avec les hypotheses de la fiche (Roseyres seulement : c'est sa fiche). */
+  valeurFiche: { base: number; optimiste: number } | null;
+  reseaux: ReseauxSociaux;
   saison: { matchs: number; expositionS: number; passages: number };
   leviers: Levier[];
   resumes: EgoKieferResumes | null;
@@ -187,6 +203,13 @@ export function construireVue(cle: CleSponsor): VueSponsor {
 
   // Passages, numerotes dans l'ordre des passages qui comptent.
   let numero = 0;
+  if (mesureHauteurs) {
+    for (const p of detail.detail.filter((x) => x.compte)) {
+      if (!planHauteurs(mesureHauteurs, p)) {
+        throw new Error(`[yverdon] hauteurs_${cle}.json : pas de plan pour ${p.chrono_debut}-${p.chrono_fin}`);
+      }
+    }
+  }
   const vuesPassages: PassageVue[] = detail.detail.map((p, i) => {
     const miTemps: 1 | 2 = p.mi_temps === 1 ? 1 : 2;
     const depart = miTemps === 1 ? b.coup_envoi : b.reprise;
@@ -281,29 +304,31 @@ export function construireVue(cle: CleSponsor): VueSponsor {
   // Leviers, scenario base.
   const reference = v.base.match.totalMesure;
   const leviers: Levier[] = [];
+  const facteur = LEVIER_FACTEUR_LISIBILITE.valeur;
+  const leviersPlans = parPlan !== null;
   if (cle === "roseyres") {
     const cible = LEVIER_PASSAGES_CIBLE.valeur;
-    const facteur = LEVIER_FACTEUR_LISIBILITE.valeur;
     const premiere = classement[0];
     const premierePassages = mesure.passages_jeu[premiere.cle];
     const lPassages = valeurLevier(hypotheses, v.secondesBrutes, cible, (v.equiv * cible) / v.passages);
+    leviers.push({
+      titre: `${cible} passages au lieu de ${v.passages}`,
+      description: `Obtenir du club une part de rotation proche de celle des premières marques (${premiere.nom}\u00a0: ${premierePassages} passages). Même création, même lisibilité.`,
+      valeur: lPassages,
+      gainPct: gainPct(lPassages, reference),
+      gainChf: lPassages - reference,
+    });
+  }
+  if (leviersPlans) {
+    // Ne se chiffre que si les plans sont mesures : sur la borne basse, il ne voudrait rien dire.
     const lLisible = valeurLevier(hypotheses, v.secondesBrutes, v.passages, v.equiv * facteur);
-    leviers.push(
-      {
-        titre: `${cible} passages au lieu de ${v.passages}`,
-        description: `Obtenir du club une part de rotation proche de celle des premières marques (${premiere.nom}\u00a0: ${premierePassages} passages). Même création, même lisibilité.`,
-        valeur: lPassages,
-        gainPct: gainPct(lPassages, reference),
-        gainChf: lPassages - reference,
-      },
-      {
-        titre: "Une création plus contrastée",
-        description: `Logo plus grand, fond plus sombre\u00a0: lisible dès le plan large. Indice de visibilité multiplié par ${String(facteur).replace(".", ",")} sur le même temps d'écran.`,
-        valeur: lLisible,
-        gainPct: gainPct(lLisible, reference),
-        gainChf: lLisible - reference,
-      },
-    );
+    leviers.push({
+      titre: cle === "roseyres" ? "Une création plus contrastée" : "Une création plus lisible",
+      description: `${cle === "roseyres" ? "Logo plus grand, fond plus sombre" : "Logo plus grand, plus contrasté"}\u00a0: lisible dès le plan large. Indice de visibilité multiplié par ${String(facteur).replace(".", ",")} sur le même temps d'écran.`,
+      valeur: lLisible,
+      gainPct: gainPct(lLisible, reference),
+      gainChf: lLisible - reference,
+    });
   }
   leviers.push({
     titre: `${hypotheses.posts_partenaire_par_match} publications par match`,
@@ -348,6 +373,15 @@ export function construireVue(cle: CleSponsor): VueSponsor {
     classement,
     valeur: v,
     hypotheses,
+    affluenceFiche: hypothesesFiche.affluence,
+    valeurFiche:
+      cle === "roseyres"
+        ? (() => {
+            const f = valeur(hypothesesFiche, detail.secondes_jeu, detail.passages, planCalcul);
+            return { base: f.base.match.totalMesure, optimiste: f.optimiste.match.totalMesure };
+          })()
+        : null,
+    reseaux,
     saison: { matchs: n, expositionS: detail.secondes_jeu * n, passages: detail.passages * n },
     leviers,
     resumes: cle === "egokiefer" ? resumesEgoKiefer : null,
@@ -357,7 +391,9 @@ export function construireVue(cle: CleSponsor): VueSponsor {
       "chronologie du bandeau seconde par seconde",
       cle === "roseyres" ? "fiche Roseyres (plans et hauteurs, hypothèses de valeur)" : "hypothèses de valeur de la fiche Roseyres",
       ...(cle === "egokiefer" ? ["résumés de septembre"] : []),
-      ...(mesureHauteurs ? ["hauteurs du bandeau mesurées par passage"] : []),
+      ...(mesureHauteurs ? ["hauteurs du bandeau mesurées par apparition"] : []),
+      `affluence du SFL match center lue le ${dateCh(reseaux.releve_le)}`,
+      `relevé des réseaux sociaux du ${dateCh(reseaux.releve_le)}`,
       `page partenaires du club relevée le ${PAGE_PARTENAIRES_VERIFIEE_LE.valeur}`,
     ],
     plansMesures: parPlan !== null,

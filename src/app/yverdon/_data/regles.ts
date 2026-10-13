@@ -54,3 +54,6 @@ export const PAGE_PARTENAIRES_VERIFIEE_LE: ChiffreSource<string> = {
 
 /** Match mesure. */
 export const DIFFUSEUR: ChiffreSource<string> = { valeur: "blue Sport", source: RAPPORT };
+
+/** Date de la fiche Roseyres dont viennent les hypotheses de valeur (affluence supposee remplacee depuis). */
+export const FICHE_HYPOTHESES_DATE: ChiffreSource<string> = { valeur: "10.10.2026", source: "Guillaume Haas, 13.10.2026" };

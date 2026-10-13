@@ -10,7 +10,7 @@ Le directeur marketing et commercial du club, Nicolas Cherbuin, a repondu par ec
 
 Point important : Roseyres.ch est une creation de Smartimmo Sarl, qui est listee « Sponsor principal » sur la page partenaires officielle du club, et Smartimmo est un client de Guillaume (il construit leur site de promotion immobiliere). La page Roseyres peut donc etre montree directement au sponsor, sans passer par le club. C'est la page a soigner en premier.
 
-Un premier match a ete mesure en entier : journee 9, Yverdon Sport 0-0 FC Stade-Lausanne-Ouchy, samedi 20.09.2026 14:00, Stade Municipal, diffusion blue Sport de 2 h 27 (8836 s), lue seconde par seconde.
+Un premier match a ete mesure en entier : journee 9, Yverdon Sport 0-0 FC Stade-Lausanne-Ouchy, dimanche 20.09.2026 14:00, Stade Municipal, diffusion blue Sport de 2 h 27 (8836 s), lue seconde par seconde.
 
 ## 2. Ce qu'il faut produire
 

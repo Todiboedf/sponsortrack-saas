@@ -53,7 +53,7 @@ export function LegendeStatuts({ borneBasse }: { borneBasse: boolean }) {
       </div>
       <div className="flex items-start gap-2">
         <dt className="shrink-0"><Statut s="verifie" /></dt>
-        <dd>repris d&apos;une source externe citée, avec sa date (page partenaires du club, nombre d&apos;abonnés affiché).</dd>
+        <dd>repris d&apos;une source externe citée, avec sa date (page partenaires du club, affluence publiée par la ligue, nombre d&apos;abonnés affiché).</dd>
       </div>
       <div className="flex items-start gap-2">
         <dt className="shrink-0"><Statut s="hypothese" /></dt>

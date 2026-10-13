@@ -225,3 +225,66 @@ export interface Chronologie {
   bornes_diffusion_s: Bornes;
   secondes: Record<string, SecondeChronologie>;
 }
+
+/** Une publication relevee sur une plateforme (reseaux-sociaux-J09.json). */
+export interface PublicationReleve {
+  date: string;
+  plateforme: string;
+  url: string;
+  format: string;
+  apparition: string;
+  extrait_texte: string;
+  vues: number | null;
+  likes: number;
+  commentaires: number;
+  reposts: number;
+  statut: string;
+  commentaires_detail?: string;
+}
+
+export interface CompteReleve {
+  handle?: string;
+  url?: string;
+  abonnes?: number;
+  abonnes_affiche?: string;
+  publications?: number;
+  statut: string;
+  note?: string;
+}
+
+export interface MarqueReleve {
+  posts_club: PublicationReleve[];
+  total_posts_club: number;
+  repartition?: { texte_ou_mention: number; hashtag: number; logo_visible: number };
+  posts_marque: PublicationReleve[];
+  comptes_marque: Record<string, CompteReleve>;
+  notes: string;
+}
+
+/** reseaux-sociaux-J09.json : releve des reseaux sociaux du club et des marques, date. */
+export interface ReseauxSociaux {
+  releve_le: string;
+  periode: { debut: string; fin: string };
+  affluence_j09: { valeur: number; source: string; statut: string; note: string };
+  comptes_club: Record<string, CompteReleve>;
+  instagram_club_periode: { posts_lus: number; du: string; au: string; note: string };
+  marques: { egokiefer: MarqueReleve; roseyres_smartimmo: MarqueReleve };
+  match_j09: {
+    posts_club: PublicationReleve[];
+    autres_plateformes: Record<string, string>;
+    resume_video: {
+      plateforme: string;
+      titre: string;
+      chaine: string;
+      url: string;
+      vues: number;
+      date: string;
+      duree: string;
+      likes: number;
+      statut: string;
+      note: string;
+    };
+  };
+  acces_impossibles: string[];
+  non_trouve: string[];
+}

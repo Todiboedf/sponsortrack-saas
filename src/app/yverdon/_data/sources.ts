@@ -11,6 +11,7 @@ import passagesJson from "../../../../docs/handoff-yverdon/data/J09-passages-det
 import roseyresJson from "../../../../docs/handoff-yverdon/data/Roseyres-J09-donnees-et-hypotheses.json";
 import resumesJson from "../../../../docs/handoff-yverdon/data/EgoKiefer-resumes-septembre.json";
 import referentielJson from "../../../../docs/handoff-yverdon/data/referentiel-partenaires-v2.json";
+import reseauxJson from "../../../../docs/handoff-yverdon/data/reseaux-sociaux-J09.json";
 
 import type {
   Chronologie,
@@ -18,14 +19,16 @@ import type {
   EntreeReferentiel,
   FichierHauteurs,
   HauteurPassage,
+  Hypotheses,
   MesureMatch,
   ParPlan,
   PassagesDetail,
+  ReseauxSociaux,
   RoseyresDonnees,
   SecondeChronologie,
 } from "./types";
 import { LEVIER_FACTEUR_LISIBILITE, LEVIER_PASSAGES_CIBLE } from "./regles";
-import { valeur, valeurLevier } from "./valeur";
+import { valeur, valeurLevier, type ResultatValeur } from "./valeur";
 
 const DOSSIER_DATA = path.join(process.cwd(), "docs", "handoff-yverdon", "data");
 
@@ -33,7 +36,23 @@ export const mesure: MesureMatch = mesureJson;
 export const passages: PassagesDetail = passagesJson;
 export const roseyres: RoseyresDonnees = roseyresJson;
 export const resumesEgoKiefer: EgoKieferResumes = resumesJson;
-export const hypotheses = roseyres.hypotheses;
+/** Hypotheses de la fiche Roseyres du 10.10.2026 (affluence supposee) : servent au test de non-regression. */
+export const hypothesesFiche = roseyres.hypotheses;
+export const reseaux: ReseauxSociaux = reseauxJson;
+
+/**
+ * Hypotheses du match : celles de la fiche, sauf l'affluence, remplacee dans les deux scenarios par
+ * l'affluence verifiee du match (SFL match center). Les tarifs stade restent par scenario.
+ * La projection saison reprend cette affluence a chaque match, en hypothese.
+ */
+export const hypotheses: Hypotheses = {
+  ...hypothesesFiche,
+  affluence: {
+    bas: reseaux.affluence_j09.valeur,
+    base: reseaux.affluence_j09.valeur,
+    haut: reseaux.affluence_j09.valeur,
+  },
+};
 
 function erreur(message: string): never {
   throw new Error(`[yverdon] ${message}`);
@@ -173,7 +192,7 @@ function controlerDonnees(): void {
 
   // TEST ROSEYRES de valeur.py : la formule portee redonne la fiche, champ par champ.
   const e = roseyres.exposition;
-  const r = valeur(hypotheses, passages.marques.roseyres.secondes_jeu, passages.marques.roseyres.passages, e.par_plan);
+  const r = valeur(hypothesesFiche, passages.marques.roseyres.secondes_jeu, passages.marques.roseyres.passages, e.par_plan);
   const paires: [string, typeof r.base.match, typeof roseyres.valeur_match.base][] = [
     ["base", r.base.match, roseyres.valeur_match.base],
     ["optimiste", r.optimiste.match, roseyres.valeur_match.haut],
@@ -205,11 +224,37 @@ function controlerDonnees(): void {
   const n = passages.marques.roseyres.passages;
   const cible = roseyres.leviers;
   const cibleP = LEVIER_PASSAGES_CIBLE.valeur;
-  const plusDePassages = valeurLevier(hypotheses, brut, cibleP, (r.equiv * cibleP) / n);
+  const plusDePassages = valeurLevier(hypothesesFiche, brut, cibleP, (r.equiv * cibleP) / n);
   controler(plusDePassages === cible.passages_12, `levier passages : ${plusDePassages} != ${cible.passages_12}`);
-  const lisible = valeurLevier(hypotheses, brut, n, r.equiv * LEVIER_FACTEUR_LISIBILITE.valeur);
+  const lisible = valeurLevier(hypothesesFiche, brut, n, r.equiv * LEVIER_FACTEUR_LISIBILITE.valeur);
   controler(lisible === cible.creation_lisible, `levier creation : ${lisible} != ${cible.creation_lisible}`);
   controler(r.base.match.totalAvecPackage === cible.package_social, "levier package social");
+
+  // Valeurs avec l'affluence verifiee (1'435), attendues par Guillaume Haas le 13.10.2026.
+  const hm = hauteurs("egokiefer");
+  controler(hm !== null, "hauteurs_egokiefer.json absent");
+  const attendus: [string, ResultatValeur, number[]][] = [
+    ["roseyres", valeur(hypotheses, brut, n, e.par_plan), [824, 2411, 14832, 43398]],
+    [
+      "egokiefer",
+      valeur(
+        hypotheses,
+        passages.marques.egokiefer.secondes_jeu,
+        passages.marques.egokiefer.passages,
+        hm?.secondes_par_plan ?? { large: 0, moyen: 0, gros: 0 },
+      ),
+      [2372, 7060, 42696, 127080],
+    ],
+  ];
+  for (const [cle, x, [base, opt, saisonBase, saisonOpt]] of attendus) {
+    controler(x.base.match.totalMesure === base, `${cle} base ${x.base.match.totalMesure} != ${base}`);
+    controler(x.optimiste.match.totalMesure === opt, `${cle} optimiste ${x.optimiste.match.totalMesure} != ${opt}`);
+    controler(x.base.saison.totalMesure === saisonBase, `${cle} saison base`);
+    controler(x.optimiste.saison.totalMesure === saisonOpt, `${cle} saison optimiste`);
+  }
+  const ego = attendus[1][1].base.match;
+  controler(ego.tv === 2174 && ego.stade === 195 && ego.socialOrganique === 3, "egokiefer base par canal");
+  controler(attendus[1][1].equivAffiche === 241.5, "egokiefer secondes equivalentes");
 }
 
 controlerDonnees();

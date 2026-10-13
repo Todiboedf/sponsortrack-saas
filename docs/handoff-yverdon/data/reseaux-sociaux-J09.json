@@ -1,0 +1,354 @@
+{
+ "releve_le": "2026-10-13",
+ "periode": {
+  "debut": "2026-07-01",
+  "fin": "2026-10-13"
+ },
+ "match": {
+  "journee": 9,
+  "date": "2026-09-20",
+  "heure": "14:00",
+  "affiche": "Yverdon Sport FC 0-0 FC Stade-Lausanne-Ouchy",
+  "stade": "Stade Municipal, Yverdon-les-Bains",
+  "arbitre": "Julian Müller"
+ },
+ "affluence_j09": {
+  "valeur": 1435,
+  "source": "https://sfl.ch/match-center/f13cq2c8s2yra8kzztes92vpw",
+  "statut": "mesure",
+  "note": "Chiffre affiché dans l'en-tête du match center SFL (Tour 9, 20.09.2026 14:00, Stade municipal, icône spectateurs '1435'), lu le 13.10.2026. Sofascore et yverdonsport.ch non consultés car la valeur SFL était disponible."
+ },
+ "comptes_club": {
+  "instagram": {
+   "handle": "@yverdonsport",
+   "url": "https://www.instagram.com/yverdonsport/",
+   "abonnes": 31755,
+   "abonnes_affiche": "31,7 k",
+   "publications": 5431,
+   "statut": "mesure",
+   "note": "valeur exacte lue dans l'attribut title du compteur; 31 700 relevés le 10.10.2026 (+55 en 3 jours, sur base arrondie)"
+  },
+  "facebook": {
+   "handle": "Yverdon Sport FC",
+   "url": "https://www.facebook.com/YverdonSportFc/",
+   "abonnes": 13000,
+   "abonnes_affiche": "13 K followers",
+   "statut": "mesure",
+   "note": "valeur arrondie affichée par Facebook; mur de connexion: publications non consultables (seule la plus récente, 'Les résultats de la Relève' du 12.10, était visible). Les pages Instagram indiquent des 'commentaires sur Facebook', signe d'une diffusion croisée des mêmes posts."
+  },
+  "linkedin": {
+   "handle": "Yverdon Sport FC",
+   "url": "https://www.linkedin.com/company/yverdon-sport-fc/",
+   "abonnes": 3921,
+   "statut": "mesure",
+   "note": "33 posts listés (tri 'Récent') depuis juin 2026, contenu institutionnel et partenariats (surtout Yverdon Sport Women); aucun post sur le match J09, aucun post citant EgoKiefer, Roseyres ou Smartimmo; posts 9 à 11 du flux non rendus par LinkedIn"
+  },
+  "x": {
+   "handle": "@yverdonsport",
+   "url": "https://x.com/yverdonsport",
+   "abonnes": 2523,
+   "posts": 3501,
+   "statut": "mesure",
+   "note": "hors connexion, X n'affiche que quelques posts (les plus récents visibles datés du 18.07.2026) puis un mur de connexion; fil complet non consultable"
+  },
+  "tiktok": {
+   "handle": "@yverdonsport",
+   "url": "https://www.tiktok.com/@yverdonsport",
+   "abonnes": 905,
+   "likes_total": 9019,
+   "statut": "mesure",
+   "note": "6 vidéos visibles (40.6K, 19.6K, 15K, 19.5K, 17.6K, 45.1K vues); la plus récente (https://www.tiktok.com/@yverdonsport/photo/7285676061512224032) date d'octobre 2023 d'après son identifiant; aucune publication sur la période"
+  },
+  "youtube": {
+   "handle": "@yverdonsport1897",
+   "url": "https://www.youtube.com/@yverdonsport1897",
+   "abonnes": 1770,
+   "abonnes_affiche": "1,77 k abonnés",
+   "statut": "mesure"
+  }
+ },
+ "instagram_club_periode": {
+  "posts_lus": 168,
+  "du": "2026-07-01",
+  "au": "2026-10-12",
+  "note": "Tous les posts de la grille @yverdonsport du 01.07 au 12.10.2026 ouverts un par un (légende, date, likes, commentaires, reposts). Dates lues sur la page du post. Les vues des reels ne sont pas affichées sur les pages de posts."
+ },
+ "marques": {
+  "egokiefer": {
+   "posts_club": [
+    {
+     "date": "2026-10-09",
+     "plateforme": "instagram",
+     "url": "https://www.instagram.com/p/DeSBZ1DATcX/",
+     "format": "photo",
+     "apparition": "logo visible (haut d'entraînement EgoKiefer porté par le joueur sur le visuel COMPO, vérifié en plein écran)",
+     "extrait_texte": "Notre COMPO pour défier @etoilecarougefc ! #ECFCYS #AllezYS #UnisUnique",
+     "vues": null,
+     "likes": 130,
+     "commentaires": 0,
+     "reposts": 2,
+     "statut": "mesure"
+    },
+    {
+     "date": "2026-10-05",
+     "plateforme": "instagram",
+     "url": "https://www.instagram.com/p/DeHQiITChsf/",
+     "format": "photo",
+     "apparition": "logo visible (haut d'entraînement EgoKiefer sur le visuel anniversaire, vignette grille)",
+     "extrait_texte": "Joyeux anniversaire @okitajr - 30 ans aujourd'hui pour Jonathan",
+     "vues": null,
+     "likes": 123,
+     "commentaires": 3,
+     "reposts": 5,
+     "statut": "mesure"
+    },
+    {
+     "date": "2026-10-04",
+     "plateforme": "instagram",
+     "url": "https://www.instagram.com/p/DeEGfFqDvoK/",
+     "format": "photo",
+     "apparition": "logo visible (haut d'entraînement EgoKiefer sur le visuel anniversaire, vignette grille)",
+     "extrait_texte": "Joyeux anniversaire @varoltasar - Varol rejoint le club des trentenaires",
+     "vues": null,
+     "likes": 123,
+     "commentaires": 1,
+     "reposts": 3,
+     "statut": "mesure"
+    },
+    {
+     "date": "2026-09-11",
+     "plateforme": "instagram",
+     "url": "https://www.instagram.com/p/DdJ2AFAEXgl/",
+     "format": "photo",
+     "apparition": "logo visible (haut d'entraînement EgoKiefer sur le visuel XI, vignette grille)",
+     "extrait_texte": "Le XI des Verts pour affronter @fcrj_1928 ce soir ! #FCRJYS",
+     "vues": null,
+     "likes": 153,
+     "commentaires": 20,
+     "reposts": 1,
+     "statut": "mesure"
+    },
+    {
+     "date": "2026-09-07",
+     "plateforme": "instagram",
+     "url": "https://www.instagram.com/p/Dc-0domDuT7/",
+     "format": "photo",
+     "apparition": "logo visible (bandeau LED EgoKiefer en arrière-plan de la photo de célébration, vignette grille)",
+     "extrait_texte": "Doublé pour Varol - Un du droit, un du gauche...",
+     "vues": null,
+     "likes": 148,
+     "commentaires": 4,
+     "reposts": 3,
+     "statut": "mesure"
+    },
+    {
+     "date": "2026-09-06",
+     "plateforme": "instagram",
+     "url": "https://www.instagram.com/p/Dc8YWKQjGh3/",
+     "format": "photo",
+     "apparition": "logo visible (haut d'entraînement EgoKiefer sur le visuel COMPO, vignette grille)",
+     "extrait_texte": "La COMPO d'YS pour affronter @stadenyonnaisofficiel cet après-midi ! #YSFCSN",
+     "vues": null,
+     "likes": 232,
+     "commentaires": 4,
+     "reposts": 3,
+     "statut": "mesure"
+    },
+    {
+     "date": "2026-09-01",
+     "plateforme": "instagram",
+     "url": "https://www.instagram.com/p/DcwGC3qlWMS/",
+     "format": "photo",
+     "apparition": "logo visible (haut d'entraînement EgoKiefer sur le visuel XI, vignette grille)",
+     "extrait_texte": "Notre XI pour le Derby du Lac à la Maladière ! #USTSYS",
+     "vues": null,
+     "likes": 200,
+     "commentaires": 5,
+     "reposts": 3,
+     "statut": "mesure"
+    },
+    {
+     "date": "2026-08-16",
+     "plateforme": "instagram",
+     "url": "https://www.instagram.com/p/DcGb63UDnhN/",
+     "format": "photo",
+     "apparition": "logo visible (haut d'entraînement EgoKiefer sur le visuel XI, vignette grille)",
+     "extrait_texte": "Notre XI pour lancer cette aventure en Coupe Suisse ! #USTSYS",
+     "vues": null,
+     "likes": 310,
+     "commentaires": 0,
+     "reposts": 1,
+     "statut": "mesure"
+    }
+   ],
+   "total_posts_club": 8,
+   "repartition": {
+    "texte_ou_mention": 0,
+    "hashtag": 0,
+    "logo_visible": 8
+   },
+   "posts_marque": [],
+   "comptes_marque": {
+    "instagram": {
+     "handle": "@egokiefer_ag",
+     "url": "https://www.instagram.com/egokiefer_ag/",
+     "abonnes": 2616,
+     "publications": 375,
+     "statut": "mesure",
+     "note": "@egokiefer est un compte privé vide (0 publication), le compte officiel est @egokiefer_ag. 28 posts du 01.07 au 09.10.2026 lus: références chantiers, Best of Awards partenaires, sécurité au travail, Foire du Valais; aucune mention d'Yverdon Sport"
+    },
+    "linkedin": {
+     "handle": "EgoKiefer AG",
+     "url": "https://www.linkedin.com/company/egokiefer-ag/",
+     "abonnes": 2708,
+     "statut": "mesure",
+     "note": "7 posts chargés (tri 'Top', 4 dernières semaines), même contenu que l'Instagram; aucune mention d'Yverdon Sport dans les posts chargés"
+    }
+   },
+   "notes": "Aucune mention textuelle, @mention ou hashtag EgoKiefer dans les 168 posts Instagram du club ni sur LinkedIn. La marque apparaît uniquement par le haut d'entraînement EgoKiefer (visuels COMPO/XI et anniversaires) et par le bandeau LED du Stade Municipal (photo du 07.09). Logos identifiés sur les vignettes de la grille, un post vérifié en plein écran (DeSBZ1DATcX). EgoKiefer ne relaie pas le partenariat sur ses propres comptes sur la période."
+  },
+  "roseyres_smartimmo": {
+   "posts_club": [],
+   "total_posts_club": 0,
+   "posts_marque": [],
+   "comptes_marque": {
+    "site_smartimmo": {
+     "url": "https://smartimmo.ch/",
+     "statut": "mesure",
+     "note": "pied de page: 'Fier Sponsor d'Yverdon Sport Football Club' avec un lien (libellé 'YversonSportFC', sic) vers https://www.yverdonsport.ch/; aucune date, aucun contenu sur le match"
+    },
+    "site_roseyres": {
+     "url": "https://roseyres.ch/",
+     "statut": "mesure",
+     "note": "site du plan de quartier Les Roseyres (Yverdon-les-Bains); aucune mention d'Yverdon Sport, aucun lien vers des réseaux sociaux"
+    },
+    "linkedin": {
+     "handle": "Smartimmo",
+     "url": "https://www.linkedin.com/company/smartimmo-suisse/",
+     "abonnes": 76,
+     "statut": "mesure",
+     "note": "posts les plus récents datés d'il y a 4 et 5 mois (Résidence Phoenix, Corseaux); aucune publication sur la période, aucune mention d'Yverdon Sport"
+    },
+    "facebook": {
+     "url": "https://www.facebook.com/smartimmosuisse",
+     "statut": "non lu",
+     "note": "lien présent sur smartimmo.ch, non consulté (mur de connexion Facebook)"
+    },
+    "instagram": {
+     "statut": "non trouve",
+     "note": "le lien Instagram de smartimmo.ch pointe sur '#'; @smartimmo est une agence allemande (Munich); @smartimmosuisse n'existe pas; recherches Instagram 'roseyres' et 'smartimmo yverdon' sans résultat"
+    }
+   },
+   "notes": "Aucune mention de Roseyres, Les Roseyres, roseyres.ch ou Smartimmo dans les 168 posts Instagram du club, sur LinkedIn, ni dans les fragments de bandeau LED lisibles sur les photos du match J09. Seule trace: la mention de sponsoring dans le pied de page de smartimmo.ch."
+  }
+ },
+ "match_j09": {
+  "posts_club": [
+   {
+    "date": "2026-09-14",
+    "plateforme": "instagram",
+    "url": "https://www.instagram.com/p/DdRnIz9iA_O/",
+    "format": "photo",
+    "apparition": "annonce du match (texte)",
+    "extrait_texte": "Semaine de match au Muni - Rendez-vous ce dimanche au Stade Municipal pour la réception du FC Stade-Lausanne-Ouchy. @fcslo, Dimanche 20 septembre, 14:00, Stade Municipal. Billets: lien dans la bio",
+    "vues": null,
+    "likes": 137,
+    "commentaires": 2,
+    "reposts": 5,
+    "statut": "mesure",
+    "logos_sponsors_visibles": "visuel graphique 'Yverdon Sport vs SLO - Stade Municipal' (vignette grille), aucun logo de sponsor identifié"
+   },
+   {
+    "date": "2026-09-14",
+    "plateforme": "instagram",
+    "url": "https://www.instagram.com/p/DdQmmHJjwO-/",
+    "format": "photo",
+    "apparition": "mention du match (texte)",
+    "extrait_texte": "Cap sur une nouvelle semaine... Dimanche, on aura besoin de vous au Stade Municipal.",
+    "vues": null,
+    "likes": 147,
+    "commentaires": 3,
+    "reposts": 1,
+    "statut": "mesure",
+    "logos_sponsors_visibles": "photo joueur en maillot AON (vignette grille), aucun bandeau LED identifié"
+   },
+   {
+    "date": "2026-09-16",
+    "plateforme": "instagram",
+    "url": "https://www.instagram.com/p/DdV6hfgkR9x/",
+    "format": "photo",
+    "apparition": "mention du match (texte)",
+    "extrait_texte": "Le groupe monte en régime avant le match de dimanche",
+    "vues": null,
+    "likes": 253,
+    "commentaires": 4,
+    "reposts": 3,
+    "statut": "mesure",
+    "logos_sponsors_visibles": "photo d'entraînement (vignette grille), aucun bandeau LED identifié"
+   },
+   {
+    "date": "2026-09-20",
+    "plateforme": "instagram",
+    "url": "https://www.instagram.com/p/DdgvQ6hjCZv/",
+    "format": "photo",
+    "apparition": "score / résumé (texte + visuel 'Fin du match' 0-0)",
+    "extrait_texte": "Un derby sans vainqueur - nos joueurs prennent un point au Muni (0-0), après avoir évolué en supériorité numérique en seconde période. Prochain rendez-vous dans trois semaines sur la pelouse d'Étoile Carouge !",
+    "vues": null,
+    "likes": 138,
+    "commentaires": 37,
+    "reposts": 4,
+    "statut": "mesure",
+    "commentaires_detail": "16 commentaires Instagram affichés + 21 commentaires Facebook (compteur Instagram: 37)",
+    "logos_sponsors_visibles": "visuel graphique (joueur en 3e maillot Kinetik + score), aucun bandeau LED visible"
+   },
+   {
+    "date": "2026-09-20",
+    "plateforme": "instagram",
+    "url": "https://www.instagram.com/p/DdhD5peiC64/",
+    "format": "carrousel (8 photos)",
+    "apparition": "photos du match (texte)",
+    "extrait_texte": "Retour en images sur le derby de cet après-midi au Muni. MERCI à toutes et tous pour votre soutien !",
+    "vues": null,
+    "likes": 204,
+    "commentaires": 0,
+    "reposts": 3,
+    "statut": "mesure",
+    "logos_sponsors_visibles": "bandeau LED visible partiellement sur 3 des 8 photos (fragments lisibles: '...TION PILLE...', '...RT FC YS'); aucun logo EgoKiefer, Roseyres ou Smartimmo lisible; maillots: Kinetik, AON"
+   }
+  ],
+  "autres_plateformes": {
+   "linkedin": "aucun post sur le match",
+   "facebook": "non consultable (mur de connexion)",
+   "x": "non consultable (mur de connexion)",
+   "tiktok": "aucune publication sur la période"
+  },
+  "resume_video": {
+   "plateforme": "youtube",
+   "titre": "HIGHLIGHTS DCL JOURNÉE 9 (20.09.2026) : YVERDON SPORT - FC STADE-LAUSANNE-OUCHY",
+   "chaine": "Yverdon Sport (@yverdonsport1897, 1,77 k abonnés)",
+   "url": "https://www.youtube.com/watch?v=7xxcg7_uy2E",
+   "vues": 180,
+   "date": "2026-09-21",
+   "duree": "2:20",
+   "likes": 0,
+   "statut": "mesure",
+   "note": "vues et date lues dans la description dépliée le 13.10.2026; aucun résumé blue Sport ou SFL 2026 de ce match trouvé sur YouTube (seul un résumé blue Sport d'il y a 3 ans apparaît)"
+  }
+ },
+ "acces_impossibles": [
+  "Facebook Yverdon Sport FC: publications derrière un mur de connexion (compte non connecté); seuls le nombre de followers (13 K) et le dernier post sont visibles",
+  "X @yverdonsport: fil complet derrière un mur de connexion; seuls quelques posts (18.07.2026 et avant) sont affichés",
+  "LinkedIn Yverdon Sport FC: posts 9 à 11 du flux non rendus (emplacements publicitaires ou non chargés)",
+  "Instagram: nombre de vues des reels non affiché sur les pages de posts (non relevé)",
+  "Facebook Smartimmo (smartimmosuisse): non consulté (mur de connexion)"
+ ],
+ "non_trouve": [
+  "Mention textuelle, @mention ou hashtag EgoKiefer dans les posts du club (Instagram 168 posts, LinkedIn)",
+  "Toute mention de Roseyres / Les Roseyres / roseyres.ch / Smartimmo sur les comptes du club",
+  "Post 'XI/COMPO' ou 'Jour de match' sur la grille Instagram pour le match du 20.09.2026 (seuls 5 posts liés au match: 14.09 x2, 16.09, 20.09 x2)",
+  "Relais du partenariat Yverdon Sport par EgoKiefer (Instagram @egokiefer_ag, 28 posts lus; LinkedIn, 7 posts chargés)",
+  "Compte Instagram de Smartimmo Sàrl ou de Roseyres.ch",
+  "Résumé vidéo blue Sport ou SFL du match du 20.09.2026 sur YouTube",
+  "Publication Smartimmo (LinkedIn) ou Roseyres sur la période"
+ ]
+}

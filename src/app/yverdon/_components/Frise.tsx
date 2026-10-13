@@ -129,7 +129,7 @@ export function Frise({
     sourcePlans === "fiche"
       ? `${lecture} Le plan dominant est celui de la plupart des secondes du passage\u00a0: il sert à l'affichage, la valeur utilise le classement seconde par seconde de la section suivante.`
       : sourcePlans === "mesure_hauteurs"
-        ? `${lecture} Le plan d'un passage se lit sur la hauteur médiane du bandeau dans son extrait\u00a0; toutes ses secondes visibles prennent ce plan pour la valeur.`
+        ? `${lecture} Le plan d'une apparition se lit sur la hauteur médiane des détections du bandeau dans son extrait\u00a0; toutes ses secondes visibles prennent ce plan pour la valeur. Classement par apparition, pas seconde par seconde.`
         : `${lecture} Le plan n'est pas encore mesuré\u00a0: la valeur compte toutes les secondes en plan large, c'est la borne basse.`;
   const decompte =
     courts.length > 0

@@ -1,0 +1,200 @@
+{
+ "marque": "egokiefer",
+ "poids": "handoff-pages/modele/best_v3.pt",
+ "conf_min": 0.25,
+ "mesure_le": "2026-10-12",
+ "methode": "Detecteur Sponsorlens v3 sur les 18 extraits du match (une image par seconde). Pour chaque apparition, hauteur mediane des boites EgoKiefer sur l'image 1280x720, puis plan : moins de 24 px = large (qi 0,30), 24 a 59 px = moyen (qi 0,60), 60 px et plus = gros (qi 1,00). Le plan d'une apparition s'applique a toutes ses secondes visibles : classement par apparition, pas seconde par seconde (a la difference de la fiche Roseyres). secondes_par_plan additionne toutes les apparitions, comptees comme passage ou non, et retrouve les 463 s de la mesure v4.1.",
+ "passages": [
+  {
+   "clip": "egokiefer_p01.mp4",
+   "chrono": "01:31-02:18",
+   "secondes_visibles": 48,
+   "compte": true,
+   "n_detections": 116,
+   "hauteur_mediane_px": 25,
+   "plan": "moyen",
+   "conf_moyenne": 0.55
+  },
+  {
+   "clip": "egokiefer_p02.mp4",
+   "chrono": "05:49-06:18",
+   "secondes_visibles": 30,
+   "compte": true,
+   "n_detections": 43,
+   "hauteur_mediane_px": 33,
+   "plan": "moyen",
+   "conf_moyenne": 0.41
+  },
+  {
+   "clip": "egokiefer_p03.mp4",
+   "chrono": "10:19-10:48",
+   "secondes_visibles": 30,
+   "compte": true,
+   "n_detections": 208,
+   "hauteur_mediane_px": 27,
+   "plan": "moyen",
+   "conf_moyenne": 0.53
+  },
+  {
+   "clip": "egokiefer_p04.mp4",
+   "chrono": "12:49-13:16",
+   "secondes_visibles": 25,
+   "compte": true,
+   "n_detections": 541,
+   "hauteur_mediane_px": 22,
+   "plan": "large",
+   "conf_moyenne": 0.59
+  },
+  {
+   "clip": "egokiefer_p05.mp4",
+   "chrono": "24:19-24:48",
+   "secondes_visibles": 30,
+   "compte": true,
+   "n_detections": 133,
+   "hauteur_mediane_px": 25,
+   "plan": "moyen",
+   "conf_moyenne": 0.46
+  },
+  {
+   "clip": "egokiefer_p06.mp4",
+   "chrono": "32:49-33:18",
+   "secondes_visibles": 30,
+   "compte": true,
+   "n_detections": 52,
+   "hauteur_mediane_px": 31,
+   "plan": "moyen",
+   "conf_moyenne": 0.47
+  },
+  {
+   "clip": "egokiefer_p07.mp4",
+   "chrono": "35:49-36:16",
+   "secondes_visibles": 28,
+   "compte": true,
+   "n_detections": 231,
+   "hauteur_mediane_px": 25,
+   "plan": "moyen",
+   "conf_moyenne": 0.56
+  },
+  {
+   "clip": "egokiefer_p08.mp4",
+   "chrono": "45:13-45:48",
+   "secondes_visibles": 30,
+   "compte": true,
+   "n_detections": 15,
+   "hauteur_mediane_px": 32,
+   "plan": "moyen",
+   "conf_moyenne": 0.49
+  },
+  {
+   "clip": "egokiefer_p09.mp4",
+   "chrono": "46:36-47:06",
+   "secondes_visibles": 24,
+   "compte": true,
+   "n_detections": 32,
+   "hauteur_mediane_px": 34,
+   "plan": "moyen",
+   "conf_moyenne": 0.45
+  },
+  {
+   "clip": "egokiefer_p10.mp4",
+   "chrono": "50:36-51:05",
+   "secondes_visibles": 23,
+   "compte": true,
+   "n_detections": 4,
+   "hauteur_mediane_px": 25,
+   "plan": "moyen",
+   "conf_moyenne": 0.34
+  },
+  {
+   "clip": "egokiefer_p11.mp4",
+   "chrono": "55:15-55:26",
+   "secondes_visibles": 12,
+   "compte": true,
+   "n_detections": 49,
+   "hauteur_mediane_px": 24,
+   "plan": "moyen",
+   "conf_moyenne": 0.58
+  },
+  {
+   "clip": "egokiefer_p12.mp4",
+   "chrono": "57:25-57:53",
+   "secondes_visibles": 29,
+   "compte": true,
+   "n_detections": 698,
+   "hauteur_mediane_px": 19,
+   "plan": "large",
+   "conf_moyenne": 0.64
+  },
+  {
+   "clip": "egokiefer_p13.mp4",
+   "chrono": "70:06-70:27",
+   "secondes_visibles": 22,
+   "compte": true,
+   "n_detections": 724,
+   "hauteur_mediane_px": 18,
+   "plan": "large",
+   "conf_moyenne": 0.67
+  },
+  {
+   "clip": "egokiefer_p14.mp4",
+   "chrono": "79:05-79:35",
+   "secondes_visibles": 31,
+   "compte": true,
+   "n_detections": 397,
+   "hauteur_mediane_px": 20,
+   "plan": "large",
+   "conf_moyenne": 0.52
+  },
+  {
+   "clip": "egokiefer_p15.mp4",
+   "chrono": "82:06-82:35",
+   "secondes_visibles": 30,
+   "compte": true,
+   "n_detections": 119,
+   "hauteur_mediane_px": 26,
+   "plan": "moyen",
+   "conf_moyenne": 0.53
+  },
+  {
+   "clip": "egokiefer_p16.mp4",
+   "chrono": "91:15-91:35",
+   "secondes_visibles": 21,
+   "compte": true,
+   "n_detections": 10,
+   "hauteur_mediane_px": 36,
+   "plan": "moyen",
+   "conf_moyenne": 0.43
+  },
+  {
+   "clip": "egokiefer_p17.mp4",
+   "chrono": "92:36-92:41",
+   "secondes_visibles": 6,
+   "compte": false,
+   "n_detections": 59,
+   "hauteur_mediane_px": 25,
+   "plan": "moyen",
+   "conf_moyenne": 0.55
+  },
+  {
+   "clip": "egokiefer_p18.mp4",
+   "chrono": "92:52-93:05",
+   "secondes_visibles": 14,
+   "compte": true,
+   "n_detections": 68,
+   "hauteur_mediane_px": 20,
+   "plan": "large",
+   "conf_moyenne": 0.55
+  }
+ ],
+ "secondes_par_plan": {
+  "large": 121,
+  "moyen": 342,
+  "gros": 0
+ },
+ "secondes_par_plan_passages_comptes_seulement": {
+  "large": 121,
+  "moyen": 336,
+  "gros": 0
+ },
+ "equiv_s": 241.5
+}
