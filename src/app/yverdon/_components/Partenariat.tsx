@@ -117,10 +117,10 @@ function Lien({ href, children }: { href: string; children: React.ReactNode }) {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="inline-flex items-center gap-1 rounded-sm text-yv-data underline underline-offset-2 outline-none hover:text-yv-ink focus-visible:ring-2 focus-visible:ring-yv-data"
+      className="rounded-sm text-yv-data underline underline-offset-2 outline-none hover:text-yv-ink focus-visible:ring-2 focus-visible:ring-yv-data"
     >
       {children}
-      <ExternalLink aria-hidden className="size-3 shrink-0" />
+      <ExternalLink aria-hidden className="ml-1 inline-block size-3 align-[-0.0625rem]" />
     </a>
   );
 }
@@ -251,7 +251,12 @@ export function EnsemblePartenariat({
           titre="Réseau"
           statut={reseau > 0 ? <Statut s="hypothese" /> : <ARenseigner />}
           valeur={reseau > 0 ? chf(reseau) : "à renseigner"}
-          detail={`Soirées partenaires offertes par le club, à ${chf(refs.soiree.valeur)} par participant (prix d'une soirée du Club des 1000). Achats chez les partenaires du club, à ${taux(refs.remiseMoyennePct / 100)} de remise moyenne.`}
+          detail={
+            <>
+              {`Soirées partenaires offertes par le club, à ${chf(refs.soiree.valeur)} par participant (prix d'une soirée du Club des 1000). Achats chez les partenaires du club, à ${taux(refs.remiseMoyennePct / 100)} de remise moyenne\u00a0: `}
+              <Lien href={refs.remisesSource}>liste des partenaires sur la page Avantages partenaires du club</Lien>.
+            </>
+          }
         >
           <Champ libelle="Soirées partenaires offertes" valeur={soirees} changer={setSoirees} />
           <Champ libelle="× participants" valeur={participants} changer={setParticipants} />
@@ -382,7 +387,7 @@ export function EnsemblePartenariat({
           <li className="flex flex-wrap items-center gap-x-2 gap-y-1">
             <span>{`Remises entre partenaires du club : ${refs.remises.map((x) => `${decimal(x, Number.isInteger(x) ? 0 : 1)}${NBSP}%`).join(", ")}, soit ${taux(refs.remiseMoyennePct / 100)} en moyenne arrondie`}</span>
             <Statut s="verifie" />
-            <Lien href={refs.remisesSource}>{domaine(refs.remisesSource)}</Lien>
+            <Lien href={refs.remisesSource}>liste des partenaires sur la page Avantages partenaires du club</Lien>
           </li>
           <li className="flex flex-wrap items-center gap-x-2 gap-y-1">
             <span>{`Publication dédiée : ${entier(refs.publicationAbonnes)} abonnés × ${taux(refs.porteeBase)} de portée ÷ 1'000 × ${chf(refs.cpmSocialBase)} = ${chf(refs.publicationBase.valeur)} en base ; ${taux(refs.porteeOptimiste)} et ${chf(refs.cpmSocialOptimiste)}, soit ${chf(refs.publicationOptimiste)}, en optimiste`}</span>
