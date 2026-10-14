@@ -42,8 +42,36 @@ export function Onglets({
         // l'URL ne suit pas, l'onglet s'ouvre quand meme
       }
     }
-    window.scrollTo({ top: 0, behavior: "auto" });
     if (focus) boutons.current[id]?.focus();
+  }, []);
+
+  // Apres chaque activation (et au chargement), le defilement revient en haut : sinon le navigateur
+  // descend jusqu'au panneau vise par le hash et son titre passe sous l'en-tete collant.
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    const raf = requestAnimationFrame(() => window.scrollTo(0, 0));
+    return () => cancelAnimationFrame(raf);
+  }, [actif]);
+
+  useEffect(() => {
+    // Le navigateur peut encore viser l'ancre a la fin du chargement.
+    if (document.readyState === "complete") return;
+    const enHaut = () => window.scrollTo(0, 0);
+    window.addEventListener("load", enHaut, { once: true });
+    return () => window.removeEventListener("load", enHaut);
+  }, []);
+
+  // Hauteur de l'en-tete collant, reprise par scroll-margin-top des panneaux (tableau.css).
+  const tete = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = tete.current;
+    if (!el) return;
+    const racine = el.closest<HTMLElement>(".yvd") ?? document.documentElement;
+    const maj = () => racine.style.setProperty("--head-h", `${el.offsetHeight}px`);
+    maj();
+    const ro = new ResizeObserver(maj);
+    ro.observe(el);
+    return () => ro.disconnect();
   }, []);
 
   useEffect(() => {
@@ -71,7 +99,7 @@ export function Onglets({
 
   return (
     <Aller.Provider value={montrer}>
-      <div className="head">
+      <div className="head" ref={tete}>
         <div className="wrap">
           {barre}
           <div className="tabs-wrap">

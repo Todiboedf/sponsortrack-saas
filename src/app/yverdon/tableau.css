@@ -69,7 +69,7 @@
 /* Panneaux */
 
 .yvd main { padding-block: 28px 56px; }
-.yvd [role="tabpanel"] { display: grid; gap: 20px; }
+.yvd [role="tabpanel"] { display: grid; gap: 20px; scroll-margin-top: var(--head-h, 103px); }
 .yvd .panel-head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 12px 24px; }
 .yvd .panel-head h2 { font-family: var(--f-display); font-weight: 700; font-size: clamp(24px, 3vw, 30px); letter-spacing: -0.02em; margin: 0; text-wrap: balance; }
 .yvd .lede { color: var(--fg-2); max-width: 64ch; margin: 6px 0 0; font-size: 15px; }
