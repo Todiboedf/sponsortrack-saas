@@ -1,0 +1,546 @@
+{
+  "cle": "roseyres",
+  "marque": "Roseyres.ch",
+  "titre": "Roseyres.ch × Yverdon Sport FC",
+  "statut": {
+    "texte": "Sponsor principal selon le site du club",
+    "etat": "verifie",
+    "source": "page partenaires du club, 09.10.2026",
+    "note": "Roseyres.ch est une création de Smartimmo Sàrl, listée « Sponsor principal » sur la page partenaires officielle du club."
+  },
+  "match": {
+    "adversaire": "FC Stade-Lausanne-Ouchy",
+    "journee": "Journée 9",
+    "competition": "dieci Challenge League 2026-27",
+    "date": "20.09.2026",
+    "heure": "14:00",
+    "score": "0 - 0",
+    "stade": "Stade Municipal, Yverdon-les-Bains",
+    "diffusion": "blue Sport",
+    "jeu": "95 min 08",
+    "affluence": "1'435",
+    "bandeauVisible": "82 min 40",
+    "marquesVisibles": 12,
+    "tempsSponsorS": 2699
+  },
+  "video": {
+    "src": "https://sponsorlens-saas-git-feat-yverdon-sp-549de2-todiboedfs-projects.vercel.app/yverdon/Roseyres-J09-extrait-diffusion.mp4",
+    "poster": "",
+    "etiquette": "Extrait 40 s · 4 passages et le panneau fixe",
+    "legende": "Des moments de 4 passages, à 06:19 et 29:19 (1re mi-temps), 51:06 et 75:24 (2e mi-temps), puis à 77:43 un gros plan sur le panneau fixe derrière le but. Chaque logo reconnu est encadré avec la confiance du détecteur. Les durées de la page ne viennent pas de ces cadres : elles sont relevées seconde par seconde."
+  },
+  "kpis": {
+    "ecran": "3 min 26",
+    "ecranS": 206,
+    "passages": 8,
+    "passagesPlage": "de 11 à 31 s chacun",
+    "rang": "7e",
+    "rangSur": 12,
+    "part": "7,6 %",
+    "partDetail": "206 s sur 2'699 s de temps sponsor",
+    "valeurBase": 824,
+    "valeurOpt": 2411
+  },
+  "miTemps": [
+    {
+      "nom": "1re mi-temps",
+      "passages": 4,
+      "duree": "1 min 44"
+    },
+    {
+      "nom": "2e mi-temps",
+      "passages": 4,
+      "duree": "1 min 42"
+    }
+  ],
+  "passages": [
+    {
+      "n": "1",
+      "mt": 1,
+      "chrono": "06:19 à 06:50",
+      "visible": 30,
+      "plan": "plan moyen",
+      "px": 36,
+      "compte": true
+    },
+    {
+      "n": "2",
+      "mt": 1,
+      "chrono": "29:19 à 29:48",
+      "visible": 30,
+      "plan": "plan moyen",
+      "px": 25,
+      "compte": true
+    },
+    {
+      "n": "3",
+      "mt": 1,
+      "chrono": "31:19 à 31:32",
+      "visible": 14,
+      "plan": "plan large",
+      "px": 13,
+      "compte": true
+    },
+    {
+      "n": "4",
+      "mt": 1,
+      "chrono": "40:19 à 40:48",
+      "visible": 30,
+      "plan": "plan large",
+      "px": 13,
+      "compte": true
+    },
+    {
+      "n": "5",
+      "mt": 2,
+      "chrono": "51:06 à 51:36",
+      "visible": 31,
+      "plan": "plan large",
+      "px": 13,
+      "compte": true
+    },
+    {
+      "n": "6",
+      "mt": 2,
+      "chrono": "75:24 à 75:44",
+      "visible": 21,
+      "plan": "plan large",
+      "px": 14,
+      "compte": true
+    },
+    {
+      "n": "7",
+      "mt": 2,
+      "chrono": "77:16 à 77:45",
+      "visible": 30,
+      "plan": "plan moyen",
+      "px": 27,
+      "compte": true
+    },
+    {
+      "n": "·",
+      "mt": 2,
+      "chrono": "77:55 à 77:56",
+      "visible": 2,
+      "plan": "moins de 8 s, ne compte pas",
+      "px": null,
+      "compte": false
+    },
+    {
+      "n": "·",
+      "mt": 2,
+      "chrono": "86:36 à 86:42",
+      "visible": 7,
+      "plan": "moins de 8 s, ne compte pas",
+      "px": null,
+      "compte": false
+    },
+    {
+      "n": "8",
+      "mt": 2,
+      "chrono": "86:55 à 87:05",
+      "visible": 11,
+      "plan": "plan large",
+      "px": 18,
+      "compte": true
+    }
+  ],
+  "passagesNote": "8 passages comptés, 197 s visibles. 2 apparitions de moins de 8 s (9 s) ne comptent pas comme passages mais restent dans le temps à l'écran. Total : 206 s. Un passage compte dès 8 secondes à l'image ; une sortie de champ de 8 s ou moins ne le coupe pas.",
+  "plans": {
+    "mode": "seconde par seconde",
+    "note": "Chaque seconde est classée selon la hauteur du bandeau à l'image (1280 × 720) : moins de 24 px, plan large, le logo se devine ; de 24 à 59 px, plan moyen, il se lit ; 60 px et plus, gros plan. Seuils : règle Sponsorlens.",
+    "large": {
+      "s": 150,
+      "txt": "2 min 30"
+    },
+    "moyen": {
+      "s": 50,
+      "txt": "50 s"
+    },
+    "gros": {
+      "s": 6,
+      "txt": "6 s"
+    },
+    "brut": {
+      "s": 206,
+      "txt": "206 s"
+    },
+    "equiv": {
+      "s": 81,
+      "txt": "81 s"
+    }
+  },
+  "horsJeu": [
+    {
+      "titre": "Bandeau LED hors jeu",
+      "texte": "Échauffement, mi-temps et fin de rencontre : le détecteur utilisé hors jeu ne connaissait pas encore cette création.",
+      "valeur": "non mesuré",
+      "etat": "non"
+    },
+    {
+      "titre": "Panneaux fixes Roseyres.ch",
+      "texte": "Les panneaux « Les Roseyres » derrière le but sont visibles en gros plan sur les actions devant ce but (fin de l'extrait). Pas encore mesurés à part.",
+      "valeur": "non mesuré",
+      "etat": "non"
+    }
+  ],
+  "classement": [
+    {
+      "nom": "EgoKiefer",
+      "s": 463,
+      "txt": "7 min 43"
+    },
+    {
+      "nom": "Multitel",
+      "s": 345,
+      "txt": "5 min 45"
+    },
+    {
+      "nom": "Désinfection Piller",
+      "s": 336,
+      "txt": "5 min 36"
+    },
+    {
+      "nom": "« rouge »",
+      "note": "Rouge FM ?, à confirmer",
+      "s": 279,
+      "txt": "4 min 39"
+    },
+    {
+      "nom": "Garage de la Plaine",
+      "s": 271,
+      "txt": "4 min 31"
+    },
+    {
+      "nom": "La Santé à Champagne",
+      "s": 224,
+      "txt": "3 min 44"
+    },
+    {
+      "nom": "Roseyres.ch",
+      "s": 206,
+      "txt": "3 min 26",
+      "moi": true
+    },
+    {
+      "nom": "AB Serrurerie",
+      "s": 199,
+      "txt": "3 min 19"
+    },
+    {
+      "nom": "« Jubin »",
+      "note": "à confirmer",
+      "s": 191,
+      "txt": "3 min 11"
+    },
+    {
+      "nom": "« asa »",
+      "note": "panneaux fixes, à confirmer",
+      "s": 114,
+      "txt": "1 min 54"
+    },
+    {
+      "nom": "AON",
+      "s": 57,
+      "txt": "57 s"
+    },
+    {
+      "nom": "Jolly Voyages",
+      "note": "panneaux fixes",
+      "s": 14,
+      "txt": "14 s"
+    }
+  ],
+  "classementNote": "Temps d'écran pendant le jeu des 12 marques visibles sur le bandeau. Les créations « à confirmer » ne figurent dans aucun document du club. « asa » et Jolly Voyages : panneaux fixes, comptés seulement quand ils occupent la zone du bandeau.",
+  "valeur": {
+    "base": {
+      "tv": 729,
+      "stade": 92,
+      "social": 3,
+      "total": 824
+    },
+    "opt": {
+      "tv": 2268,
+      "stade": 138,
+      "social": 5,
+      "total": 2411
+    },
+    "lignes": {
+      "tv": "81 s équivalentes (3 min 26 brut)",
+      "stade": "8 passages vus par 1'435 spectateurs",
+      "social": "bandeau en arrière-plan des vidéos du club"
+    },
+    "formule": "Valeur TV = secondes équivalentes ÷ 30 s × audience ÷ 1'000 × tarif pour 1'000 contacts et 30 s. Stade = affluence × passages ÷ 1'000 × tarif affichage × visibilité au stade. Réseaux sociaux = impressions ÷ 1'000 × tarif social. Valeur du match = TV + stade + réseaux sociaux organiques.",
+    "campagne": [
+      {
+        "t": "Vos 81 s équivalentes : 81 ÷ 30 × 6'000 ÷ 1'000 × 45 = CHF 729",
+        "etat": "hypothese"
+      },
+      {
+        "t": "Sans pondération de lisibilité, les 206 s brutes : 206 ÷ 30 × 6'000 ÷ 1'000 × 45 = CHF 1'854",
+        "etat": "hypothese"
+      },
+      {
+        "t": "Contacts en base : 48'000 à la TV (6'000 téléspectateurs × 8 passages)",
+        "etat": "hypothese"
+      },
+      {
+        "t": "Contacts au stade : 11'480 (1'435 spectateurs × 8 passages)",
+        "etat": "verifie"
+      }
+    ],
+    "campagneIntro": "Ce qu'aurait coûté une campagne TV classique : des spots de 30 s au tarif de CHF 45 pour 1'000 contacts, devant 6'000 téléspectateurs.",
+    "hypotheses": [
+      {
+        "nom": "Temps à l'écran, passages",
+        "detail": "lus image par image sur la diffusion",
+        "val": "3 min 26, 8 passages",
+        "etat": "mesure"
+      },
+      {
+        "nom": "Taille du bandeau à l'image",
+        "detail": "plan large, plan moyen, gros plan, seconde par seconde",
+        "val": "2 min 30 · 50 s · 6 s",
+        "etat": "mesure"
+      },
+      {
+        "nom": "Indice de visibilité",
+        "detail": "règle Sponsorlens, selon la hauteur du bandeau à l'écran",
+        "val": "0,30 · 0,60 · 1,00",
+        "etat": "hypothese"
+      },
+      {
+        "nom": "Audience TV et streaming",
+        "detail": "le diffuseur ne publie pas ce chiffre ; base, puis optimiste",
+        "val": "6'000 · 12'000",
+        "etat": "hypothese"
+      },
+      {
+        "nom": "Tarif TV",
+        "detail": "pour 1'000 contacts et 30 secondes ; base, puis optimiste",
+        "val": "CHF 45 · CHF 70",
+        "etat": "hypothese"
+      },
+      {
+        "nom": "Affluence au stade",
+        "detail": "SFL match center, lue le 13.10.2026 ; la même dans les deux scénarios",
+        "val": "1'435 spectateurs",
+        "etat": "verifie"
+      },
+      {
+        "nom": "Visibilité au stade",
+        "detail": "part du public qui voit le bandeau à chaque passage",
+        "val": "0,8",
+        "etat": "hypothese"
+      },
+      {
+        "nom": "Tarif affichage",
+        "detail": "pour 1'000 contacts ; base, puis optimiste",
+        "val": "CHF 10 · CHF 15",
+        "etat": "hypothese"
+      },
+      {
+        "nom": "Audience Instagram du club",
+        "detail": "@yverdonsport, relevé le 13.10.2026 ; Facebook, TikTok, LinkedIn non comptés",
+        "val": "31'755 abonnés",
+        "etat": "verifie"
+      },
+      {
+        "nom": "Réseaux sociaux, organique",
+        "detail": "part du bandeau dans les contenus vidéo du club, puis part des abonnés qui voient le résumé",
+        "val": "3,6 % · 25 %",
+        "etat": "hypothese"
+      },
+      {
+        "nom": "Tarif social",
+        "detail": "pour 1'000 impressions ; base, puis optimiste",
+        "val": "CHF 12 · CHF 18",
+        "etat": "hypothese"
+      }
+    ],
+    "saison": {
+      "matchs": 18,
+      "ecran": "61 min 48",
+      "passages": "144",
+      "contactsTv": {
+        "base": "864'000",
+        "opt": "1'728'000"
+      },
+      "contactsStade": "206'640",
+      "base": 14832,
+      "opt": 43398,
+      "note": "18 matchs à domicile au rythme mesuré sur cette journée : même exposition, mêmes hypothèses, 1'435 spectateurs à chaque match. La projection ne remplace pas la mesure de chaque match."
+    },
+    "couverture": {
+      "paliers": [
+        10000,
+        20000,
+        30000,
+        50000
+      ],
+      "intro": "Un contrat de sponsoring, c'est l'écran, mais aussi l'hospitalité, le réseau et l'image. Aucun pourcentage de référence n'existe pour dire ce que l'écran doit peser. Ici, la part de l'écran se mesure sur votre contrat, pas sur une moyenne.",
+      "note": "Au-delà de 1 ×, l'écran seul rembourse le contrat ; le réseau, l'hospitalité et l'image viennent en plus. L'audience TV reste une hypothèse."
+    },
+    "zhaw": "Étude ZHAW Sponsor Visions Schweiz 2022 (n=58) : l'image (79 %) et la notoriété (69 %) sont les deux premiers objectifs des sponsors en Suisse, devant les ventes (29 %). L'exposition sert ces deux objectifs.",
+    "leviers": [
+      {
+        "montant": 1233,
+        "delta": "+50 %",
+        "titre": "12 passages au lieu de 8",
+        "texte": "Obtenir du club une part de rotation proche de celle des premières marques (EgoKiefer : 17 passages). Même création, même lisibilité."
+      },
+      {
+        "montant": 1260,
+        "delta": "+53 %",
+        "titre": "Une création plus contrastée",
+        "texte": "Logo plus grand, fond plus sombre : lisible dès le plan large. Indice de visibilité multiplié par 1,6 sur le même temps d'écran."
+      },
+      {
+        "montant": 977,
+        "delta": "+19 %",
+        "titre": "2 publications par match",
+        "texte": "Annonce « partenaire du match » et extrait vidéo avec le bandeau, sur les comptes du club. CHF 824 + CHF 152, calculé avant l'arrondi."
+      }
+    ],
+    "leviersNote": "Scénario base, même formule et mêmes hypothèses que la valeur du match. Un levier est un calcul, pas une mesure."
+  },
+  "reseaux": {
+    "releve": "13.10.2026",
+    "comptes": [
+      {
+        "plateforme": "Instagram",
+        "compte": "@yverdonsport",
+        "abonnes": "31'755",
+        "icone": "instagram"
+      },
+      {
+        "plateforme": "Facebook",
+        "compte": "Yverdon Sport FC",
+        "abonnes": "≈ 13'000",
+        "icone": "facebook"
+      },
+      {
+        "plateforme": "LinkedIn",
+        "compte": "Yverdon Sport FC",
+        "abonnes": "3'921",
+        "icone": "linkedin"
+      },
+      {
+        "plateforme": "X",
+        "compte": "@yverdonsport",
+        "abonnes": "2'523",
+        "icone": "x"
+      },
+      {
+        "plateforme": "TikTok",
+        "compte": "@yverdonsport",
+        "abonnes": "905",
+        "icone": "tiktok"
+      },
+      {
+        "plateforme": "YouTube",
+        "compte": "@yverdonsport1897",
+        "abonnes": "≈ 1'770",
+        "icone": "youtube"
+      }
+    ],
+    "comptesNote": "Abonnés affichés par chaque plateforme au 13.10.2026. Facebook et YouTube l'affichent arrondi.",
+    "presence": [
+      {
+        "chiffre": "0",
+        "titre": "publication du club citant ou montrant Roseyres.ch",
+        "texte": "168 publications Instagram du 01.07 au 12.10.2026 ouvertes une par une, plus le compte LinkedIn du club : ni dans le texte, ni par un logo lisible, y compris sur les photos du match.",
+        "etat": "mesure"
+      },
+      {
+        "chiffre": "0",
+        "titre": "publication de Smartimmo ou de Roseyres.ch",
+        "texte": "LinkedIn Smartimmo, 76 abonnés, sans publication sur la période. Pas de compte Instagram trouvé. Le site roseyres.ch ne renvoie vers aucun réseau social.",
+        "etat": "mesure"
+      },
+      {
+        "chiffre": "1",
+        "titre": "trace du partenariat",
+        "texte": "Le pied de page de smartimmo.ch : « Fier Sponsor d'Yverdon Sport Football Club », avec un lien vers le site du club. Sans date.",
+        "etat": "verifie"
+      }
+    ],
+    "matchIntro": "5 publications Instagram du club, de l'annonce au résultat. Aucun logo Roseyres.ch n'y est lisible. Pas de publication sur LinkedIn ni TikTok.",
+    "matchPosts": [
+      {
+        "date": "14.09.2026",
+        "format": "Instagram, photo",
+        "likes": 137,
+        "com": 2,
+        "texte": "Semaine de match au Muni - Rendez-vous ce dimanche au Stade Municipal pour la réception du FC Stade-Lausanne-Ouchy."
+      },
+      {
+        "date": "14.09.2026",
+        "format": "Instagram, photo",
+        "likes": 147,
+        "com": 3,
+        "texte": "Cap sur une nouvelle semaine... Dimanche, on aura besoin de vous au Stade Municipal."
+      },
+      {
+        "date": "16.09.2026",
+        "format": "Instagram, photo",
+        "likes": 253,
+        "com": 4,
+        "texte": "Le groupe monte en régime avant le match de dimanche"
+      },
+      {
+        "date": "20.09.2026",
+        "format": "Instagram, photo",
+        "likes": 138,
+        "com": 37,
+        "texte": "Un derby sans vainqueur - nos joueurs prennent un point au Muni (0-0), après avoir évolué en supériorité numérique en seconde période."
+      },
+      {
+        "date": "20.09.2026",
+        "format": "Instagram, carrousel (8 photos)",
+        "likes": 204,
+        "com": 0,
+        "texte": "Retour en images sur le derby de cet après-midi au Muni. MERCI à toutes et tous pour votre soutien !"
+      }
+    ],
+    "youtube": {
+      "chiffre": "180",
+      "titre": "vues du résumé vidéo sur la chaîne YouTube du club",
+      "texte": "Publié le 21.09.2026, 2 min 20, vues lues le 13.10.2026. Présence du bandeau à l'image pas encore mesurée. Aucun résumé blue Sport ou SFL de ce match trouvé sur YouTube.",
+      "etat": "mesure"
+    },
+    "nonLu": "Facebook et X : publications derrière un mur de connexion, seul le nombre d'abonnés est visible. Instagram n'affiche pas les vues des reels.",
+    "valeur": [
+      {
+        "titre": "Exposition organique estimée",
+        "detail": "31'755 abonnés Instagram × 3,6 % de contenus avec le bandeau × 25 % de vues du résumé",
+        "val": "286 impressions · CHF 3",
+        "etat": "hypothese"
+      },
+      {
+        "titre": "Package social, 2 publications dédiées par match",
+        "detail": "portée de 20 % des abonnés par publication en base, 30 % en optimiste. Un levier, pas une mesure : il n'entre pas dans la valeur du match.",
+        "val": "12'702 impressions · CHF 152, optimiste CHF 343",
+        "etat": "levier"
+      }
+    ],
+    "resume": {
+      "chiffre": "0",
+      "titre": "publication du club citant ou montrant Roseyres.ch, sur 168 ouvertes une par une"
+    }
+  },
+  "methode": [
+    "Sur les 2 h 27 de la diffusion blue Sport du match, 128 minutes sont lues seconde par seconde, de l'avant-match jusqu'à 219 s après le coup de sifflet final.",
+    "Les bornes du jeu sont calées sur le chronomètre du stade : coup d'envoi à 11:41 de diffusion, mi-temps à 57:51, reprise à 75:24, coup de sifflet final à 124:22.",
+    "Pendant le jeu, le détecteur ne lit pas encore le bandeau de la caméra principale, trop petit à l'image : il a été lu à l'œil sur 468 images réparties sur chaque créneau de 30 secondes, puis chaque seconde a été rattachée à l'image lue la plus ressemblante.",
+    "Contrôle sur 82 secondes tirées au hasard : 91 % d'accord. Précision des durées par marque : environ 10 %.",
+    "Une seconde compte si le bandeau est dans le champ, lisible ou non. Un passage est une rotation de la création : il compte dès 8 secondes visibles, une sortie de champ de 8 secondes ou moins ne le coupe pas, la mi-temps le coupe.",
+    "Hors jeu (échauffement, mi-temps, fin), les durées viennent du détecteur Sponsorlens, en développement, réentraîné sur ce match, et d'une lecture à l'œil des 100 secondes qui précèdent le coup d'envoi. Une création que ce détecteur ne connaît pas n'est pas mesurée hors jeu.",
+    "Le plan se lit sur la hauteur du bandeau à l'image, seconde par seconde. L'indice de visibilité pondère chaque seconde avant le calcul de la valeur TV.",
+    "Mesuré : temps à l'écran, passages, plans. Vérifié : affluence du match, abonnés des comptes, statut sur la page partenaires du club. Hypothèses : audience TV, tarifs, portée sociale, indices de visibilité, et l'affluence de chaque match dans la projection saison.",
+    "Les panneaux fixes se mesurent à part : le panneau Clean&Co est à l'image 13 min 58 pendant le jeu, sur une ligne séparée. Les autres panneaux fixes ne sont pas encore mesurés à part.",
+    "L'affluence est celle du SFL match center, 1'435 spectateurs, lue le 13.10.2026. Les hypothèses de valeur viennent de la fiche du 10.10.2026, qui utilisait une affluence supposée de 2'000 en base et 3'000 en optimiste : elle donnait CHF 860 et CHF 2'561, contre CHF 824 et CHF 2'411 ici. La formule est la même, contrôlée sur ces deux chiffres à chaque mise à jour.",
+    "Valeur : équivalent média, pas prix de marché du contrat. L'audience TV reste une hypothèse tant que le diffuseur ne l'a pas communiquée."
+  ],
+  "sources": "Données : mesure du match version 4.1, détail des passages, chronologie du bandeau seconde par seconde, hypothèses de valeur de la fiche Roseyres du 10.10.2026, relevé des réseaux sociaux du 13.10.2026, SFL match center, page partenaires du club (09.10.2026), étude ZHAW Sponsor Visions Schweiz 2022."
+}

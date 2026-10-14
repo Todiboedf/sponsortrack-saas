@@ -1,0 +1,598 @@
+<title>__TITLE__</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<style>
+/* Layout: tableau de bord a onglets, une page sombre dans la langue visuelle de sponsorlens.io (encre, lime, Archivo / Inter / JetBrains Mono). */
+:root {
+  color-scheme: dark;
+  --bg: #0A1628;
+  --bg-2: #0E1C32;
+  --bg-3: #13244A;
+  --line: rgba(244, 239, 230, 0.10);
+  --line-2: rgba(244, 239, 230, 0.20);
+  --fg: #F4EFE6;
+  --fg-2: rgba(244, 239, 230, 0.70);
+  --fg-3: rgba(244, 239, 230, 0.48);
+  --accent: #D8FF3E;
+  --accent-ink: #0A1628;
+  --accent-soft: rgba(216, 255, 62, 0.14);
+  --blue-1: #256ABF;
+  --blue-2: #5598E7;
+  --blue-3: #86B6EF;
+  --amber: #F5B942;
+  --f-display: "Archivo", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --f-body: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --radius: 12px;
+  --gutter-l: max(16px, env(safe-area-inset-left, 0px));
+  --gutter-r: max(16px, env(safe-area-inset-right, 0px));
+  --maxw: 1180px;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation: none !important; transition: none !important; } }
+body {
+  margin: 0; background: var(--bg); color: var(--fg);
+  font-family: var(--f-body); font-size: 15px; line-height: 1.5;
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+}
+img, video { max-width: 100%; display: block; }
+a { color: inherit; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+.skip { position: absolute; left: -999px; top: 8px; background: var(--accent); color: var(--accent-ink); padding: 8px 12px; border-radius: 6px; z-index: 50; font-weight: 600; }
+.skip:focus { left: 16px; }
+.mono { font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fg-3); }
+.num { font-variant-numeric: tabular-nums; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* Barre haute et onglets */
+.head { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: rgba(10, 22, 40, 0.86); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+.wrap { max-width: var(--maxw); margin: 0 auto; padding-left: var(--gutter-l); padding-right: var(--gutter-r); }
+.topbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 56px; }
+.logo { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font-family: var(--f-display); font-weight: 600; font-size: 15px; letter-spacing: -0.01em; }
+.logo svg { width: 20px; height: 20px; color: var(--accent); }
+.ctx { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.ctx .mono { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pill { display: inline-flex; align-items: center; gap: 6px; font-family: var(--f-mono); font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; padding: 5px 8px; border-radius: 4px; background: var(--accent); color: var(--accent-ink); font-weight: 600; white-space: nowrap; }
+.tabs { display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; margin: 0 -4px; padding: 0 4px; }
+.tabs::-webkit-scrollbar { display: none; }
+.tabs-wrap { position: relative; }
+.tabs-wrap::after { content: ""; position: absolute; top: 0; right: 0; bottom: 0; width: 36px; background: linear-gradient(90deg, rgba(10,22,40,0), rgba(10,22,40,0.95)); pointer-events: none; }
+@media (min-width: 700px) { .tabs-wrap::after { display: none; } }
+.tab { flex: 0 0 auto; display: inline-flex; align-items: center; gap: 8px; padding: 12px 12px 11px; border: 0; background: none; color: var(--fg-2); font-weight: 500; font-size: 14px; border-bottom: 2px solid transparent; cursor: pointer; white-space: nowrap; }
+.tab svg { width: 16px; height: 16px; opacity: 0.8; }
+.tab:hover { color: var(--fg); }
+.tab[aria-selected="true"] { color: var(--fg); border-bottom-color: var(--accent); }
+.tab[aria-selected="true"] svg { color: var(--accent); opacity: 1; }
+
+/* Panneaux */
+main { padding-block: 28px 56px; }
+[role="tabpanel"] { display: grid; gap: 20px; }
+.panel-head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 12px 24px; }
+.panel-head h2 { font-family: var(--f-display); font-weight: 700; font-size: clamp(24px, 3vw, 30px); letter-spacing: -0.02em; margin: 0; text-wrap: balance; }
+.lede { color: var(--fg-2); max-width: 64ch; margin: 6px 0 0; font-size: 15px; }
+h3 { font-family: var(--f-display); font-weight: 600; font-size: 16px; letter-spacing: -0.01em; margin: 0; }
+.eyebrow { font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fg-3); }
+.card { background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; min-width: 0; }
+.card.pad-0 { padding: 0; overflow: hidden; }
+.card-head { display: flex; align-items: start; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+.card-head p { margin: 4px 0 0; color: var(--fg-2); font-size: 13.5px; max-width: 60ch; }
+.grid { display: grid; gap: 16px; }
+.g2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.g3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.g4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.g6 { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+.g-5-7 { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
+.g-7-5 { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
+.note { color: var(--fg-3); font-size: 12.5px; margin: 10px 0 0; max-width: 70ch; }
+.note a { color: var(--fg-2); }
+
+/* Etiquettes de statut : chaque chiffre garde son statut, en petit */
+.tag { justify-self: start; display: inline-flex; align-items: center; gap: 6px; font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--fg-2); padding: 3px 7px; border: 1px solid var(--line-2); border-radius: 4px; white-space: nowrap; line-height: 1.3; }
+.tag::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--fg-3); }
+.tag.mesure { color: var(--accent); border-color: rgba(216, 255, 62, 0.35); }
+.tag.mesure::before { background: var(--accent); }
+.tag.verifie { color: var(--blue-3); border-color: rgba(134, 182, 239, 0.4); }
+.tag.verifie::before { background: var(--blue-3); }
+.tag.hypothese { color: var(--amber); border-color: rgba(245, 185, 66, 0.4); }
+.tag.hypothese::before { background: var(--amber); }
+.tag.levier, .tag.non, .tag.attente { color: var(--fg-2); }
+.tag.attente::before, .tag.non::before, .tag.levier::before { background: transparent; border: 1px solid var(--fg-3); }
+
+/* Hero */
+.hero { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: 24px; align-items: center; }
+.hero h1 { font-family: var(--f-display); font-weight: 700; font-size: clamp(36px, 5.2vw, 60px); line-height: 1.02; letter-spacing: -0.03em; margin: 10px 0 0; text-wrap: balance; }
+.hero h1 small { display: block; font-size: 0.5em; font-weight: 500; color: var(--fg-2); letter-spacing: -0.01em; margin-top: 8px; }
+.hero .lede { font-size: 16px; margin-top: 16px; }
+.meta { display: flex; flex-wrap: wrap; gap: 6px 14px; margin-top: 16px; color: var(--fg-2); font-size: 13.5px; }
+.meta b { color: var(--fg); font-weight: 600; }
+.statut { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 18px; padding: 12px 14px; border-left: 2px solid var(--accent); background: rgba(216, 255, 62, 0.05); border-radius: 0 8px 8px 0; font-size: 14px; }
+.statut p { margin: 4px 0 0; color: var(--fg-2); font-size: 13px; width: 100%; }
+
+/* Cadre video a coins lime, comme sur sponsorlens.io */
+.hud { position: relative; background: #050B16; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+.hud video { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; background: #050B16; }
+.hud-absent { aspect-ratio: 16 / 9; display: grid; place-content: center; gap: 6px; text-align: center; background: radial-gradient(ellipse at center, #0F1D33, #050B16); }
+.hud .corner { position: absolute; width: 18px; height: 18px; border: 2px solid var(--accent); pointer-events: none; }
+.hud .tl { top: 8px; left: 8px; border-right: 0; border-bottom: 0; }
+.hud .tr { top: 8px; right: 8px; border-left: 0; border-bottom: 0; }
+.hud .bl { bottom: 8px; left: 8px; border-right: 0; border-top: 0; }
+.hud .br { bottom: 8px; right: 8px; border-left: 0; border-top: 0; }
+.hud .chyron { position: absolute; top: 12px; left: 32px; right: 32px; display: flex; justify-content: space-between; gap: 8px; pointer-events: none; }
+.hud .chyron span { font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; background: rgba(10, 22, 40, 0.8); color: var(--fg); padding: 3px 6px; border-radius: 3px; }
+.hud .chyron span.lime { background: var(--accent); color: var(--accent-ink); font-weight: 600; }
+.video-cap { display: flex; justify-content: space-between; gap: 12px; align-items: start; margin-top: 10px; }
+.video-cap p { margin: 0; color: var(--fg-3); font-size: 12.5px; max-width: 70ch; }
+
+/* Tuiles chiffres */
+.kpi { position: relative; display: grid; gap: 6px; padding: 18px 18px 16px; background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius); min-width: 0; }
+.kpi .v { font-family: var(--f-display); font-weight: 700; font-size: clamp(30px, 3.4vw, 42px); letter-spacing: -0.03em; line-height: 1; font-variant-numeric: tabular-nums; }
+.kpi .v small { font-size: 0.45em; font-weight: 500; color: var(--fg-2); letter-spacing: 0; margin-left: 4px; }
+.kpi .l { color: var(--fg-2); font-size: 13px; line-height: 1.35; }
+.kpi .tag { justify-self: start; margin-bottom: 4px; }
+.kpi.accent .v { color: var(--accent); }
+
+/* Cartes d'acces aux sections, sur la vue d'ensemble */
+.goto { display: grid; gap: 12px; text-align: left; cursor: pointer; background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px; transition: border-color 0.15s ease, background 0.15s ease; }
+.goto:hover { border-color: var(--line-2); background: var(--bg-3); }
+.goto .top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.goto .top h3 { display: inline-flex; align-items: center; gap: 8px; }
+.goto .top svg { width: 18px; height: 18px; color: var(--accent); }
+.goto .arrow { color: var(--fg-3); }
+.goto .big { font-family: var(--f-display); font-weight: 700; font-size: 26px; letter-spacing: -0.02em; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.goto .big small { display: block; font-family: var(--f-body); font-weight: 400; font-size: 13px; color: var(--fg-2); letter-spacing: 0; margin-top: 4px; }
+.goto .sub { color: var(--fg-2); font-size: 13px; }
+
+/* Frise du match */
+.frise { display: grid; gap: 18px; }
+.track-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; margin-bottom: 8px; }
+.track-head b { font-weight: 600; font-size: 14px; }
+.track { position: relative; height: 30px; background: rgba(244, 239, 230, 0.05); border-radius: 6px; overflow: visible; }
+.seg { position: absolute; top: 0; height: 100%; }
+.seg.a { background: rgba(244, 239, 230, 0.16); }
+.seg.b { background: var(--accent); border: 0; padding: 0; border-radius: 3px; cursor: pointer; min-width: 3px; box-shadow: 0 0 0 1px var(--bg-2); }
+.seg.b:hover, .seg.b:focus-visible { background: #EBFF85; outline-offset: 1px; }
+.ticks { position: relative; height: 18px; margin-top: 4px; }
+.tick { position: absolute; top: 0; transform: translateX(-50%); font-family: var(--f-mono); font-size: 10px; color: var(--fg-3); white-space: nowrap; }
+.tick::before { content: ""; position: absolute; left: 50%; top: -6px; width: 1px; height: 4px; background: var(--line-2); }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 18px; color: var(--fg-2); font-size: 12.5px; }
+.legend span { display: inline-flex; align-items: center; gap: 7px; }
+.legend i { width: 14px; height: 10px; border-radius: 2px; display: inline-block; }
+.tip { position: absolute; z-index: 30; pointer-events: none; background: var(--fg); color: var(--accent-ink); font-family: var(--f-mono); font-size: 11.5px; padding: 6px 9px; border-radius: 6px; white-space: nowrap; transform: translate(-50%, calc(-100% - 10px)); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35); }
+.tip[hidden] { display: none; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; gap: 8px; padding: 7px 10px; border: 1px solid var(--line); border-radius: 8px; background: rgba(244, 239, 230, 0.03); font-size: 13px; font-variant-numeric: tabular-nums; }
+.chip b { font-family: var(--f-mono); font-weight: 600; font-size: 12px; color: var(--accent); }
+.chip.off { color: var(--fg-3); border-style: dashed; }
+.chip.off b { color: var(--fg-3); }
+.chip .plan { color: var(--fg-2); }
+
+/* Classement et barres */
+.bars { display: grid; gap: 9px; }
+.bar-row { display: grid; grid-template-columns: 22px minmax(0, 1fr) 72px; align-items: center; gap: 10px; font-size: 13.5px; }
+.bar-row .rank { font-family: var(--f-mono); font-size: 11px; color: var(--fg-3); text-align: right; }
+.bar-row .name { display: grid; gap: 4px; min-width: 0; }
+.bar-row .name span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.bar-row .name small { color: var(--fg-3); font-size: 11.5px; }
+.bar-row .bar { height: 8px; border-radius: 4px; background: rgba(85, 152, 231, 0.45); }
+.bar-row.me .bar { background: var(--accent); }
+.bar-row.me .name span { font-weight: 600; color: var(--accent); }
+.bar-row .val { text-align: right; font-variant-numeric: tabular-nums; color: var(--fg-2); }
+.bar-row.me .val { color: var(--fg); font-weight: 600; }
+.stack { display: flex; gap: 2px; height: 14px; border-radius: 4px; overflow: hidden; }
+.stack span { display: block; height: 100%; min-width: 2px; }
+.stack .s1 { background: var(--blue-3); } .stack .s2 { background: var(--blue-2); } .stack .s3 { background: var(--blue-1); }
+.stack .v1 { background: var(--blue-1); } .stack .v2 { background: var(--blue-2); } .stack .v3 { background: var(--blue-3); }
+.kv { display: grid; gap: 0; }
+.kv > div { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 10px 0; border-top: 1px solid var(--line); font-size: 14px; }
+.kv > div:first-child { border-top: 0; }
+.kv .k { color: var(--fg-2); min-width: 0; }
+.kv .k small { display: block; color: var(--fg-3); font-size: 12px; }
+.kv .v { font-variant-numeric: tabular-nums; font-weight: 600; text-align: right; max-width: 55%; }
+.kv .v.muted { color: var(--fg-2); font-weight: 500; }
+.stack-kv > div { display: grid; grid-template-columns: minmax(0, 1fr); gap: 6px; }
+.stack-kv .v { text-align: left; max-width: none; }
+.nowrap { white-space: nowrap; }
+
+/* Reseaux */
+.plat { display: grid; gap: 10px; padding: 16px; background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius); min-width: 0; }
+.plat .ic { width: 32px; height: 32px; border-radius: 8px; background: var(--bg-3); display: grid; place-items: center; color: var(--fg); }
+.plat .ic svg { width: 18px; height: 18px; }
+.plat .ic b { font-family: var(--f-display); font-weight: 700; font-size: 14px; }
+.plat .n { font-family: var(--f-display); font-weight: 700; font-size: 22px; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.plat .n small { display: block; font-family: var(--f-body); font-weight: 400; font-size: 12px; color: var(--fg-3); letter-spacing: 0; margin-top: 2px; }
+.plat .p { color: var(--fg-2); font-size: 12.5px; }
+.big-fact { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 16px; align-items: start; padding: 18px; background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius); }
+.big-fact .n { font-family: var(--f-display); font-weight: 800; font-size: 54px; line-height: 0.9; letter-spacing: -0.04em; font-variant-numeric: tabular-nums; min-width: 1.2ch; }
+.big-fact .n.zero { color: var(--fg-3); }
+.big-fact .n.lime { color: var(--accent); }
+.big-fact h3 { font-size: 15px; }
+.big-fact p { margin: 6px 0 0; color: var(--fg-2); font-size: 13px; }
+.big-fact .tag { margin-top: 8px; }
+.posts { display: grid; gap: 0; }
+.post { display: grid; grid-template-columns: 96px minmax(0, 1fr) auto; gap: 14px; align-items: start; padding: 12px 0; border-top: 1px solid var(--line); font-size: 13.5px; }
+.post:first-child { border-top: 0; }
+.post .d { font-family: var(--f-mono); font-size: 11.5px; color: var(--fg-3); padding-top: 2px; }
+.post .d small { display: block; font-family: var(--f-body); font-size: 11.5px; letter-spacing: 0; text-transform: none; margin-top: 2px; }
+.post .t { color: var(--fg-2); min-width: 0; }
+.post .t q { quotes: "« " " »"; }
+.post .m { display: inline-flex; gap: 12px; white-space: nowrap; font-variant-numeric: tabular-nums; color: var(--fg-2); font-size: 12.5px; }
+.post .m span { display: inline-flex; align-items: center; gap: 5px; }
+.post .m svg { width: 13px; height: 13px; color: var(--fg-3); }
+
+/* Valeur */
+.seg-ctl { display: inline-flex; padding: 3px; background: rgba(244, 239, 230, 0.06); border: 1px solid var(--line); border-radius: 8px; }
+.seg-ctl button { border: 0; background: none; padding: 7px 14px; border-radius: 6px; color: var(--fg-2); font-weight: 500; font-size: 13.5px; cursor: pointer; }
+.seg-ctl button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); font-weight: 600; }
+.money { font-family: var(--f-display); font-weight: 800; font-size: clamp(40px, 6vw, 64px); letter-spacing: -0.04em; line-height: 0.95; font-variant-numeric: tabular-nums; }
+.money small { display: block; font-family: var(--f-body); font-weight: 400; font-size: 14px; color: var(--fg-2); letter-spacing: 0; margin-top: 10px; }
+.alt { color: var(--fg-3); font-size: 13px; margin-top: 10px; }
+.formula { font-family: var(--f-mono); font-size: 12px; color: var(--fg-2); line-height: 1.6; background: rgba(244, 239, 230, 0.04); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; overflow-x: auto; }
+details { border: 1px solid var(--line); border-radius: 10px; background: rgba(244, 239, 230, 0.02); }
+details summary { cursor: pointer; padding: 12px 16px; font-weight: 600; font-size: 14px; list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+details summary::-webkit-details-marker { display: none; }
+details summary::after { content: "+"; font-family: var(--f-mono); color: var(--fg-3); }
+details[open] summary::after { content: "−"; }
+details .in { padding: 0 16px 16px; }
+table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+th, td { text-align: left; padding: 9px 8px 9px 0; border-top: 1px solid var(--line); vertical-align: top; }
+thead th { border-top: 0; font-family: var(--f-mono); font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--fg-3); font-weight: 500; }
+td.r, th.r { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+td small { display: block; color: var(--fg-3); font-size: 12px; }
+.tbl { overflow-x: auto; }
+.couv { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+.couv > div { padding: 12px; border: 1px solid var(--line); border-radius: 8px; background: rgba(244, 239, 230, 0.03); display: grid; gap: 6px; }
+.couv .inv { font-family: var(--f-mono); font-size: 11px; color: var(--fg-3); letter-spacing: 0.08em; }
+.couv .c { font-family: var(--f-display); font-weight: 700; font-size: 22px; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.couv .c.full { color: var(--accent); }
+.couv .o { color: var(--fg-2); font-size: 12.5px; font-variant-numeric: tabular-nums; }
+.calc { display: grid; gap: 12px; }
+.calc label { font-size: 13.5px; font-weight: 500; }
+.field { display: flex; align-items: center; gap: 8px; border: 1px solid var(--line-2); border-radius: 8px; padding: 0 12px; background: rgba(244, 239, 230, 0.04); }
+.field span { font-family: var(--f-mono); font-size: 12px; color: var(--fg-3); }
+.field input { flex: 1; min-width: 0; border: 0; background: none; color: var(--fg); font: inherit; font-size: 16px; padding: 10px 0; outline: none; font-variant-numeric: tabular-nums; }
+.calc-out { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.calc-out > div { padding: 12px; border-radius: 8px; background: var(--bg-3); display: grid; gap: 4px; }
+.calc-out .c { font-family: var(--f-display); font-weight: 700; font-size: 24px; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.lever { display: grid; gap: 8px; padding: 18px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--bg-2); }
+.lever .v { font-family: var(--f-display); font-weight: 700; font-size: 28px; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+.lever .v small { font-family: var(--f-mono); font-size: 12px; color: var(--accent); letter-spacing: 0.04em; margin-left: 8px; font-weight: 600; }
+.lever p { margin: 0; color: var(--fg-2); font-size: 13.5px; }
+
+/* Methode */
+.defs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.defs > div { padding: 14px 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--bg-2); color: var(--fg-2); font-size: 13.5px; display: grid; gap: 8px; align-content: start; }
+ol.method { margin: 0; padding-left: 0; list-style: none; counter-reset: m; display: grid; }
+ol.method li { counter-increment: m; display: grid; grid-template-columns: 36px minmax(0, 1fr); gap: 12px; padding: 12px 0; border-top: 1px solid var(--line); color: var(--fg-2); font-size: 14px; }
+ol.method li:first-child { border-top: 0; }
+ol.method li::before { content: counter(m, decimal-leading-zero); font-family: var(--f-mono); font-size: 12px; color: var(--accent); padding-top: 3px; }
+footer { border-top: 1px solid var(--line); padding-block: 24px 40px; color: var(--fg-3); font-size: 12.5px; }
+footer p { margin: 0 0 8px; max-width: 90ch; }
+
+@media (max-width: 900px) {
+  .hero, .g3, .g4, .g-5-7, .g-7-5 { grid-template-columns: minmax(0, 1fr); }
+  .g6 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .g2.kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .couv { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .defs { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 560px) {
+  .ctx .mono { display: none; }
+  .g6 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .g4.kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .post { grid-template-columns: minmax(0, 1fr); gap: 6px; }
+  .post .m { justify-content: start; }
+  .bar-row { grid-template-columns: 18px minmax(0, 1fr) 60px; }
+  .big-fact .n { font-size: 44px; }
+  .tick.minor { display: none; }
+  .card { padding: 16px; }
+}
+</style>
+
+<a class="skip" href="#contenu">Aller au contenu</a>
+<div class="head">
+  <div class="wrap">
+    <div class="topbar">
+      <a class="logo" href="https://sponsorlens.io" aria-label="Sponsorlens">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><circle cx="12" cy="12" r="2.5" fill="currentColor" stroke="none"/></svg>
+        Sponsorlens
+      </a>
+      <div class="ctx">
+        <span class="mono" id="ctx-mono"></span>
+        <span class="pill">Mis à jour après chaque match</span>
+      </div>
+    </div>
+    <div class="tabs-wrap"><div class="tabs" role="tablist" aria-label="Sections du tableau de bord" id="tabs"></div></div>
+  </div>
+</div>
+
+<main id="contenu" class="wrap">
+  <section id="apercu" role="tabpanel" aria-labelledby="tab-apercu"></section>
+  <section id="image" role="tabpanel" aria-labelledby="tab-image" hidden></section>
+  <section id="reseaux" role="tabpanel" aria-labelledby="tab-reseaux" hidden></section>
+  <section id="valeur" role="tabpanel" aria-labelledby="tab-valeur" hidden></section>
+  <section id="methode" role="tabpanel" aria-labelledby="tab-methode" hidden></section>
+</main>
+<footer>
+  <div class="wrap" id="pied"></div>
+</footer>
+<div class="tip" id="tip" hidden role="status" aria-live="polite"></div>
+
+<script>
+const DATA = __DATA__;
+const FRISE = __FRISE__;
+
+/* Icones Lucide, en ligne */
+const I = {
+  dashboard: '<rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/>',
+  tv: '<rect width="20" height="15" x="2" y="7" rx="2" ry="2"/><polyline points="17 2 12 7 7 2"/>',
+  share: '<circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/>',
+  money: '<rect width="20" height="12" x="2" y="6" rx="2"/><circle cx="12" cy="12" r="2"/><path d="M6 12h.01M18 12h.01"/>',
+  method: '<path d="m3 17 2 2 4-4"/><path d="m3 7 2 2 4-4"/><path d="M13 6h8"/><path d="M13 12h8"/><path d="M13 18h8"/>',
+  arrow: '<path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>',
+  heart: '<path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>',
+  comment: '<path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/>',
+  instagram: '<rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>',
+  facebook: '<path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>',
+  linkedin: '<path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/>',
+  youtube: '<path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/>',
+  tiktok: '<circle cx="8" cy="18" r="4"/><path d="M12 18V2l7 4"/>',
+  play: '<polygon points="6 3 20 12 6 21 6 3"/>',
+  ext: '<path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>'
+};
+const ic = (n, cls) => `<svg class="${cls || ''}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${I[n]}</svg>`;
+
+/* Formats suisses : CHF 14'832, 74 %, 1,5 × */
+const NB = ' ';
+const sep = (n) => Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, "'");
+const chf = (n) => 'CHF' + NB + sep(n);
+const pct = (num, den) => Math.round(num / den * 100) + NB + '%';
+const couverture = (val, inv) => { const r = val / inv; return r <= 1 ? pct(val, inv) : r.toFixed(1).replace('.', ',') + NB + '×'; };
+const mmss = (s) => { const m = Math.floor(s / 60), r = s % 60; return String(m).padStart(2, '0') + ':' + String(r).padStart(2, '0'); };
+const tag = (etat, txt) => { const lib = { mesure: 'mesuré', verifie: 'vérifié', hypothese: 'hypothèse', levier: 'levier, pas une mesure', non: 'non mesuré', attente: 'à confirmer par le club' }; return `<span class="tag ${etat}">${txt || lib[etat] || etat}</span>`; };
+const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+const D = DATA, M = D.match, K = D.kpis, V = D.valeur, R = D.reseaux;
+const TABS = [
+  ['apercu', 'Vue d\'ensemble', 'dashboard'],
+  ['image', 'À l\'image', 'tv'],
+  ['reseaux', 'Réseaux sociaux', 'share'],
+  ['valeur', 'Valeur média', 'money'],
+  ['methode', 'Méthode', 'method']
+];
+
+document.getElementById('ctx-mono').textContent = `Yverdon Sport FC · ${M.journee} · ${M.date}`;
+
+/* Onglets */
+const tabsEl = document.getElementById('tabs');
+tabsEl.innerHTML = TABS.map(([id, lib, icon]) => `<button class="tab" role="tab" id="tab-${id}" aria-controls="${id}" aria-selected="false" tabindex="-1">${ic(icon)}${lib}</button>`).join('');
+function showTab(id, focus) {
+  TABS.forEach(([t]) => {
+    const b = document.getElementById('tab-' + t), p = document.getElementById(t);
+    const on = t === id;
+    b.setAttribute('aria-selected', on ? 'true' : 'false');
+    b.tabIndex = on ? 0 : -1;
+    p.hidden = !on;
+    if (on && focus) b.focus();
+  });
+  if (location.hash !== '#' + id) { try { history.replaceState(null, '', '#' + id); } catch (e) {} }
+  window.scrollTo({ top: 0, behavior: 'auto' });
+}
+tabsEl.addEventListener('click', (e) => { const b = e.target.closest('.tab'); if (b) showTab(b.getAttribute('aria-controls')); });
+tabsEl.addEventListener('keydown', (e) => {
+  const ids = TABS.map(([t]) => t); const cur = ids.indexOf(document.activeElement.getAttribute('aria-controls')); if (cur < 0) return;
+  let next = null;
+  if (e.key === 'ArrowRight') next = (cur + 1) % ids.length; if (e.key === 'ArrowLeft') next = (cur - 1 + ids.length) % ids.length;
+  if (e.key === 'Home') next = 0; if (e.key === 'End') next = ids.length - 1;
+  if (next !== null) { e.preventDefault(); showTab(ids[next], true); }
+});
+document.querySelectorAll('[data-goto]').forEach(() => {});
+
+/* Video a cadre ; si la source ne charge pas, un cadre vide avec la legende */
+function videoAbsent(v) { const box = v.closest('.hud'); if (!box || box.dataset.absent) return; box.dataset.absent = '1'; v.replaceWith(Object.assign(document.createElement('div'), { className: 'hud-absent', innerHTML: '<span class="mono" style="color:var(--fg-2)">Extrait vidéo</span><span style="color:var(--fg-3);font-size:13px">disponible sur la page en ligne</span>' })); }
+
+function videoCard(id) {
+  const v = D.video;
+  return `<div class="hud">
+    <video id="${id}" controls preload="metadata" playsinline muted ${v.poster ? `poster="${v.poster}"` : ''} src="${v.src}" onerror="videoAbsent(this)"></video>
+    <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+    <div class="chyron"><span class="lime">Détections encadrées</span><span>${esc(M.journee)} · ${esc(M.score)}</span></div>
+  </div>
+  <div class="video-cap"><p><b style="color:var(--fg)">${esc(v.etiquette)}.</b> ${esc(v.legende)}</p></div>`;
+}
+
+/* Vue d'ensemble */
+function renderApercu() {
+  const el = document.getElementById('apercu');
+  const statutTag = D.statut.etat === 'verifie' ? tag('verifie') : tag('attente');
+  el.innerHTML = `
+  <div class="hero">
+    <div>
+      <div class="eyebrow">Sponsorlens · ce que voit le partenaire · exemple</div>
+      <h1>${esc(D.marque)}<small>× Yverdon Sport FC</small></h1>
+      <p class="lede">Ce que votre marque a obtenu à l'écran et sur les réseaux lors de ce match, ce que cette exposition vaut en équivalent média, et ce que donne une saison à domicile au même rythme.</p>
+      <div class="meta"><span><b>${esc(M.date)}</b> à ${esc(M.heure)}</span><span>Yverdon Sport FC <b>${esc(M.score)}</b> ${esc(M.adversaire)}</span><span>${esc(M.journee)}, ${esc(M.competition)}</span><span>${esc(M.stade)}</span><span>Diffusion ${esc(M.diffusion)}</span></div>
+      <div class="statut"><strong>${esc(D.statut.texte)}</strong>${statutTag}${D.statut.source ? `<span class="mono" style="letter-spacing:.06em">${esc(D.statut.source)}</span>` : ''}<p>${esc(D.statut.note)}</p></div>
+    </div>
+    <div>${videoCard('video-hero')}</div>
+  </div>
+  <div class="grid g4 kpis">
+    <div class="kpi accent">${tag('mesure')}<div class="v">${esc(K.ecran)}</div><div class="l">à l'écran pendant le jeu, sur le bandeau LED</div></div>
+    <div class="kpi">${tag('mesure')}<div class="v">${K.passages}<small>passages</small></div><div class="l">rotations de la création, ${esc(K.passagesPlage)}</div></div>
+    <div class="kpi">${tag('mesure')}<div class="v">${esc(K.rang)}<small>sur ${K.rangSur}</small></div><div class="l">marque du match par temps d'écran pendant le jeu · ${esc(K.part)} du temps sponsor</div></div>
+    <div class="kpi">${tag('hypothese')}<div class="v">${chf(K.valeurBase)}</div><div class="l">valeur média du match, base · ${chf(K.valeurOpt)} en scénario optimiste</div></div>
+  </div>
+  <div class="grid g3">
+    <button class="goto" data-goto="image"><div class="top"><h3>${ic('tv')}À l'image</h3>${ic('arrow', 'arrow')}</div><div class="big">${esc(M.bandeauVisible)}<small>de bandeau LED à l'image sur ${esc(M.jeu)} de jeu, partagées entre ${M.marquesVisibles} marques, la ligue et le club</small></div><div class="sub">Frise minute par minute, ${K.passages} passages chronométrés, classement des ${M.marquesVisibles} marques, taille à l'écran.</div></button>
+    <button class="goto" data-goto="reseaux"><div class="top"><h3>${ic('share')}Réseaux sociaux</h3>${ic('arrow', 'arrow')}</div><div class="big">${esc(R.resume.chiffre)}<small>${esc(R.resume.titre)}</small></div><div class="sub">${esc(R.comptes[0].abonnes)} abonnés Instagram, ${R.matchPosts.length} publications sur le match, relevé du ${esc(R.releve)}.</div></button>
+    <button class="goto" data-goto="valeur"><div class="top"><h3>${ic('money')}Valeur média</h3>${ic('arrow', 'arrow')}</div><div class="big">${chf(V.saison.base)}<small>sur ${V.saison.matchs} matchs à domicile au même rythme, base · ${chf(V.saison.opt)} en optimiste</small></div><div class="sub">TV, stade et réseaux, la part de l'écran dans votre contrat, et les leviers chiffrés.</div></button>
+  </div>`;
+  el.querySelectorAll('[data-goto]').forEach(b => b.addEventListener('click', () => showTab(b.dataset.goto, true)));
+}
+
+/* A l'image */
+function track(half, i) {
+  const h = FRISE[half]; const d = h.duree; const base = half === '1' ? 0 : 45 * 60;
+  const segs = h.segments.filter(s => s[2] !== 'o').map(s => {
+    const left = (s[0] / d * 100).toFixed(3), w = Math.max(s[1] / d * 100, 0.1).toFixed(3);
+    if (s[2] === 'a') return `<span class="seg a" style="left:${left}%;width:${w}%"></span>`;
+    const deb = mmss(base + s[0]), fin = mmss(base + s[0] + s[1]);
+    return `<button type="button" class="seg b" style="left:${left}%;width:${w}%" data-tip="${deb} à ${fin} · ${s[1]} s" aria-label="${esc(D.marque)} à l'image de ${deb} à ${fin}, ${s[1]} secondes"></button>`;
+  }).join('');
+  const ticks = []; for (let m = 0; m * 60 <= d; m += 5) { const lab = (half === '1' ? m : 45 + m) + "'"; ticks.push(`<span class="tick ${m % 15 ? 'minor' : ''}" style="left:${(m * 60 / d * 100).toFixed(2)}%">${lab}</span>`); }
+  const mt = D.miTemps[i];
+  return `<div><div class="track-head"><b>${esc(mt.nom)}</b><span class="num" style="color:var(--fg-2);font-size:13px">${mt.passages} passages · ${esc(mt.duree)}</span></div><div class="track">${segs}</div><div class="ticks">${ticks.join('')}</div></div>`;
+}
+function renderImage() {
+  const el = document.getElementById('image');
+  const P = D.plans; const tot = P.large.s + P.moyen.s + P.gros.s;
+  const maxS = Math.max(...D.classement.map(c => c.s));
+  const chips = D.passages.map(p => p.compte ? `<span class="chip"><b>${p.n}</b><span class="num">${esc(p.chrono)}</span><span class="plan">${p.visible} s · ${esc(p.plan)}, ${p.px} px</span></span>` : `<span class="chip off"><b>·</b><span class="num">${esc(p.chrono)}</span><span class="plan">${p.visible} s, ne compte pas</span></span>`).join('');
+  const bars = D.classement.map((c, i) => `<div class="bar-row ${c.moi ? 'me' : ''}"><span class="rank">${i + 1}</span><div class="name"><span>${esc(c.nom)}${c.note ? ` <small>${esc(c.note)}</small>` : ''}</span><div class="bar" style="width:${(c.s / maxS * 100).toFixed(1)}%"></div></div><span class="val">${esc(c.txt)}</span></div>`).join('');
+  const resumes = D.resumes ? `<div class="card"><div class="card-head"><div><h3>Avant ce match, les résumés de septembre</h3><p>${esc(D.resumes.intro)}</p></div>${tag('mesure')}</div><div class="tbl"><table><thead><tr><th>Journée</th><th class="r">À l'écran</th><th class="r">Part de voix</th></tr></thead><tbody>${D.resumes.lignes.map(l => `<tr><td>${esc(l.j)}</td><td class="r">${esc(l.s)}</td><td class="r">${esc(l.part)}</td></tr>`).join('')}<tr><td><b>${esc(D.resumes.total)}</b></td><td></td><td></td></tr></tbody></table></div><p class="note">${esc(D.resumes.note)}</p></div>` : '';
+  el.innerHTML = `
+  <div class="panel-head"><div><h2>À l'image</h2><p class="lede">Pendant le jeu, le bandeau LED est à l'image ${esc(M.bandeauVisible)} sur ${esc(M.jeu)}, partagées entre ${M.marquesVisibles} marques, la ligue et le club. Une seconde compte quand la caméra montre votre création sur le bandeau.</p></div>${tag('mesure', 'mesuré seconde par seconde')}</div>
+  <div class="grid g-5-7">
+    <div class="grid g2 kpis" style="align-content:start">
+      <div class="kpi accent">${tag('mesure')}<div class="v">${esc(K.ecran)}</div><div class="l">à l'écran pendant le jeu</div></div>
+      <div class="kpi">${tag('mesure')}<div class="v">${esc(K.part)}</div><div class="l">${esc(K.partDetail)}</div></div>
+      <div class="kpi">${tag('mesure')}<div class="v">${D.miTemps[0].passages}<small>passages</small></div><div class="l">${esc(D.miTemps[0].nom)} · ${esc(D.miTemps[0].duree)}</div></div>
+      <div class="kpi">${tag('mesure')}<div class="v">${D.miTemps[1].passages}<small>passages</small></div><div class="l">${esc(D.miTemps[1].nom)} · ${esc(D.miTemps[1].duree)}</div></div>
+    </div>
+    <div>${videoCard('video-image')}</div>
+  </div>
+  <div class="card">
+    <div class="card-head"><div><h3>Le match, minute par minute</h3><p>Les deux mi-temps au chrono du tableau d'affichage. Survolez ou touchez un passage pour lire son chrono.</p></div>${tag('mesure')}</div>
+    <div class="frise">${track('1', 0)}${track('2', 1)}</div>
+    <div class="legend" style="margin-top:14px"><span><i style="background:var(--accent)"></i>${esc(D.marque)} sur le bandeau et à l'image</span><span><i style="background:rgba(244,239,230,.16)"></i>autre marque, ligue, club ou bandeau vide</span><span><i style="background:rgba(244,239,230,.05);border:1px solid var(--line)"></i>bandeau pas à l'image</span></div>
+    <h3 style="margin-top:22px">Les ${K.passages} passages</h3>
+    <div class="chips" style="margin-top:10px">${chips}</div>
+    <p class="note">${esc(D.passagesNote)}</p>
+  </div>
+  <div class="grid g-7-5">
+    <div class="card"><div class="card-head"><div><h3>Face aux ${M.marquesVisibles} marques du bandeau</h3><p>Temps d'écran pendant le jeu, votre marque en couleur.</p></div>${tag('mesure')}</div><div class="bars">${bars}</div><p class="note">${esc(D.classementNote)}</p></div>
+    <div class="grid" style="align-content:start">
+      <div class="card"><div class="card-head"><div><h3>Taille à l'écran</h3><p>Classement ${esc(P.mode)}, selon la hauteur du bandeau à l'image. C'est ce classement qui sert à la valeur.</p></div>${tag('mesure')}</div>
+        <div class="stack" aria-hidden="true"><span class="s1" style="width:${(P.large.s / tot * 100).toFixed(1)}%"></span><span class="s2" style="width:${(P.moyen.s / tot * 100).toFixed(1)}%"></span><span class="s3" style="width:${(P.gros.s / tot * 100).toFixed(1)}%"></span></div>
+        <div class="legend" style="margin-top:10px"><span><i style="background:var(--blue-3)"></i>plan large <b class="num">${esc(P.large.txt)}</b></span><span><i style="background:var(--blue-2)"></i>plan moyen <b class="num">${esc(P.moyen.txt)}</b></span><span><i style="background:var(--blue-1)"></i>gros plan <b class="num">${esc(P.gros.txt)}</b></span></div>
+        <div class="kv" style="margin-top:14px"><div><span class="k">À l'écran, brut</span><span class="v">${esc(P.brut.txt)}</span></div><div><span class="k">Équivalent pleine visibilité <small>plan large × 0,30, plan moyen × 0,60, gros plan × 1,00</small></span><span class="v">${esc(P.equiv.txt)} ${tag('hypothese')}</span></div></div>
+        <p class="note">${esc(P.note)}</p></div>
+      <div class="card"><h3>Hors jeu et panneaux fixes, à part</h3><div class="kv" style="margin-top:8px">${D.horsJeu.map(h => `<div><span class="k">${esc(h.titre)}<small>${esc(h.texte)}</small></span><span class="v muted nowrap">${esc(h.valeur)}</span></div>`).join('')}</div></div>
+    </div>
+  </div>
+  ${resumes}`;
+  /* Infobulle de la frise */
+  const tip = document.getElementById('tip');
+  const show = (b) => { const r = b.getBoundingClientRect(); tip.textContent = b.dataset.tip; tip.hidden = false; tip.style.left = (r.left + r.width / 2 + window.scrollX) + 'px'; tip.style.top = (r.top + window.scrollY) + 'px'; };
+  const hide = () => { tip.hidden = true; };
+  el.querySelectorAll('.seg.b').forEach(b => { b.addEventListener('mouseenter', () => show(b)); b.addEventListener('mouseleave', hide); b.addEventListener('focus', () => show(b)); b.addEventListener('blur', hide); b.addEventListener('click', () => show(b)); });
+}
+
+/* Reseaux sociaux */
+function renderReseaux() {
+  const el = document.getElementById('reseaux');
+  const plat = R.comptes.map(c => `<div class="plat"><div class="ic">${c.icone === 'x' ? '<b>X</b>' : ic(c.icone)}</div><div class="n">${esc(c.abonnes)}<small>abonnés</small></div><div class="p">${esc(c.plateforme)} · ${esc(c.compte)}</div></div>`).join('');
+  const facts = R.presence.map(p => `<div class="big-fact"><div class="n ${p.chiffre === '0' ? 'zero' : 'lime'}">${esc(p.chiffre)}</div><div><h3>${esc(p.titre)}</h3><p>${esc(p.texte)}</p>${tag(p.etat)}</div></div>`).join('');
+  const postRow = (p) => `<div class="post"><div class="d">${esc(p.date)}<small>${esc(p.format)}</small></div><div class="t"><q>${esc(p.texte)}</q></div><div class="m"><span>${ic('heart')}${sep(p.likes)}</span><span>${ic('comment')}${p.com}</span></div></div>`;
+  const logo = R.logoPosts ? `<div class="card"><div class="card-head"><div><h3>Les ${R.logoPosts.length} publications du club où le logo est visible</h3><p>${esc(R.portee.texte)}</p></div><div style="text-align:right"><div class="num" style="font-weight:600">${esc(R.portee.val)}</div>${tag('hypothese')}</div></div><div class="posts">${R.logoPosts.map(postRow).join('')}</div></div>` : '';
+  el.innerHTML = `
+  <div class="panel-head"><div><h2>Réseaux sociaux</h2><p class="lede">Relevé du ${esc(R.releve)} : les publications du club et de la marque depuis le 01.07.2026, ouvertes une par une, avec leurs likes et commentaires. Chaque chiffre porte sa date.</p></div>${tag('mesure', 'compté publication par publication')}</div>
+  <div class="grid g3">${facts}</div>
+  <div class="card"><div class="card-head"><div><h3>Les comptes du club</h3><p>${esc(R.comptesNote)}</p></div>${tag('verifie')}</div><div class="grid g6">${plat}</div></div>
+  ${logo}
+  <div class="grid g-7-5">
+    <div class="card"><div class="card-head"><div><h3>Le match du ${esc(M.date)} sur les comptes du club</h3><p>${esc(R.matchIntro)}</p></div>${tag('mesure')}</div><div class="posts">${R.matchPosts.map(postRow).join('')}</div></div>
+    <div class="grid" style="align-content:start">
+      <div class="big-fact"><div class="n lime">${esc(R.youtube.chiffre)}</div><div><h3>${esc(R.youtube.titre)}</h3><p>${esc(R.youtube.texte)}</p>${tag(R.youtube.etat)}</div></div>
+      <div class="card"><h3>Ce qui entre dans la valeur</h3><div class="kv stack-kv" style="margin-top:8px">${R.valeur.map(v => `<div><span class="k"><b style="color:var(--fg)">${esc(v.titre)}</b><small>${esc(v.detail)}</small></span><span class="v">${esc(v.val)}</span>${tag(v.etat)}</div>`).join('')}</div></div>
+      <p class="note" style="margin:0">Ce qui n'a pas pu être lu : ${esc(R.nonLu)}</p>
+    </div>
+  </div>`;
+}
+
+/* Valeur media */
+let scen = 'base';
+function renderValeur() {
+  const el = document.getElementById('valeur');
+  const S = V.saison; const C = V.couverture;
+  const couv = C.paliers.map(p => { const b = couverture(S.base, p), o = couverture(S.opt, p); return `<div><span class="inv">${chf(p)} / saison</span><span class="c ${S.base / p > 1 ? 'full' : ''}">${b}</span><span class="o">optimiste ${o}</span></div>`; }).join('');
+  const hyp = V.hypotheses.map(h => `<tr><td>${esc(h.nom)}<small>${esc(h.detail)}</small></td><td class="r">${esc(h.val)}</td><td class="r">${tag(h.etat)}</td></tr>`).join('');
+  const lev = V.leviers.map(l => `<div class="lever"><div class="eyebrow">Valeur du match</div><div class="v">${chf(l.montant)}<small>${esc(l.delta)}</small></div><h3>${esc(l.titre)}</h3><p>${esc(l.texte)}</p>${tag('levier')}</div>`).join('');
+  el.innerHTML = `
+  <div class="panel-head"><div><h2>Valeur média</h2><p class="lede">Ce qu'il aurait fallu acheter en publicité classique pour obtenir le même nombre de contacts avec le même temps de présence, canal par canal. Les chiffres d'audience du club ou du diffuseur remplacent les hypothèses dès réception.</p></div>
+    <div class="seg-ctl" role="group" aria-label="Scénario"><button type="button" id="sc-base" aria-pressed="true">Base</button><button type="button" id="sc-opt" aria-pressed="false">Optimiste</button></div></div>
+  <div class="grid g-5-7">
+    <div class="card"><div class="eyebrow">Valeur média équivalente du match · <span id="sc-lib">estimation de base</span></div>
+      <div class="money" style="margin-top:14px"><span id="v-total"></span><small>pour ${esc(K.ecran)} à l'écran, ${K.passages} passages, devant ${esc(M.affluence)} spectateurs</small></div>
+      <div class="alt" id="v-alt"></div>
+      <div style="margin-top:14px">${tag('hypothese', 'hypothèse · audience TV non publiée')}</div></div>
+    <div class="card"><div class="card-head"><div><h3>Par canal</h3><p>${esc(V.lignes.tv)} · ${esc(V.lignes.stade)}</p></div></div>
+      <div class="stack" id="v-stack" aria-hidden="true"><span class="v1"></span><span class="v2"></span><span class="v3"></span></div>
+      <div class="legend" style="margin-top:10px"><span><i style="background:var(--blue-1)"></i>TV et streaming (blue Sport)</span><span><i style="background:var(--blue-2)"></i>Stade</span><span><i style="background:var(--blue-3)"></i>Réseaux sociaux, organique</span></div>
+      <div class="kv" style="margin-top:14px">
+        <div><span class="k">TV et streaming <small>${esc(V.lignes.tv)}</small></span><span class="v nowrap" id="v-tv"></span></div>
+        <div><span class="k">Stade <small>${esc(V.lignes.stade)}</small></span><span class="v nowrap" id="v-stade"></span></div>
+        <div><span class="k">Réseaux sociaux, organique <small>${esc(V.lignes.social)}</small></span><span class="v nowrap" id="v-social"></span></div>
+      </div>
+      <details style="margin-top:14px"><summary>Comment c'est calculé</summary><div class="in"><div class="formula">${esc(V.formule)}</div><p style="margin:12px 0 6px;color:var(--fg-2);font-size:13.5px">${esc(V.campagneIntro)}</p><div class="kv">${V.campagne.map(c => `<div><span class="k" style="font-size:13px">${esc(c.t)}</span><span class="v">${tag(c.etat)}</span></div>`).join('')}</div></div></details>
+    </div>
+  </div>
+  <div class="grid g-5-7">
+    <div class="card"><div class="eyebrow">Projection · ${S.matchs} matchs à domicile</div>
+      <div class="money" style="margin-top:14px;font-size:clamp(32px,4.4vw,48px)"><span id="s-total"></span><small id="s-alt"></small></div>
+      <div class="kv" style="margin-top:14px"><div><span class="k">${esc(D.marque)} à l'écran pendant le jeu</span><span class="v">${esc(S.ecran)}</span></div><div><span class="k">Passages</span><span class="v">${esc(S.passages)}</span></div><div><span class="k">Contacts TV</span><span class="v" id="s-ctv"></span></div><div><span class="k">Contacts au stade</span><span class="v">${esc(S.contactsStade)}</span></div></div>
+      <p class="note">${esc(S.note)}</p><div style="margin-top:8px">${tag('hypothese')}</div></div>
+    <div class="card"><div class="card-head"><div><h3>La part de l'écran dans votre contrat</h3><p>${esc(C.intro)}</p></div></div>
+      <div class="couv">${couv}</div>
+      <p class="note">${esc(C.note)}</p>
+      <div class="calc" style="margin-top:16px"><label for="inv">Votre investissement pour la saison</label><div class="field"><span>CHF</span><input id="inv" type="number" inputmode="numeric" min="1000" step="1000" placeholder="à renseigner" autocomplete="off"></div>
+        <div class="calc-out" aria-live="polite"><div><span class="eyebrow">Couverture par l'écran, base</span><span class="c" id="c-base">à calculer</span></div><div><span class="eyebrow">Couverture par l'écran, optimiste</span><span class="c" id="c-opt">à calculer</span></div></div>
+        <p class="note" style="margin:0">Rien n'est envoyé ni enregistré : le calcul se fait dans votre navigateur.</p></div>
+    </div>
+  </div>
+  <div><div class="panel-head" style="margin-bottom:14px"><div><h3 style="font-size:20px">Comment augmenter cette valeur</h3><p class="lede" style="font-size:14px">${esc(V.leviersNote)}</p></div></div><div class="grid g3">${lev}</div></div>
+  <details><summary>Les hypothèses, et ce qui est mesuré</summary><div class="in tbl"><table><thead><tr><th>Donnée</th><th class="r">Valeur</th><th class="r">Statut</th></tr></thead><tbody>${hyp}</tbody></table></div></details>
+  <p class="note" style="margin:0">${esc(V.zhaw)} ${tag('verifie')}</p>`;
+  const setScen = (s) => {
+    scen = s; const x = V[s], o = V[s === 'base' ? 'opt' : 'base'];
+    document.getElementById('sc-base').setAttribute('aria-pressed', s === 'base'); document.getElementById('sc-opt').setAttribute('aria-pressed', s === 'opt');
+    document.getElementById('sc-lib').textContent = s === 'base' ? 'estimation de base' : 'scénario optimiste';
+    document.getElementById('v-total').textContent = chf(x.total);
+    document.getElementById('v-alt').textContent = (s === 'base' ? 'Scénario optimiste : ' : 'Estimation de base : ') + chf(o.total) + ' (audience et tarifs ' + (s === 'base' ? 'dans le haut de la fourchette' : 'retenus') + ')';
+    document.getElementById('v-tv').textContent = chf(x.tv); document.getElementById('v-stade').textContent = chf(x.stade); document.getElementById('v-social').textContent = chf(x.social);
+    const st = document.getElementById('v-stack'); st.children[0].style.width = (x.tv / x.total * 100).toFixed(2) + '%'; st.children[1].style.width = (x.stade / x.total * 100).toFixed(2) + '%'; st.children[2].style.width = Math.max(x.social / x.total * 100, 0.6).toFixed(2) + '%';
+    document.getElementById('s-total').textContent = chf(s === 'base' ? S.base : S.opt);
+    document.getElementById('s-alt').textContent = (s === 'base' ? 'valeur média de la saison à domicile, base · ' + chf(S.opt) + ' en optimiste' : 'valeur média de la saison à domicile, optimiste · ' + chf(S.base) + ' en base');
+    document.getElementById('s-ctv').textContent = s === 'base' ? S.contactsTv.base : S.contactsTv.opt;
+  };
+  document.getElementById('sc-base').addEventListener('click', () => setScen('base'));
+  document.getElementById('sc-opt').addEventListener('click', () => setScen('opt'));
+  setScen('base');
+  const inv = document.getElementById('inv');
+  inv.addEventListener('input', () => { const m = Number(inv.value); const ok = Number.isFinite(m) && m >= 1000; document.getElementById('c-base').textContent = ok ? couverture(S.base, m) : 'à calculer'; document.getElementById('c-opt').textContent = ok ? couverture(S.opt, m) : 'à calculer'; });
+}
+
+/* Methode */
+function renderMethode() {
+  const el = document.getElementById('methode');
+  el.innerHTML = `
+  <div class="panel-head"><div><h2>Méthode</h2><p class="lede">Durées, bornes et contrôles cités ici, d'après le rapport de mesure du match. Chaque chiffre de ce tableau de bord porte l'un des trois statuts ci-dessous.</p></div></div>
+  <div class="defs">
+    <div>${tag('mesure')}<span>lu image par image sur la diffusion, ou compté publication par publication sur la plateforme.</span></div>
+    <div>${tag('verifie')}<span>repris d'une source externe citée, avec sa date : page partenaires du club, affluence publiée par la ligue, nombre d'abonnés affiché.</span></div>
+    <div>${tag('hypothese')}<span>valeur retenue faute de donnée publiée, écrite avec son chiffre. Remplacée par la mesure dès réception.</span></div>
+  </div>
+  <div class="card"><ol class="method">${D.methode.map(m => `<li><span>${esc(m)}</span></li>`).join('')}</ol></div>
+  <p class="note" style="margin:0">${esc(D.sources)}</p>`;
+}
+
+document.getElementById('pied').innerHTML = `<p>Page exemple, construite par Sponsorlens sur la mesure réelle de ce match. Elle n'est pas validée par Yverdon Sport. Elle est mise à jour après chaque match.</p><p>Guillaume Haas · GHaas Management SA · Sponsorlens, mesure de la visibilité et de la valeur des partenariats sportifs.</p>`;
+
+renderApercu(); renderImage(); renderReseaux(); renderValeur(); renderMethode();
+const h = (location.hash || '').replace('#', '');
+showTab(TABS.some(([t]) => t === h) ? h : 'apercu');
+window.addEventListener('hashchange', () => { const x = (location.hash || '').replace('#', ''); if (TABS.some(([t]) => t === x)) showTab(x); });
+</script>

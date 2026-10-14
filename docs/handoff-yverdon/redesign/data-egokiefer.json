@@ -1,0 +1,703 @@
+{
+  "cle": "egokiefer",
+  "marque": "EgoKiefer",
+  "titre": "EgoKiefer × Yverdon Sport FC",
+  "statut": {
+    "texte": "Statut du partenaire à confirmer par le club",
+    "etat": "attente",
+    "source": "",
+    "note": "Le statut d'EgoKiefer ne figure pas sur la page partenaires du club consultée le 09.10.2026 : il reste à confirmer par le club."
+  },
+  "match": {
+    "adversaire": "FC Stade-Lausanne-Ouchy",
+    "journee": "Journée 9",
+    "competition": "dieci Challenge League 2026-27",
+    "date": "20.09.2026",
+    "heure": "14:00",
+    "score": "0 - 0",
+    "stade": "Stade Municipal, Yverdon-les-Bains",
+    "diffusion": "blue Sport",
+    "jeu": "95 min 08",
+    "affluence": "1'435",
+    "bandeauVisible": "82 min 40",
+    "marquesVisibles": 12,
+    "tempsSponsorS": 2699
+  },
+  "video": {
+    "src": "https://sponsorlens-saas-git-feat-yverdon-sp-549de2-todiboedfs-projects.vercel.app/yverdon/J09-EgoKiefer.mp4",
+    "poster": "https://sponsorlens-saas-git-feat-yverdon-sp-549de2-todiboedfs-projects.vercel.app/yverdon/J09-EgoKiefer.jpg",
+    "etiquette": "Clip 5 s · 2e mi-temps, 70:20 à 70:24",
+    "legende": "Tiré d'un extrait de 7 s pendant le passage de 70:06 à 70:27, là où le détecteur Sponsorlens (version 3, 25 marques) reconnaît la création, sur les cinq secondes les plus lisibles du passage, classé plan large sur sa hauteur médiane (18 px). Il prouve la reconnaissance, il ne sert pas aux durées : pendant le jeu, elles viennent de la lecture seconde par seconde."
+  },
+  "kpis": {
+    "ecran": "7 min 43",
+    "ecranS": 463,
+    "passages": 17,
+    "passagesPlage": "de 12 à 48 s chacun",
+    "rang": "1re",
+    "rangSur": 12,
+    "part": "17,2 %",
+    "partDetail": "463 s sur 2'699 s de temps sponsor",
+    "valeurBase": 2372,
+    "valeurOpt": 7060
+  },
+  "miTemps": [
+    {
+      "nom": "1re mi-temps",
+      "passages": 8,
+      "duree": "4 min 11"
+    },
+    {
+      "nom": "2e mi-temps",
+      "passages": 9,
+      "duree": "3 min 32"
+    }
+  ],
+  "passages": [
+    {
+      "n": "1",
+      "mt": 1,
+      "chrono": "01:31 à 02:18",
+      "visible": 48,
+      "plan": "plan moyen",
+      "px": 25,
+      "compte": true
+    },
+    {
+      "n": "2",
+      "mt": 1,
+      "chrono": "05:49 à 06:18",
+      "visible": 30,
+      "plan": "plan moyen",
+      "px": 33,
+      "compte": true
+    },
+    {
+      "n": "3",
+      "mt": 1,
+      "chrono": "10:19 à 10:48",
+      "visible": 30,
+      "plan": "plan moyen",
+      "px": 27,
+      "compte": true
+    },
+    {
+      "n": "4",
+      "mt": 1,
+      "chrono": "12:49 à 13:16",
+      "visible": 25,
+      "plan": "plan large",
+      "px": 22,
+      "compte": true
+    },
+    {
+      "n": "5",
+      "mt": 1,
+      "chrono": "24:19 à 24:48",
+      "visible": 30,
+      "plan": "plan moyen",
+      "px": 25,
+      "compte": true
+    },
+    {
+      "n": "6",
+      "mt": 1,
+      "chrono": "32:49 à 33:18",
+      "visible": 30,
+      "plan": "plan moyen",
+      "px": 31,
+      "compte": true
+    },
+    {
+      "n": "7",
+      "mt": 1,
+      "chrono": "35:49 à 36:16",
+      "visible": 28,
+      "plan": "plan moyen",
+      "px": 25,
+      "compte": true
+    },
+    {
+      "n": "8",
+      "mt": 1,
+      "chrono": "45:13 à 45:48",
+      "visible": 30,
+      "plan": "plan moyen",
+      "px": 32,
+      "compte": true
+    },
+    {
+      "n": "9",
+      "mt": 2,
+      "chrono": "46:36 à 47:06",
+      "visible": 24,
+      "plan": "plan moyen",
+      "px": 34,
+      "compte": true
+    },
+    {
+      "n": "10",
+      "mt": 2,
+      "chrono": "50:36 à 51:05",
+      "visible": 23,
+      "plan": "plan moyen",
+      "px": 25,
+      "compte": true
+    },
+    {
+      "n": "11",
+      "mt": 2,
+      "chrono": "55:15 à 55:26",
+      "visible": 12,
+      "plan": "plan moyen",
+      "px": 24,
+      "compte": true
+    },
+    {
+      "n": "12",
+      "mt": 2,
+      "chrono": "57:25 à 57:53",
+      "visible": 29,
+      "plan": "plan large",
+      "px": 19,
+      "compte": true
+    },
+    {
+      "n": "13",
+      "mt": 2,
+      "chrono": "70:06 à 70:27",
+      "visible": 22,
+      "plan": "plan large",
+      "px": 18,
+      "compte": true
+    },
+    {
+      "n": "14",
+      "mt": 2,
+      "chrono": "79:05 à 79:35",
+      "visible": 31,
+      "plan": "plan large",
+      "px": 20,
+      "compte": true
+    },
+    {
+      "n": "15",
+      "mt": 2,
+      "chrono": "82:06 à 82:35",
+      "visible": 30,
+      "plan": "plan moyen",
+      "px": 26,
+      "compte": true
+    },
+    {
+      "n": "16",
+      "mt": 2,
+      "chrono": "91:15 à 91:35",
+      "visible": 21,
+      "plan": "plan moyen",
+      "px": 36,
+      "compte": true
+    },
+    {
+      "n": "·",
+      "mt": 2,
+      "chrono": "92:36 à 92:41",
+      "visible": 6,
+      "plan": "moins de 8 s, ne compte pas",
+      "px": null,
+      "compte": false
+    },
+    {
+      "n": "17",
+      "mt": 2,
+      "chrono": "92:52 à 93:05",
+      "visible": 14,
+      "plan": "plan large",
+      "px": 20,
+      "compte": true
+    }
+  ],
+  "passagesNote": "17 passages comptés, 457 s visibles. 1 apparition de moins de 8 s (6 s) ne compte pas comme passage mais reste dans le temps à l'écran. Total : 463 s. Un passage compte dès 8 secondes à l'image ; une sortie de champ de 8 s ou moins ne le coupe pas.",
+  "plans": {
+    "mode": "par apparition",
+    "note": "Chaque apparition est classée selon la hauteur médiane des détections du bandeau sur son extrait (1280 × 720) : moins de 24 px, plan large ; de 24 à 59 px, plan moyen ; 60 px et plus, gros plan. Toutes ses secondes visibles prennent ce plan. Classement par apparition, pas seconde par seconde. Seuils : règle Sponsorlens.",
+    "large": {
+      "s": 121,
+      "txt": "2 min 01"
+    },
+    "moyen": {
+      "s": 342,
+      "txt": "5 min 42"
+    },
+    "gros": {
+      "s": 0,
+      "txt": "0 s"
+    },
+    "brut": {
+      "s": 463,
+      "txt": "463 s"
+    },
+    "equiv": {
+      "s": 241.5,
+      "txt": "241,5 s"
+    }
+  },
+  "horsJeu": [
+    {
+      "titre": "Bandeau LED hors jeu",
+      "texte": "Le détecteur utilisé hors jeu connaît cette création : il ne l'a vue ni à l'échauffement, ni à la mi-temps, ni après le match.",
+      "valeur": "0 s",
+      "etat": "mesure"
+    },
+    {
+      "titre": "Panneaux fixes EgoKiefer",
+      "texte": "Les panneaux fixes EgoKiefer du stade ne sont pas encore mesurés à part.",
+      "valeur": "non mesuré",
+      "etat": "non"
+    }
+  ],
+  "classement": [
+    {
+      "nom": "EgoKiefer",
+      "s": 463,
+      "txt": "7 min 43",
+      "moi": true
+    },
+    {
+      "nom": "Multitel",
+      "s": 345,
+      "txt": "5 min 45"
+    },
+    {
+      "nom": "Désinfection Piller",
+      "s": 336,
+      "txt": "5 min 36"
+    },
+    {
+      "nom": "« rouge »",
+      "note": "Rouge FM ?, à confirmer",
+      "s": 279,
+      "txt": "4 min 39"
+    },
+    {
+      "nom": "Garage de la Plaine",
+      "s": 271,
+      "txt": "4 min 31"
+    },
+    {
+      "nom": "La Santé à Champagne",
+      "s": 224,
+      "txt": "3 min 44"
+    },
+    {
+      "nom": "Roseyres.ch",
+      "s": 206,
+      "txt": "3 min 26"
+    },
+    {
+      "nom": "AB Serrurerie",
+      "s": 199,
+      "txt": "3 min 19"
+    },
+    {
+      "nom": "« Jubin »",
+      "note": "à confirmer",
+      "s": 191,
+      "txt": "3 min 11"
+    },
+    {
+      "nom": "« asa »",
+      "note": "panneaux fixes, à confirmer",
+      "s": 114,
+      "txt": "1 min 54"
+    },
+    {
+      "nom": "AON",
+      "s": 57,
+      "txt": "57 s"
+    },
+    {
+      "nom": "Jolly Voyages",
+      "note": "panneaux fixes",
+      "s": 14,
+      "txt": "14 s"
+    }
+  ],
+  "classementNote": "Temps d'écran pendant le jeu des 12 marques visibles sur le bandeau. Les créations « à confirmer » ne figurent dans aucun document du club. « asa » et Jolly Voyages : panneaux fixes, comptés seulement quand ils occupent la zone du bandeau.",
+  "resumes": {
+    "intro": "Avant ce match : présence d'EgoKiefer sur les résumés diffusés de 4 matchs, mesurée en septembre avec le modèle de septembre. À lire à part, jamais à additionner au match complet.",
+    "lignes": [
+      {
+        "j": "J2, Étoile Carouge",
+        "s": "28,4 s",
+        "part": "13,5 %"
+      },
+      {
+        "j": "J4, FC Aarau",
+        "s": "41,0 s",
+        "part": "35,8 %"
+      },
+      {
+        "j": "J5, FC Wil",
+        "s": "38,4 s",
+        "part": "38,7 %"
+      },
+      {
+        "j": "J7, Stade Nyonnais",
+        "s": "36,2 s",
+        "part": "68,7 %"
+      }
+    ],
+    "total": "4 résumés · 144,0 s",
+    "note": "Part de voix : part du temps sponsor mesuré sur chaque résumé."
+  },
+  "valeur": {
+    "base": {
+      "tv": 2174,
+      "stade": 195,
+      "social": 3,
+      "total": 2372
+    },
+    "opt": {
+      "tv": 6762,
+      "stade": 293,
+      "social": 5,
+      "total": 7060
+    },
+    "lignes": {
+      "tv": "241,5 s équivalentes (7 min 43 brut)",
+      "stade": "17 passages vus par 1'435 spectateurs",
+      "social": "bandeau en arrière-plan des vidéos du club"
+    },
+    "formule": "Valeur TV = secondes équivalentes ÷ 30 s × audience ÷ 1'000 × tarif pour 1'000 contacts et 30 s. Stade = affluence × passages ÷ 1'000 × tarif affichage × visibilité au stade. Réseaux sociaux = impressions ÷ 1'000 × tarif social. Valeur du match = TV + stade + réseaux sociaux organiques.",
+    "campagne": [
+      {
+        "t": "Vos 241,5 s équivalentes : 241,5 ÷ 30 × 6'000 ÷ 1'000 × 45 = CHF 2'174",
+        "etat": "hypothese"
+      },
+      {
+        "t": "Sans pondération de lisibilité, les 463 s brutes : 463 ÷ 30 × 6'000 ÷ 1'000 × 45 = CHF 4'167",
+        "etat": "hypothese"
+      },
+      {
+        "t": "Contacts en base : 102'000 à la TV (6'000 téléspectateurs × 17 passages)",
+        "etat": "hypothese"
+      },
+      {
+        "t": "Contacts au stade : 24'395 (1'435 spectateurs × 17 passages)",
+        "etat": "verifie"
+      }
+    ],
+    "campagneIntro": "Ce qu'aurait coûté une campagne TV classique : des spots de 30 s au tarif de CHF 45 pour 1'000 contacts, devant 6'000 téléspectateurs.",
+    "hypotheses": [
+      {
+        "nom": "Temps à l'écran, passages",
+        "detail": "lus image par image sur la diffusion",
+        "val": "7 min 43, 17 passages",
+        "etat": "mesure"
+      },
+      {
+        "nom": "Taille du bandeau à l'image",
+        "detail": "plan large, plan moyen, gros plan, par apparition (hauteur médiane des détections), pas seconde par seconde",
+        "val": "2 min 01 · 5 min 42 · 0 s",
+        "etat": "mesure"
+      },
+      {
+        "nom": "Indice de visibilité",
+        "detail": "règle Sponsorlens, selon la hauteur du bandeau à l'écran",
+        "val": "0,30 · 0,60 · 1,00",
+        "etat": "hypothese"
+      },
+      {
+        "nom": "Audience TV et streaming",
+        "detail": "le diffuseur ne publie pas ce chiffre ; base, puis optimiste",
+        "val": "6'000 · 12'000",
+        "etat": "hypothese"
+      },
+      {
+        "nom": "Tarif TV",
+        "detail": "pour 1'000 contacts et 30 secondes ; base, puis optimiste",
+        "val": "CHF 45 · CHF 70",
+        "etat": "hypothese"
+      },
+      {
+        "nom": "Affluence au stade",
+        "detail": "SFL match center, lue le 13.10.2026 ; la même dans les deux scénarios",
+        "val": "1'435 spectateurs",
+        "etat": "verifie"
+      },
+      {
+        "nom": "Visibilité au stade",
+        "detail": "part du public qui voit le bandeau à chaque passage",
+        "val": "0,8",
+        "etat": "hypothese"
+      },
+      {
+        "nom": "Tarif affichage",
+        "detail": "pour 1'000 contacts ; base, puis optimiste",
+        "val": "CHF 10 · CHF 15",
+        "etat": "hypothese"
+      },
+      {
+        "nom": "Audience Instagram du club",
+        "detail": "@yverdonsport, relevé le 13.10.2026 ; Facebook, TikTok, LinkedIn non comptés",
+        "val": "31'755 abonnés",
+        "etat": "verifie"
+      },
+      {
+        "nom": "Réseaux sociaux, organique",
+        "detail": "part du bandeau dans les contenus vidéo du club, puis part des abonnés qui voient le résumé",
+        "val": "3,6 % · 25 %",
+        "etat": "hypothese"
+      },
+      {
+        "nom": "Tarif social",
+        "detail": "pour 1'000 impressions ; base, puis optimiste",
+        "val": "CHF 12 · CHF 18",
+        "etat": "hypothese"
+      }
+    ],
+    "saison": {
+      "matchs": 18,
+      "ecran": "138 min 54",
+      "passages": "306",
+      "contactsTv": {
+        "base": "1'836'000",
+        "opt": "3'672'000"
+      },
+      "contactsStade": "439'110",
+      "base": 42696,
+      "opt": 127080,
+      "note": "18 matchs à domicile au rythme mesuré sur cette journée : même exposition, mêmes hypothèses, 1'435 spectateurs à chaque match. La projection ne remplace pas la mesure de chaque match."
+    },
+    "couverture": {
+      "paliers": [
+        10000,
+        20000,
+        30000,
+        50000
+      ],
+      "intro": "Un contrat de sponsoring, c'est l'écran, mais aussi l'hospitalité, le réseau et l'image. Aucun pourcentage de référence n'existe pour dire ce que l'écran doit peser. Ici, la part de l'écran se mesure sur votre contrat, pas sur une moyenne.",
+      "note": "Au-delà de 1 ×, l'écran seul rembourse le contrat ; le réseau, l'hospitalité et l'image viennent en plus. L'audience TV reste une hypothèse."
+    },
+    "zhaw": "Étude ZHAW Sponsor Visions Schweiz 2022 (n=58) : l'image (79 %) et la notoriété (69 %) sont les deux premiers objectifs des sponsors en Suisse, devant les ventes (29 %). L'exposition sert ces deux objectifs.",
+    "leviers": [
+      {
+        "montant": 3675,
+        "delta": "+55 %",
+        "titre": "Une création plus lisible",
+        "texte": "Logo plus grand, plus contrasté : lisible dès le plan large. Indice de visibilité multiplié par 1,6 sur le même temps d'écran."
+      },
+      {
+        "montant": 2525,
+        "delta": "+6 %",
+        "titre": "2 publications par match",
+        "texte": "Annonce « partenaire du match » et extrait vidéo avec le bandeau, sur les comptes du club. CHF 2'372 + CHF 152, calculé avant l'arrondi."
+      }
+    ],
+    "leviersNote": "Scénario base, même formule et mêmes hypothèses que la valeur du match. Un levier est un calcul, pas une mesure. Pas de levier « plus de passages » : EgoKiefer a déjà le plus de passages des marques du bandeau (17)."
+  },
+  "reseaux": {
+    "releve": "13.10.2026",
+    "comptes": [
+      {
+        "plateforme": "Instagram",
+        "compte": "@yverdonsport",
+        "abonnes": "31'755",
+        "icone": "instagram"
+      },
+      {
+        "plateforme": "Facebook",
+        "compte": "Yverdon Sport FC",
+        "abonnes": "≈ 13'000",
+        "icone": "facebook"
+      },
+      {
+        "plateforme": "LinkedIn",
+        "compte": "Yverdon Sport FC",
+        "abonnes": "3'921",
+        "icone": "linkedin"
+      },
+      {
+        "plateforme": "X",
+        "compte": "@yverdonsport",
+        "abonnes": "2'523",
+        "icone": "x"
+      },
+      {
+        "plateforme": "TikTok",
+        "compte": "@yverdonsport",
+        "abonnes": "905",
+        "icone": "tiktok"
+      },
+      {
+        "plateforme": "YouTube",
+        "compte": "@yverdonsport1897",
+        "abonnes": "≈ 1'770",
+        "icone": "youtube"
+      }
+    ],
+    "comptesNote": "Abonnés affichés par chaque plateforme au 13.10.2026. Facebook et YouTube l'affichent arrondi.",
+    "presence": [
+      {
+        "chiffre": "0",
+        "titre": "mention écrite d'EgoKiefer par le club",
+        "texte": "168 publications Instagram du 01.07 au 12.10.2026 ouvertes une par une, plus le compte LinkedIn du club : ni nom dans le texte, ni @mention, ni hashtag.",
+        "etat": "mesure"
+      },
+      {
+        "chiffre": "8",
+        "titre": "publications du club avec le logo visible",
+        "texte": "Haut d'entraînement EgoKiefer sur les visuels de composition et d'anniversaire, bandeau LED en arrière-plan d'une photo. 1'419 likes cumulés, lus le 13.10.2026.",
+        "etat": "mesure"
+      },
+      {
+        "chiffre": "0",
+        "titre": "publication d'EgoKiefer sur Yverdon Sport",
+        "texte": "Instagram @egokiefer_ag, 2'616 abonnés ; LinkedIn EgoKiefer AG, 2'708 abonnés. Le partenariat n'y est pas relayé sur la période.",
+        "etat": "mesure"
+      }
+    ],
+    "portee": {
+      "titre": "Portée des 8 publications avec le logo",
+      "texte": "Instagram ne l'affiche pas. Estimation seulement : 8 publications × 31'755 abonnés × 20 % de portée par publication en base, 30 % en optimiste.",
+      "val": "50'808 · 76'212 vues",
+      "etat": "hypothese"
+    },
+    "logoPosts": [
+      {
+        "date": "09.10.2026",
+        "format": "Instagram, photo",
+        "likes": 130,
+        "com": 0,
+        "texte": "Notre COMPO pour défier @etoilecarougefc ! #ECFCYS #AllezYS #UnisUnique"
+      },
+      {
+        "date": "05.10.2026",
+        "format": "Instagram, photo",
+        "likes": 123,
+        "com": 3,
+        "texte": "Joyeux anniversaire @okitajr - 30 ans aujourd'hui pour Jonathan"
+      },
+      {
+        "date": "04.10.2026",
+        "format": "Instagram, photo",
+        "likes": 123,
+        "com": 1,
+        "texte": "Joyeux anniversaire @varoltasar - Varol rejoint le club des trentenaires"
+      },
+      {
+        "date": "11.09.2026",
+        "format": "Instagram, photo",
+        "likes": 153,
+        "com": 20,
+        "texte": "Le XI des Verts pour affronter @fcrj_1928 ce soir ! #FCRJYS"
+      },
+      {
+        "date": "07.09.2026",
+        "format": "Instagram, photo",
+        "likes": 148,
+        "com": 4,
+        "texte": "Doublé pour Varol - Un du droit, un du gauche..."
+      },
+      {
+        "date": "06.09.2026",
+        "format": "Instagram, photo",
+        "likes": 232,
+        "com": 4,
+        "texte": "La COMPO d'YS pour affronter @stadenyonnaisofficiel cet après-midi ! #YSFCSN"
+      },
+      {
+        "date": "01.09.2026",
+        "format": "Instagram, photo",
+        "likes": 200,
+        "com": 5,
+        "texte": "Notre XI pour le Derby du Lac à la Maladière ! #USTSYS"
+      },
+      {
+        "date": "16.08.2026",
+        "format": "Instagram, photo",
+        "likes": 310,
+        "com": 0,
+        "texte": "Notre XI pour lancer cette aventure en Coupe Suisse ! #USTSYS"
+      }
+    ],
+    "matchIntro": "5 publications Instagram du club, de l'annonce au résultat. Aucun logo EgoKiefer n'y est lisible. Pas de publication sur LinkedIn ni TikTok.",
+    "matchPosts": [
+      {
+        "date": "14.09.2026",
+        "format": "Instagram, photo",
+        "likes": 137,
+        "com": 2,
+        "texte": "Semaine de match au Muni - Rendez-vous ce dimanche au Stade Municipal pour la réception du FC Stade-Lausanne-Ouchy."
+      },
+      {
+        "date": "14.09.2026",
+        "format": "Instagram, photo",
+        "likes": 147,
+        "com": 3,
+        "texte": "Cap sur une nouvelle semaine... Dimanche, on aura besoin de vous au Stade Municipal."
+      },
+      {
+        "date": "16.09.2026",
+        "format": "Instagram, photo",
+        "likes": 253,
+        "com": 4,
+        "texte": "Le groupe monte en régime avant le match de dimanche"
+      },
+      {
+        "date": "20.09.2026",
+        "format": "Instagram, photo",
+        "likes": 138,
+        "com": 37,
+        "texte": "Un derby sans vainqueur - nos joueurs prennent un point au Muni (0-0), après avoir évolué en supériorité numérique en seconde période."
+      },
+      {
+        "date": "20.09.2026",
+        "format": "Instagram, carrousel (8 photos)",
+        "likes": 204,
+        "com": 0,
+        "texte": "Retour en images sur le derby de cet après-midi au Muni. MERCI à toutes et tous pour votre soutien !"
+      }
+    ],
+    "youtube": {
+      "chiffre": "180",
+      "titre": "vues du résumé vidéo sur la chaîne YouTube du club",
+      "texte": "Publié le 21.09.2026, 2 min 20, vues lues le 13.10.2026. Présence du bandeau à l'image pas encore mesurée. Aucun résumé blue Sport ou SFL de ce match trouvé sur YouTube.",
+      "etat": "mesure"
+    },
+    "nonLu": "Facebook et X : publications derrière un mur de connexion, seul le nombre d'abonnés est visible. Instagram n'affiche pas les vues des reels.",
+    "valeur": [
+      {
+        "titre": "Exposition organique estimée",
+        "detail": "31'755 abonnés Instagram × 3,6 % de contenus avec le bandeau × 25 % de vues du résumé",
+        "val": "286 impressions · CHF 3",
+        "etat": "hypothese"
+      },
+      {
+        "titre": "Package social, 2 publications dédiées par match",
+        "detail": "portée de 20 % des abonnés par publication en base, 30 % en optimiste. Un levier, pas une mesure : il n'entre pas dans la valeur du match.",
+        "val": "12'702 impressions · CHF 152, optimiste CHF 343",
+        "etat": "levier"
+      }
+    ],
+    "resume": {
+      "chiffre": "8",
+      "titre": "publications du club avec le logo visible, 0 mention écrite, sur 168 ouvertes une par une"
+    }
+  },
+  "methode": [
+    "Sur les 2 h 27 de la diffusion blue Sport du match, 128 minutes sont lues seconde par seconde, de l'avant-match jusqu'à 219 s après le coup de sifflet final.",
+    "Les bornes du jeu sont calées sur le chronomètre du stade : coup d'envoi à 11:41 de diffusion, mi-temps à 57:51, reprise à 75:24, coup de sifflet final à 124:22.",
+    "Pendant le jeu, le détecteur ne lit pas encore le bandeau de la caméra principale, trop petit à l'image : il a été lu à l'œil sur 468 images réparties sur chaque créneau de 30 secondes, puis chaque seconde a été rattachée à l'image lue la plus ressemblante.",
+    "Contrôle sur 82 secondes tirées au hasard : 91 % d'accord. Précision des durées par marque : environ 10 %.",
+    "Une seconde compte si le bandeau est dans le champ, lisible ou non. Un passage est une rotation de la création : il compte dès 8 secondes visibles, une sortie de champ de 8 secondes ou moins ne le coupe pas, la mi-temps le coupe.",
+    "Hors jeu (échauffement, mi-temps, fin), les durées viennent du détecteur Sponsorlens, en développement, réentraîné sur ce match, et d'une lecture à l'œil des 100 secondes qui précèdent le coup d'envoi. Une création que ce détecteur ne connaît pas n'est pas mesurée hors jeu.",
+    "Le plan se lit sur la hauteur du bandeau à l'image. Pour EgoKiefer, classement par apparition : hauteur médiane des détections du détecteur Sponsorlens sur l'extrait de chaque apparition, appliquée à toutes ses secondes visibles, pas seconde par seconde. L'indice de visibilité pondère chaque seconde avant le calcul de la valeur TV.",
+    "Mesuré : temps à l'écran, passages, plans. Vérifié : affluence du match, abonnés des comptes. Hypothèses : audience TV, tarifs, portée sociale, indices de visibilité, et l'affluence de chaque match dans la projection saison.",
+    "Les panneaux fixes se mesurent à part : le panneau Clean&Co est à l'image 13 min 58 pendant le jeu, sur une ligne séparée. Les autres panneaux fixes ne sont pas encore mesurés à part.",
+    "L'affluence est celle du SFL match center, 1'435 spectateurs, lue le 13.10.2026. Les hypothèses de valeur viennent de la fiche du 10.10.2026, qui utilisait une affluence supposée de 2'000 en base et 3'000 en optimiste.",
+    "Valeur : équivalent média, pas prix de marché du contrat. L'audience TV reste une hypothèse tant que le diffuseur ne l'a pas communiquée."
+  ],
+  "sources": "Données : mesure du match version 4.1, détail des passages, chronologie du bandeau seconde par seconde, hauteurs du bandeau par apparition (détecteur Sponsorlens), résumés de septembre, hypothèses de valeur de la fiche Roseyres du 10.10.2026, relevé des réseaux sociaux du 13.10.2026, SFL match center, étude ZHAW Sponsor Visions Schweiz 2022."
+}
