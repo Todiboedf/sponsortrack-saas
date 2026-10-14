@@ -78,3 +78,13 @@ export function dateCh(iso: string): string {
   const [a, m, j] = iso.split("-");
   return `${j}.${m}.${a}`;
 }
+
+/**
+ * Couverture d'un investissement par une valeur : en pourcentage jusqu'a 100 %, en multiple au-dela,
+ * une decimale, arrondi normal. 14'832 / 10'000 -> "1,5 ×" ; 4'500 / 10'000 -> "45 %".
+ */
+export function couverture(valeur: number, investissement: number, suffixe = ""): string {
+  const ratio = valeur / investissement;
+  if (ratio <= 1) return pourcent(valeur, investissement, 0);
+  return `${decimal(ratio, 1)}${NBSP}×${suffixe ? ` ${suffixe}` : ""}`;
+}

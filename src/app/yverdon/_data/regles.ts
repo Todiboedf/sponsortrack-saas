@@ -60,7 +60,7 @@ export const FICHE_HYPOTHESES_DATE: ChiffreSource<string> = { valeur: "10.10.202
 
 /** Grille de couverture de la section 07 : investissements de saison, en francs. */
 export const PALIERS_INVESTISSEMENT_CHF: ChiffreSource<readonly number[]> = {
-  valeur: [5_000, 10_000, 20_000, 30_000, 50_000],
+  valeur: [10_000, 20_000, 30_000, 50_000],
   source: "Guillaume Haas, 14.10.2026",
 };
 

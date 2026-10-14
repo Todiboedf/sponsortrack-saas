@@ -3,7 +3,7 @@
 import { ExternalLink } from "lucide-react";
 import { useId, useState } from "react";
 
-import { chf, pourcent } from "../_data/format";
+import { chf, couverture } from "../_data/format";
 import { ETUDE_ZHAW, PALIERS_INVESTISSEMENT_CHF } from "../_data/regles";
 import { Statut } from "./Statut";
 
@@ -65,7 +65,7 @@ export function PartEcran({
           <div className="overflow-x-auto">
             <table className="w-full min-w-[17rem] text-sm">
               <caption className="pb-2 text-left text-sm font-semibold text-yv-ink">
-                Part du contrat couverte par l&apos;écran, selon l&apos;investissement
+                Couverture du contrat par l&apos;écran, selon l&apos;investissement
               </caption>
               <thead>
                 <tr className="border-b border-yv-ink/80 text-left text-[0.6875rem] font-semibold uppercase tracking-wider text-yv-muted">
@@ -79,9 +79,9 @@ export function PartEcran({
                   <tr key={palier} className="border-b border-yv-rule">
                     <th scope="row" className="py-1.5 pr-2 text-left font-normal tabular-nums">{chf(palier)}</th>
                     <td className="py-1.5 pr-2 text-right font-semibold tabular-nums text-yv-ink">
-                      {pourcent(saisonBase, palier, 0)}
+                      {couverture(saisonBase, palier)}
                     </td>
-                    <td className="py-1.5 text-right tabular-nums">{pourcent(saisonOptimiste, palier, 0)}</td>
+                    <td className="py-1.5 text-right tabular-nums">{couverture(saisonOptimiste, palier)}</td>
                   </tr>
                 ))}
               </tbody>
@@ -93,6 +93,9 @@ export function PartEcran({
               {`valeur média projetée sur ${matchs}${NBSP}matchs à domicile : ${chf(saisonBase)} en base, ${chf(saisonOptimiste)} en optimiste`}
             </span>
           </div>
+          <p className="mt-3 text-sm text-yv-body">
+            {`Au-delà de 1${NBSP}×, l'écran seul rembourse le contrat\u00a0; le réseau, l'hospitalité et l'image viennent en plus. L'audience TV reste une hypothèse.`}
+          </p>
         </div>
 
         <div className="rounded-sm border border-yv-rule p-4">
@@ -119,9 +122,12 @@ export function PartEcran({
           </p>
           <dl className="mt-4 grid grid-cols-2 gap-3" aria-live="polite">
             <div className="rounded-sm bg-yv-surface p-3">
-              <dt className="text-xs text-yv-muted">Part couverte par l&apos;écran, base</dt>
+              <dt className="text-xs text-yv-muted">Couverture par l&apos;écran, base</dt>
               <dd className="mt-1 text-xl font-semibold tabular-nums text-yv-ink">
-                {valide ? pourcent(saisonBase, montant, 0) : "à calculer"}
+                {valide ? couverture(saisonBase, montant) : "à calculer"}
+                {valide && saisonBase > montant && (
+                  <span className="block text-sm font-normal text-yv-body">votre investissement</span>
+                )}
               </dd>
               {valide && (
                 <dd className="mt-2">
@@ -130,9 +136,12 @@ export function PartEcran({
               )}
             </div>
             <div className="rounded-sm bg-yv-surface p-3">
-              <dt className="text-xs text-yv-muted">Part couverte par l&apos;écran, optimiste</dt>
+              <dt className="text-xs text-yv-muted">Couverture par l&apos;écran, optimiste</dt>
               <dd className="mt-1 text-xl font-semibold tabular-nums text-yv-ink">
-                {valide ? pourcent(saisonOptimiste, montant, 0) : "à calculer"}
+                {valide ? couverture(saisonOptimiste, montant) : "à calculer"}
+                {valide && saisonOptimiste > montant && (
+                  <span className="block text-sm font-normal text-yv-body">votre investissement</span>
+                )}
               </dd>
               {valide && (
                 <dd className="mt-2">
