@@ -58,6 +58,12 @@ export const DIFFUSEUR: ChiffreSource<string> = { valeur: "blue Sport", source: 
 /** Date de la fiche Roseyres dont viennent les hypotheses de valeur (affluence supposee remplacee depuis). */
 export const FICHE_HYPOTHESES_DATE: ChiffreSource<string> = { valeur: "10.10.2026", source: "Guillaume Haas, 13.10.2026" };
 
+/** Controle de la frise : secondes de la marque sur les segments, 1re puis 2e mi-temps (brief du redesign). */
+export const SECONDES_FRISE_ATTENDUES: ChiffreSource<Record<"roseyres" | "egokiefer", readonly [number, number]>> = {
+  valeur: { roseyres: [104, 102], egokiefer: [251, 212] },
+  source: "redesign/BRIEF-REDESIGN.md, onglet À l'image",
+};
+
 /** Grille de couverture de la section 07 : investissements de saison, en francs. */
 export const PALIERS_INVESTISSEMENT_CHF: ChiffreSource<readonly number[]> = {
   valeur: [10_000, 20_000, 30_000, 50_000],

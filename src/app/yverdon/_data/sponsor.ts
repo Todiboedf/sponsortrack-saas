@@ -4,7 +4,13 @@
 import { dateCh } from "./format";
 import { ETIQUETTE_CHRONOLOGIE, ETIQUETTE_HORS_CHAMP, libelle } from "./marques";
 import { origineClipEgoKiefer, VIDEOS, type Video } from "./media";
-import { LEVIER_FACTEUR_LISIBILITE, LEVIER_PASSAGES_CIBLE, PAGE_PARTENAIRES_VERIFIEE_LE } from "./regles";
+import {
+  ETUDE_ZHAW,
+  LEVIER_FACTEUR_LISIBILITE,
+  LEVIER_PASSAGES_CIBLE,
+  PAGE_PARTENAIRES_VERIFIEE_LE,
+  SECONDES_FRISE_ATTENDUES,
+} from "./regles";
 import {
   chronologie,
   classementJeu,
@@ -88,6 +94,7 @@ export interface LigneClassement {
 }
 
 export interface Levier {
+  type: "passages" | "lisibilite" | "publications";
   titre: string;
   description: string;
   valeur: number;
@@ -258,7 +265,14 @@ export function construireVue(cle: CleSponsor): VueSponsor {
     };
   }) as [MiTempsVue, MiTempsVue];
 
-  // Controle : la frise (chronologie) et le detail des passages donnent les memes secondes.
+  // Controle : la frise (chronologie) et le detail des passages donnent les memes secondes, mi-temps par mi-temps.
+  miTemps.forEach((m, i) => {
+    const frise = m.segments.filter((s) => s.type === "marque").reduce((t, s) => t + s.finS - s.debutS, 0);
+    const attendu = SECONDES_FRISE_ATTENDUES.valeur[cle][i];
+    if (frise !== m.secondesMarque || frise !== attendu) {
+      throw new Error(`[yverdon] ${cle} mi-temps ${m.numero} : frise ${frise} s, detail ${m.secondesMarque} s, attendu ${attendu} s`);
+    }
+  });
   const secondesFrise = miTemps.reduce(
     (t, m) => t + m.segments.filter((s) => s.type === "marque").reduce((u, s) => u + s.finS - s.debutS, 0),
     0,
@@ -324,6 +338,7 @@ export function construireVue(cle: CleSponsor): VueSponsor {
     const premierePassages = mesure.passages_jeu[premiere.cle];
     const lPassages = valeurLevier(hypotheses, v.secondesBrutes, cible, (v.equiv * cible) / v.passages);
     leviers.push({
+      type: "passages",
       titre: `${cible} passages au lieu de ${v.passages}`,
       description: `Obtenir du club une part de rotation proche de celle des premières marques (${premiere.nom}\u00a0: ${premierePassages} passages). Même création, même lisibilité.`,
       valeur: lPassages,
@@ -335,6 +350,7 @@ export function construireVue(cle: CleSponsor): VueSponsor {
     // Ne se chiffre que si les plans sont mesures : sur la borne basse, il ne voudrait rien dire.
     const lLisible = valeurLevier(hypotheses, v.secondesBrutes, v.passages, v.equiv * facteur);
     leviers.push({
+      type: "lisibilite",
       titre: cle === "roseyres" ? "Une création plus contrastée" : "Une création plus lisible",
       description: `${cle === "roseyres" ? "Logo plus grand, fond plus sombre" : "Logo plus grand, plus contrasté"}\u00a0: lisible dès le plan large. Indice de visibilité multiplié par ${String(facteur).replace(".", ",")} sur le même temps d'écran.`,
       valeur: lLisible,
@@ -343,6 +359,7 @@ export function construireVue(cle: CleSponsor): VueSponsor {
     });
   }
   leviers.push({
+    type: "publications",
     titre: `${hypotheses.posts_partenaire_par_match} publications par match`,
     description: `Annonce «\u00a0partenaire du match\u00a0» et extrait vidéo avec le bandeau, sur les comptes du club.`,
     valeur: v.base.match.totalAvecPackage,
@@ -407,6 +424,7 @@ export function construireVue(cle: CleSponsor): VueSponsor {
       `affluence du SFL match center lue le ${dateCh(reseaux.releve_le)}`,
       `relevé des réseaux sociaux du ${dateCh(reseaux.releve_le)}`,
       `page partenaires du club relevée le ${PAGE_PARTENAIRES_VERIFIEE_LE.valeur}`,
+      `étude ZHAW ${ETUDE_ZHAW.valeur.titre} ${ETUDE_ZHAW.valeur.annee}`,
     ],
     plansMesures: parPlan !== null,
   };

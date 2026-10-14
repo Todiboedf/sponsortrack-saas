@@ -1,15 +1,16 @@
 // Textes propres a chaque marque. Statuts : referentiel-partenaires-v2.json (page partenaires du club,
 // verifiee le 09.10.2026). EgoKiefer n'y est pas listee : « statut a confirmer par le club », jamais un palier.
 
+import { PAGE_PARTENAIRES_VERIFIEE_LE } from "./regles";
 import type { CleSponsor } from "./sponsor";
 
 export interface ContenuMarque {
   /** Titre de l'en-tete. */
   titre: string;
-  /** Statut du partenaire, tel qu'on peut l'ecrire. */
+  /** Statut du partenaire, tel qu'on peut l'ecrire dans le bloc statut. */
   statut: string;
-  /** Precision sur le statut, ou null. */
-  statutDetail: string | null;
+  /** Precision sous le statut. */
+  statutDetail: string;
   /** Le statut vient d'une source externe datee (page partenaires du club). */
   statutVerifie: boolean;
   /** Panneaux fixes de la marque : toujours une ligne a part du bandeau. */
@@ -32,8 +33,8 @@ export const CONTENU: Record<CleSponsor, ContenuMarque> = {
   },
   egokiefer: {
     titre: "EgoKiefer",
-    statut: "à confirmer par le club",
-    statutDetail: null,
+    statut: "Statut du partenaire à confirmer par le club",
+    statutDetail: `Le statut d'EgoKiefer ne figure pas sur la page partenaires du club consultée le ${PAGE_PARTENAIRES_VERIFIEE_LE.valeur}\u00a0: il reste à confirmer par le club.`,
     statutVerifie: false,
     panneauxFixes: "Les panneaux fixes EgoKiefer du stade ne sont pas encore mesurés à part.",
     horsJeu:
