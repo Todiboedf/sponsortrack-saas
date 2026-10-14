@@ -3,7 +3,6 @@
 
 import { dateCh } from "./format";
 import { ETIQUETTE_CHRONOLOGIE, ETIQUETTE_HORS_CHAMP, libelle } from "./marques";
-import { vuePartenariat, type VuePartenariat } from "./partenariat";
 import { origineClipEgoKiefer, VIDEOS, type Video } from "./media";
 import { LEVIER_FACTEUR_LISIBILITE, LEVIER_PASSAGES_CIBLE, PAGE_PARTENAIRES_VERIFIEE_LE } from "./regles";
 import {
@@ -143,8 +142,6 @@ export interface VueSponsor {
   /** Valeur du match avec les hypotheses de la fiche (Roseyres seulement : c'est sa fiche). */
   valeurFiche: { base: number; optimiste: number } | null;
   reseaux: ReseauxSociaux;
-  /** Prix publics du club pour les contreparties hors ecran. */
-  partenariat: VuePartenariat;
   saison: { matchs: number; expositionS: number; passages: number };
   leviers: Levier[];
   resumes: EgoKieferResumes | null;
@@ -397,7 +394,6 @@ export function construireVue(cle: CleSponsor): VueSponsor {
           })()
         : null,
     reseaux,
-    partenariat: vuePartenariat(),
     saison: { matchs: n, expositionS: detail.secondes_jeu * n, passages: detail.passages * n },
     leviers,
     resumes: cle === "egokiefer" ? resumesEgoKiefer : null,
@@ -410,7 +406,6 @@ export function construireVue(cle: CleSponsor): VueSponsor {
       ...(mesureHauteurs ? ["hauteurs du bandeau mesurées par apparition"] : []),
       `affluence du SFL match center lue le ${dateCh(reseaux.releve_le)}`,
       `relevé des réseaux sociaux du ${dateCh(reseaux.releve_le)}`,
-      `prix publics du club relevés le ${vuePartenariat().releveLe}`,
       `page partenaires du club relevée le ${PAGE_PARTENAIRES_VERIFIEE_LE.valeur}`,
     ],
     plansMesures: parPlan !== null,

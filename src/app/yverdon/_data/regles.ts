@@ -57,3 +57,23 @@ export const DIFFUSEUR: ChiffreSource<string> = { valeur: "blue Sport", source: 
 
 /** Date de la fiche Roseyres dont viennent les hypotheses de valeur (affluence supposee remplacee depuis). */
 export const FICHE_HYPOTHESES_DATE: ChiffreSource<string> = { valeur: "10.10.2026", source: "Guillaume Haas, 13.10.2026" };
+
+/** Grille de couverture de la section 07 : investissements de saison, en francs. */
+export const PALIERS_INVESTISSEMENT_CHF: ChiffreSource<readonly number[]> = {
+  valeur: [5_000, 10_000, 20_000, 30_000, 50_000],
+  source: "Guillaume Haas, 14.10.2026",
+};
+
+/** Objectifs des sponsors en Suisse (part des repondants), etude ZHAW Sponsor Visions Schweiz 2022. */
+const ZHAW = "https://www.zhaw.ch/storage/hochschule/medien/news/2022/220318-studie-sponsor-visions-2022.pdf";
+export const ETUDE_ZHAW: ChiffreSource<{
+  titre: string;
+  annee: number;
+  repondants: number;
+  imagePct: number;
+  notorietePct: number;
+  ventesPct: number;
+}> = {
+  valeur: { titre: "Sponsor Visions Schweiz", annee: 2022, repondants: 58, imagePct: 79, notorietePct: 69, ventesPct: 29 },
+  source: ZHAW,
+};

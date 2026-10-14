@@ -34,7 +34,7 @@ import type { VueSponsor } from "../_data/sponsor";
 import { Ligne, Note } from "./Blocs";
 import { Frise } from "./Frise";
 import { BarrePlans, BarresValeur, BrutEquivalent, Classement } from "./Graphiques";
-import { EnsemblePartenariat } from "./Partenariat";
+import { PartEcran } from "./PartEcran";
 import { Reseaux } from "./Reseaux";
 import { LegendeStatuts, Statut } from "./Statut";
 
@@ -743,23 +743,22 @@ export function PageSponsor({ vue }: { vue: VueSponsor }) {
           <Reseaux vue={vue} />
         </Section>
 
-        {/* 8. Ensemble du partenariat */}
+        {/* 8. Part de l'ecran */}
         <Section
-          id="partenariat"
+          id="part"
           numero={7}
-          titre="Ce que vaut l'ensemble du partenariat"
+          titre="La part de l'écran dans votre contrat"
           intro={
             <p>
-              {`Un partenariat, c'est l'écran, l'hospitalité, le réseau, le digital et l'image. Ici, chaque part est comptée\u00a0: l'écran est mesuré par Sponsorlens, le reste est compté au prix public du club, c'est-à-dire ce que vous paieriez pour l'acheter séparément. Renseignez ce que vous recevez pour voir la valeur de l'ensemble.`}
+              {`Un contrat de sponsoring, c'est l'écran, mais aussi l'hospitalité, le réseau et l'image. Aucun pourcentage de référence n'existe pour dire ce que l'écran doit peser\u00a0: cela dépend du club et du contrat. Ici, la part de l'écran se mesure sur votre contrat, pas sur une moyenne.`}
             </p>
           }
         >
-          <EnsemblePartenariat
+          <PartEcran
             saisonBase={v.base.saison.totalMesure}
             saisonOptimiste={v.optimiste.saison.totalMesure}
             matchs={vue.saison.matchs}
             borneBasse={bb}
-            refs={vue.partenariat}
           />
         </Section>
 
