@@ -42,17 +42,19 @@ export const LIBELLES: Record<string, LibelleMarque> = {
   nordvent: { nom: "Nordvent", aConfirmer: false },
 };
 
-/** Habillage de la ligue, auto-promotion du club et bandeau vide (cles de ligue_jeu_s, rapport v4.1). */
-export const LIBELLES_LIGUE: Record<string, { nom: string; groupe: "ligue" | "club" | "vide" }> = {
+/** Habillage de la ligue, diffuseur, auto-promotion du club et bandeau vide (cles de ligue_jeu_s, rapport v4.1). */
+export type GroupeLigue = "ligue" | "diffuseur" | "club" | "vide";
+
+export const LIBELLES_LIGUE: Record<string, { nom: string; groupe: GroupeLigue }> = {
   dieci: { nom: "dieci", groupe: "ligue" },
   macron: { nom: "Macron", groupe: "ligue" },
   league: { nom: "Challenge League", groupe: "ligue" },
-  bluesport: { nom: "blue Sport", groupe: "ligue" },
+  bluesport: { nom: "blue Sport", groupe: "diffuseur" },
   ys: { nom: "Yverdon Sport FC", groupe: "club" },
   none: { nom: "bandeau vide", groupe: "vide" },
 };
 
-export function libelleLigue(cle: string): { nom: string; groupe: "ligue" | "club" | "vide" } {
+export function libelleLigue(cle: string): { nom: string; groupe: GroupeLigue } {
   const l = LIBELLES_LIGUE[cle];
   if (!l) throw new Error(`Cle de ligue sans libelle : ${cle}`);
   return l;

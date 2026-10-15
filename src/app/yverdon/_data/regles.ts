@@ -84,10 +84,11 @@ export const ETUDE_ZHAW: ChiffreSource<{
   source: ZHAW,
 };
 
-/** Vue club : partage du jeu et decomptes attendus (Guillaume Haas, 15.10.2026, d'apres la mesure v4.1). */
+/** Vue club : partage du jeu et decomptes attendus (Guillaume Haas, 15.10.2026, d'apres la mesure v4.1 ; ligue comme le rapport, sans le diffuseur). */
 export const CONTROLES_CLUB: ChiffreSource<{
   sponsorsS: number;
   ligueS: number;
+  diffuseurS: number;
   clubS: number;
   videS: number;
   horsImageS: number;
@@ -99,7 +100,8 @@ export const CONTROLES_CLUB: ChiffreSource<{
 }> = {
   valeur: {
     sponsorsS: 2699,
-    ligueS: 1526,
+    ligueS: 1520,
+    diffuseurS: 6,
     clubS: 513,
     videS: 222,
     horsImageS: 748,

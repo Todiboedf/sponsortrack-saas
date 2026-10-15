@@ -28,7 +28,11 @@ export function PanneauApercu({ vue }: { vue: VueSponsor }) {
             <small>× Yverdon Sport FC</small>
           </h1>
           <p className="lede">
-            {`Sur ce match, ${vue.nom} a obtenu ${duree(vue.marque.secondes)} d'écran pendant le jeu, l'équivalent de ${chf(vb.match.totalMesure)} de publicité, et ${r.publications} publication${r.publications > 1 ? "s" : ""} sur les réseaux du club.`}
+            {`Sur ce match, ${vue.nom} a obtenu ${duree(vue.marque.secondes)} d'écran pendant le jeu, l'équivalent de ${chf(vb.match.totalMesure)} de publicité, ${
+              r.publications === 0
+                ? "et aucune publication du club où votre marque apparaît"
+                : `et ${r.publications} publication${r.publications > 1 ? "s" : ""} du club où votre logo est visible`
+            }.`}
           </p>
           <div className="meta">
             <span>

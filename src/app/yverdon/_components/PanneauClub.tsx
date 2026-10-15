@@ -7,6 +7,7 @@ const COULEUR_PART: Record<VueClub["partage"][number]["cle"], string> = {
   sponsors: "var(--blue-1)",
   ligue: "var(--blue-2)",
   club: "var(--blue-3)",
+  diffuseur: "rgba(244,239,230,.55)",
   vide: "rgba(244,239,230,.16)",
   hors_image: "rgba(244,239,230,.05)",
 };
@@ -74,14 +75,14 @@ export function PanneauClub({ vue }: { vue: VueClub }) {
                 </span>
               </span>
               <span className="v" style={{ display: "grid", justifyItems: "end", gap: 4 }}>
-                <span className="nowrap">{`${duree(p.secondes)} · ${s(p.secondes)}`}</span>
+                <span className="nowrap">{p.secondes >= 60 ? `${duree(p.secondes)} · ${s(p.secondes)}` : s(p.secondes)}</span>
                 <Tag e="mesure" />
               </span>
             </div>
           ))}
         </div>
         <p className="note">
-          {`Bandeau à l'image : sponsors, ligue, club et bandeau vide, ${s(vue.bandeauVisibleS)}. Avec le temps où le bandeau n'est pas à l'image, ${s(vue.jeuS)}, soit tout le jeu.`}
+          {`Bandeau à l'image : sponsors, ligue, club, diffuseur et bandeau vide, ${s(vue.bandeauVisibleS)}. Avec le temps où le bandeau n'est pas à l'image, ${s(vue.jeuS)}, soit tout le jeu.`}
         </p>
       </div>
 
@@ -175,8 +176,8 @@ export function PanneauClub({ vue }: { vue: VueClub }) {
           <div className="card">
             <div className="card-head">
               <div>
-                <h3>La ligue et le club, à part</h3>
-                <p>Habillage central de la ligue et auto-promotion du club, pendant le jeu.</p>
+                <h3>La ligue, le diffuseur et le club, à part</h3>
+                <p>Habillage central de la ligue, logo du diffuseur et auto-promotion du club, pendant le jeu.</p>
               </div>
               <Tag e="mesure" />
             </div>

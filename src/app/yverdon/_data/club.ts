@@ -8,7 +8,7 @@ import { CONTROLES_CLUB } from "./regles";
 import { entreeReferentielOuNull, mesure, reseaux, roseyres } from "./sources";
 
 export interface PartJeu {
-  cle: "sponsors" | "ligue" | "club" | "vide" | "hors_image";
+  cle: "sponsors" | "ligue" | "diffuseur" | "club" | "vide" | "hors_image";
   libelle: string;
   detail: string;
   secondes: number;
@@ -29,7 +29,7 @@ export interface LigneMarqueClub {
 export interface LigneLigue {
   cle: string;
   nom: string;
-  groupe: "ligue" | "club";
+  groupe: "ligue" | "diffuseur" | "club";
   jeuS: number;
   passages: number | null;
 }
@@ -46,8 +46,10 @@ export interface VueClub {
   aZero: LigneMarqueClub[];
   ligue: LigneLigue[];
   cleanCo: { jeuS: number; horsJeuS: number; sequences: number };
-  passages: { cle: string; nom: string; passages: number; groupe: "marque" | "ligue" | "club" }[];
+  passages: { cle: string; nom: string; passages: number; groupe: "marque" | "ligue" | "diffuseur" | "club" }[];
 }
+
+const ORDRE_GROUPES = ["ligue", "diffuseur", "club"] as const;
 
 function controler(condition: boolean, message: string): void {
   if (!condition) throw new Error(`[yverdon] vue club, controle echoue : ${message}`);
@@ -62,21 +64,25 @@ export function construireVueClub(): VueClub {
   const clesLigue = Object.keys(m.ligue_jeu_s).filter((k) => libelleLigue(k).groupe === "ligue");
   const sponsorsS = Object.values(m.sponsors_jeu_s).reduce((t, s) => t + s, 0);
   const ligueS = somme(clesLigue);
+  const clesDiffuseur = Object.keys(m.ligue_jeu_s).filter((k) => libelleLigue(k).groupe === "diffuseur");
+  const diffuseurS = somme(clesDiffuseur);
   const clubS = somme(["ys"]);
   const videS = somme(["none"]);
-  const bandeauS = sponsorsS + ligueS + clubS + videS;
+  const bandeauS = sponsorsS + ligueS + clubS + diffuseurS + videS;
   const horsImageS = m.jeu_s - m.bandeau_visible_s;
   controler(sponsorsS === m.total_sponsor_jeu_s && sponsorsS === att.sponsorsS, `sponsors ${sponsorsS}`);
   controler(ligueS === att.ligueS, `ligue ${ligueS}`);
+  controler(diffuseurS === att.diffuseurS, `diffuseur ${diffuseurS}`);
   controler(clubS === att.clubS, `club ${clubS}`);
   controler(videS === att.videS, `bandeau vide ${videS}`);
-  controler(bandeauS === m.bandeau_visible_s && bandeauS === att.bandeauS, `${sponsorsS} + ${ligueS} + ${clubS} + ${videS} = ${bandeauS}`);
+  controler(bandeauS === m.bandeau_visible_s && bandeauS === att.bandeauS, `${sponsorsS} + ${ligueS} + ${clubS} + ${diffuseurS} + ${videS} = ${bandeauS}`);
   controler(bandeauS + horsImageS === m.jeu_s && m.jeu_s === att.jeuS && horsImageS === att.horsImageS, `${bandeauS} + ${horsImageS} = ${m.jeu_s}`);
 
   const partage: PartJeu[] = [
     { cle: "sponsors", libelle: "Sponsors et annonceurs", detail: `${Object.values(m.sponsors_jeu_s).filter((s) => s > 0).length} marques`, secondes: sponsorsS },
     { cle: "ligue", libelle: "Ligue", detail: clesLigue.map((k) => libelleLigue(k).nom).join(", "), secondes: ligueS },
     { cle: "club", libelle: "Club", detail: "Yverdon Sport FC, auto-promotion", secondes: clubS },
+    { cle: "diffuseur", libelle: "Diffuseur", detail: clesDiffuseur.map((k) => libelleLigue(k).nom).join(", "), secondes: diffuseurS },
     { cle: "vide", libelle: "Bandeau vide", detail: "transition, illisible", secondes: videS },
     { cle: "hors_image", libelle: "Bandeau pas à l'image", detail: "gros plans, ralentis, tribunes", secondes: horsImageS },
   ];
@@ -113,9 +119,10 @@ export function construireVueClub(): VueClub {
     .filter(([k]) => libelleLigue(k).groupe !== "vide")
     .map(([k, s]) => {
       const l = libelleLigue(k);
-      return { cle: k, nom: l.nom, groupe: l.groupe === "club" ? ("club" as const) : ("ligue" as const), jeuS: s, passages: m.passages_jeu[k] ?? null };
+      if (l.groupe === "vide") throw new Error("[yverdon] vue club : bandeau vide parmi la ligue");
+      return { cle: k, nom: l.nom, groupe: l.groupe, jeuS: s, passages: m.passages_jeu[k] ?? null };
     })
-    .sort((a, b) => (a.groupe === b.groupe ? b.jeuS - a.jeuS : a.groupe === "ligue" ? -1 : 1));
+    .sort((a, b) => ORDRE_GROUPES.indexOf(a.groupe) - ORDRE_GROUPES.indexOf(b.groupe) || b.jeuS - a.jeuS);
 
   // 5. Passages par marque, ligue et club compris.
   const passages = Object.entries(m.passages_jeu)
@@ -125,7 +132,7 @@ export function construireVueClub(): VueClub {
         cle,
         nom: lig ? lig.nom : libelle(cle).nom,
         passages: n,
-        groupe: lig ? (lig.groupe === "club" ? ("club" as const) : ("ligue" as const)) : ("marque" as const),
+        groupe: lig && lig.groupe !== "vide" ? lig.groupe : ("marque" as const),
       };
     })
     .sort((a, b) => b.passages - a.passages);
