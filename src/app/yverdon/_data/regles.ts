@@ -83,3 +83,31 @@ export const ETUDE_ZHAW: ChiffreSource<{
   valeur: { titre: "Sponsor Visions Schweiz", annee: 2022, repondants: 58, imagePct: 79, notorietePct: 69, ventesPct: 29 },
   source: ZHAW,
 };
+
+/** Vue club : partage du jeu et decomptes attendus (Guillaume Haas, 15.10.2026, d'apres la mesure v4.1). */
+export const CONTROLES_CLUB: ChiffreSource<{
+  sponsorsS: number;
+  ligueS: number;
+  clubS: number;
+  videS: number;
+  horsImageS: number;
+  bandeauS: number;
+  jeuS: number;
+  marques: number;
+  aZero: number;
+  premierePassages: string;
+}> = {
+  valeur: {
+    sponsorsS: 2699,
+    ligueS: 1526,
+    clubS: 513,
+    videS: 222,
+    horsImageS: 748,
+    bandeauS: 4960,
+    jeuS: 5708,
+    marques: 21,
+    aZero: 9,
+    premierePassages: "dieci",
+  },
+  source: "Guillaume Haas, 15.10.2026",
+};

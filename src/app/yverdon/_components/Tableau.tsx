@@ -25,28 +25,37 @@ export function Tableau({ vue }: { vue: VueSponsor }) {
 
   return (
     <Onglets
-      barre={
-        <div className="topbar">
-          <a className="logo" href="https://sponsorlens.io" aria-label="Sponsorlens">
-            <Focus aria-hidden />
-            Sponsorlens
-          </a>
-          <div className="ctx">
-            <span className="mono">{`Yverdon Sport FC · Journée ${vue.match.journee} · ${vue.match.date}`}</span>
-            <span className="pill">{`Mis à jour le ${vue.misAJourLe} · prochain match à\u00a0domicile\u00a0: à\u00a0mesurer`}</span>
-          </div>
-        </div>
-      }
+      barre={<BarreHaute journee={vue.match.journee} date={vue.match.date} misAJourLe={vue.misAJourLe} />}
       onglets={onglets}
-      pied={
-        <>
-          <p>
-            Page exemple, construite par Sponsorlens sur la mesure réelle de ce match. Elle n&apos;est pas validée par
-            Yverdon Sport. Elle est mise à jour après chaque match.
-          </p>
-          <p>Guillaume Haas · GHaas Management SA · Sponsorlens, mesure de la visibilité et de la valeur des partenariats sportifs.</p>
-        </>
-      }
+      pied={<Pied />}
     />
+  );
+}
+
+/** Barre haute : logo, match, pastille de mise à jour. */
+export function BarreHaute({ journee, date, misAJourLe }: { journee: number; date: string; misAJourLe: string }) {
+  return (
+    <div className="topbar">
+      <a className="logo" href="https://sponsorlens.io" aria-label="Sponsorlens">
+        <Focus aria-hidden />
+        Sponsorlens
+      </a>
+      <div className="ctx">
+        <span className="mono">{`Yverdon Sport FC · Journée ${journee} · ${date}`}</span>
+        <span className="pill">{`Mis à jour le ${misAJourLe} · prochain match à\u00a0domicile\u00a0: à\u00a0mesurer`}</span>
+      </div>
+    </div>
+  );
+}
+
+export function Pied() {
+  return (
+    <>
+      <p>
+        Page exemple, construite par Sponsorlens sur la mesure réelle de ce match. Elle n&apos;est pas validée par
+        Yverdon Sport. Elle est mise à jour après chaque match.
+      </p>
+      <p>Guillaume Haas · GHaas Management SA · Sponsorlens, mesure de la visibilité et de la valeur des partenariats sportifs.</p>
+    </>
   );
 }

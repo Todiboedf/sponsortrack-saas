@@ -5,7 +5,7 @@ import { createContext, useCallback, useContext, useEffect, useRef, useState } f
 // Ilot client du tableau de bord : les onglets (role=tablist, fleches clavier, hash de l'URL).
 // Le contenu des panneaux est rendu au serveur et passe ici tel quel.
 
-export const ONGLETS = ["apercu", "image", "reseaux", "valeur", "methode"] as const;
+export const ONGLETS = ["apercu", "image", "reseaux", "valeur", "methode", "club"] as const;
 export type IdOnglet = (typeof ONGLETS)[number];
 
 export interface Onglet {
@@ -15,9 +15,6 @@ export interface Onglet {
   contenu: React.ReactNode;
 }
 
-function estOnglet(x: string): x is IdOnglet {
-  return (ONGLETS as readonly string[]).includes(x);
-}
 
 const Aller = createContext<(id: IdOnglet, focus?: boolean) => void>(() => {});
 
@@ -30,7 +27,8 @@ export function Onglets({
   onglets: Onglet[];
   pied: React.ReactNode;
 }) {
-  const [actif, setActif] = useState<IdOnglet>("apercu");
+  const ids = onglets.map((o) => o.id);
+  const [actif, setActif] = useState<IdOnglet>(ids[0]);
   const boutons = useRef<Partial<Record<IdOnglet, HTMLButtonElement | null>>>({});
 
   const montrer = useCallback((id: IdOnglet, focus = false) => {
@@ -77,23 +75,25 @@ export function Onglets({
   useEffect(() => {
     const lire = () => {
       const h = window.location.hash.replace("#", "");
-      if (estOnglet(h)) setActif(h);
+      const id = ids.find((x) => x === h);
+      if (id) setActif(id);
     };
     lire();
     window.addEventListener("hashchange", lire);
     return () => window.removeEventListener("hashchange", lire);
+    // ids ne change pas pendant la vie de la page
   }, []);
 
   const clavier = (e: React.KeyboardEvent<HTMLDivElement>) => {
-    const i = ONGLETS.indexOf(actif);
+    const i = ids.indexOf(actif);
     let j: number | null = null;
-    if (e.key === "ArrowRight") j = (i + 1) % ONGLETS.length;
-    if (e.key === "ArrowLeft") j = (i - 1 + ONGLETS.length) % ONGLETS.length;
+    if (e.key === "ArrowRight") j = (i + 1) % ids.length;
+    if (e.key === "ArrowLeft") j = (i - 1 + ids.length) % ids.length;
     if (e.key === "Home") j = 0;
-    if (e.key === "End") j = ONGLETS.length - 1;
+    if (e.key === "End") j = ids.length - 1;
     if (j !== null) {
       e.preventDefault();
-      montrer(ONGLETS[j], true);
+      montrer(ids[j], true);
     }
   };
 

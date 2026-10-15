@@ -31,7 +31,32 @@ export const LIBELLES: Record<string, LibelleMarque> = {
   aon: { nom: "AON", aConfirmer: false },
   jolly_voyages: { nom: "Jolly Voyages", precision: "panneaux fixes", aConfirmer: false, panneauFixe: true },
   kiki_pneus: { nom: "Kiki Pneus", aConfirmer: false },
+  // Vues seulement hors jeu (rapport v4.1, tableau « Présence par marque », lignes 13 à 20).
+  carrosserie_maisto: { nom: "Carrosserie Maisto", aConfirmer: false },
+  vin_bonne_humeur: { nom: `${G}Le vin des créateurs de bonne humeur${D}`, precision: "slogan", aConfirmer: true },
+  hotel_source: { nom: "Hôtel de la Source", aConfirmer: false },
+  chris_medical: { nom: "Chris Medical", aConfirmer: false },
+  swica: { nom: "SWICA", aConfirmer: false },
+  swisstems: { nom: "Swisstems", aConfirmer: false },
+  pause_recharge: { nom: "Pause & Recharge", aConfirmer: false },
+  nordvent: { nom: "Nordvent", aConfirmer: false },
 };
+
+/** Habillage de la ligue, auto-promotion du club et bandeau vide (cles de ligue_jeu_s, rapport v4.1). */
+export const LIBELLES_LIGUE: Record<string, { nom: string; groupe: "ligue" | "club" | "vide" }> = {
+  dieci: { nom: "dieci", groupe: "ligue" },
+  macron: { nom: "Macron", groupe: "ligue" },
+  league: { nom: "Challenge League", groupe: "ligue" },
+  bluesport: { nom: "blue Sport", groupe: "ligue" },
+  ys: { nom: "Yverdon Sport FC", groupe: "club" },
+  none: { nom: "bandeau vide", groupe: "vide" },
+};
+
+export function libelleLigue(cle: string): { nom: string; groupe: "ligue" | "club" | "vide" } {
+  const l = LIBELLES_LIGUE[cle];
+  if (!l) throw new Error(`Cle de ligue sans libelle : ${cle}`);
+  return l;
+}
 
 const VOYELLE = /^[aeiouyàâéèêëîïôûùAEIOUYÉÈÊ]/;
 

@@ -315,3 +315,7 @@
   .yvd .topbar { height: auto; min-height: 56px; padding-block: 8px; }
   .yvd .pill { white-space: normal; text-align: right; line-height: 1.35; }
 }
+/* Vue club : le tableau des marques tient a 390 px, l'etiquette « non mesuré » passe sur deux lignes */
+.yvd .tbl.club td.r .tag { white-space: normal; text-align: left; }
+.yvd .tbl.club td.r:has(.tag) { white-space: normal; }
+@media (max-width: 560px) { .yvd .tbl.club th, .yvd .tbl.club td { padding-right: 6px; } }

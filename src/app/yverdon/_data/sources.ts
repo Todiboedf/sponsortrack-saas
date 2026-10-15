@@ -87,6 +87,14 @@ const referentiel: Record<string, unknown> = referentielJson;
 
 export const sourceReferentiel: { site_club: string } = referentielJson._sources;
 
+/** Entree du referentiel, ou null si la marque n'y figure pas (creations non identifiees). */
+export function entreeReferentielOuNull(cle: string): EntreeReferentiel | null {
+  const e = referentiel[cle];
+  if (e === undefined) return null;
+  if (!estEntreeReferentiel(e)) erreur(`referentiel : entree ${cle} mal formee`);
+  return e;
+}
+
 export function entreeReferentiel(cle: string): EntreeReferentiel {
   const e = referentiel[cle];
   if (!estEntreeReferentiel(e)) erreur(`referentiel : entree ${cle} absente ou mal formee`);
