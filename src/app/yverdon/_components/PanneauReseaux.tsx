@@ -59,17 +59,19 @@ function abonnes(c: CompteReleve): string {
 }
 
 /** Ce que la marque obtient dans les publications du club : le chiffre résumé de la vue d'ensemble. */
-export function resumeReseaux(vue: VueSponsor): { chiffre: string; titre: string } {
+export function resumeReseaux(vue: VueSponsor): { chiffre: string; titre: string; publications: number } {
   const m = vue.cle === "egokiefer" ? vue.reseaux.marques.egokiefer : vue.reseaux.marques.roseyres_smartimmo;
   const lus = vue.reseaux.instagram_club_periode.posts_lus;
   if (vue.cle === "egokiefer" && m.repartition) {
     const mentions = m.repartition.texte_ou_mention + m.repartition.hashtag;
     return {
+      publications: m.repartition.logo_visible,
       chiffre: entier(m.repartition.logo_visible),
       titre: `publications du club avec le logo visible, ${mentions} mention${mentions > 1 ? "s" : ""} écrite${mentions > 1 ? "s" : ""}, sur ${lus} ouvertes une par une`,
     };
   }
   return {
+    publications: m.posts_club.length,
     chiffre: entier(m.posts_club.length),
     titre: `publication du club citant ou montrant ${vue.nom}, sur ${lus} ouvertes une par une`,
   };

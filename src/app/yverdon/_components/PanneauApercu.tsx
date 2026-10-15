@@ -28,8 +28,7 @@ export function PanneauApercu({ vue }: { vue: VueSponsor }) {
             <small>× Yverdon Sport FC</small>
           </h1>
           <p className="lede">
-            Ce que votre marque a obtenu à l&apos;écran et sur les réseaux lors de ce match, ce que cette exposition
-            vaut en équivalent média, et ce que donne une saison à domicile au même rythme.
+            {`Sur ce match, ${vue.nom} a obtenu ${duree(vue.marque.secondes)} d'écran pendant le jeu, l'équivalent de ${chf(vb.match.totalMesure)} de publicité, et ${r.publications} publication${r.publications > 1 ? "s" : ""} sur les réseaux du club.`}
           </p>
           <div className="meta">
             <span>
@@ -42,16 +41,18 @@ export function PanneauApercu({ vue }: { vue: VueSponsor }) {
             <span>{m.stade}</span>
             <span>{`Diffusion ${DIFFUSEUR.valeur}`}</span>
           </div>
-          <div className="statut">
-            <strong>{c.statut}</strong>
-            {c.statutVerifie ? <Tag e="verifie" /> : <Tag e="attente" />}
-            {c.statutVerifie && (
-              <span className="mono" style={{ letterSpacing: ".06em" }}>
-                {`page partenaires du club, ${PAGE_PARTENAIRES_VERIFIEE_LE.valeur}`}
-              </span>
-            )}
-            <p>{c.statutDetail}</p>
-          </div>
+          {(c.statutVerifie || vue.lecteur === "club") && (
+            <div className="statut">
+              <strong>{c.statut}</strong>
+              {c.statutVerifie ? <Tag e="verifie" /> : <Tag e="attente" />}
+              {c.statutVerifie && (
+                <span className="mono" style={{ letterSpacing: ".06em" }}>
+                  {`page partenaires du club, ${PAGE_PARTENAIRES_VERIFIEE_LE.valeur}`}
+                </span>
+              )}
+              <p>{c.statutDetail}</p>
+            </div>
+          )}
         </div>
         <Video vue={vue} />
       </div>

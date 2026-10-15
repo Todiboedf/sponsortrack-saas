@@ -126,6 +126,8 @@ export interface Exposition {
 export interface VueSponsor {
   cle: CleSponsor;
   lecteur: Lecteur;
+  /** Date de la derniere mise a jour des donnees : le releve le plus recent (reseaux et affluence). */
+  misAJourLe: string;
   nom: string;
   match: typeof roseyres.match & { diffusionS: number };
   bornes: Bornes;
@@ -401,6 +403,7 @@ export function construireVue(cle: CleSponsor, lecteur: Lecteur = "sponsor"): Vu
   return {
     cle,
     lecteur,
+    misAJourLe: dateCh(reseaux.releve_le),
     nom: libelle(cle).nom,
     match: { ...roseyres.match, diffusionS: Object.keys(chronologie().secondes).length },
     bornes: b,

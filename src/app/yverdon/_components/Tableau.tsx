@@ -33,7 +33,7 @@ export function Tableau({ vue }: { vue: VueSponsor }) {
           </a>
           <div className="ctx">
             <span className="mono">{`Yverdon Sport FC · Journée ${vue.match.journee} · ${vue.match.date}`}</span>
-            <span className="pill">Mis à jour après chaque match</span>
+            <span className="pill">{`Mis à jour le ${vue.misAJourLe} · prochain match à\u00a0domicile\u00a0: à\u00a0mesurer`}</span>
           </div>
         </div>
       }

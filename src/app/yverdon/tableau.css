@@ -310,3 +310,8 @@
 .yvd .calc-out .c small { display: block; font-family: var(--f-body); font-weight: 400; font-size: 13px; color: var(--fg-2); letter-spacing: 0; margin-top: 2px; }
 .yvd .post .t small { display: block; color: var(--fg-3); font-size: 12px; margin-top: 4px; }
 .yvd .bar-row .flou { filter: blur(4px); user-select: none; color: var(--fg-3); font-size: 12px; }
+/* Pastille de mise a jour plus longue que dans le gabarit : elle passe sur deux lignes sur mobile */
+@media (max-width: 560px) {
+  .yvd .topbar { height: auto; min-height: 56px; padding-block: 8px; }
+  .yvd .pill { white-space: normal; text-align: right; line-height: 1.35; }
+}
