@@ -6,6 +6,7 @@ import { ETIQUETTE_CHRONOLOGIE, ETIQUETTE_HORS_CHAMP, libelle } from "./marques"
 import { origineClipEgoKiefer, VIDEOS, type Video } from "./media";
 import {
   ETUDE_ZHAW,
+  FICHE_HYPOTHESES_DATE,
   LEVIER_FACTEUR_LISIBILITE,
   LEVIER_PASSAGES_CIBLE,
   PAGE_PARTENAIRES_VERIFIEE_LE,
@@ -38,6 +39,12 @@ import { gainPct, valeur, valeurLevier, type ResultatValeur } from "./valeur";
 export type CleSponsor = "roseyres" | "egokiefer";
 
 export type Statut = "mesure" | "verifie" | "hypothese";
+
+/**
+ * Pour qui la page est rendue. « sponsor » (/yverdon/<marque>) : les autres marques sont anonymisees
+ * au build, leur nom n'atteint jamais le HTML. « club » (/yverdon/club/<marque>) : noms et notes.
+ */
+export type Lecteur = "sponsor" | "club";
 
 export type LibellePlan = "plan large" | "plan moyen" | "gros plan";
 
@@ -91,6 +98,8 @@ export interface LigneClassement {
   secondes: number;
   rang: number;
   estMarque: boolean;
+  /** Autre marque dont le nom est retire (vue sponsor). */
+  anonyme: boolean;
 }
 
 export interface Levier {
@@ -116,6 +125,7 @@ export interface Exposition {
 
 export interface VueSponsor {
   cle: CleSponsor;
+  lecteur: Lecteur;
   nom: string;
   match: typeof roseyres.match & { diffusionS: number };
   bornes: Bornes;
@@ -213,9 +223,26 @@ function videoDe(cle: CleSponsor, ps: PassageVue[]): Video {
   return { ...video, origineCadres: origineClipEgoKiefer(passage.plan.libelle, passage.plan.hauteurPx) };
 }
 
+// ---------------------------------------------------------------- vue sponsor
+
+/** Une autre marque, vue par le sponsor : rang, temps et barre restent, le nom et les notes partent. */
+function anonymiser(l: LigneClassement): LigneClassement {
+  if (l.estMarque) return l;
+  return {
+    cle: `autre-${l.rang}`,
+    nom: "autre marque",
+    aConfirmer: false,
+    panneauFixe: false,
+    secondes: l.secondes,
+    rang: l.rang,
+    estMarque: false,
+    anonyme: true,
+  };
+}
+
 // ---------------------------------------------------------------- vue
 
-export function construireVue(cle: CleSponsor): VueSponsor {
+export function construireVue(cle: CleSponsor, lecteur: Lecteur = "sponsor"): VueSponsor {
   const detail = passages.marques[cle];
   const b = mesure.bornes_diffusion_s;
   const mesureHauteurs = cle === "egokiefer" ? hauteurs(cle) : null;
@@ -322,6 +349,7 @@ export function construireVue(cle: CleSponsor): VueSponsor {
       secondes: c.secondes,
       rang: i + 1,
       estMarque: c.cle === cle,
+      anonyme: false,
     };
   });
   const rangMarque = classement.find((c) => c.estMarque)?.rang;
@@ -340,7 +368,7 @@ export function construireVue(cle: CleSponsor): VueSponsor {
     leviers.push({
       type: "passages",
       titre: `${cible} passages au lieu de ${v.passages}`,
-      description: `Obtenir du club une part de rotation proche de celle des premières marques (${premiere.nom}\u00a0: ${premierePassages} passages). Même création, même lisibilité.`,
+      description: `Obtenir du club une part de rotation proche de celle des premières marques (${lecteur === "club" ? `${premiere.nom}\u00a0: ` : ""}${premierePassages} passages). Même création, même lisibilité.`,
       valeur: lPassages,
       gainPct: gainPct(lPassages, reference),
       gainChf: lPassages - reference,
@@ -372,6 +400,7 @@ export function construireVue(cle: CleSponsor): VueSponsor {
 
   return {
     cle,
+    lecteur,
     nom: libelle(cle).nom,
     match: { ...roseyres.match, diffusionS: Object.keys(chronologie().secondes).length },
     bornes: b,
@@ -399,7 +428,7 @@ export function construireVue(cle: CleSponsor): VueSponsor {
     miTemps,
     passages: vuesPassages,
     exposition,
-    classement,
+    classement: lecteur === "club" ? classement : classement.map(anonymiser),
     valeur: v,
     hypotheses,
     affluenceFiche: hypothesesFiche.affluence,
@@ -418,7 +447,11 @@ export function construireVue(cle: CleSponsor): VueSponsor {
       `mesure du match version ${mesure.version}`,
       "détail des passages",
       "chronologie du bandeau seconde par seconde",
-      cle === "roseyres" ? "fiche Roseyres (plans et hauteurs, hypothèses de valeur)" : "hypothèses de valeur de la fiche Roseyres",
+      cle === "roseyres"
+        ? "fiche Roseyres (plans et hauteurs, hypothèses de valeur)"
+        : lecteur === "club"
+          ? "hypothèses de valeur de la fiche Roseyres"
+          : `hypothèses de valeur de la fiche du ${FICHE_HYPOTHESES_DATE.valeur}`,
       ...(cle === "egokiefer" ? ["résumés de septembre"] : []),
       ...(mesureHauteurs ? ["hauteurs du bandeau mesurées par apparition"] : []),
       `affluence du SFL match center lue le ${dateCh(reseaux.releve_le)}`,

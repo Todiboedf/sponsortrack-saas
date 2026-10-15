@@ -40,7 +40,7 @@ export function PanneauMethode({ vue }: { vue: VueSponsor }) {
         : ", seconde par seconde"
     }. L'indice de visibilité pondère chaque seconde avant le calcul de la valeur TV.`,
     `Mesuré : temps à l'écran, passages, plans. Vérifié : affluence du match, abonnés des comptes${c.statutVerifie ? ", statut sur la page partenaires du club" : ""}. Hypothèses : audience TV, tarifs, portée sociale, indices de visibilité, et l'affluence de chaque match dans la projection saison.`,
-    `Les panneaux fixes se mesurent à part : le panneau Clean&Co est à l'image ${duree(vue.jeu.cleanCoJeuS)} pendant le jeu, sur une ligne séparée. Les autres panneaux fixes ne sont pas encore mesurés à part.`,
+    `Les panneaux fixes se mesurent à part : ${vue.lecteur === "club" ? "le panneau Clean&Co" : "un panneau fixe d'une autre marque"} est à l'image ${duree(vue.jeu.cleanCoJeuS)} pendant le jeu, sur une ligne séparée. Les autres panneaux fixes ne sont pas encore mesurés à part.`,
     `L'affluence est celle du SFL match center, ${entier(h.affluence.base)} spectateurs, lue le ${dateCh(vue.reseaux.releve_le)}. Les hypothèses de valeur viennent de la fiche du ${FICHE_HYPOTHESES_DATE.valeur}, qui utilisait une affluence supposée de ${entier(vue.affluenceFiche.base)} en base et ${entier(vue.affluenceFiche.haut)} en optimiste${
       vue.valeurFiche
         ? ` : elle donnait ${chf(vue.valeurFiche.base)} et ${chf(vue.valeurFiche.optimiste)}, contre ${chf(vb.totalMesure)} et ${chf(vo.totalMesure)} ici. La formule est la même, contrôlée sur ces deux chiffres à chaque mise à jour`

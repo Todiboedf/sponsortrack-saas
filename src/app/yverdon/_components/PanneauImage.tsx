@@ -14,6 +14,9 @@ import { NBSP, nomMiTemps, Video } from "./communs";
 import { Tag } from "./Etiquette";
 import { FriseMatch, type PisteFrise, type SegmentFrise } from "./FriseMatch";
 
+/** Texte de remplacement, flouté, à la place du nom d'une autre marque : le vrai nom n'est jamais dans le HTML. */
+const LIBELLE_FLOU = "Marque du bandeau";
+
 /** Plus de 60 s en minutes (« 2 min 30 »), sinon en secondes (« 50 s »). */
 function temps(s: number): string {
   return s >= 60 ? duree(s) : fmtSecondes(s);
@@ -198,10 +201,19 @@ export function PanneauImage({ vue }: { vue: VueSponsor }) {
                 <li key={l.cle} className={`bar-row${l.estMarque ? " me" : ""}`}>
                   <span className="rank">{l.rang}</span>
                   <div className="name">
-                    <span>
-                      {l.nom}
-                      {precision && <small>{` ${precision}`}</small>}
-                    </span>
+                    {l.anonyme ? (
+                      <span>
+                        {l.nom}{" "}
+                        <span className="flou" aria-hidden>
+                          {LIBELLE_FLOU}
+                        </span>
+                      </span>
+                    ) : (
+                      <span>
+                        {l.nom}
+                        {precision && <small>{` ${precision}`}</small>}
+                      </span>
+                    )}
                     <div className="bar" style={{ width: `${((l.secondes / maxS) * 100).toFixed(1)}%` }} />
                   </div>
                   <span className="val">{duree(l.secondes)}</span>
@@ -210,7 +222,9 @@ export function PanneauImage({ vue }: { vue: VueSponsor }) {
             })}
           </ol>
           <p className="note">
-            {`Temps d'écran pendant le jeu des ${nbM} marques visibles sur le bandeau. ${premiere.nom}, qui passe le plus, cumule ${duree(premiere.secondes)}. Les créations «${NBSP}à confirmer${NBSP}» ne figurent dans aucun document du club : leur nom reste à confirmer par le club.${
+            {vue.lecteur === "sponsor"
+              ? `Temps d'écran pendant le jeu des ${nbM} marques visibles sur le bandeau. ${premiere.anonyme ? "La marque qui passe le plus" : `${premiere.nom}, qui passe le plus,`} cumule ${duree(premiere.secondes)}. Les autres marques ne sont pas nommées sur cette page.`
+              : `Temps d'écran pendant le jeu des ${nbM} marques visibles sur le bandeau. ${premiere.nom}, qui passe le plus, cumule ${duree(premiere.secondes)}. Les créations «${NBSP}à confirmer${NBSP}» ne figurent dans aucun document du club : leur nom reste à confirmer par le club.${
               panneaux.length > 0
                 ? ` ${panneaux.join(" et ")} : panneaux fixes, comptés seulement quand ils occupent la zone du bandeau. Mesure propre au prochain match.`
                 : ""
